@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Usuarios</title>
+    <link rel="stylesheet" href="../css/admin/users.css">
+</head>
+<body>
+
+    <h2>Listado de Usuarios</h2>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nombre Completo</th>
+                <th>Móvil</th>
+                <th>Correo Electrónico</th>
+                <th>Tipo Usuario</th>
+                <th>Foto</th>
+                <th>Token</th>
+                <th>Creación Token</th>
+                <th>Expiración Token</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="usuario : ${usuarios}">
+                <td th:text="${usuario.nombreCompleto}"></td>
+                <td th:text="${usuario.movil}"></td>
+                <td th:text="${usuario.correoElectronico}"></td>
+                <td th:text="${usuario.tipoUsuario}"></td>
+                
+                <td th:text="${usuario.token}"></td>
+                <td th:text="${usuario.creacionToken}"></td>
+                <td th:text="${usuario.expiracionToken}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

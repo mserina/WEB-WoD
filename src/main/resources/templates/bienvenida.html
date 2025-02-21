@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenido a la Tienda de Manga</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+    <div class="welcome-container">
+        <h1 class="welcome-message" th:text="${mensaje}"></h1>
+        <img class="manga-image" th:src="@{/images/manga-welcome.jpg}" alt="Bienvenido a nuestra tienda de manga">
+        <div>
+            <a href="/productos" class=	>Ver Nuestro Catálogo</a>
+        </div>
+    </div>
+</body>
+</html>
