@@ -11,8 +11,10 @@ public class WodwebApplication {
     public static void main(String[] args) {
         SpringApplication.run(WodwebApplication.class, args);
   
-		  InicioSesionControlador inicioSesion = new InicioSesionControlador();
-		  inicioSesion.autenticarUsuarios();
+		/*
+		 * InicioSesionControlador inicioSesion = new InicioSesionControlador();
+		 * inicioSesion.autenticarUsuarios();
+		 */
 		 
     }
 }
