@@ -1,139 +1,232 @@
-/* Tus estilos personalizados irán aquí */
+@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
 
-/* Estilos generales para toda la aplicación */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #f0f2f5;  /* Fondo gris claro para mejor contraste */
-}
-
-/* Estilos página de bienvenida */
-.welcome-container {
-    text-align: center;
-    padding: 40px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* Estilo para la imagen de manga en la página de bienvenida */
-.manga-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    -webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    margin: 20px 0;
-}
-
-/* Mensaje de bienvenida grande y llamativo */
-.welcome-message {
-    font-size: 2em;
-    color: #2c3e50;
-    margin: 20px 0;
-}
-
-/* Botón principal para ver productos */
-.ver-productos-btn {
-    display: inline-block;
-    padding: 15px 30px;
-    background-color: #e74c3c;  /* Rojo llamativo */
+/*CONTENIDO BARRA NAVEGACION*/
+/* --- ESTILOS GENERALES --- */
+.fondoBarraNavegacion {
+    background-color: black;
+    height: 5rem;
     color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1.2em;
-    margin-top: 20px;
-    -webkit-transition: background-color 0.3s ease;
-    -moz-transition: background-color 0.3s ease;
-    -o-transition: background-color 0.3s ease;
-    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: space-between; /* Distribuye los elementos */
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 1rem;
 }
 
-.ver-productos-btn:hover {
-    background-color: #c0392b;  /* Rojo más oscuro al pasar el mouse */
+/* Logo */
+.logo {
+    width: 70px;
+    height: 70px;
+    transform: translate(1px, 4px);
 }
 
-/* Estilos página de productos */
-.productos-grid {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));  /* Columnas automáticas */
-    gap: 20px;
-    padding: 20px;
+
+
+/* Contenedor de los botones de navegación */
+.navOpciones {
+    display: flex;
+    gap: 12rem;
+    margin-left: 52rem;
+    transform: translate(-14rem, -4rem);
 }
 
-/* Tarjeta individual de producto con efectos hover */
-.producto-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    background: white;
-    -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-}
-
-.producto-card:hover {
-    -webkit-transform: translateY(-5px);
-    -ms-transform: translateY(-5px);
-    transform: translateY(-5px);  /* Se eleva ligeramente al pasar el mouse */
-    -webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);  /* Sombra más pronunciada */
-}
-
-/* Título del producto */
-.producto-card h3 {
-    color: #2c3e50;
-    margin: 10px 0;
-}
-
-/* Precio destacado */
-.precio {
-    font-size: 1.2em;
-    color: #e74c3c;  /* Rojo para destacar el precio */
-    font-weight: bold;
-}
-
-/* Botón para volver a la página principal */
-.volver-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #3498db;  /* Azul */
+/* Botones de navegación */
+.ico1, .ico2, .ico3 {
     color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    margin: 20px;
-    -webkit-transition: background-color 0.3s ease;
-    -moz-transition: background-color 0.3s ease;
-    -o-transition: background-color 0.3s ease;
-    transition: background-color 0.3s ease;
 }
 
-.volver-btn:hover {
-    background-color: #2980b9;  /* Azul más oscuro al hover */
+.botonIcono{
+    transform: translate(110rem, -106px);
+    border-radius: 12rem;
+    width: 4rem;
+    height: 4rem;
+    
 }
 
-/* Contenedor principal que centra el contenido y añade sombra */
-.contenedor {
-    max-width: 1200px;
-    margin: 0 auto;
+/* Imagen del usuario */
+.imagenLogin {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 2rem;
+    transform: translateY(4px);
+    margin-bottom: 1rem;
+    display: flex;
+    margin-right: 11rem;
+}
+
+.imagenLogin:hover {
+    transform: scale(1.1);
+}
+
+.menuOpciones{
     background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    color: black;
+    width: 8rem;
+    padding: 1rem;
+    margin-left: -3rem;
 }
 
-/* Estilo para mensajes de error */
-.mensaje-error {
-    color: #dc3545;  /* Rojo para errores */
-    text-align: center;
-    padding: 20px;
-    background-color: #fff3f3;  /* Fondo rojo muy claro */
-    border-radius: 4px;
-    margin-top: 20px;
+#separacionCampos{
+    margin-bottom: 1px;
+    margin-top: 1px;
 }
+
+/* Fuente */
+h2 {
+    font-family: 'Roboto Slab', cursive !important;
+    font-size: 1.2rem;
+}
+
+.iconoHamburguesa{
+    display: none;
+}
+
+/* --- RESPONSIVE DESIGN --- */
+
+/* TABLETS Y PANTALLAS MEDIANAS (menos de 1024px) */
+@media screen and (max-width: 1024px) {
+    .navOpciones {
+        gap: 5rem; /* Reduce el espacio entre los botones */
+        margin-left: -22rem;
+
+    }
+
+    .logo {
+        width: 70px;
+        height: 70px;
+    }
+
+    h2 {
+        font-size: 1rem;
+    }
+}
+
+/* DISPOSITIVOS MÓVILES (menos de 768px) */
+@media screen and (max-width: 768px) {
+    mat-toolbar {
+        flex-direction: row;
+        height: auto;
+        padding: 1rem;
+    }
+
+    .logo {
+        width: 60px;
+        height: 60px;
+        margin-top: 6px;
+    }
+
+    .iconoHamburguesa{
+        display: block;
+    }
+
+    /* MENÚ HAMBURGUESA */
+    .menuHamburguesa {
+        display: block;
+        font-size: 2rem;
+        color: white;
+        background: none;
+        border: none;
+        cursor: pointer;
+        margin-left: 1rem;
+    }
+
+
+
+    /* Ocultar el menú de navegación por defecto */
+    .navOpciones {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 5rem;
+        left: 0;
+        width: 100%;
+        background-color: black;
+        padding: 1rem;
+        z-index: 100;
+        margin-left: auto;
+    }
+
+    /* Mostrar el menú cuando se active */
+    .navOpciones.mostrar {
+        display: flex;
+    }
+
+    .navOpciones button {
+        width: 100%;
+        text-align: left;
+        padding: 0.5rem 1rem;
+    }
+
+    .iconoUsuario {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* PANTALLAS MUY PEQUEÑAS (menos de 480px) */
+@media screen and (max-width: 480px) {
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .imagenLogin {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    
+   
+}
+
+
+
+/* CONTENIDO LANDING PAGE*/
+body {
+    height: 100%;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-image: url("../images/fondoPantalla.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+.contenido {
+    display: flex;
+    flex-direction: column; /* Apila los elementos verticalmente */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    height: 100vh; /* Ocupa toda la pantalla */
+    text-align: center;
+}
+
+.flechas-cotenedor {
+    display: flex;
+    justify-content: space-between; /* Distribuye las flechas */
+    width: 100%; /* Ajusta el ancho según necesites */
+    max-width: 89rem; /* Evita que las flechas se separen demasiado */
+    margin-top: 2rem;
+}
+
+.icoPricipal{
+    width: 32rem;
+}
+
+.titulo{
+    font-size: 6rem;
+    width: 100rem;
+}
+
+#flecha1, #flecha2 {
+    width: 11rem;
+    transform: rotate(358deg);
+    height: 10rem;
+}
+
+h1 {
+    font-family: 'Pirata One', cursive;
+    color: white;
+    
+  }
+  
+
