@@ -12,59 +12,53 @@
 
 </head>
 <body>
-	<div class="fondoBarraNavegacion">
-		<div class="toolbar">
+	<div class="container-fluid fondoBarraNavegacion">
+		<div class="row align-items-center w-100">
+
 			<!-- Logo -->
-			<a class="btn-icon" th:href="@{/}"> <img class="logo"
-				th:src="@{/images/logo.png}" alt="Logo" />
-			</a>
-
-			<!-- Menú hamburguesa para móviles -->
-			<button class="menuHamburguesa" onclick="toggleMenu()">
-				<h1 class="iconoHamburguesa">☰</h1>
-			</button>
-
-
-			<!-- Contenedor de los botones de navegación -->
-			<div class="navOpciones" id="navOpciones">
-				<a class="ico1 btn-icon" th:href="@{/manga}">
-					<h2>MANGA</h2>
-				</a> <a class="ico2 btn-icon" th:href="@{/poster}">
-					<h2>POSTER</h2>
-				</a> <a class="ico3 btn-icon" th:href="@{/figura}">
-					<h2>FIGURA</h2>
+			<div class="col-auto">
+				<a class="btn-icon" th:href="@{/}"> <img class="logo"
+					th:src="@{/images/logo.png}" alt="Logo">
 				</a>
 			</div>
 
-
-			<div class="iconoUsuario">
-				<!-- Botón del usuario -->
-				<button class="botonIcono" type="button" id="dropdownMenuButton"
-					data-bs-toggle="dropdown" aria-expanded="false">
-					<img class="imagenLogin" th:src="@{/images/iconoUsuario.png}"
-						alt="Usuario" width="40" height="40">
-				</button>
-
-				<!-- Menú desplegable -->
-				<ul class="dropdown-menu dropdown-menu-end"
-					aria-labelledby="dropdownMenuButton">
-					<!-- Opción de administrador si el usuario es admin -->
-					<li th:if="${auth != null and auth.admin}"><a
-						class="dropdown-item" th:href="@{/admin}">Lista de Usuarios</a></li>
-					<li><a class="dropdown-item" th:href="@{/nuevo}">Registro</a>
-					</li>
-					<li><a class="dropdown-item" th:href="@{/login}">Login</a></li>
-					<li>
-						<hr class="dropdown-divider">
-					</li>
-					<li><a class="dropdown-item text-danger" th:href="@{/logout}">Logout</a>
-					</li>
-				</ul>
+			<!-- Opciones de navegación (centradas) -->
+			<div class="col text-center d-none d-md-block">
+				<nav class="nav justify-content-center">
+					<a class="nav-link text-white" th:href="@{/manga}">MANGA</a> <a
+						class="nav-link text-white" th:href="@{/poster}">POSTER</a> <a
+						class="nav-link text-white" th:href="@{/figura}">FIGURA</a>
+				</nav>
 			</div>
+
+			<!-- Icono de usuario (activador del menú) -->
+			<div class="col-auto ms-auto">
+				<div class="dropdown">
+
+					<img 
+					class="rounded-circle dropdown-toggle-img" 
+		            th:src="@{/images/iconoUsuario.png}" 
+		            alt="Usuario" width="40" height="40"
+		            data-bs-toggle="dropdown"
+		            aria-expanded="false">
+
+					<!-- Menú desplegable -->
+					<ul class="dropdown-menu dropdown-menu-end"
+						aria-labelledby="dropdownMenuButton">
+						<li th:if="${auth != null and auth.admin}"><a
+							class="dropdown-item" th:href="@{/admin}">Lista de Usuarios</a></li>
+						<li><a class="dropdown-item" th:href="@{/nuevo}">Registro</a></li>
+						<li><a class="dropdown-item" th:href="@{/login}">Login</a></li>
+						<li><hr class="dropdown-divider"></li>
+						<li><a class="dropdown-item text-danger" th:href="@{/logout}">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+
 		</div>
 	</div>
-	</div>
-	</div>
+
+
 
 
 

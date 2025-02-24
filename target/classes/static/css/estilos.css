@@ -4,91 +4,39 @@
 /* --- ESTILOS GENERALES --- */
 .fondoBarraNavegacion {
     background-color: black;
-    height: 5rem;
-    color: white;
-    display: flex;
-    justify-content: space-between; /* Distribuye los elementos */
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 0 1rem;
+    padding: 10px 20px;
 }
 
-/* Logo */
 .logo {
     width: 70px;
     height: 70px;
-    transform: translate(1px, 4px);
 }
 
-
-
-/* Contenedor de los botones de navegación */
-.navOpciones {
-    display: flex;
-    gap: 12rem;
-    margin-left: 52rem;
-    transform: translate(-14rem, -4rem);
-}
-
-/* Botones de navegación */
-.ico1, .ico2, .ico3 {
-    color: white;
-}
-
-.botonIcono{
-    transform: translate(110rem, -106px);
-    border-radius: 12rem;
-    width: 4rem;
-    height: 4rem;
-    
-}
-
-/* Imagen del usuario */
-.imagenLogin {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 2rem;
-    transform: translateY(4px);
-    margin-bottom: 1rem;
-    display: flex;
-    margin-right: 11rem;
-}
-
-.imagenLogin:hover {
-    transform: scale(1.1);
-}
-
-.menuOpciones{
-    background-color: white;
-    border-radius: 1rem;
-    color: black;
-    width: 8rem;
-    padding: 1rem;
-    margin-left: -3rem;
-}
-
-#separacionCampos{
-    margin-bottom: 1px;
-    margin-top: 1px;
-}
-
-/* Fuente */
-h2 {
-    font-family: 'Roboto Slab', cursive !important;
+.nav-link {
     font-size: 1.2rem;
+    color: white !important;
+    margin: 0 15px;
 }
 
-.iconoHamburguesa{
-    display: none;
+.nav-link:hover {
+    color: #f8d210 !important;
 }
 
-/* --- RESPONSIVE DESIGN --- */
+.dropdown-toggle {
+    cursor: pointer;
+}
 
-/* TABLETS Y PANTALLAS MEDIANAS (menos de 1024px) */
-@media screen and (max-width: 1024px) {
+.dropdown-menu {
+    min-width: 150px;
+}
+
+/* 
+--- RESPONSIVE DESIGN ---
+
+@media screen and (max-width: 1653px) {
     .navOpciones {
-        gap: 5rem; /* Reduce el espacio entre los botones */
-        margin-left: -22rem;
+        gap: 10rem; Reduce el espacio entre los botones
+        margin-left: 42rem;
 
     }
 
@@ -100,9 +48,69 @@ h2 {
     h2 {
         font-size: 1rem;
     }
+    
+    .botonIcono{
+	    transform: translate(1529px, -106px);
+	    border-radius: 12rem;
+	    width: 4rem;
+	    height: 4rem;
+	    
+	}
 }
 
-/* DISPOSITIVOS MÓVILES (menos de 768px) */
+
+@media screen and (max-width: 1272px) {
+    .navOpciones {
+        gap: 10rem; Reduce el espacio entre los botones
+        margin-left: 32rem;
+
+    }
+
+    .logo {
+        width: 70px;
+        height: 70px;
+    }
+
+    h2 {
+        font-size: 1rem;
+    }
+    
+    .botonIcono{
+	    transform: translate(1149px, -106px);
+	    border-radius: 12rem;
+	    width: 4rem;
+	    height: 4rem;
+	    
+	}
+}
+
+TABLETS Y PANTALLAS MEDIANAS (menos de 1024px)
+@media screen and (max-width: 1021px) {
+    .navOpciones {
+        gap: 5rem; Reduce el espacio entre los botones
+        margin-left: 32rem;
+
+    }
+
+    .logo {
+        width: 70px;
+        height: 70px;
+    }
+
+    h2 {
+        font-size: 1rem;
+    }
+
+	.botonIcono{
+	    transform: translate(931px, -106px);
+	    border-radius: 12rem;
+	    width: 4rem;
+	    height: 4rem;
+	    
+	}
+}
+
+DISPOSITIVOS MÃ“VILES (menos de 768px)
 @media screen and (max-width: 768px) {
     mat-toolbar {
         flex-direction: row;
@@ -120,7 +128,7 @@ h2 {
         display: block;
     }
 
-    /* MENÚ HAMBURGUESA */
+    MENÃš HAMBURGUESA
     .menuHamburguesa {
         display: block;
         font-size: 2rem;
@@ -133,7 +141,7 @@ h2 {
 
 
 
-    /* Ocultar el menú de navegación por defecto */
+    Ocultar el menÃº de navegaciÃ³n por defecto
     .navOpciones {
         display: none;
         flex-direction: column;
@@ -147,7 +155,7 @@ h2 {
         margin-left: auto;
     }
 
-    /* Mostrar el menú cuando se active */
+    Mostrar el menÃº cuando se active
     .navOpciones.mostrar {
         display: flex;
     }
@@ -164,7 +172,7 @@ h2 {
     }
 }
 
-/* PANTALLAS MUY PEQUEÑAS (menos de 480px) */
+PANTALLAS MUY PEQUEÃ‘AS (menos de 480px)
 @media screen and (max-width: 480px) {
     .logo {
         width: 50px;
@@ -178,7 +186,7 @@ h2 {
     
    
 }
-
+ */
 
 
 /* CONTENIDO LANDING PAGE*/
@@ -203,7 +211,7 @@ body {
 .flechas-cotenedor {
     display: flex;
     justify-content: space-between; /* Distribuye las flechas */
-    width: 100%; /* Ajusta el ancho según necesites */
+    width: 100%; /* Ajusta el ancho segÃºn necesites */
     max-width: 89rem; /* Evita que las flechas se separen demasiado */
     margin-top: 2rem;
 }
