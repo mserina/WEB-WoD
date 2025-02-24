@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
+
 
 /*CONTENIDO BARRA NAVEGACION*/
 /* --- ESTILOS GENERALES --- */
@@ -29,6 +31,7 @@
 .dropdown-menu {
     min-width: 150px;
 }
+
 
 /* 
 --- RESPONSIVE DESIGN ---
@@ -109,8 +112,9 @@ TABLETS Y PANTALLAS MEDIANAS (menos de 1024px)
 	    
 	}
 }
-
-DISPOSITIVOS MÃ“VILES (menos de 768px)
+ */
+ 
+/*DISPOSITIVOS MÃ“VILES (menos de 768px)*/
 @media screen and (max-width: 768px) {
     mat-toolbar {
         flex-direction: row;
@@ -128,7 +132,7 @@ DISPOSITIVOS MÃ“VILES (menos de 768px)
         display: block;
     }
 
-    MENÃš HAMBURGUESA
+/*MENÃš HAMBURGUESA*/
     .menuHamburguesa {
         display: block;
         font-size: 2rem;
@@ -141,7 +145,7 @@ DISPOSITIVOS MÃ“VILES (menos de 768px)
 
 
 
-    Ocultar el menÃº de navegaciÃ³n por defecto
+    /*Ocultar el menÃº de navegaciÃ³n por defecto*/
     .navOpciones {
         display: none;
         flex-direction: column;
@@ -155,7 +159,7 @@ DISPOSITIVOS MÃ“VILES (menos de 768px)
         margin-left: auto;
     }
 
-    Mostrar el menÃº cuando se active
+    /*Mostrar el menÃº cuando se active*/
     .navOpciones.mostrar {
         display: flex;
     }
@@ -172,7 +176,7 @@ DISPOSITIVOS MÃ“VILES (menos de 768px)
     }
 }
 
-PANTALLAS MUY PEQUEÃ‘AS (menos de 480px)
+/*PANTALLAS MUY PEQUEÃ‘AS (menos de 480px)*/
 @media screen and (max-width: 480px) {
     .logo {
         width: 50px;
@@ -186,7 +190,7 @@ PANTALLAS MUY PEQUEÃ‘AS (menos de 480px)
     
    
 }
- */
+
 
 
 /* CONTENIDO LANDING PAGE*/
@@ -231,8 +235,8 @@ body {
     height: 10rem;
 }
 
-h1 {
-    font-family: 'Pirata One', cursive;
+h2 {
+    font-family: 'Roboto Slab', cursive;
     color: white;
     
   }
