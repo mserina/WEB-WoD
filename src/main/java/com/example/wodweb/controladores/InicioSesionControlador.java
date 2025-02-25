@@ -1,15 +1,17 @@
 package com.example.wodweb.controladores;
 
-import java.util.Scanner;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.wodweb.dtos.InicioSesionDto;
 import com.example.wodweb.dtos.SesionDto;
+import com.example.wodweb.dtos.UsuarioDto;
 import com.example.wodweb.servicios.InicioSesionServicio;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class InicioSesionControlador {
@@ -36,19 +38,20 @@ public class InicioSesionControlador {
 	
 	
 	@PostMapping("/login")
-    public ModelAndView autenticarUsuario(InicioSesionDto credencialesUsuario) {
+    public String autenticarUsuario(InicioSesionDto credencialesUsuario,  HttpSession sesion, Model modelo) {
         ModelAndView modelAndView = new ModelAndView();
+        UsuarioDto usuarioRecogido = inicioSesionServicio.autenticarUsuario(credencialesUsuario);
 
-        boolean acceso = inicioSesionServicio.autenticarUsuario(credencialesUsuario);
-
-        if (acceso) {
-            modelAndView.setViewName("redirect:/"); // Redirige a la página de inicio
+        if (usuarioRecogido != null) {
+            sesion.setAttribute("usuarioSesion", usuarioRecogido);
+            return "redirect:/";
         } else {
-            modelAndView.setViewName("login"); // Vuelve a mostrar el formulario
-            modelAndView.addObject("error", "Credenciales incorrectas. Inténtelo de nuevo.");
+        	modelo.addAttribute("error", "Credenciales incorrectas");
+        	modelAndView.addObject("error", "Credenciales incorrectas. Inténtelo de nuevo.");
+        	return "login";
         }
 
-        return modelAndView;
+        
     }
 
 	

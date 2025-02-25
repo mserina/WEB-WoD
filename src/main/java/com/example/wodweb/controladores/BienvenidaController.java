@@ -44,9 +44,10 @@ public class BienvenidaController {
      * @return Nombre del html de bienvenida
      */
     @GetMapping("/")
-    public String bienvenida(Model model) {
-        model.addAttribute("mensaje", "¡Bienvenido a nuestra tienda de manga!");
+    public String bienvenida(Model modelo) {
+        modelo.addAttribute("mensaje", "¡Bienvenido a nuestra tienda de manga!");
         return "bienvenida";
+        
     }
 
     /**

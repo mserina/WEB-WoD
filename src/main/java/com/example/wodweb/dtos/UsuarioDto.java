@@ -1,88 +1,82 @@
 package com.example.wodweb.dtos;
 
-import java.time.LocalDateTime;
-
 public class UsuarioDto {
-	 private String nombreCompleto;
-	    private String movil;
-	    private String correoElectronico;
-	    private String tipoUsuario;
-	    private String contrasena;
-	    private String foto;
-	    private String token;
-	    private LocalDateTime creacionToken;
-	    private LocalDateTime expiracionToken;
-	    
-	    // Getters y Setters
-	    public String getNombreCompleto() {
-	        return nombreCompleto;
-	    }
 
-	    public void setNombreCompleto(String nombreCompleto) {
-	        this.nombreCompleto = nombreCompleto;
-	    }
+	private Long id;
 
-	    public String getMovil() {
-	        return movil;
-	    }
+	private String nombreCompleto;
 
-	    public void setMovil(String movil) {
-	        this.movil = movil;
-	    }
+	private String movil;
 
-	    public String getCorreoElectronico() {
-	        return correoElectronico;
-	    }
+	private String correoElectronico;
 
-	    public void setCorreoElectronico(String correoElectronico) {
-	        this.correoElectronico = correoElectronico;
-	    }
+	private String tipoUsuario;
 
-	    public String getTipoUsuario() {
-	        return tipoUsuario;
-	    }
+	private String contrasena;
 
-	    public void setTipoUsuario(String tipoUsuario) {
-	        this.tipoUsuario = tipoUsuario;
-	    }
+	private String foto;
 
-	    public String getContrasena() {
-	        return contrasena;
-	    }
+	// Getters y Setters
 
-	    public void setContrasena(String contrasena) {
-	        this.contrasena = contrasena;
-	    }
+	public Long getId() {
+		return id;
+	}
 
-	    public String getFoto() {
-	        return foto;
-	    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	    public void setFoto(String foto) {
-	        this.foto = foto;
-	    }
+	public String getNombreCompleto() {
+		return nombreCompleto;
+	}
 
-	    public String getToken() {
-	        return token;
-	    }
+	public void setNombreCompleto(String nombreCompleto) {
+		this.nombreCompleto = nombreCompleto;
+	}
 
-	    public void setToken(String token) {
-	        this.token = token;
-	    }
+	public String getMovil() {
+		return movil;
+	}
 
-	    public LocalDateTime getCreacionToken() {
-	        return creacionToken;
-	    }
+	public void setMovil(String movil) {
+		this.movil = movil;
+	}
 
-	    public void setCreacionToken(LocalDateTime creacionToken) {
-	        this.creacionToken = creacionToken;
-	    }
+	public String getCorreoElectronico() {
+		return correoElectronico;
+	}
 
-	    public LocalDateTime getExpiracionToken() {
-	        return expiracionToken;
-	    }
+	public void setCorreoElectronico(String correoElectronico) {
+		this.correoElectronico = correoElectronico;
+	}
 
-	    public void setExpiracionToken(LocalDateTime expiracionToken) {
-	        this.expiracionToken = expiracionToken;
-	    }
+	public String getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
+
+	public String getContrasena() {
+		return contrasena;
+	}
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	@Override
+	public String toString() {
+		return "UsuarioModelo{" + "id=" + id + ", nombreCompleto='" + nombreCompleto + '\'' + ", movil='" + movil + '\''
+				+ ", correoElectronico='" + correoElectronico + '\'' + ", tipoUsuario='" + tipoUsuario + '\'' + '}';
+	}
 }
