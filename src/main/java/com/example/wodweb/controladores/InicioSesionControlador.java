@@ -16,20 +16,10 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class InicioSesionControlador {
 
-	/*
-	 * @PostMapping("/login") public void bienvenida(Model model) {
-	 * 
-	 * }
-	 */
-
-	/*
-	 *  private Scanner sc = new Scanner(System.in);
-	 */
-	
 	private InicioSesionDto credencialesUsuario = new InicioSesionDto();
-	private SesionDto sesion = new SesionDto();
 	private boolean acceso = true;
 	private InicioSesionServicio inicioSesionServicio = new InicioSesionServicio();
+	
 	
 	@GetMapping("/login")
 	public String mostrarFormulario() {
@@ -37,22 +27,6 @@ public class InicioSesionControlador {
 	}
 	
 	
-	@PostMapping("/login")
-    public String autenticarUsuario(InicioSesionDto credencialesUsuario,  HttpSession sesion, Model modelo) {
-        ModelAndView modelAndView = new ModelAndView();
-        UsuarioDto usuarioRecogido = inicioSesionServicio.autenticarUsuario(credencialesUsuario);
-
-        if (usuarioRecogido != null) {
-            sesion.setAttribute("usuarioSesion", usuarioRecogido);
-            return "redirect:/";
-        } else {
-        	modelo.addAttribute("error", "Credenciales incorrectas");
-        	modelAndView.addObject("error", "Credenciales incorrectas. Inténtelo de nuevo.");
-        	return "login";
-        }
-
-        
-    }
 
 	
 	//   INICIO SESION CON CONSOLA

@@ -90,4 +90,10 @@ public class BienvenidaController {
 		model.addAttribute("usuarios", productoServicio.obtenerUsuarios());
 		return "usuarios";
 	}
+    
+
+	@GetMapping("/admin/bienvenida")
+	public String bienvenidaAdmin() {
+		return "admin"; 
+	}
 }
