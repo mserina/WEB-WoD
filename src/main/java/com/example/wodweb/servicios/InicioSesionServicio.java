@@ -54,7 +54,7 @@ public class InicioSesionServicio {
 	        if (response.getBody() != null) {
 	            return response.getBody();
 	        } else {
-	            System.err.println("Error: La respuesta no contiene un cuerpo válido.");
+	            return null;
 	        }
 	    } catch (HttpClientErrorException e) {
 	        System.err.println("Error en la autenticación: " + e.getStatusCode() + " - " + e.getResponseBodyAsString());

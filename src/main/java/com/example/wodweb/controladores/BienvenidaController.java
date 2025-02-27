@@ -85,14 +85,14 @@ public class BienvenidaController {
     
     
     
-    @GetMapping("/obtenerUsuarios")
+    @GetMapping("/admin/obtenerUsuario")
 	public String obtenerUsuarios(Model model) {
 		model.addAttribute("usuarios", productoServicio.obtenerUsuarios());
 		return "usuarios";
 	}
     
 
-	@GetMapping("/admin/bienvenida")
+	@GetMapping("/admin/bienvenido")
 	public String bienvenidaAdmin() {
 		return "admin"; 
 	}

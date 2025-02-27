@@ -59,8 +59,8 @@ public class ProductoServicio {
     
     
     public List<UsuarioDto> obtenerUsuarios() {
-        String url = apiBaseUrl + "/todos";  // Asegúrate de que la API tenga este endpoint
-        UsuarioDto[] productos = restTemplate.getForObject(url, UsuarioDto[].class);
-        return Arrays.asList(productos); // Convertir array a lista
+        String url = apiBaseUrl + "/mostrarUsuarios";  // Asegúrate de que la API tenga este endpoint
+        UsuarioDto[] usuarios = restTemplate.getForObject(url, UsuarioDto[].class);
+        return Arrays.asList(usuarios); // Convertir array a lista
     }
 }

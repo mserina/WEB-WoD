@@ -19,7 +19,16 @@
         <button type="submit">Iniciar Sesión</button>
     </form>
 
-    <!-- Mensajes de error -->
-    <p th:if="${error}" style="color: red;" th:text="${error}"></p>
+     <!-- Mensaje de error: se muestra si se detecta un parámetro "error" en la URL -->
+    <div th:if="${param.error}">
+        <p style="color: red;">Error: Inténtelo de nuevo.</p>
+    </div>
+    
+    <!-- Mensaje de logout -->
+    <div th:if="${param.logout}">
+        <p style="color: green;">Ha cerrado sesión correctamente.</p>
+    </div>
+    
+    
 </body>
 </html>
