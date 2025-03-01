@@ -67,20 +67,33 @@
         <!-- Mensaje de bienvenida para usuarios no autenticados -->
         <h1 class="titulo" sec:authorize="!isAuthenticated()">
             Bienvenido a la tienda de One Piece¡¡
-        </h1>      <div class="flechas-cotenedor">
-        <img
-          id="flecha1"
-          class="animate__animated animate__bounce animate__infinite"
-          th:src="@{/images/flecha.png}"
-          alt="Flecha"
-        />
-        <img
-          id="flecha2"
-          class="animate__animated animate__bounce animate__infinite"
-          th:src="@{/images/flecha.png}"
-          alt="Flecha"
-        />
+        </h1>      
+        <div class="flechas-cotenedor">
+	        <img
+	          id="flecha1"
+	          class="animate__animated animate__bounce animate__infinite"
+	          th:src="@{/images/flecha.png}"
+	          alt="Flecha"
+	        />
+	        <img
+	          id="flecha2"
+	          class="animate__animated animate__bounce animate__infinite"
+	          th:src="@{/images/flecha.png}"
+	          alt="Flecha"
+	        />
       </div>
+      <div class="container mt-5">
+        <!-- Mensaje de éxito -->
+        <div th:if="${mensaje}" class="alert alert-success">
+            <span th:text="${mensaje}"></span>
+        </div>
+
+        <!-- Mensaje de error -->
+        <div th:if="${error}" class="alert alert-danger">
+            <span th:text="${error}"></span>
+        </div>
+
+    </div>	 
     </div>
 </body>
 </html>

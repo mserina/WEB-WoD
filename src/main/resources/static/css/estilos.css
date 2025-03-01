@@ -242,4 +242,38 @@ h2 {
     
   }
   
+  
+ /* REGISTRO */
+ 
+ #contenedorRegistro{
+ 	
+	background-color: brown;
+
+ }
+ 
+  #snackbar {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 16px;
+            position: fixed;
+            left: 50%;
+            bottom: 30px;
+            z-index: 1;
+            font-size: 17px;
+            opacity: 0;
+            transition: opacity 0.5s, bottom 0.5s ease-in-out;            
+        }
+
+        #snackbar.show {
+            visibility: visible;
+            opacity: 1;
+            bottom: 50px;
+        }
+        
+        
 

@@ -47,20 +47,14 @@ public class ProductoServicio {
     
     
     
-    @Value("${api.base-url}")
-    private String apiBaseUrl;
+   
 
-    public String verificarConexion() {
-    	System.out.println(" ");
-    	System.out.println(apiBaseUrl);
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(apiBaseUrl + "/ping", String.class);
-    }
+	/*
+	 * public String verificarConexion() { System.out.println(" ");
+	 * System.out.println(apiBaseUrl); RestTemplate restTemplate = new
+	 * RestTemplate(); return restTemplate.getForObject(apiBaseUrl + "/ping",
+	 * String.class); }
+	 */
     
-    
-    public List<UsuarioDto> obtenerUsuarios() {
-        String url = apiBaseUrl + "/mostrarUsuarios";  // Asegúrate de que la API tenga este endpoint
-        UsuarioDto[] usuarios = restTemplate.getForObject(url, UsuarioDto[].class);
-        return Arrays.asList(usuarios); // Convertir array a lista
-    }
+   
 }

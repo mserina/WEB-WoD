@@ -24,7 +24,7 @@ public class SeguridadFiltrosNavegacion {
             // 2. Configurar las reglas de acceso:
             .authorizeHttpRequests(auth -> auth
                 
-                .requestMatchers("/login", "/registro", "/", "/css/**", "/images/**").permitAll() // Permitir el acceso a la página de login, registro y rutas públicas sin autenticación
+                .requestMatchers("/login", "/registro", "/registroDatos", "/", "/css/**", "/images/**").permitAll() // Permitir el acceso a la página de login, registro y rutas públicas sin autenticación
                 .requestMatchers("/admin/**").hasRole("ADMIN")   // Las URLs bajo /admin/ requieren que el usuario tenga el rol ADMIN  
                 .anyRequest().authenticated()   // Todas las demás peticiones requieren autenticación
             )

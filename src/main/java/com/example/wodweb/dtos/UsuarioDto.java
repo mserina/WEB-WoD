@@ -14,7 +14,7 @@ public class UsuarioDto {
 
 	private String contrasena;
 
-	private String foto;
+	private String foto = "kk.jpg";
 
 	// Getters y Setters
 
