@@ -69,6 +69,20 @@ public class UsuarioServicio {
 	        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, null, String.class);
 	        return response.getStatusCode() == HttpStatus.OK;
 	    }
+	 
+	 
+	 public boolean borrarUsuario(Long id) {
+		 
+		 try {
+		        // Construir la URL utilizando el id (no es necesario URLEncoder para un número)
+		        String url = apiUrl + "/borrar/" + id;
+		        ResponseEntity<?> response = restTemplate.exchange(url, HttpMethod.DELETE, null, UsuarioDto.class);
+		        return response.getStatusCode().is2xxSuccessful();
+		    } catch (Exception e) {
+		        System.err.println("Error al borrar usuario en la API externa: " + e.getMessage());
+		        return false;
+		    }
+	 }
 
 	
     

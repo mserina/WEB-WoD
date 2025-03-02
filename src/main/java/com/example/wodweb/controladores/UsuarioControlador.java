@@ -2,6 +2,7 @@ package com.example.wodweb.controladores;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,6 +57,16 @@ public class UsuarioControlador {
 	      
 	      return "redirect:/admin/obtenerUsuario"; // Redirigir de nuevo a la lista de usuarios
 	  }
-
+	  
+	  @PostMapping("/admin/borrarUsuario")
+	    public String borrarUsuario(@RequestParam Long id, RedirectAttributes redirectAttributes) {
+	        boolean borrado = usuarioServicio.borrarUsuario(id);
+	        if (borrado) {
+	            redirectAttributes.addFlashAttribute("mensaje", "Usuario borrado correctamente.");
+	        } else {
+	            redirectAttributes.addFlashAttribute("mensaje", "Error al borrar el usuario.");
+	        }
+	        return "redirect:/admin/obtenerUsuario"; // Redirige a la vista con la lista de usuarios
+	    }
 
 }

@@ -1,7 +1,7 @@
 // Tu código JavaScript personalizado irá aquí
 
 // Función para mostrar/ocultar el menú de navegación en móviles
-function toggleMenu() {
+/*function toggleMenu() {
   var nav = document.getElementById('navOpciones');
   nav.classList.toggle('mostrar');
 }
@@ -23,7 +23,7 @@ window.onclick = function(event) {
     }
   }
 }
-
+*/
 
 /*// Funciones del formulario de editar
 function mostrarFormularioEditar(email) {
@@ -37,3 +37,29 @@ function ocultarFormularioEditar(email) {
    
    }
 */
+
+	
+	    function abrirModalBorrar(id) {
+	      // Asigna el email al campo oculto del modal
+	      document.getElementById("campoIdModal").value = id;
+	      // Muestra el modal usando Bootstrap Modal
+	      var myModal = new bootstrap.Modal(document.getElementById('modalBorrar'));
+	      myModal.show();
+	      
+	    }
+	    
+	    function toggleNuevoValor(email) {
+	        var campoSelect = document.getElementById("campo-" + email);
+	        var nuevoValorInputContainer = document.getElementById("nuevoValorInputContainer-" + email);
+	        var nuevoValorSelectContainer = document.getElementById("nuevoValorSelectContainer-" + email);
+	        
+	        if (campoSelect.value === "tipo_usuario") {
+	          // Si se selecciona "tipo_usuario", oculta el input y muestra el select
+	          nuevoValorInputContainer.style.display = "none";
+	          nuevoValorSelectContainer.style.display = "block";
+	        } else {
+	          // Para cualquier otro campo, muestra el input y oculta el select
+	          nuevoValorInputContainer.style.display = "block";
+	          nuevoValorSelectContainer.style.display = "none";
+	        }
+	      }
