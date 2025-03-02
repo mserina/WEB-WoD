@@ -23,3 +23,17 @@ window.onclick = function(event) {
     }
   }
 }
+
+
+/*// Funciones del formulario de editar
+function mostrarFormularioEditar(email) {
+  var formulario = document.getElementById("formularioEditar-" + email);
+  formulario.style.display = "table-row";
+ }
+       
+function ocultarFormularioEditar(email) {
+   var formulario = document.getElementById("formularioEditar-" + email);
+   formulario.style.display = "none";
+   
+   }
+*/

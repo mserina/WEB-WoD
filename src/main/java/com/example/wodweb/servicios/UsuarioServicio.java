@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -59,6 +61,15 @@ public class UsuarioServicio {
 	            return null;
 	        }
 	    }
+	 
+	 
+	 public boolean editarUsuario(String correoElectronico, String campo, String nuevoValor) {
+		 
+	        String url = apiUrl + "/modificarUsuarios" + "?correoElectronico=" + correoElectronico + "&campo=" + campo + "&nuevoValor=" + nuevoValor;
+	        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, null, String.class);
+	        return response.getStatusCode() == HttpStatus.OK;
+	    }
+
 	
     
 }

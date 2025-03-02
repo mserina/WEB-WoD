@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.wodweb.dtos.UsuarioDto;
@@ -40,5 +41,21 @@ public class UsuarioControlador {
 	            return "registro"; // Regresa al formulario
 	        }
 	    }
+	  
+	  @PostMapping("/admin/editarUsuario")
+	  public String editarUsuario(@RequestParam String correoElectronico, @RequestParam String campo, @RequestParam String nuevoValor, RedirectAttributes redirectAttributes) {
+	      boolean actualizado = usuarioServicio.editarUsuario(correoElectronico, campo, nuevoValor);
+	      
+	      if (actualizado) {
+	          redirectAttributes.addFlashAttribute("mensaje", "Usuario actualizado con éxito.");
+	          redirectAttributes.addFlashAttribute("tipoMensaje", "success");
+	      } else {
+	          redirectAttributes.addFlashAttribute("mensaje", "Error al actualizar usuario.");
+	          redirectAttributes.addFlashAttribute("tipoMensaje", "danger");
+	      }
+	      
+	      return "redirect:/admin/obtenerUsuario"; // Redirigir de nuevo a la lista de usuarios
+	  }
+
 
 }

@@ -1,33 +1,75 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Listado de Usuarios</title>
-    <link rel="stylesheet" href="../css/admin/users.css">
+  <meta charset="UTF-8">
+  <title>Listado de Usuarios</title>
+  <link rel="stylesheet" th:href="@{/css/admin/users.css}">
+  <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css}">
+  <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}"></script>
 </head>
 <body>
-
+  <div class="container mt-5">
     <h2>Listado de Usuarios</h2>
-
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Nombre Completo</th>
-                <th>Móvil</th>
-                <th>Correo Electrónico</th>
-                <th>Tipo Usuario</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="usuario : ${usuarios}">
-                <td th:text="${usuario.nombreCompleto}"></td>
-                <td th:text="${usuario.movil}"></td>
-                <td th:text="${usuario.correoElectronico}"></td>
-                <td th:text="${usuario.tipoUsuario}"></td>
-                
-            </tr>
-        </tbody>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Nombre Completo</th>
+          <th>Móvil</th>
+          <th>Correo Electrónico</th>
+          <th>Tipo Usuario</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Mostrar usuarios -->
+        <tr th:each="usuario : ${usuarios}">
+          <td th:text="${usuario.nombreCompleto}"></td>
+          <td th:text="${usuario.movil}"></td>
+          <td th:text="${usuario.correoElectronico}"></td>
+          <td th:text="${usuario.tipoUsuario}"></td>
+          <td>
+            <!-- Botón para abrir el formulario de edición con collapse de Bootstrap -->
+            <button class="btn btn-primary" type="button"
+                    data-bs-toggle="collapse"
+                    th:data-bs-target="|#collapseEditar-${usuario.correoElectronico}|"
+                    aria-expanded="false"
+                    th:aria-controls="|collapseEditar-${usuario.correoElectronico}|">
+              Editar
+            </button>
+          </td>
+        </tr>
+        <!-- Fila oculta para el formulario de edición -->
+        <tr th:each="usuario : ${usuarios}" 
+            th:id="|collapseEditar-${usuario.correoElectronico}|"
+            class="collapse">
+          <td colspan="5">
+            <form th:action="@{/admin/editarUsuario}" method="post">
+              <input type="hidden" name="correoElectronico" th:value="${usuario.correoElectronico}">
+              <div class="mb-3">
+                <label for="campo" class="form-label">Campo a modificar:</label>
+                <select name="campo" class="form-select" required>
+                  <option value="nombre_completo">Nombre Completo</option>
+                  <option value="movil">Móvil</option>
+                  <option value="tipo_usuario">Tipo de Usuario</option>
+                  <option value="correo_electronico">Correo Electronico</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="nuevoValor" class="form-label">Nuevo valor:</label>
+                <input type="text" name="nuevoValor" class="form-control" required>
+              </div>
+              <button type="submit" class="btn btn-success">Guardar</button>
+              <!-- Botón para cerrar el collapse -->
+              <button type="button" class="btn btn-secondary"
+                      data-bs-toggle="collapse"
+                      th:data-bs-target="|#collapseEditar-${usuario.correoElectronico}|">
+                Cancelar
+              </button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
     </table>
-
+  </div>
 </body>
 </html>
