@@ -46,7 +46,7 @@
 						aria-labelledby="dropdownMenuButton">
 						<li th:if="${auth != null and auth.admin}"><a
 							class="dropdown-item" th:href="@{/admin}">Lista de Usuarios</a></li>
-						<li><a class="dropdown-item" th:href="@{/nuevo}">Registro</a></li>
+						<li><a class="dropdown-item" th:href="@{/registro}">Registro</a></li>
 						<li><a class="dropdown-item" th:href="@{/login}">Login</a></li>
 						<li><hr class="dropdown-divider"></li>
 						<li><a class="dropdown-item text-danger" th:href="@{/logout}">Logout</a></li>
@@ -62,11 +62,11 @@
       <img class="icoPricipal" th:src="@{/images/logo.png}" alt="Logo" />
  		<!-- Mensaje de bienvenida para usuarios autenticados -->
         <h1 class="titulo" sec:authorize="isAuthenticated()">
-            Bienvenido, <span sec:authentication="principal.nombre"></span> a la tienda de One Piece¡¡
+            Bienvenido, <span sec:authentication="principal.nombre"></span>!!
         </h1>
         <!-- Mensaje de bienvenida para usuarios no autenticados -->
         <h1 class="titulo" sec:authorize="!isAuthenticated()">
-            Bienvenido a la tienda de One Piece¡¡
+            Bienvenido a grumete¡¡
         </h1>      
         <div class="flechas-cotenedor">
 	        <img
@@ -83,11 +83,7 @@
 	        />
       </div>
       <div class="container mt-5">
-        <!-- Mensaje de éxito -->
-        <div th:if="${mensaje}" class="alert alert-success">
-            <span th:text="${mensaje}"></span>
-        </div>
-
+      
         <!-- Mensaje de error -->
         <div th:if="${error}" class="alert alert-danger">
             <span th:text="${error}"></span>

@@ -16,6 +16,52 @@
       
     }
     
+    
+    function toggleNuevoValor(email) {
+    	
+    	console.log(email);
+        // Obtenemos el select que determina el campo a modificar
+        var campoSelect = document.getElementById("campo-" + email);
+        // Obtenemos el contenedor del input (por defecto visible)
+        var nuevoValorInputContainer = document.getElementById("nuevoValorInputContainer-" + email);
+        // Obtenemos el contenedor del select (oculto por defecto)
+        var nuevoValorSelectContainer = document.getElementById("nuevoValorSelectContainer-" + email);
+        
+        console.log("Valor seleccionado:", campoSelect.value);
+        console.log("contenedorInput:", nuevoValorInputContainer);
+        console.log("contenedorSelect:", nuevoValorSelectContainer);
+
+        
+     // Si se selecciona "tipo_usuario", ocultamos el input y mostramos el select
+        if (campoSelect.value.trim() === "tipo_usuario") {
+            nuevoValorInputContainer.style.display = "none";
+            // Deshabilitamos el input para que no participe en la validación
+            var inputField = nuevoValorInputContainer.querySelector("input[name='nuevoValor']");
+            if (inputField) {
+                inputField.disabled = true;
+            }
+            
+            nuevoValorSelectContainer.style.display = "block";
+            // Habilitamos el select
+            var selectField = nuevoValorSelectContainer.querySelector("select[name='nuevoValor']");
+            if (selectField) {
+                selectField.disabled = false;
+            }
+        } else {
+            nuevoValorInputContainer.style.display = "block";
+            var inputField = nuevoValorInputContainer.querySelector("input[name='nuevoValor']");
+            if (inputField) {
+                inputField.disabled = false;
+            }
+            
+            nuevoValorSelectContainer.style.display = "none";
+            // Deshabilitamos el select para que no participe en la validación
+            var selectField = nuevoValorSelectContainer.querySelector("select[name='nuevoValor']");
+            if (selectField) {
+                selectField.disabled = true;
+            }
+        }
+    }
  
     
   </script>
@@ -69,7 +115,12 @@
               <input type="hidden" name="correoElectronico" th:value="${usuario.correoElectronico}">
               <div class="mb-3">
                 <label for="campo" class="form-label">Campo a modificar:</label>
-                <select name="campo" class="form-select" required th:id="|campo-${usuario.correoElectronico}|" onchange="toggleNuevoValor('${usuario.correoElectronico}')">
+                <select name="campo" 
+		                class="form-select" 
+		                required 
+		                th:id="|campo-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|" 
+		                th:data-email="${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}"
+		                onchange="toggleNuevoValor(this.getAttribute('data-email'))">
                   <option value="nombre_completo">Nombre Completo</option>
                   <option value="movil">Móvil</option>
                   <option value="tipo_usuario">Tipo de Usuario</option>
@@ -79,14 +130,25 @@
               
               
                <!-- Contenedor para input de texto (por defecto visible) -->
-		      <div class="mb-3" id="nuevoValorInputContainer-[[${usuario.correoElectronico}]]">
+		      <div class="mb-3" th:id="|nuevoValorInputContainer-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|">
 		        <label for="nuevoValor" class="form-label">Nuevo valor:</label>
 		        <input type="text" name="nuevoValor" class="form-control" 
 				       id="nuevoValorInput-[[${usuario.correoElectronico}]]" 
-				       placeholder="admin o usuario" required>
+				       required>
 		      </div>
 		   
-              
+               <!-- Contenedor para select (oculto por defecto) para modificar 'tipo_usuario' -->
+		      <div class="mb-3" th:id="|nuevoValorSelectContainer-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|" style="display: none;">
+		        <label for="nuevoValorSelect" class="form-label">Nuevo valor:</label>
+		        <select name="nuevoValor" class="form-select" 
+		                id="nuevoValorSelect-[[${usuario.correoElectronico}]]" 
+		                required
+		                disabled>
+		          <option value="usuario">usuario</option>
+		          <option value="admin">admin</option>
+		        </select>
+		      </div>
+		      
               
               <button type="submit" class="btn btn-success">Guardar</button>
               <!-- Botón para cerrar el collapse -->

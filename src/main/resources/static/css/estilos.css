@@ -221,12 +221,12 @@ body {
 }
 
 .icoPricipal{
-    width: 32rem;
+    width: 22rem;
 }
 
 .titulo{
 	color: white;
-    font-size: 6rem;
+    font-size: 4rem;
     width: 100rem;
 }
 
@@ -247,9 +247,40 @@ h2 {
  
  #contenedorRegistro{
  	
-	background-color: brown;
+	display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh;   /*Ocupa toda la altura de la pantalla*/;
 
  }
+ 
+ #formularioUsuario{
+    display: flex;
+    flex-direction: column; /* Organiza los campos en columna */
+    gap: 16px; /* Espacio entre los elementos */
+    width: 100%;
+    max-width: 400px; /* Define un ancho máximo */
+    padding: 32px;
+    background-image: url("../images/madera.jpg");
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px; /* Bordes redondeados */
+ }
+ 
+ #botonRegistro{
+ 	width: 100%;
+    padding: 10px;
+    font-size: 16px;
+ }
+ 
+ #titulo{
+    text-align: center;
+    color: #fff;
+}
+
+#campos{
+	color: #fff;
+}
  
   #snackbar {
             visibility: hidden;
