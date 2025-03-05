@@ -227,7 +227,7 @@ body {
 .titulo{
 	color: white;
     font-size: 4rem;
-    width: 100rem;
+    width: 90rem;
 }
 
 #flecha1, #flecha2 {
@@ -267,19 +267,27 @@ h2 {
     border-radius: 8px; /* Bordes redondeados */
  }
  
- #botonRegistro{
+ #boton{
  	width: 100%;
     padding: 10px;
     font-size: 16px;
+    background-color: #FFCC00;
+    color: black;
+    font-weight: bold;
+    border: black;
  }
  
- #titulo{
+#tituloRegistro{
     text-align: center;
     color: #fff;
 }
 
 #campos{
 	color: #fff;
+}
+
+.form-control, .form-select {
+	background-color: #F5DEB3 !important;
 }
  
   #snackbar {
@@ -307,4 +315,63 @@ h2 {
         }
         
         
+ /* // LOGIN  //*/
+        
 
+/* Contenedor para centrar el formulario en la pantalla */
+.contenedor-formulario {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+}
+
+/* Estilos para el formulario */
+#formularioLogin {
+    display: flex;
+    flex-direction: column; /* Organiza los campos en columna */
+    gap: 16px; /* Espacio entre los elementos */
+    width: 100%;
+    max-width: 400px; /* Define un ancho máximo */
+    padding: 32px;
+    background-image: url("../images/madera.jpg");
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px; /* Bordes redondeados */
+}
+
+
+/* Estilo del botón */
+#botonLogin {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color:"#FFCC00";
+}
+
+
+#tituloLogin{
+    text-align: center;
+    color: #fff;
+}
+
+
+ /* // LISTA USUARIOS  //*/
+
+
+td{
+	background-color:  #F5DEB3!important;
+}
+
+th{
+	background-color: #b7c871 !important;
+}
+
+#contenedorTabla{
+	margin-top: 12rem !important;
+    margin-bottom: 19rem !important;
+}
+
+#formEditar {
+    background-color: #b7c871  !important;
+}
