@@ -26,6 +26,9 @@
         var nuevoValorInputContainer = document.getElementById("nuevoValorInputContainer-" + email);
         // Obtenemos el contenedor del select (oculto por defecto)
         var nuevoValorSelectContainer = document.getElementById("nuevoValorSelectContainer-" + email);
+        // Obtemos el valor de la seleccion del campo 
+        var nuevoValorInput = document.getElementById("nuevoValorInput-" + email);
+
         
         console.log("Valor seleccionado:", campoSelect.value);
         console.log("contenedorInput:", nuevoValorInputContainer);
@@ -68,6 +71,7 @@
 </head>
 <body>
 
+<!-- ///// BARRA NAVEGACION /////-->
 <div class="container-fluid fondoBarraNavegacion">
 		<div class="row align-items-center w-100">
 
@@ -107,18 +111,21 @@
 							class="dropdown-item" th:href="@{/admin}">Lista de Usuarios</a></li>
 						<li><a class="dropdown-item" th:href="@{/registro}">Registro</a></li>
 						<li><a class="dropdown-item" th:href="@{/login}">Login</a></li>
+						<li sec:authorize="hasRole('ADMIN')" ><a class="dropdown-item" th:href="@{/admin/obtenerUsuario}">Admin</a></li>
 						<li><hr class="dropdown-divider"></li>
 						<li><a class="dropdown-item text-danger" th:href="@{/logout}">Logout</a></li>
 					</ul>
 				</div>
 			</div>
+
 		</div>
 	</div>
-	
 
+
+<!-- ///// CONTENIDO ///// -->
   <div class="container mt-5">
-    <table id="contenedorTabla" class="table table-bordered">
-      <thead>
+    <table class="table table-bordered">
+      <thead id="cabezeraTablaUsuarios">
         <tr>
           <th>Id</th>
           <th>Nombre Completo</th>
@@ -138,78 +145,87 @@
           <td th:text="${usuario.tipoUsuario}"></td>
           <td>
             <!-- Botón para abrir el formulario de edición con collapse de Bootstrap -->
-            <button class="btn btn-primary" type="button"
-                    data-bs-toggle="collapse"
-                    th:data-bs-target="|#collapseEditar-${usuario.correoElectronico}|"
+            <button id="botonAcciones" class="btn btn-primary" type="button"
+                    data-bs-toggle="modal"
+                    th:data-bs-target="|#modalEditar-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"
                     aria-expanded="false"
                     th:aria-controls="|collapseEditar-${usuario.correoElectronico}|">
-              Editar
+	              	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+					  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
+					</svg>
             </button>
-            <button class="btn btn-danger" type="button"
+            <button id="botonAcciones" class="btn btn-danger" type="button"
 		        th:attr="data-id=${usuario.id}"
+		        th:disabled="${auth != null and auth.correoElectronico == usuario.correoElectronico}"
 		        onclick="abrirModalBorrar(this.getAttribute('data-id'))">
- 			 Borrar
+		        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+				  	<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+				 </svg>
 			</button>
-
-
           </td>
-        </tr>
-        <!-- Fila oculta para el formulario de edición -->
-        <tr th:each="usuario : ${usuarios}" 
-            th:id="|collapseEditar-${usuario.correoElectronico}|"
-            class="collapse">
-          <td colspan="5" id="formEditar">
-            <form th:action="@{/admin/editarUsuario}" method="post">
+        </tr>        
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Modal para editar usuario (generado para cada usuario) -->
+  <div th:each="usuario : ${usuarios}">
+    <div class="modal fade" 
+         th:id="|modalEditar-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"
+         tabindex="-1" 
+         aria-labelledby="modalEditarLabel" 
+         aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content contenedorFormularioEditar">
+          <form th:action="@{/admin/editarUsuario}" method="post">
+            <div id="tituloModalEditar" class="modal-header">
+              <h5 class="modal-title" id="modalEditarLabel">Editar Usuario</h5>
+            </div>
+            <div class="modal-body">
+              <!-- Campo oculto para el correo del usuario -->
               <input type="hidden" name="correoElectronico" th:value="${usuario.correoElectronico}">
+              <!-- Selección del campo a modificar -->
               <div class="mb-3">
-                <label for="campo" class="form-label">Campo a modificar:</label>
-                <select name="campo" 
-		                class="form-select" 
-		                required 
-		                th:id="|campo-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|" 
-		                th:data-email="${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}"
+                <label id="campos" for="campo" class="form-label">Campo a modificar:</label>
+                <select name="campo" class="form-select" required 
+                        th:id="|campo-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"
+                        th:data-email="${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}"
 		                onchange="toggleNuevoValor(this.getAttribute('data-email'))">
                   <option value="nombre_completo">Nombre Completo</option>
                   <option value="movil">Móvil</option>
                   <option value="tipo_usuario">Tipo de Usuario</option>
-                  <option value="correo_electronico">Correo Electronico</option>
+                  <option value="correo_electronico">Correo Electrónico</option>
                 </select>
               </div>
-              
-              
-               <!-- Contenedor para input de texto (por defecto visible) -->
-		      <div class="mb-3" th:id="|nuevoValorInputContainer-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|">
-		        <label for="nuevoValor" class="form-label">Nuevo valor:</label>
-		        <input type="text" name="nuevoValor" class="form-control" 
-				       id="nuevoValorInput-[[${usuario.correoElectronico}]]" 
-				       required>
-		      </div>
-		   
-               <!-- Contenedor para select (oculto por defecto) para modificar 'tipo_usuario' -->
-		      <div class="mb-3" th:id="|nuevoValorSelectContainer-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|" style="display: none;">
-		        <label for="nuevoValorSelect" class="form-label">Nuevo valor:</label>
-		        <select name="nuevoValor" class="form-select" 
-		                id="nuevoValorSelect-[[${usuario.correoElectronico}]]" 
-		                required
-		                disabled>
-		          <option value="usuario">usuario</option>
-		          <option value="admin">admin</option>
-		        </select>
-		      </div>
-		      
-              
-              <button type="submit" class="btn btn-success">Guardar</button>
-              <!-- Botón para cerrar el collapse -->
-              <button type="button" class="btn btn-secondary"
-                      data-bs-toggle="collapse"
-                      th:data-bs-target="|#collapseEditar-${usuario.correoElectronico}|">
-                Cancelar
-              </button>
-            </form>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+              <!-- Contenedor para input de texto (por defecto visible) -->
+              <div class="mb-3" 
+                   th:id="|nuevoValorInputContainer-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|">
+                <label id="campos" for="nuevoValor" class="form-label">Nuevo valor:</label>
+                <input type="text" name="nuevoValor" class="form-control" 
+                       th:id="|nuevoValorInput-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"
+                       placeholder="Ingrese el nuevo valor" required>
+              </div>
+              <!-- Contenedor para select (oculto por defecto) para 'tipo_usuario' -->
+              <div class="mb-3" 
+                   th:id="|nuevoValorSelectContainer-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"
+                   style="display: none;">
+                <label for="nuevoValorSelect" class="form-label">Nuevo valor:</label>
+                <select name="nuevoValor" class="form-select" 
+                        th:id="|nuevoValorSelect-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"
+                        required disabled>
+                  <option value="usuario">usuario</option>
+                  <option value="admin">admin</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button id="botonAccionesEditar" type="submit" class="btn btn-success">Guardar Cambios</button>
+              <button id="botonAccionesEditar" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
   
   <!-- Modal para confirmar borrado -->

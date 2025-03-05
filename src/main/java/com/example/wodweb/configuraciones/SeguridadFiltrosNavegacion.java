@@ -52,11 +52,4 @@ public class SeguridadFiltrosNavegacion {
         return http.build();
     }
 
-	/*
-	 * // Bean para el PasswordEncoder que se usa para encriptar y validar
-	 * contraseñas (usamos BCrypt)
-	 * 
-	 * @Bean public PasswordEncoder passwordEncoder() { return new
-	 * BCryptPasswordEncoder(); }
-	 */
 }

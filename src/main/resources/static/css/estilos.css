@@ -227,12 +227,12 @@ body {
 .titulo{
 	color: white;
     font-size: 4rem;
-    width: 90rem;
+    width: 63rem;
 }
 
 #flecha1, #flecha2 {
     width: 11rem;
-    transform: rotate(358deg);
+    transform: rotate(360deg);
     height: 10rem;
 }
 
@@ -350,7 +350,7 @@ h2 {
 }
 
 
-#tituloLogin{
+#tituloLogin, #tituloModalEditar{
     text-align: center;
     color: #fff;
 }
@@ -358,13 +358,18 @@ h2 {
 
  /* // LISTA USUARIOS  //*/
 
+table{
+	border-color: black;
+}
 
 td{
 	background-color:  #F5DEB3!important;
 }
 
 th{
-	background-color: #b7c871 !important;
+    background-image: url("../images/madera.jpg");
+    color: white !important;
+    
 }
 
 #contenedorTabla{
@@ -375,3 +380,26 @@ th{
 #formEditar {
     background-color: #b7c871  !important;
 }
+
+.contenedorFormularioEditar{
+    background-image: url("../images/madera.jpg");
+}
+
+#botonAccionesEditar {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #FFCC00;
+    color: black;
+    font-weight: bold;
+ }
+ 
+#botonAcciones{
+    padding: 12px;
+    font-size: 7px;
+    background-color: #FFCC00;
+    color: black;
+    font-weight: bold;
+    margin-left: 1rem;
+ }
+
+

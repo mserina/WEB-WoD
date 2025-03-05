@@ -3,15 +3,10 @@ package com.example.wodweb.controladores;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.wodweb.dtos.InicioSesionDto;
-import com.example.wodweb.dtos.SesionDto;
-import com.example.wodweb.dtos.UsuarioDto;
 import com.example.wodweb.servicios.InicioSesionServicio;
-
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class InicioSesionControlador {
@@ -22,9 +17,12 @@ public class InicioSesionControlador {
 	
 	
 	@GetMapping("/login")
-	public String mostrarFormulario() {
-		return "login"; // Muestra el formulario login.html
-	}
+	public String login(Model model, @RequestParam(required = false) String logout) {
+        if (logout != null) {
+            model.addAttribute("logoutMessage", "Has cerrado sesión exitosamente.");
+        }
+        return "login"; // Asegúrate de que el nombre del archivo HTML de login sea correcto
+    }
 	
 	
 
