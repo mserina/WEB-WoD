@@ -37,7 +37,15 @@ function ocultarFormularioEditar(email) {
    
    }
 */
-
+window.onload = function() {
+	        var logoutAlert = document.getElementById('logoutAlert');
+	        if (logoutAlert) {
+	            setTimeout(function() {
+	                logoutAlert.classList.remove('show');  // Quita la clase 'show' para ocultarlo
+	                logoutAlert.classList.add('fade');    // Agrega la clase 'fade' para la animación
+	            }, 5000); // 5000 milisegundos = 5 segundos
+	        }
+	    };
 	
 	    function abrirModalBorrar(id) {
 	      // Asigna el email al campo oculto del modal
