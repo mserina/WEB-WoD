@@ -4,11 +4,15 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+/**
+ * Contiene los campos que del usuario que inicie una sesion (se esta clase se extiende de UserDetail, es necesario para la creacion de la sesion con Spring Security)
+ * msm - 060325
+ */
 public class SesionDto implements UserDetails {
 
-    private String correo; // Correo electrónico (o nombre de usuario)
+    private String correo; 
     private String contrasena;
-    private String nombre; // Nombre completo del usuario
+    private String nombre; 
     private boolean admin;
     private Collection<? extends GrantedAuthority> authorities;
 

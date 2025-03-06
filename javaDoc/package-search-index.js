@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.example.wodweb"},{"l":"com.example.wodweb.configuraciones"},{"l":"com.example.wodweb.controladores"},{"l":"com.example.wodweb.dtos"},{"l":"com.example.wodweb.servicios"}];updateSearchResults();

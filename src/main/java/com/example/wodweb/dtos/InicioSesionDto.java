@@ -1,5 +1,9 @@
 package com.example.wodweb.dtos;
 
+/**
+ * Contiene los campos del login
+ * msm - 060325
+ */
 public class InicioSesionDto {
 
 	

@@ -21,18 +21,15 @@ import com.example.wodweb.servicios.UsuarioServicio;
  */
 @Controller
 public class UsuarioControlador {
-
-    /* 
-      ||| VARIABLES ||| 
-    */  
+  
     private UsuarioServicio usuarioServicio = new UsuarioServicio();
-
     
     
-    /*
-      ||| MÉTODOS |||
-    */
-
+    
+    /* /////////////////////////////////// */
+    /*             METODOS                  */
+    /* //////////////////////////////////// */
+    
     /**
      * Método para obtener la lista de usuarios y enviarla a la vista.
      * msm - 050325

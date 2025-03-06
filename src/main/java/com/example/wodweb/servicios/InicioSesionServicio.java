@@ -21,18 +21,14 @@ import com.example.wodweb.dtos.UsuarioDto;
 @Service
 public class InicioSesionServicio {
     
-    /*
-     * ||| VARIABLES |||
-     */
     private RestTemplate restTemplate = new RestTemplate();
     private String apiBaseUrl = "http://localhost:9511/usuario"; // URL de la API externa
 
     
-    
-    
-    /*
-     * |||| MÉTODOS ||||
-     */
+
+    /* /////////////////////////////////// */
+    /*             METODOS                  */
+    /* //////////////////////////////////// */
     
     /**
      * Método para autenticar a un usuario enviando sus credenciales a la API.

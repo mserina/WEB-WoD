@@ -26,16 +26,17 @@ import com.example.wodweb.servicios.InicioSesionServicio;
 @Component
 public class AutenticacionUsuario implements AuthenticationProvider {
 
-    // ||| VARIABLES |||
-
     /** Servicio encargado de validar las credenciales del usuario */
     @Autowired
     private InicioSesionServicio inicioSesionServicio;
 
     
     
-    // ||| MÉTODOS |||
-
+    
+    /* /////////////////////////////////// */
+    /*               METODOS                */
+    /* //////////////////////////////////// */
+    
     /**
      * Método encargado de autenticar a un usuario en la aplicación.
      *
@@ -60,8 +61,9 @@ public class AutenticacionUsuario implements AuthenticationProvider {
 
         if (usuarioRecogido != null) {
             // Si el usuario es válido, asignar sus roles (permisos)
-            List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-            // Convertir el tipo de usuario en un rol válido para Spring Security
+        	List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+            
+        	// Convertir el tipo de usuario en un rol válido para Spring Security
             authorities.add(new SimpleGrantedAuthority("ROLE_" + usuarioRecogido.getTipoUsuario().toUpperCase()));
 
             // Crear un objeto con los detalles del usuario autenticado
@@ -74,6 +76,7 @@ public class AutenticacionUsuario implements AuthenticationProvider {
 
             // Retornar un token de autenticación exitoso con el usuario autenticado y sus roles
             return new UsernamePasswordAuthenticationToken(detalleUsuario, contrasena, authorities);
+        
         } else {
             // Si las credenciales son incorrectas, lanzar una excepción de credenciales inválidas
             throw new BadCredentialsException("Credenciales incorrectas");

@@ -1,5 +1,9 @@
 package com.example.wodweb.dtos;
 
+/**
+ * Contiene los campos del usuario
+ * msm - 060325
+ */
 public class UsuarioDto {
 
 	private Long id;

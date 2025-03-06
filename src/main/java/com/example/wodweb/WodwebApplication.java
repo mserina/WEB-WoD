@@ -7,7 +7,7 @@ import com.example.wodweb.controladores.InicioSesionControlador;
 
 /**
  * Clase principal de la aplicacion
- * msm - 050324
+ * msm - 050325
  * @param args
  */
 @SpringBootApplication
@@ -15,7 +15,7 @@ public class WodwebApplication {
 
 	/**
 	 * Metodo main, encargada de inicializar la aplicacion
-	 * msm - 050324
+	 * msm - 050325
 	 * @param args
 	 */
     public static void main(String[] args) {

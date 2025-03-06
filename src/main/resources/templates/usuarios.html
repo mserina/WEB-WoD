@@ -6,6 +6,10 @@
   <link rel="stylesheet" th:href="@{/css/estilos.css}">
   <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css}">
   <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}"></script>
+  
+  <!-- ///////////////////////////////////
+            JAVASCRIPT                  
+   //////////////////////////////////// -->
   <script>
     function abrirModalBorrar(id) {
       // Asigna el email al campo oculto del modal
@@ -71,7 +75,9 @@
 </head>
 <body>
 
-<!-- ///// BARRA NAVEGACION /////-->
+<!-- ///////////////////////////////////
+            BARRA NAVEGACION                  
+   //////////////////////////////////// -->
 <div class="container-fluid fondoBarraNavegacion">
 		<div class="row align-items-center w-100">
 
@@ -122,7 +128,9 @@
 	</div>
 
 
-<!-- ///// CONTENIDO ///// -->
+<!-- ///////////////////////////////////
+            LISTA DE USUARIOS                  
+   //////////////////////////////////// -->
 
   <div class="container mt-5">
     <table class="table table-bordered">
@@ -202,6 +210,8 @@
                   <option value="contrasena">Contraseña</option>
                 </select>
               </div>
+              
+              
               <!-- Contenedor para input de texto (por defecto visible) -->
               <div class="mb-3" 
                    th:id="|nuevoValorInputContainer-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|">
@@ -210,11 +220,13 @@
                        th:id="|nuevoValorInput-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"
                        placeholder="Ingrese el nuevo valor" required>
               </div>
+              
+              
               <!-- Contenedor para select (oculto por defecto) para 'tipo_usuario' -->
               <div class="mb-3" 
                    th:id="|nuevoValorSelectContainer-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"
                    style="display: none;">
-                <label for="nuevoValorSelect" class="form-label">Nuevo valor:</label>
+                <label id="campos" for="nuevoValorSelect" class="form-label">Nuevo valor:</label>
                 <select name="nuevoValor" class="form-select" 
                         th:id="|nuevoValorSelect-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"
                         required disabled>
@@ -233,23 +245,25 @@
     </div>
   </div>
   
+  
+  
   <!-- Modal para confirmar borrado -->
   <div class="modal fade" id="modalBorrar" tabindex="-1" aria-labelledby="modalBorrarLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content contenedorAvisoBorrar" >
         <div class="modal-header">
-          <h5 class="modal-title" id="modalBorrarLabel">Confirmar Borrado</h5>
+          <h5 id="campos" class="modal-title">Confirmar Borrado</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
         </div>
-        <div class="modal-body">
+        <div id="campos" class="modal-body">
           ¿Está seguro de que desea borrar este usuario?
         </div>
         <div class="modal-footer">
           <form th:action="@{/admin/borrarUsuario}" method="post">
             <!-- Campo oculto para pasar el email del usuario -->
             <input type="hidden" id="campoIdModal" name="id">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-danger">Borrar</button>
+            <button id="botonAccionBorrar" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button id="botonAccionBorrar" type="submit" class="btn btn-danger">Borrar</button>
           </form>
         </div>
       </div>

@@ -17,7 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SeguridadFiltrosNavegacion {
 
-    // ||| VARIABLES |||
+  
     
     /** Proveedor de autenticación personalizado para validar usuarios */
     @Autowired
@@ -25,7 +25,9 @@ public class SeguridadFiltrosNavegacion {
 
     
     
-    // ||| MÉTODOS |||
+    /* /////////////////////////////////// */
+    /*             METODOS                  */
+    /* //////////////////////////////////// */
 
     /**
      * Configura la seguridad de la aplicación, estableciendo reglas de acceso,

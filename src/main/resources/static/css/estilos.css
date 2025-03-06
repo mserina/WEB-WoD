@@ -380,11 +380,11 @@ th {
     background-color: #b7c871 !important;
 }
 
-.contenedorFormularioEditar {
+.contenedorFormularioEditar, .contenedorAvisoBorrar {
     background-image: url("../images/madera.jpg");
 }
 
-#botonAccionesEditar {
+#botonAccionesEditar, #botonAccionBorrar{
     padding: 10px;
     font-size: 16px;
     background-color: #FFCC00;

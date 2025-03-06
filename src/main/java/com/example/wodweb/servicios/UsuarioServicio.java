@@ -20,10 +20,7 @@ import com.example.wodweb.excepciones.CorreoExistenteExcepcion;
  */
 @Service
 public class UsuarioServicio {
-
-    /* 
-      ||| VARIABLES ||| 
-    */ 
+ 
     private  RestTemplate restTemplate;    
     private  String apiUrl;
 
@@ -32,13 +29,13 @@ public class UsuarioServicio {
         this.apiUrl = "http://localhost:9511/usuario";
     }
 
-    
-    
-    
-    /*
-      ||| MÉTODOS |||
-    */
+     
+    /* /////////////////////////////////// */
+    /*             METODOS                  */
+    /* //////////////////////////////////// */
 
+    
+    
     /**
      * Obtiene la lista de todos los usuarios.
      * msm - 010325
@@ -50,6 +47,8 @@ public class UsuarioServicio {
         return Arrays.asList(usuarios);
     }
 
+    
+    
     /**
      * Registra un nuevo usuario.
      * msm - 050325
@@ -84,6 +83,7 @@ public class UsuarioServicio {
         }
     }
 
+    
     /**
      * Modifica un usuario existente.
      * msm - 050325
@@ -99,6 +99,8 @@ public class UsuarioServicio {
         return response.getStatusCode() == HttpStatus.OK;
     }
 
+    
+    
     /**
      * Elimina un usuario por su ID.
      * msm - 050325

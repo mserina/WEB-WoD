@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class InicioSesionControlador {
 
 	
-    /*
-      ||| MÉTODOS |||
-    */
-
+	/* /////////////////////////////////// */
+    /*             METODOS                  */
+    /* //////////////////////////////////// */
+	
     /**
      * Método que maneja la vista de inicio de sesión.
      * msm - 050325
