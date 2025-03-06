@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.wodweb.dtos.UsuarioDto;
+import com.example.wodweb.excepciones.CorreoExistenteExcepcion;
 
 /**
  * Servicio que contiene la lógica de las funcionalidades de los usuarios.
@@ -56,7 +57,20 @@ public class UsuarioServicio {
      * @return Usuario registrado o null si ocurre un error.
      */
     public UsuarioDto registrarUsuario(UsuarioDto usuarioCredenciales) {
-        try {
+    	
+    	// Obtener todos los usuarios registrados
+        List<UsuarioDto> usuarios = obtenerUsuarios();
+        
+        // Comprobar si ya existe un usuario con el mismo correo (ignorando mayúsculas/minúsculas)
+        boolean correoEnUso = usuarios.stream()
+            .anyMatch(u -> u.getCorreoElectronico().equalsIgnoreCase(usuarioCredenciales.getCorreoElectronico()));
+        
+        if (correoEnUso) {
+            // Puedes lanzar una excepción personalizada para que el controlador la maneje y envíe un mensaje al front
+            throw new CorreoExistenteExcepcion("El correo ya está en uso.");
+            // O alternativamente, retornar null o un objeto especial que indique el error.
+        }
+    	try {
             HttpHeaders headers = new HttpHeaders();
             headers.set("Content-Type", "application/json");
 
@@ -79,8 +93,7 @@ public class UsuarioServicio {
      * @return true si la operación fue exitosa, false en caso contrario.
      */
     public boolean editarUsuario(String correoElectronico, String campo, String nuevoValor) {
-        String url = apiUrl + "/modificarUsuarios?correoElectronico=" + correoElectronico +
-                     "&campo=" + campo + "&nuevoValor=" + nuevoValor;
+        String url = apiUrl + "/modificarUsuarios?correoElectronico=" + correoElectronico + "&campo=" + campo + "&nuevoValor=" + nuevoValor;
         
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, null, String.class);
         return response.getStatusCode() == HttpStatus.OK;

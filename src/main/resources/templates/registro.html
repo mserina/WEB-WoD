@@ -6,6 +6,7 @@
   <link rel="stylesheet" th:href="@{/css/estilos.css}">
   <!-- Bootstrap CSS (opcional) -->
   <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css}">
+  
 </head>
 <body>
 	<div class="container-fluid fondoBarraNavegacion">
@@ -58,10 +59,6 @@
 	</div>
 
 
-
-
-
-
   <div id="contenedorRegistro" class="container mt-5">
     
     <form id="formularioUsuario" th:action="@{/registroDatos}" method="post">
@@ -70,16 +67,19 @@
       <div class="mb-3">
         <label id="campos" for="nombreCompleto" class="form-label">Nombre Completo:</label>
         <input type="text" id="nombreCompleto" name="nombreCompleto" class="form-control" required>
+        <small class="error" id="nombreCompletoError" style="color: red;"></small>
       </div>
       <!-- Móvil -->
       <div class="mb-3">
         <label id="campos" for="movil" class="form-label">Móvil:</label>
-        <input  type="text" id="movil" name="movil" class="form-control" required>
+        <input  type="text" placeholder="+12 123456789" id="movil" name="movil" class="form-control" required>
+        <small class="error" id="movilError" style="color: red;"></small>
       </div>
       <!-- Correo Electrónico -->
       <div class="mb-3">
         <label id="campos" for="correoElectronico" class="form-label">Correo Electrónico:</label>
-        <input type="email" id="correoElectronico" name="correoElectronico" class="form-control" required>
+        <input type="email" placeholder="example@gmail.com" id="correoElectronico" name="correoElectronico" class="form-control" required>
+      	<small class="error" id="correoElectronicoError" style="color: red;"></small>
       </div>
       <!-- Tipo de Usuario -->
       <div class="mb-3">
@@ -94,12 +94,111 @@
       <div class="mb-3">
         <label id="campos" for="contrasena" class="form-label">Contraseña:</label>
         <input type="password" id="contrasena" name="contrasena" class="form-control" required>
+        <small class="error" id="contrasenaError" style="color: red;"></small>
       </div>
+      
+      <div th:if="${mensajeErrorEmail}" role="alert">
+    	<span th:text="${mensajeErrorEmail}" style="color: red;"></span>
+	  </div>
       <button id="boton" type="submit" class="btn btn-primary">Registrar</button>
     </form>
   </div>
   
   
+  
+  
+  <script>
+        // Obtener los elementos del formulario
+        const form = document.getElementById('formularioUsuario');
+        const nombreCompleto = document.getElementById('nombreCompleto');
+        const movil = document.getElementById('movil');
+        const correoElectronico = document.getElementById('correoElectronico');
+        const tipoUsuario = document.getElementById('tipoUsuario');
+        const contrasena = document.getElementById('contrasena');
+
+        // Función para validar el formulario
+        form.addEventListener('submit', function(event) {
+            let isValid = true;
+
+            // Validar nombre completo
+            if (nombreCompleto.value.length > 50 || nombreCompleto.value === '') {
+                isValid = false;
+                document.getElementById('nombreCompletoError').textContent = 'El nombre completo es obligatorio y no puede exceder los 50 caracteres.';
+            } else {
+                document.getElementById('nombreCompletoError').textContent = '';
+            }
+
+            // Validar móvil
+            const movilPattern = /^\+?\d{1,3}[- ]?\d{9}$/;
+            if (!movilPattern.test(movil.value)) {
+                isValid = false;
+                document.getElementById('movilError').textContent = 'El formato del móvil es incorrecto. Debe ser un número válido de 9 dígitos.';
+            } else {
+                document.getElementById('movilError').textContent = '';
+            }
+
+            // Validar correo electrónico
+            if (!correoElectronico.validity.valid) {
+                isValid = false;
+                document.getElementById('correoElectronicoError').textContent = 'Por favor, ingresa un correo electrónico válido.';
+            } else {
+                document.getElementById('correoElectronicoError').textContent = '';
+            }
+
+            // Validar tipo de usuario
+            if (tipoUsuario.value === '') {
+                isValid = false;
+                alert('Por favor, selecciona un tipo de usuario.');
+            }
+
+            // Validar contraseña
+            if (contrasena.value.length < 8) {
+                isValid = false;
+                document.getElementById('contrasenaError').textContent = 'La contraseña debe tener al menos 8 caracteres.';
+            } else {
+                document.getElementById('contrasenaError').textContent = '';
+            }
+
+            // Si todo es válido, el formulario se puede enviar
+            if (!isValid) {
+                event.preventDefault(); // Evitar el envío del formulario si hay errores
+            }
+        });
+
+        // Validaciones en tiempo real (mientras el usuario escribe)
+        nombreCompleto.addEventListener('input', function() {
+            if (nombreCompleto.value.length > 50) {
+                document.getElementById('nombreCompletoError').textContent = 'El nombre completo no puede exceder los 50 caracteres.';
+            } else {
+                document.getElementById('nombreCompletoError').textContent = '';
+            }
+        });
+
+        movil.addEventListener('input', function() {
+            const movilPattern = /^\+?\d{1,3}[- ]?\d{9}$/;
+            if (!movilPattern.test(movil.value)) {
+                document.getElementById('movilError').textContent = 'El formato del móvil es incorrecto.';
+            } else {
+                document.getElementById('movilError').textContent = '';
+            }
+        });
+
+        correoElectronico.addEventListener('input', function() {
+            if (!correoElectronico.validity.valid) {
+                document.getElementById('correoElectronicoError').textContent = 'Por favor, ingresa un correo electrónico válido.';
+            } else {
+                document.getElementById('correoElectronicoError').textContent = '';
+            }
+        });
+
+        contrasena.addEventListener('input', function() {
+            if (contrasena.value.length < 8) {
+                document.getElementById('contrasenaError').textContent = 'La contraseña debe tener al menos 8 caracteres.';
+            } else {
+                document.getElementById('contrasenaError').textContent = '';
+            }
+        });
+    </script>
   <!-- Bootstrap JS (opcional) -->
   <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}"></script>
   

@@ -9,6 +9,7 @@ public class SesionDto implements UserDetails {
     private String correo; // Correo electrónico (o nombre de usuario)
     private String contrasena;
     private String nombre; // Nombre completo del usuario
+    private boolean admin;
     private Collection<? extends GrantedAuthority> authorities;
 
     public SesionDto(String correo, String password, String nombre, Collection<? extends GrantedAuthority> authorities) {
@@ -33,7 +34,7 @@ public class SesionDto implements UserDetails {
         return contrasena;
     }
     @Override
-    public String getUsername() {
+    public String getUsername() { //El nombre del get no se puede cambiar, de lo contrario Spring Security no podra interpretarlo
         return correo;
     }
     @Override
@@ -51,5 +52,13 @@ public class SesionDto implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+    
+    public boolean isAdmin() {  // Debe ser "isAdmin" y no "getAdmin" para booleanos
+        return admin;
+    }
+    
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }

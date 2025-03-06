@@ -45,7 +45,8 @@ public class AutenticacionUsuario implements AuthenticationProvider {
      */
     @Override
     public Authentication authenticate(Authentication autenticacion) throws AuthenticationException {
-        // Extraer correo electrónico (username) y contraseña de la solicitud de autenticación
+        
+    	// Extraer correo electrónico (username) y contraseña de la solicitud de autenticación
         String correo = autenticacion.getName();
         String contrasena = autenticacion.getCredentials().toString();
 

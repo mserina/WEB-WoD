@@ -123,6 +123,7 @@
 
 
 <!-- ///// CONTENIDO ///// -->
+
   <div class="container mt-5">
     <table class="table table-bordered">
       <thead id="cabezeraTablaUsuarios">
@@ -132,6 +133,7 @@
           <th>Móvil</th>
           <th>Correo Electrónico</th>
           <th>Tipo Usuario</th>
+          <th>Contraseña</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -143,6 +145,7 @@
           <td th:text="${usuario.movil}"></td>
           <td th:text="${usuario.correoElectronico}"></td>
           <td th:text="${usuario.tipoUsuario}"></td>
+		  <td th:text="${usuario.contrasena != null ? '********' : 'No asignada'}"></td>
           <td>
             <!-- Botón para abrir el formulario de edición con collapse de Bootstrap -->
             <button id="botonAcciones" class="btn btn-primary" type="button"
@@ -156,7 +159,7 @@
             </button>
             <button id="botonAcciones" class="btn btn-danger" type="button"
 		        th:attr="data-id=${usuario.id}"
-		        th:disabled="${auth != null and auth.correoElectronico == usuario.correoElectronico}"
+		        th:disabled="${auth != null and auth.getUsername() == usuario.correoElectronico}"
 		        onclick="abrirModalBorrar(this.getAttribute('data-id'))">
 		        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
 				  	<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
@@ -167,6 +170,7 @@
       </tbody>
     </table>
   </div>
+  
   
   <!-- Modal para editar usuario (generado para cada usuario) -->
   <div th:each="usuario : ${usuarios}">
@@ -195,6 +199,7 @@
                   <option value="movil">Móvil</option>
                   <option value="tipo_usuario">Tipo de Usuario</option>
                   <option value="correo_electronico">Correo Electrónico</option>
+                  <option value="contrasena">Contraseña</option>
                 </select>
               </div>
               <!-- Contenedor para input de texto (por defecto visible) -->

@@ -86,20 +86,17 @@
 		        <label id="campos" for="contrasena" class="form-label">Contraseña:</label>
 		        <input type="password" id="contrasena" name="password" class="form-control"required>
 	       </div>
-	
+	       
+			<div th:if="${logoutMessage != null}" role="alert">
+		    	<span th:text="${logoutMessage}" style="color: green;"></span>
+			</div>
+	        
 	        <button class="btn btn-primary" id="boton" type="submit">Iniciar Sesión</button>
 	    </form>
 	    
     </div>
     
-   <div class="container mt-5">
-	    <!-- Mensaje de logout -->
-	    <div th:if="${logoutMessage != null}" id="logoutAlert" class="alert alert-success alert-dismissible fade show">
-	        <span th:text="${logoutMessage}"></span>        
-	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-	    </div>
-   </div>
-	    
+    
 
 
     
