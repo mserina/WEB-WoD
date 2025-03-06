@@ -17,59 +17,79 @@ import com.example.wodweb.dtos.SesionDto;
 import com.example.wodweb.dtos.UsuarioDto;
 import com.example.wodweb.servicios.InicioSesionServicio;
 
+/**
+ * Clase que implementa la autenticación personalizada en Spring Security.
+ * Se encarga de validar las credenciales del usuario a través del servicio de autenticación.
+ * 
+ * msm - 060325
+ */
 @Component
 public class AutenticacionUsuario implements AuthenticationProvider {
 
-    // Inyectamos el servicio que se encarga de autenticar (por ejemplo, llamando a una API o base de datos)
+    // ||| VARIABLES |||
+
+    /** Servicio encargado de validar las credenciales del usuario */
     @Autowired
     private InicioSesionServicio inicioSesionServicio;
 
+    
+    
+    // ||| MÉTODOS |||
+
+    /**
+     * Método encargado de autenticar a un usuario en la aplicación.
+     *
+     * @param autenticacion Objeto que contiene las credenciales ingresadas por el usuario.
+     * @return Un objeto de tipo Authentication si las credenciales son correctas.
+     * @throws AuthenticationException Si las credenciales son incorrectas.
+     */
     @Override
     public Authentication authenticate(Authentication autenticacion) throws AuthenticationException {
-        // Extraemos el email (username) y la contraseña de la petición de autenticación
+        // Extraer correo electrónico (username) y contraseña de la solicitud de autenticación
         String correo = autenticacion.getName();
         String contrasena = autenticacion.getCredentials().toString();
 
-        
-        // Creamos un DTO con los datos del usuario para pasarlo al servicio de autenticación
+        // Crear un DTO con las credenciales del usuario
         InicioSesionDto credencialesUsuario = new InicioSesionDto();
         credencialesUsuario.setCorreoElectronico(correo);
         credencialesUsuario.setContrasena(contrasena);
 
-        
-        // Llamamos al servicio para autenticar al usuario
+        // Llamar al servicio para validar la autenticación
         UsuarioDto usuarioRecogido = inicioSesionServicio.autenticarUsuario(credencialesUsuario);
-        
-        
+
         if (usuarioRecogido != null) {
-            // Si el usuario se autentica correctamente, creamos una lista de autoridades (roles)
+            // Si el usuario es válido, asignar sus roles (permisos)
             List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-            // Convertimos el rol del usuario a un formato que Spring Security entiende, 
-            // normalmente anteponiendo "ROLE_" al rol (por ejemplo, "ADMIN" se convierte en "ROLE_ADMIN")
+            // Convertir el tipo de usuario en un rol válido para Spring Security
             authorities.add(new SimpleGrantedAuthority("ROLE_" + usuarioRecogido.getTipoUsuario().toUpperCase()));
 
-            
-            // Creamos un CustomUserDetails con la información adicional (nombre)
+            // Crear un objeto con los detalles del usuario autenticado
             SesionDto detalleUsuario = new SesionDto(
                     usuarioRecogido.getCorreoElectronico(),
                     usuarioRecogido.getContrasena(),
-                    usuarioRecogido.getNombreCompleto(),  // Aquí se guarda el nombre
+                    usuarioRecogido.getNombreCompleto(),  // Se almacena el nombre del usuario
                     authorities
             );
-            
-            // Retornamos un token de autenticación exitoso con el email, la contraseña y las autoridades
+
+            // Retornar un token de autenticación exitoso con el usuario autenticado y sus roles
             return new UsernamePasswordAuthenticationToken(detalleUsuario, contrasena, authorities);
-        
         } else {
-            // Si la autenticación falla, se lanza una excepción que Spring Security maneja internamente
+            // Si las credenciales son incorrectas, lanzar una excepción de credenciales inválidas
             throw new BadCredentialsException("Credenciales incorrectas");
         }
     }
 
+    
+    
+    /**
+     * Método que indica si este proveedor de autenticación soporta un tipo de autenticación específica.
+     * En este caso, solo soporta UsernamePasswordAuthenticationToken.
+     *
+     * @param autenticacion Clase de autenticación.
+     * @return true si soporta la autenticación indicada, false en caso contrario.
+     */
     @Override
     public boolean supports(Class<?> autenticacion) {
-        // Indica que este proveedor soporta autenticaciones de tipo UsernamePasswordAuthenticationToken.
-        // Es obligatorio implementarlo para que Spring sepa qué tipo de autenticación puede manejar.
         return UsernamePasswordAuthenticationToken.class.isAssignableFrom(autenticacion);
     }
 }

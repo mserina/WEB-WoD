@@ -1,9 +1,16 @@
+/* /////////////////////////////// */
+/*     IMPORTACIONES DE FUENTES    */
+/* /////////////////////////////// */
+
 @import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
 
 
-/*CONTENIDO BARRA NAVEGACION*/
-/* --- ESTILOS GENERALES --- */
+
+/* /////////////////////////////////////// */
+/*    ESTILOS DE LA BARRA DE NAVEGACIÓN  */
+/* ////////////////////////////////////// */
+
 .fondoBarraNavegacion {
     background-color: black;
     padding: 10px 20px;
@@ -32,15 +39,15 @@
     min-width: 150px;
 }
 
+/* ////////////////////////////////////////// */
+/*    RESPONSIVE DESIGN (Diseño Responsivo)   */
+/* ////////////////////////////////////////// */
 
-/* 
---- RESPONSIVE DESIGN ---
-
+/* Pantallas grandes (>1653px) */
 @media screen and (max-width: 1653px) {
     .navOpciones {
-        gap: 10rem; Reduce el espacio entre los botones
+        gap: 10rem; /* Reduce el espacio entre los botones */
         margin-left: 42rem;
-
     }
 
     .logo {
@@ -51,22 +58,20 @@
     h2 {
         font-size: 1rem;
     }
-    
+
     .botonIcono{
-	    transform: translate(1529px, -106px);
-	    border-radius: 12rem;
-	    width: 4rem;
-	    height: 4rem;
-	    
-	}
+        transform: translate(1529px, -106px);
+        border-radius: 12rem;
+        width: 4rem;
+        height: 4rem;
+    }
 }
 
-
+/* Pantallas medianas (>1272px y <1653px) */
 @media screen and (max-width: 1272px) {
     .navOpciones {
-        gap: 10rem; Reduce el espacio entre los botones
+        gap: 10rem; /* Reduce el espacio entre los botones */
         margin-left: 32rem;
-
     }
 
     .logo {
@@ -77,22 +82,20 @@
     h2 {
         font-size: 1rem;
     }
-    
+
     .botonIcono{
-	    transform: translate(1149px, -106px);
-	    border-radius: 12rem;
-	    width: 4rem;
-	    height: 4rem;
-	    
-	}
+        transform: translate(1149px, -106px);
+        border-radius: 12rem;
+        width: 4rem;
+        height: 4rem;
+    }
 }
 
-TABLETS Y PANTALLAS MEDIANAS (menos de 1024px)
+/* Tablets y pantallas medianas (<1024px) */
 @media screen and (max-width: 1021px) {
     .navOpciones {
-        gap: 5rem; Reduce el espacio entre los botones
+        gap: 5rem; /* Reduce el espacio entre los botones */
         margin-left: 32rem;
-
     }
 
     .logo {
@@ -104,17 +107,15 @@ TABLETS Y PANTALLAS MEDIANAS (menos de 1024px)
         font-size: 1rem;
     }
 
-	.botonIcono{
-	    transform: translate(931px, -106px);
-	    border-radius: 12rem;
-	    width: 4rem;
-	    height: 4rem;
-	    
-	}
+    .botonIcono{
+        transform: translate(931px, -106px);
+        border-radius: 12rem;
+        width: 4rem;
+        height: 4rem;
+    }
 }
- */
- 
-/*DISPOSITIVOS MÃ“VILES (menos de 768px)*/
+
+/* Pantallas pequeñas (móviles <768px) */
 @media screen and (max-width: 768px) {
     mat-toolbar {
         flex-direction: row;
@@ -132,7 +133,7 @@ TABLETS Y PANTALLAS MEDIANAS (menos de 1024px)
         display: block;
     }
 
-/*MENÃš HAMBURGUESA*/
+    /* Estilos para el menú hamburguesa */
     .menuHamburguesa {
         display: block;
         font-size: 2rem;
@@ -143,9 +144,7 @@ TABLETS Y PANTALLAS MEDIANAS (menos de 1024px)
         margin-left: 1rem;
     }
 
-
-
-    /*Ocultar el menÃº de navegaciÃ³n por defecto*/
+    /* Ocultar el menú de navegación por defecto en pantallas pequeñas */
     .navOpciones {
         display: none;
         flex-direction: column;
@@ -159,7 +158,7 @@ TABLETS Y PANTALLAS MEDIANAS (menos de 1024px)
         margin-left: auto;
     }
 
-    /*Mostrar el menÃº cuando se active*/
+    /* Mostrar el menú cuando se active */
     .navOpciones.mostrar {
         display: flex;
     }
@@ -176,7 +175,7 @@ TABLETS Y PANTALLAS MEDIANAS (menos de 1024px)
     }
 }
 
-/*PANTALLAS MUY PEQUEÃ‘AS (menos de 480px)*/
+/* Pantallas muy pequeñas (<480px) */
 @media screen and (max-width: 480px) {
     .logo {
         width: 50px;
@@ -187,13 +186,14 @@ TABLETS Y PANTALLAS MEDIANAS (menos de 1024px)
         width: 2.5rem;
         height: 2.5rem;
     }
-    
-   
 }
 
 
 
-/* CONTENIDO LANDING PAGE*/
+/* ////////////////////////////////////// */
+/*     ESTILOS DE LA PÁGINA PRINCIPAL     */
+/* ////////////////////////////////////// */
+
 body {
     height: 100%;
     margin: 0;
@@ -201,7 +201,7 @@ body {
     background-image: url("../images/fondoPantalla.jpg");
     background-size: cover;
     background-position: center;
-  }
+}
 
 .contenido {
     display: flex;
@@ -215,7 +215,7 @@ body {
 .flechas-cotenedor {
     display: flex;
     justify-content: space-between; /* Distribuye las flechas */
-    width: 100%; /* Ajusta el ancho segÃºn necesites */
+    width: 100%; /* Ajusta el ancho según necesites */
     max-width: 89rem; /* Evita que las flechas se separen demasiado */
     margin-top: 2rem;
 }
@@ -224,8 +224,8 @@ body {
     width: 22rem;
 }
 
-.titulo{
-	color: white;
+.titulo {
+    color: white;
     font-size: 4rem;
     width: 63rem;
 }
@@ -239,22 +239,22 @@ body {
 h2 {
     font-family: 'Roboto Slab', cursive;
     color: white;
-    
-  }
-  
-  
- /* REGISTRO */
- 
- #contenedorRegistro{
- 	
-	display: flex;
+}
+
+
+
+/* /////////////////////////////// */
+/*         ESTILOS DE REGISTRO     */
+/* /////////////////////////////// */ 
+
+#contenedorRegistro {
+    display: flex;
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
-    height: 100vh;   /*Ocupa toda la altura de la pantalla*/;
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+}
 
- }
- 
- #formularioUsuario{
+#formularioUsuario {
     display: flex;
     flex-direction: column; /* Organiza los campos en columna */
     gap: 16px; /* Espacio entre los elementos */
@@ -265,60 +265,62 @@ h2 {
     background-size: cover;
     background-position: center;
     border-radius: 8px; /* Bordes redondeados */
- }
- 
- #boton{
- 	width: 100%;
+}
+
+#boton {
+    width: 100%;
     padding: 10px;
     font-size: 16px;
     background-color: #FFCC00;
     color: black;
     font-weight: bold;
     border: black;
- }
- 
-#tituloRegistro{
+}
+
+#tituloRegistro {
     text-align: center;
     color: #fff;
 }
 
-#campos{
-	color: #fff;
+#campos {
+    color: #fff;
 }
 
 .form-control, .form-select {
-	background-color: #F5DEB3 !important;
+    background-color: #F5DEB3 !important;
 }
- 
-  #snackbar {
-            visibility: hidden;
-            min-width: 250px;
-            margin-left: -125px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            border-radius: 5px;
-            padding: 16px;
-            position: fixed;
-            left: 50%;
-            bottom: 30px;
-            z-index: 1;
-            font-size: 17px;
-            opacity: 0;
-            transition: opacity 0.5s, bottom 0.5s ease-in-out;            
-        }
 
-        #snackbar.show {
-            visibility: visible;
-            opacity: 1;
-            bottom: 50px;
-        }
-        
-        
- /* // LOGIN  //*/
-        
+/* Estilo para el snackbar (notificación emergente) */
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 16px;
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+    z-index: 1;
+    font-size: 17px;
+    opacity: 0;
+    transition: opacity 0.5s, bottom 0.5s ease-in-out;
+}
 
-/* Contenedor para centrar el formulario en la pantalla */
+#snackbar.show {
+    visibility: visible;
+    opacity: 1;
+    bottom: 50px;
+}
+
+
+
+/* /////////////////////////////// */
+/*         ESTILOS DE LOGIN        */
+/* /////////////////////////////// */
+
 .contenedor-formulario {
     display: flex;
     justify-content: center; /* Centra horizontalmente */
@@ -326,7 +328,6 @@ h2 {
     height: 100vh; /* Ocupa toda la altura de la pantalla */
 }
 
-/* Estilos para el formulario */
 #formularioLogin {
     display: flex;
     flex-direction: column; /* Organiza los campos en columna */
@@ -340,48 +341,46 @@ h2 {
     border-radius: 8px; /* Bordes redondeados */
 }
 
-
-/* Estilo del botón */
 #botonLogin {
     width: 100%;
     padding: 10px;
     font-size: 16px;
-    background-color:"#FFCC00";
+    background-color: "#FFCC00";
 }
 
-
-#tituloLogin, #tituloModalEditar{
+#tituloLogin, #tituloModalEditar {
     text-align: center;
     color: #fff;
 }
 
 
- /* // LISTA USUARIOS  //*/
+/* /////////////////////////////////// */
+/*   ESTILOS DE LA LISTA DE USUARIOS  */
+/* //////////////////////////////////// */
 
-table{
-	border-color: black;
+table {
+    border-color: black;
 }
 
-td{
-	background-color:  #F5DEB3!important;
+td {
+    background-color: #F5DEB3 !important;
 }
 
-th{
+th {
     background-image: url("../images/madera.jpg");
     color: white !important;
-    
 }
 
-#contenedorTabla{
-	margin-top: 12rem !important;
+#contenedorTabla {
+    margin-top: 12rem !important;
     margin-bottom: 19rem !important;
 }
 
 #formEditar {
-    background-color: #b7c871  !important;
+    background-color: #b7c871 !important;
 }
 
-.contenedorFormularioEditar{
+.contenedorFormularioEditar {
     background-image: url("../images/madera.jpg");
 }
 
@@ -391,15 +390,13 @@ th{
     background-color: #FFCC00;
     color: black;
     font-weight: bold;
- }
- 
-#botonAcciones{
+}
+
+#botonAcciones {
     padding: 12px;
     font-size: 7px;
     background-color: #FFCC00;
     color: black;
     font-weight: bold;
     margin-left: 1rem;
- }
-
-
+}
