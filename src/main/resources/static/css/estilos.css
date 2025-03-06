@@ -238,9 +238,15 @@ body {
 
 h2 {
     font-family: 'Roboto Slab', cursive;
-    color: white;
+    color: white !important;
 }
 
+
+#imagenesCarrusel{
+	display: block !important;
+    width: 51rem !important;
+    transform: translateX(35rem);
+}
 
 
 /* /////////////////////////////// */
@@ -348,9 +354,8 @@ h2 {
     background-color: "#FFCC00";
 }
 
-#tituloLogin, #tituloModalEditar {
+#tituloLogin, #tituloModalEditar, #mensajeError  {
     text-align: center;
-    color: #fff;
 }
 
 
@@ -400,3 +405,31 @@ th {
     font-weight: bold;
     margin-left: 1rem;
 }
+
+
+/* /////////////////////////////////// */
+/*   ESTILOS DE LA PAGINA DE ERROR     */
+/* //////////////////////////////////// */
+
+
+
+#contenedorMensajeError2{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 46rem;
+    padding: 32px;
+    background-image: url(../images/madera.jpg);
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+}
+
+.contenedorMensajeError1{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
