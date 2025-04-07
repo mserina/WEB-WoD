@@ -1,5 +1,7 @@
 package com.example.wodweb.controladores;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,6 +26,8 @@ public class UsuarioControlador {
   
     private UsuarioServicio usuarioServicio = new UsuarioServicio();
     
+	private static final Logger log = LoggerFactory.getLogger(PaginaPrincipal.class);
+
     
     
     /* /////////////////////////////////// */
@@ -38,6 +42,7 @@ public class UsuarioControlador {
      */
     @GetMapping("/admin/obtenerUsuario")
     public String obtenerUsuarios(Model model) {
+    	log.info("El administrador accedio a la lista de usuarios");
         model.addAttribute("usuarios", usuarioServicio.obtenerUsuarios());
         
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -73,7 +78,7 @@ public class UsuarioControlador {
      */
     @PostMapping("/registroDatos")
     public String registrarUsuario(UsuarioDto usuarioCredenciales, Model model, RedirectAttributes redirectAttributes) {
-
+       log.info("El usuario accedio al registro");
        try {
            UsuarioDto usuarioRegistrado = usuarioServicio.registrarUsuario(usuarioCredenciales);
 

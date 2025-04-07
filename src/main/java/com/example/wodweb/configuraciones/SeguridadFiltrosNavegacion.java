@@ -1,5 +1,7 @@
 package com.example.wodweb.configuraciones;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,6 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.example.wodweb.controladores.PaginaPrincipal;
 
 /**
  * Configuración de seguridad para la aplicación, definiendo los filtros de navegación y 
@@ -22,7 +26,8 @@ public class SeguridadFiltrosNavegacion {
     /** Proveedor de autenticación personalizado para validar usuarios */
     @Autowired
     private AutenticacionUsuario autenticacionUsuario = new AutenticacionUsuario();
-
+    
+    public static final Logger log = LoggerFactory.getLogger(PaginaPrincipal.class);
     
     
     /* /////////////////////////////////// */
@@ -65,7 +70,7 @@ public class SeguridadFiltrosNavegacion {
 
             // 4. Configurar el logout
             .logout(logout -> logout
-                .logoutUrl("/logout")             // URL para cerrar sesión
+                .logoutUrl("/logout")  // URL para cerrar sesión
                 .logoutSuccessUrl("/login?logout") // Redirigir a login tras cerrar sesión
                 .permitAll()                      // Permitir acceso al logout
             );

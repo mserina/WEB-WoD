@@ -1,5 +1,7 @@
 package com.example.wodweb.controladores;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class InicioSesionControlador {
 
 	
+	public static final Logger log = LoggerFactory.getLogger(PaginaPrincipal.class);
 	/* /////////////////////////////////// */
     /*             METODOS                  */
     /* //////////////////////////////////// */
@@ -26,7 +29,9 @@ public class InicioSesionControlador {
      */
     @GetMapping("/login")
     public String login(Model model, @RequestParam(required = false) String logout) {
+    	log.info("El usuario accedio al login");
         if (logout != null) {
+        	log.info("El usuario salio de la sesion");
             model.addAttribute("logoutMessage", "Has cerrado sesión exitosamente.");
         }
         return "login";
