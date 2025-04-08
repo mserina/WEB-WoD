@@ -29,7 +29,6 @@ public class PaginaPrincipal {
 	 * @return Nombre del html de bienvenida
 	 */
 	@GetMapping("/")
-	
 	public String bienvenida(Model modelo) {
 		log.info("El usuario entro en la pagina principal");
 		modelo.addAttribute("mensaje", "¡Bienvenido a nuestra tienda de manga!");

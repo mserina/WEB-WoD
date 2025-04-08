@@ -51,7 +51,7 @@ public class SeguridadFiltrosNavegacion {
             // 2. Configurar las reglas de acceso
             .authorizeHttpRequests(auth -> auth
                 // Permitir acceso sin autenticación a login, registro y recursos estáticos
-                .requestMatchers("/login", "/registro", "/registroDatos", "/", "/css/**", "/images/**").permitAll()
+                .requestMatchers("/login", "/registro", "/registroDatos", "/", "/css/**", "/images/**", "/favicon.ico").permitAll()
                 
                 // Restringir el acceso a las rutas de administrador solo a usuarios con rol ADMIN
                 .requestMatchers("/admin/**").hasRole("ADMIN")
@@ -70,7 +70,7 @@ public class SeguridadFiltrosNavegacion {
 
             // 4. Configurar el logout
             .logout(logout -> logout
-                .logoutUrl("/logout")  // URL para cerrar sesión
+                .logoutUrl("/logout")               // URL para cerrar sesión
                 .logoutSuccessUrl("/login?logout") // Redirigir a login tras cerrar sesión
                 .permitAll()                      // Permitir acceso al logout
             );

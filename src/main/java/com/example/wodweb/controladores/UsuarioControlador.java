@@ -63,6 +63,7 @@ public class UsuarioControlador {
      */
     @GetMapping("/registro")
     public String mostrarFormularioRegistro() {
+    	log.info("El usuario accedio al registro");
         return "registro"; // Nombre del template de Thymeleaf: registro.html
     }
 
