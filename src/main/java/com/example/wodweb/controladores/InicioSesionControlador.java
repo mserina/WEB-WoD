@@ -27,13 +27,15 @@ public class InicioSesionControlador {
      * @param logout Parámetro opcional para indicar si se cerró sesión.
      * @return Retorna la vista "login".
      */
-    @GetMapping("/login")
-    public String login(Model model, @RequestParam(required = false) String logout) {
-    	log.info("El usuario accedio al login");
-        if (logout != null) {
-        	log.info("El usuario salio de la sesion");
-            model.addAttribute("logoutMessage", "Has cerrado sesión exitosamente.");
-        }
-        return "login";
-    }
+	@GetMapping("/login")
+	public String login(Model model, @RequestParam(required = false) String logout) {
+	    if (logout != null) {
+	        log.info("El usuario salio de la sesion");
+	        model.addAttribute("logoutMessage", "Has cerrado sesión exitosamente.");
+	    } else {
+	        log.info("El usuario accedio al login");
+	    }
+	    return "login";
+	}
+
 }

@@ -3,6 +3,8 @@ package com.example.wodweb.configuraciones;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -12,6 +14,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
+import com.example.wodweb.controladores.PaginaPrincipal;
 import com.example.wodweb.dtos.InicioSesionDto;
 import com.example.wodweb.dtos.SesionDto;
 import com.example.wodweb.dtos.UsuarioDto;
@@ -31,7 +34,8 @@ public class AutenticacionUsuario implements AuthenticationProvider {
     private InicioSesionServicio inicioSesionServicio;
 
     
-    
+	private static final Logger log = LoggerFactory.getLogger(AutenticacionUsuario.class);
+
     
     /* /////////////////////////////////// */
     /*               METODOS                */
@@ -74,6 +78,8 @@ public class AutenticacionUsuario implements AuthenticationProvider {
                     authorities
             );
 
+            log.info(detalleUsuario.getNombre() + " ha iniciado sesion");
+            
             // Retornar un token de autenticación exitoso con el usuario autenticado y sus roles
             return new UsernamePasswordAuthenticationToken(detalleUsuario, contrasena, authorities);
         

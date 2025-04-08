@@ -38,7 +38,6 @@ public class InicioSesionServicio {
      */
     public UsuarioDto autenticarUsuario(InicioSesionDto credencialesUsuario) {
         
-        System.out.println("apiBaseUrl = " + apiBaseUrl); // Verificación de la URL de la API
 
         String email = credencialesUsuario.getCorreoElectronico();
         String contrasena = credencialesUsuario.getContrasena();

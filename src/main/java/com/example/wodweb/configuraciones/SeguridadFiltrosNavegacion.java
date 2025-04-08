@@ -27,7 +27,6 @@ public class SeguridadFiltrosNavegacion {
     @Autowired
     private AutenticacionUsuario autenticacionUsuario = new AutenticacionUsuario();
     
-    public static final Logger log = LoggerFactory.getLogger(PaginaPrincipal.class);
     
     
     /* /////////////////////////////////// */

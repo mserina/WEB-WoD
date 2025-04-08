@@ -1,12 +1,7 @@
-2025-04-08 12:18:32 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
-2025-04-08 12:18:39 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio al registro
-2025-04-08 12:18:45 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio al login
-2025-04-08 12:18:49 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
-2025-04-08 12:18:55 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio al login
-2025-04-08 12:19:26 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio al registro
-2025-04-08 12:21:43 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio al registro
-2025-04-08 12:21:59 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio al login
-2025-04-08 12:22:12 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
-2025-04-08 12:22:15 INFO  c.e.w.controladores.PaginaPrincipal - El administrador accedio a la lista de usuarios
-2025-04-08 12:23:04 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio al login
-2025-04-08 12:23:04 INFO  c.e.w.controladores.PaginaPrincipal - El usuario salio de la sesion
+2025-04-08 14:10:11 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
+2025-04-08 14:10:15 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio al login
+2025-04-08 14:11:28 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
+2025-04-08 14:22:28 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
+2025-04-08 14:22:30 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio al login
+2025-04-08 14:22:37 INFO  c.e.w.c.AutenticacionUsuario - adminha iniciado sesion
+2025-04-08 14:22:37 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
