@@ -1,52 +1,32 @@
-2025-04-09 13:18:42 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
-2025-04-09 13:21:10 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
-2025-04-09 13:21:12 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio al registro
-2025-04-09 13:22:02 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio al registro
-2025-04-09 13:22:57 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio al registro
-2025-04-09 13:23:33 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio al registro
-2025-04-09 13:26:17 INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2aaef616, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@c72ef55, org.springframework.security.web.context.SecurityContextHolderFilter@21d84baf, org.springframework.security.web.header.HeaderWriterFilter@4daf60b7, org.springframework.web.filter.CorsFilter@6026c906, org.springframework.security.web.authentication.logout.LogoutFilter@bf3a0c1, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3ccdbce6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@56a69fd0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5e8972f1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@31dd6368, org.springframework.security.web.access.ExceptionTranslationFilter@1b6278a5, org.springframework.security.web.access.intercept.AuthorizationFilter@7c421f52]
-2025-04-09 13:56:39 INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2de46e18, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@19564445, org.springframework.security.web.context.SecurityContextHolderFilter@58dde789, org.springframework.security.web.header.HeaderWriterFilter@5a89c832, org.springframework.web.filter.CorsFilter@4f6bfc6b, org.springframework.security.web.authentication.logout.LogoutFilter@6972ea89, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@250d3a1c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1a4f88cf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@22f1e6e9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5fbda83, org.springframework.security.web.access.ExceptionTranslationFilter@700bf981, org.springframework.security.web.access.intercept.AuthorizationFilter@40179eef]
-2025-04-09 13:56:59 DEBUG o.s.security.web.FilterChainProxy - Securing POST /registroDatos
-2025-04-09 13:56:59 DEBUG o.s.security.web.FilterChainProxy - Secured POST /registroDatos
-2025-04-09 13:56:59 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio al registro
-2025-04-09 13:57:00 DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-04-09 13:57:00 DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/estilos.css
-2025-04-09 13:57:00 DEBUG o.s.security.web.FilterChainProxy - Securing GET /images/logo.png
-2025-04-09 13:57:00 DEBUG o.s.security.web.FilterChainProxy - Securing GET /images/iconoUsuario.png
-2025-04-09 13:57:00 DEBUG o.s.security.web.FilterChainProxy - Secured GET /images/iconoUsuario.png
-2025-04-09 13:57:00 DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/estilos.css
-2025-04-09 13:57:00 DEBUG o.s.security.web.FilterChainProxy - Secured GET /images/logo.png
-2025-04-09 13:57:00 DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-04-09 13:57:00 DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-04-09 13:57:00 DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-04-09 13:57:00 DEBUG o.s.security.web.FilterChainProxy - Securing GET /images/madera.jpg
-2025-04-09 13:57:00 DEBUG o.s.security.web.FilterChainProxy - Securing GET /images/fondoPantalla.jpg
-2025-04-09 13:57:00 DEBUG o.s.security.web.FilterChainProxy - Secured GET /images/fondoPantalla.jpg
-2025-04-09 13:57:00 DEBUG o.s.security.web.FilterChainProxy - Secured GET /images/madera.jpg
-2025-04-09 13:57:00 DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-04-09 13:57:00 DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-04-09 13:57:00 DEBUG o.s.security.web.FilterChainProxy - Securing GET /favicon.ico
-2025-04-09 13:57:00 DEBUG o.s.security.web.FilterChainProxy - Secured GET /favicon.ico
-2025-04-09 13:57:00 DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-04-09 13:58:22 DEBUG o.s.security.web.FilterChainProxy - Securing GET /login
-2025-04-09 13:58:22 DEBUG o.s.security.web.FilterChainProxy - Secured GET /login
-2025-04-09 13:58:22 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio al login
-2025-04-09 13:58:22 DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-04-09 13:58:22 DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/estilos.css
-2025-04-09 13:58:22 DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/estilos.css
-2025-04-09 13:58:22 DEBUG o.s.security.web.FilterChainProxy - Securing GET /images/logo.png
-2025-04-09 13:58:22 DEBUG o.s.security.web.FilterChainProxy - Secured GET /images/logo.png
-2025-04-09 13:58:22 DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-04-09 13:58:22 DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-04-09 13:58:22 DEBUG o.s.security.web.FilterChainProxy - Securing GET /images/iconoUsuario.png
-2025-04-09 13:58:22 DEBUG o.s.security.web.FilterChainProxy - Secured GET /images/iconoUsuario.png
-2025-04-09 13:58:22 DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-04-09 13:58:22 DEBUG o.s.security.web.FilterChainProxy - Securing GET /images/fondoPantalla.jpg
-2025-04-09 13:58:22 DEBUG o.s.security.web.FilterChainProxy - Securing GET /images/madera.jpg
-2025-04-09 13:58:22 DEBUG o.s.security.web.FilterChainProxy - Secured GET /images/fondoPantalla.jpg
-2025-04-09 13:58:22 DEBUG o.s.security.web.FilterChainProxy - Secured GET /images/madera.jpg
-2025-04-09 13:58:22 DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-04-09 13:58:22 DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-04-09 13:58:22 DEBUG o.s.security.web.FilterChainProxy - Securing GET /favicon.ico
-2025-04-09 13:58:22 DEBUG o.s.security.web.FilterChainProxy - Secured GET /favicon.ico
-2025-04-09 13:58:22 DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-09 22:48:49 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a registro
+2025-04-09 22:49:00 INFO  c.e.w.c.AutenticacionUsuario - lucas ha iniciado sesion
+2025-04-09 22:49:00 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
+2025-04-09 22:49:03 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a registro
+2025-04-09 22:50:00 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a registro
+2025-04-09 22:50:31 INFO  c.e.w.c.AutenticacionUsuario - lucas ha iniciado sesion
+2025-04-09 22:50:31 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
+2025-04-09 22:50:47 INFO  c.e.w.controladores.PaginaPrincipal - lucas accedio a registro
+2025-04-09 22:51:06 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
+2025-04-09 22:51:31 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a registro
+2025-04-09 22:51:38 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a registro
+2025-04-09 22:51:45 INFO  c.e.w.c.AutenticacionUsuario - lucas ha iniciado sesion
+2025-04-09 22:51:45 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
+2025-04-09 22:52:43 INFO  c.e.w.controladores.PaginaPrincipal - lucas accedio a registro
+2025-04-09 22:53:21 WARN  o.apache.tomcat.util.net.NioEndpoint - The executor associated with thread pool [http-nio-8080] has not fully shutdown. Some application threads may still be running.
+2025-04-09 22:53:55 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a registro
+2025-04-09 22:53:57 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a registro
+2025-04-09 22:53:59 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a registro
+2025-04-09 22:54:00 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a registro
+2025-04-09 22:54:15 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a registro
+2025-04-09 22:54:43 INFO  c.e.w.c.AutenticacionUsuario - lucas ha iniciado sesion
+2025-04-09 22:54:43 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
+2025-04-09 22:56:43 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a login
+2025-04-09 22:56:43 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a login
+2025-04-09 22:56:52 INFO  c.e.w.c.AutenticacionUsuario - lucas ha iniciado sesion
+2025-04-09 22:56:52 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
+2025-04-09 22:57:00 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a login
+2025-04-09 22:57:10 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
+2025-04-09 22:58:25 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a login
+2025-04-09 22:58:31 INFO  c.e.w.c.AutenticacionUsuario - lucas ha iniciado sesion
+2025-04-09 22:58:31 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
+2025-04-09 22:58:56 INFO  c.e.w.controladores.PaginaPrincipal - lucas accedio a login

@@ -25,9 +25,9 @@ import com.example.wodweb.servicios.UsuarioServicio;
 public class UsuarioControlador {
   
     private UsuarioServicio usuarioServicio = new UsuarioServicio();
-    
 	private static final Logger log = LoggerFactory.getLogger(PaginaPrincipal.class);
-
+	Authentication credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
+	String nombreUsuarioLog = "El usuario";
     
     
     /* /////////////////////////////////// */
@@ -63,8 +63,15 @@ public class UsuarioControlador {
      */
     @GetMapping("/registro")
     public String mostrarFormularioRegistro() {
-    	log.info("El usuario accedio al registro");
-        return "registro"; // Nombre del template de Thymeleaf: registro.html
+    	
+    	
+    	if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
+            SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
+            // Usamos el nombre del usuario de sesión
+            nombreUsuarioLog = sesion.getNombre();
+        }
+        log.info(nombreUsuarioLog + " accedio a registro");
+        return "registro"; 
     }
 
     
@@ -79,13 +86,13 @@ public class UsuarioControlador {
      */
     @PostMapping("/registroDatos")
     public String registrarUsuario(UsuarioDto usuarioCredenciales, Model model, RedirectAttributes redirectAttributes) {
-       log.info("El usuario accedio al registro");
        try {
            UsuarioDto usuarioRegistrado = usuarioServicio.registrarUsuario(usuarioCredenciales);
 
+           // Si el registro es correcto 
     	   if (usuarioRegistrado != null) {
-               redirectAttributes.addFlashAttribute("mensaje", "Registro exitoso. ¡Bienvenido!");
-               return "bienvenida"; // O redirigir a otra vista
+    		   log.info(usuarioRegistrado.getNombreCompleto() + ", se ha registrado");    		   
+               return "bienvenida"; 
            } else {
                redirectAttributes.addFlashAttribute("mensaje", "Error en el registro. Inténtelo de nuevo.");
                return "registro"; // Regresa al formulario
