@@ -170,6 +170,18 @@ public class UsuarioControlador {
      */
     @PostMapping("/admin/borrarUsuario")
     public String borrarUsuario(@RequestParam Long id, RedirectAttributes redirectAttributes) {
+
+    	credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
+        String nombreUsuarioBorrado = "";
+        
+        List<UsuarioDto> usuarios = usuarioServicio.obtenerUsuarios();
+    	for (UsuarioDto usuario : usuarios) {
+    		if(usuario.getId() == id) {
+    			nombreUsuarioBorrado = usuario.getNombreCompleto();
+    		}
+    	}
+    	
+    	log.info(nombreUsuarioLog + " elimino al usuario " + nombreUsuarioBorrado);
         boolean borrado = usuarioServicio.borrarUsuario(id);
 
         if (borrado) {
@@ -177,7 +189,17 @@ public class UsuarioControlador {
         } else {
             redirectAttributes.addFlashAttribute("mensaje", "Error al borrar el usuario.");
         }
+        
+        if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
+            SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
+            // Usamos el nombre del usuario de sesión
+            nombreUsuarioLog = sesion.getNombre();
+        }
+    	else {
+    		nombreUsuarioLog = "El usuario";
+    	}
 
+        
         return "redirect:/admin/obtenerUsuario"; // Redirige a la vista con la lista de usuarios
     }
 }

@@ -1,12 +1,128 @@
-2025-04-10 14:21:32 - El usuario accedio a login
-2025-04-10 14:21:38 - admin ha iniciado sesion
-2025-04-10 14:21:38 - admin accedio a la pagina principal
-2025-04-10 14:21:41 - admin accedio a la lista de usuarios
-2025-04-10 14:21:53 - admin modifico el campo contrasena del usuario lagarto
-2025-04-10 14:21:53 - admin accedio a la lista de usuarios
-2025-04-10 14:22:21 - admin accedio a login
-2025-04-10 14:22:24 - admin ha cerrado la sesión
-2025-04-10 14:22:27 - El usuario accedio a la pagina principal
-2025-04-10 14:22:29 - El usuario accedio a registro
-2025-04-10 14:22:35 - Se ha realizado un logout (usuario no autenticado)
-2025-04-10 14:22:38 - El usuario accedio a la pagina principal
+2025-04-10 20:53:05 - El usuario accedio a login
+2025-04-10 20:57:16 - lucas ha iniciado sesion
+2025-04-10 20:57:16 - lucas accedio a la pagina principal
+2025-04-10 21:03:19 - lucas accedio a la pagina principal
+2025-04-10 21:04:34 - lucas accedio a la lista de usuarios
+2025-04-10 21:04:42 - lucas elimino al usuario 
+2025-04-10 21:04:42 - lucas accedio a la lista de usuarios
+2025-04-10 21:06:13 - El usuario accedio a login
+2025-04-10 21:06:21 - lucas ha iniciado sesion
+2025-04-10 21:06:22 - lucas accedio a la pagina principal
+2025-04-10 21:06:24 - lucas accedio a la lista de usuarios
+2025-04-10 21:06:56 - lucas elimino al usuario 
+2025-04-10 21:06:56 - lucas accedio a la lista de usuarios
+2025-04-10 21:07:06 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-04-10 21:07:56 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-04-10 21:08:34 - El usuario accedio a login
+2025-04-10 21:08:45 - lucas ha iniciado sesion
+2025-04-10 21:08:45 - lucas accedio a la pagina principal
+2025-04-10 21:08:48 - lucas accedio a la lista de usuarios
+2025-04-10 21:39:31 - lucas elimino al usuario 
+2025-04-10 21:39:32 - El usuario accedio a login
+2025-04-10 21:40:11 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+java.lang.NullPointerException: Cannot invoke "String.toUpperCase()" because the return value of "com.example.wodweb.dtos.UsuarioDto.getTipoUsuario()" is null
+	at com.example.wodweb.configuraciones.AutenticacionUsuario.authenticate(AutenticacionUsuario.java:71)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:182)
+	at org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.attemptAuthentication(UsernamePasswordAuthenticationFilter.java:85)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:231)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:225)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2025-04-10 21:40:16 - El usuario accedio a login
+2025-04-10 21:40:45 - lucas ha iniciado sesion
+2025-04-10 21:40:45 - lucas accedio a la pagina principal
+2025-04-10 21:40:48 - lucas accedio a la lista de usuarios
+2025-04-10 21:47:47 - El usuario accedio a login
+2025-04-10 21:48:00 - lucas ha iniciado sesion
+2025-04-10 21:48:00 - lucas accedio a la pagina principal
+2025-04-10 21:48:02 - lucas accedio a la lista de usuarios
+2025-04-10 21:48:06 - lucas elimino al usuario loloo
+2025-04-10 21:48:19 - lucas accedio a la lista de usuarios
+2025-04-10 21:48:25 - lucas elimino al usuario lol
+2025-04-10 21:48:45 - lucas elimino al usuario 
+2025-04-10 21:48:48 - lucas accedio a la lista de usuarios
+2025-04-10 21:48:53 - lucas ha cerrado la sesión
+2025-04-10 21:49:02 - El usuario accedio a la pagina principal
