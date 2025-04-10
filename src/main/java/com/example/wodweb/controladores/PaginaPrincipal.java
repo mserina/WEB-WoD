@@ -2,9 +2,13 @@ package com.example.wodweb.controladores;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.example.wodweb.dtos.SesionDto;
 
 
 /**
@@ -17,6 +21,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PaginaPrincipal {
 	
 	public static final Logger log = LoggerFactory.getLogger(PaginaPrincipal.class);
+	Authentication credencialesSesion;
+	String nombreUsuarioLog = "El usuario";
 	 
 	/* /////////////////////////////////// */
     /*             METODOS                  */
@@ -30,8 +36,17 @@ public class PaginaPrincipal {
 	 */
 	@GetMapping("/")
 	public String bienvenida(Model modelo) {
-		log.info("El usuario entro en la pagina principal");
-		modelo.addAttribute("mensaje", "¡Bienvenido a nuestra tienda de manga!");
+		
+		credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
+		if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
+            SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
+            // Usamos el nombre del usuario de sesión
+            nombreUsuarioLog = sesion.getNombre();
+        }
+		else {
+    		nombreUsuarioLog = "El usuario";
+    	}
+        log.info(nombreUsuarioLog + " accedio a la pagina principal");
 		return "bienvenida";
 
 	}

@@ -40,28 +40,21 @@ public class InicioSesionControlador {
 		credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
 		
 	    if (logout != null) {
-	    	SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
-            nombreUsuarioLog = sesion.getNombre();
-            
-	        log.info(nombreUsuarioLog +" salio de la sesion");
+	    	
 	        model.addAttribute("logoutMessage", "Has cerrado sesión exitosamente.");
 	    } else {
 	    	if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
 	            SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
 	            nombreUsuarioLog = sesion.getNombre();
 	        }
+	    	else {
+	    		nombreUsuarioLog = "El usuario";
+	    	}
 	        log.info(nombreUsuarioLog + " accedio a login");
 	    }
 	    return "login";
 	}
-/**
- * if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
-            SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
-            // Usamos el nombre del usuario de sesión
-            nombreUsuarioLog = sesion.getNombre();
-        }
-        log.info(nombreUsuarioLog + " accedio a registro");
- */
+
 }
 
 

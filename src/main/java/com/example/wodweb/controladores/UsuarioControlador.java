@@ -1,5 +1,7 @@
 package com.example.wodweb.controladores;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -26,7 +28,7 @@ public class UsuarioControlador {
   
     private UsuarioServicio usuarioServicio = new UsuarioServicio();
 	private static final Logger log = LoggerFactory.getLogger(PaginaPrincipal.class);
-	Authentication credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
+	Authentication credencialesSesion;
 	String nombreUsuarioLog = "El usuario";
     
     
@@ -42,15 +44,20 @@ public class UsuarioControlador {
      */
     @GetMapping("/admin/obtenerUsuario")
     public String obtenerUsuarios(Model model) {
-    	log.info("El administrador accedio a la lista de usuarios");
+    	
+    	credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("usuarios", usuarioServicio.obtenerUsuarios());
         
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        if (authentication != null && authentication.getPrincipal() instanceof SesionDto) {
-            SesionDto usuario = (SesionDto) authentication.getPrincipal();
-            model.addAttribute("auth", usuario); // Enviar usuario autenticado a la vista
+        if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
+            SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
+            // Usamos el nombre del usuario de sesión
+            nombreUsuarioLog = sesion.getNombre();
+            model.addAttribute("auth", sesion); // Enviar usuario autenticado a la vista
         }
+        else {
+    		nombreUsuarioLog = "El usuario";
+    	}
+        log.info(nombreUsuarioLog + " accedio a la lista de usuarios");
         return "usuarios";
     }
 
@@ -64,12 +71,16 @@ public class UsuarioControlador {
     @GetMapping("/registro")
     public String mostrarFormularioRegistro() {
     	
-    	
+    	credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
+
     	if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
             SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
             // Usamos el nombre del usuario de sesión
             nombreUsuarioLog = sesion.getNombre();
         }
+    	else {
+    		nombreUsuarioLog = "El usuario";
+    	}
         log.info(nombreUsuarioLog + " accedio a registro");
         return "registro"; 
     }
@@ -117,7 +128,9 @@ public class UsuarioControlador {
     @PostMapping("/admin/editarUsuario")
     public String editarUsuario(@RequestParam String correoElectronico, @RequestParam String campo, @RequestParam String nuevoValor, RedirectAttributes redirectAttributes) {
         boolean actualizado = usuarioServicio.editarUsuario(correoElectronico, campo, nuevoValor);
-
+        credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
+        String nombreUsuarioModificado = "";
+        
         if (actualizado) {
             redirectAttributes.addFlashAttribute("mensaje", "Usuario actualizado con éxito.");
             redirectAttributes.addFlashAttribute("tipoMensaje", "success");
@@ -125,7 +138,24 @@ public class UsuarioControlador {
             redirectAttributes.addFlashAttribute("mensaje", "Error al actualizar usuario.");
             redirectAttributes.addFlashAttribute("tipoMensaje", "danger");
         }
+        
 
+    	if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
+            SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
+            // Usamos el nombre del usuario de sesión
+            nombreUsuarioLog = sesion.getNombre();
+        }
+    	else {
+    		nombreUsuarioLog = "El usuario";
+    	}
+
+    	List<UsuarioDto> usuarios = usuarioServicio.obtenerUsuarios();
+    	for (UsuarioDto usuario : usuarios) {
+    		if(usuario.getCorreoElectronico().equals(correoElectronico)) {
+    			nombreUsuarioModificado = usuario.getNombreCompleto();
+    		}
+    	}
+    	log.info(nombreUsuarioLog + " modifico el campo " + campo + " del usuario " + nombreUsuarioModificado);
         return "redirect:/admin/obtenerUsuario"; // Redirigir de nuevo a la lista de usuarios
     }
 

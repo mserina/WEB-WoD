@@ -1,32 +1,12 @@
-2025-04-09 22:48:49 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a registro
-2025-04-09 22:49:00 INFO  c.e.w.c.AutenticacionUsuario - lucas ha iniciado sesion
-2025-04-09 22:49:00 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
-2025-04-09 22:49:03 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a registro
-2025-04-09 22:50:00 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a registro
-2025-04-09 22:50:31 INFO  c.e.w.c.AutenticacionUsuario - lucas ha iniciado sesion
-2025-04-09 22:50:31 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
-2025-04-09 22:50:47 INFO  c.e.w.controladores.PaginaPrincipal - lucas accedio a registro
-2025-04-09 22:51:06 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
-2025-04-09 22:51:31 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a registro
-2025-04-09 22:51:38 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a registro
-2025-04-09 22:51:45 INFO  c.e.w.c.AutenticacionUsuario - lucas ha iniciado sesion
-2025-04-09 22:51:45 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
-2025-04-09 22:52:43 INFO  c.e.w.controladores.PaginaPrincipal - lucas accedio a registro
-2025-04-09 22:53:21 WARN  o.apache.tomcat.util.net.NioEndpoint - The executor associated with thread pool [http-nio-8080] has not fully shutdown. Some application threads may still be running.
-2025-04-09 22:53:55 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a registro
-2025-04-09 22:53:57 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a registro
-2025-04-09 22:53:59 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a registro
-2025-04-09 22:54:00 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a registro
-2025-04-09 22:54:15 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a registro
-2025-04-09 22:54:43 INFO  c.e.w.c.AutenticacionUsuario - lucas ha iniciado sesion
-2025-04-09 22:54:43 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
-2025-04-09 22:56:43 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a login
-2025-04-09 22:56:43 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a login
-2025-04-09 22:56:52 INFO  c.e.w.c.AutenticacionUsuario - lucas ha iniciado sesion
-2025-04-09 22:56:52 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
-2025-04-09 22:57:00 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a login
-2025-04-09 22:57:10 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
-2025-04-09 22:58:25 INFO  c.e.w.controladores.PaginaPrincipal - El usuario accedio a login
-2025-04-09 22:58:31 INFO  c.e.w.c.AutenticacionUsuario - lucas ha iniciado sesion
-2025-04-09 22:58:31 INFO  c.e.w.controladores.PaginaPrincipal - El usuario entro en la pagina principal
-2025-04-09 22:58:56 INFO  c.e.w.controladores.PaginaPrincipal - lucas accedio a login
+2025-04-10 14:21:32 - El usuario accedio a login
+2025-04-10 14:21:38 - admin ha iniciado sesion
+2025-04-10 14:21:38 - admin accedio a la pagina principal
+2025-04-10 14:21:41 - admin accedio a la lista de usuarios
+2025-04-10 14:21:53 - admin modifico el campo contrasena del usuario lagarto
+2025-04-10 14:21:53 - admin accedio a la lista de usuarios
+2025-04-10 14:22:21 - admin accedio a login
+2025-04-10 14:22:24 - admin ha cerrado la sesión
+2025-04-10 14:22:27 - El usuario accedio a la pagina principal
+2025-04-10 14:22:29 - El usuario accedio a registro
+2025-04-10 14:22:35 - Se ha realizado un logout (usuario no autenticado)
+2025-04-10 14:22:38 - El usuario accedio a la pagina principal

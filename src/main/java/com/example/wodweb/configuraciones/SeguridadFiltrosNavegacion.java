@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
-import com.example.wodweb.controladores.PaginaPrincipal;
+import com.example.wodweb.dtos.SesionDto;
 
 /**
  * Configuración de seguridad para la aplicación, definiendo los filtros de navegación y 
@@ -26,7 +25,8 @@ public class SeguridadFiltrosNavegacion {
     /** Proveedor de autenticación personalizado para validar usuarios */
     @Autowired
     private AutenticacionUsuario autenticacionUsuario = new AutenticacionUsuario();
-    
+	private static final Logger log = LoggerFactory.getLogger(AutenticacionUsuario.class);
+
     
     
     /* /////////////////////////////////// */
@@ -69,9 +69,9 @@ public class SeguridadFiltrosNavegacion {
 
             // 4. Configurar el logout
             .logout(logout -> logout
-                .logoutUrl("/logout")               // URL para cerrar sesión
-                .logoutSuccessUrl("/login?logout") // Redirigir a login tras cerrar sesión
-                .permitAll()                      // Permitir acceso al logout
+                .logoutUrl("/logout")                               // URL para cerrar sesión
+                .logoutSuccessHandler(customLogoutSuccessHandler()) // Redirigir a login tras cerrar sesión
+                .permitAll()                                        // Permitir acceso al logout
             );
 
         // 5. Registrar el proveedor de autenticación personalizado
@@ -79,5 +79,26 @@ public class SeguridadFiltrosNavegacion {
 
         // 6. Construir y devolver la configuración de seguridad
         return http.build();
+    }
+    
+    /**
+     * LogoutSuccessHandler personalizado para realizar logueo de la acción de logout
+     * justo antes de invalidar la sesión del usuario.
+     */
+    @Bean
+    public LogoutSuccessHandler customLogoutSuccessHandler() {
+        return (request, response, authentication) -> {
+            // Antes de invalidar la sesión, verificamos si el principal es de tipo SesionDto
+            if (authentication != null && authentication.getPrincipal() instanceof SesionDto) {
+                SesionDto sesion = (SesionDto) authentication.getPrincipal();
+                // Logueamos el cierre de sesión con el nombre del usuario
+                log.info(sesion.getNombre() + " ha cerrado la sesión");
+            } else {
+                // En caso de que no se encuentre un usuario autenticado, logueamos un mensaje genérico
+            	log.info("Se ha realizado un logout (usuario no autenticado)");
+            }
+            // Redireccionamos a la página de login con un parámetro que indique logout
+            response.sendRedirect("/login?logout");
+        };
     }
 }
