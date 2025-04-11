@@ -19,6 +19,8 @@ public class UsuarioDto {
 	private String contrasena;
 
 	private String foto = "kk.jpg";
+	
+	private String codigoVerificacion = "";
 
 	// Getters y Setters
 
@@ -76,6 +78,14 @@ public class UsuarioDto {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+	
+	public String getCodigoVerificacion() {
+		return codigoVerificacion;
+	}
+
+	public void setcodigoVerificacion(String codigoVerificacion) {
+		this.codigoVerificacion = codigoVerificacion;
 	}
 
 	@Override

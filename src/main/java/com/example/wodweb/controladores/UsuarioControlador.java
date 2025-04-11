@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +26,8 @@ import com.example.wodweb.servicios.UsuarioServicio;
 @Controller
 public class UsuarioControlador {
   
-    private UsuarioServicio usuarioServicio = new UsuarioServicio();
+	@Autowired
+	private UsuarioServicio usuarioServicio;
 	private static final Logger log = LoggerFactory.getLogger(PaginaPrincipal.class);
 	Authentication credencialesSesion;
 	String nombreUsuarioLog = "El usuario";
@@ -102,8 +103,26 @@ public class UsuarioControlador {
 
            // Si el registro es correcto 
     	   if (usuarioRegistrado != null) {
-    		   log.info(usuarioRegistrado.getNombreCompleto() + ", se ha registrado");    		   
-               return "bienvenida"; 
+    		   
+    		   // Generar código de verificación
+               String codigo = usuarioServicio.generarCodigo();
+               List<UsuarioDto> usuarios = usuarioServicio.obtenerUsuarios();
+           	   for (UsuarioDto usuario : usuarios) {
+	           	   if(usuario.getCorreoElectronico().equals(usuarioCredenciales.getCorreoElectronico())) {
+	           		   usuario.setcodigoVerificacion(codigo);
+	           		}
+           	   }
+           	   
+               // Enviar el código por correo al usuario
+               String asunto = "Código de verificación de registro";
+               String mensaje = "Hola " + usuarioRegistrado.getNombreCompleto() + ",\n\n"
+                               + "Tu código de verificación es: " + codigo + "\n\n"
+                               + "Ingresa este código en la página de verificación para completar tu registro.";
+          
+               usuarioServicio.enviarCorreo(usuarioRegistrado.getCorreoElectronico(), asunto, mensaje);
+    		   
+               log.info(usuarioRegistrado.getNombreCompleto() + ", se ha registrado");    		   
+               return "verificarCodigo";
            } else {
                redirectAttributes.addFlashAttribute("mensaje", "Error en el registro. Inténtelo de nuevo.");
                return "registro"; // Regresa al formulario
@@ -201,5 +220,37 @@ public class UsuarioControlador {
 
         
         return "redirect:/admin/obtenerUsuario"; // Redirige a la vista con la lista de usuarios
+    }
+    
+    /**
+     * Muestra la pagina para insertar el codigo de verificacion
+     * msm - 110425 
+     * @param model
+     * @return
+     */
+    @GetMapping("/verificarCodigo")
+    public String mostrarFormularioVerificacion(Model model) {
+        return "verificarCodigo";  // El nombre del template Thymeleaf
+    }
+    
+    /**
+     * Valida el codigo ingresado por el usuario
+     * msm - 110425
+     * @param codigoIngresado
+     * @param redirectAttributes
+     * @return
+     */
+    @PostMapping("/verificarCodigo")
+    public String verificarCodigo(@RequestParam String codigoIngresado, RedirectAttributes redirectAttributes) {
+   
+        boolean verificado = usuarioServicio.verificarCodigo(codigoIngresado);     
+        
+        if (verificado) {
+            redirectAttributes.addFlashAttribute("mensaje", "Código verificado. ¡Registro completado!");
+            return "redirect:/bienvenida"; // Redirige a la página de bienvenida o lo que corresponda
+        } else {
+            redirectAttributes.addFlashAttribute("mensaje", "Código incorrecto. Por favor, inténtelo de nuevo.");
+            return "redirect:/verificarCodigo";
+        }
     }
 }

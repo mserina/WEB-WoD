@@ -1,13 +1,17 @@
 package com.example.wodweb.servicios;
 
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,6 +27,11 @@ public class UsuarioServicio {
  
     private  RestTemplate restTemplate;    
     private  String apiUrl;
+    private SecureRandom random = new SecureRandom();
+    private int CODIGO_LONGITUD = 6;
+    	
+    @Autowired
+    private JavaMailSender mailSender;
 
     public UsuarioServicio() {
         this.restTemplate = new RestTemplate();
@@ -82,6 +91,7 @@ public class UsuarioServicio {
             return null;
         }
     }
+    
 
     
     /**
@@ -116,5 +126,48 @@ public class UsuarioServicio {
             System.err.println("Error al borrar usuario en la API externa: " + e.getMessage());
             return false;
         }
+    }
+    
+    
+    /**
+     * Genera un codigo aleatorio para el alta de usuario
+     * msm - 110425
+     * @return Codigo de 6 digitos
+     */
+    public String generarCodigo() {
+        StringBuilder codigo = new StringBuilder(CODIGO_LONGITUD);
+        for (int i = 0; i < CODIGO_LONGITUD; i++) {
+            // Genera un dígito aleatorio (0-9)
+            int digito = random.nextInt(10);
+            codigo.append(digito);
+        }
+        return codigo.toString();
+    }
+    
+    public Boolean verificarCodigo(String codigoIngresado) {
+    	List<UsuarioDto> usuarios = obtenerUsuarios();
+    	for (UsuarioDto usuario : usuarios) {
+    		if(usuario.getCodigoVerificacion() == codigoIngresado) {
+    			return true;
+    		}
+    	}
+    	
+    	return false;
+    }
+    
+    
+    /**
+     * Envía un correo electrónico simple.
+     * 
+     * @param destinatario Correo del receptor
+     * @param asunto Asunto del mensaje
+     * @param mensaje Cuerpo del mensaje
+     */
+    public void enviarCorreo(String destinatario, String asunto, String mensaje) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(destinatario);
+        mailMessage.setSubject(asunto);
+        mailMessage.setText(mensaje);
+        mailSender.send(mailMessage);
     }
 }
