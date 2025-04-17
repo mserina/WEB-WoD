@@ -106,12 +106,7 @@ public class UsuarioControlador {
     		   
     		   // Generar código de verificación
                String codigo = usuarioServicio.generarCodigo();
-               List<UsuarioDto> usuarios = usuarioServicio.obtenerUsuarios();
-           	   for (UsuarioDto usuario : usuarios) {
-	           	   if(usuario.getCorreoElectronico().equals(usuarioCredenciales.getCorreoElectronico())) {
-	           		   usuario.setcodigoVerificacion(codigo);
-	           		}
-           	   }
+               usuarioRegistrado.setcodigoVerificacion(codigo);
            	   
                // Enviar el código por correo al usuario
                String asunto = "Código de verificación de registro";

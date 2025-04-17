@@ -354,7 +354,7 @@ h2 {
     background-color: "#FFCC00";
 }
 
-#tituloLogin, #tituloModalEditar, #mensajeError  {
+#tituloLogin, #tituloModalEditar, #mensajeError, #textoContenedor  {
     text-align: center;
 }
 
@@ -406,6 +406,14 @@ th {
     margin-left: 1rem;
 }
 
+
+/* /////////////////////////////////// */
+/*   ESTILOS DE LA PAGINA VERIFICAR CODIGO */
+/* //////////////////////////////////// */
+
+#textoContenedor{
+	color: #fff;
+}
 
 /* /////////////////////////////////// */
 /*   ESTILOS DE LA PAGINA DE ERROR     */
