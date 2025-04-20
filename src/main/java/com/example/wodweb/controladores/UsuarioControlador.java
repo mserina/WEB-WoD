@@ -99,14 +99,16 @@ public class UsuarioControlador {
     @PostMapping("/registroDatos")
     public String registrarUsuario(UsuarioDto usuarioCredenciales, Model model, RedirectAttributes redirectAttributes) {
        try {
+    	   
+    	   // Generar código de verificación
+           String codigo = usuarioServicio.generarCodigo();
+           
+           usuarioCredenciales.setCodigoVerificacion(codigo);
+           
            UsuarioDto usuarioRegistrado = usuarioServicio.registrarUsuario(usuarioCredenciales);
 
            // Si el registro es correcto 
     	   if (usuarioRegistrado != null) {
-    		   
-    		   // Generar código de verificación
-               String codigo = usuarioServicio.generarCodigo();
-               usuarioRegistrado.setcodigoVerificacion(codigo);
            	   
                // Enviar el código por correo al usuario
                String asunto = "Código de verificación de registro";
@@ -115,7 +117,7 @@ public class UsuarioControlador {
                                + "Ingresa este código en la página de verificación para completar tu registro.";
           
                usuarioServicio.enviarCorreo(usuarioRegistrado.getCorreoElectronico(), asunto, mensaje);
-    		   
+    		   	
                log.info(usuarioRegistrado.getNombreCompleto() + ", se ha registrado");    		   
                return "verificarCodigo";
            } else {
@@ -217,6 +219,7 @@ public class UsuarioControlador {
         return "redirect:/admin/obtenerUsuario"; // Redirige a la vista con la lista de usuarios
     }
     
+    
     /**
      * Muestra la pagina para insertar el codigo de verificacion
      * msm - 110425 
@@ -242,7 +245,7 @@ public class UsuarioControlador {
         
         if (verificado) {
             redirectAttributes.addFlashAttribute("mensaje", "Código verificado. ¡Registro completado!");
-            return "redirect:/bienvenida"; // Redirige a la página de bienvenida o lo que corresponda
+            return "redirect:/registroDatos"; // Redirige a la página de bienvenida o lo que corresponda
         } else {
             redirectAttributes.addFlashAttribute("mensaje", "Código incorrecto. Por favor, inténtelo de nuevo.");
             return "redirect:/verificarCodigo";

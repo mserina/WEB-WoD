@@ -62,10 +62,9 @@
 	</div>
 
 <!-- ///////////////////////////////////
-            CONTENIDO                  
+            CONTENIDO                  	
    //////////////////////////////////// -->
     <div class="contenedor-formulario">
-        
         <form id="formularioLogin" th:action="@{/verificarCodigo}" method="post">
             <div class="mb-3">
 	            <h2 id="tituloLogin">Verificación de Registro</h2>
@@ -73,13 +72,19 @@
                 <label id="campos" for="codigoIngresado" class="form-label">Código de Verificación:</label>
                 <input type="text" id="codigoIngresado" name="codigoIngresado" class="form-control" required>
             </div>
+            
+	        <!-- ALERTA DENTRO del formulario -->
+	        <div th:if="${mensaje}" class="alert alert-info alert-dismissible fade show" role="alert" style="margin-top: 10px; max-width: 100%;">
+	            <span th:text="${mensaje}"></span>
+	            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+	        </div>
+	        
             <button id="boton" type="submit" class="btn btn-primary">Verificar Código</button>
         </form>
-        
     </div>
     
     <div>
-    	<div  th:if="${mensaje}" class="alert alert-info alert-dismissible fade show mt-3" role="alert">
+    	<div th:if="${mensaje}" class="alert alert-info alert-dismissible fade show mt-3" role="alert">
 	  		<span th:text="${mensaje}"></span>
 	  		<!-- Botón de cierre -->
 	  		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>

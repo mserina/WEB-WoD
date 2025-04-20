@@ -145,15 +145,17 @@ public class UsuarioServicio {
     }
     
     public Boolean verificarCodigo(String codigoIngresado) {
-    	List<UsuarioDto> usuarios = obtenerUsuarios();
-    	for (UsuarioDto usuario : usuarios) {
-    		if(usuario.getCodigoVerificacion() == codigoIngresado) {
-    			return true;
-    		}
-    	}
-    	
-    	return false;
+        List<UsuarioDto> usuarios = obtenerUsuarios();
+        for (UsuarioDto usuario : usuarios) {
+            String codigoGuardado = usuario.getCodigoVerificacion();
+            // Primero comprueba nulos para evitar NullPointerException
+            if (codigoGuardado != null && codigoGuardado.equals(codigoIngresado)) {
+                return true;
+            }
+        }
+        return false;
     }
+
     
     
     /**

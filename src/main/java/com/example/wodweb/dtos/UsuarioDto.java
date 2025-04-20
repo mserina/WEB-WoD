@@ -20,10 +20,11 @@ public class UsuarioDto {
 
 	private String foto = "kk.jpg";
 	
-	private String codigoVerificacion = "";
+	private String codigoVerificacion = "12345678";
 
+	
 	// Getters y Setters
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -84,7 +85,7 @@ public class UsuarioDto {
 		return codigoVerificacion;
 	}
 
-	public void setcodigoVerificacion(String codigoVerificacion) {
+	public void setCodigoVerificacion(String codigoVerificacion) {
 		this.codigoVerificacion = codigoVerificacion;
 	}
 
