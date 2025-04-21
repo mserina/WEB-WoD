@@ -20,7 +20,9 @@ public class UsuarioDto {
 
 	private String foto = "kk.jpg";
 	
-	private String codigoVerificacion = "12345678";
+	private String codigoVerificacion = "12345";
+	
+    private boolean verificado = false;
 
 	
 	// Getters y Setters
@@ -82,11 +84,19 @@ public class UsuarioDto {
 	}
 	
 	public String getCodigoVerificacion() {
-		return codigoVerificacion;
+        return codigoVerificacion;
+    }
+
+    public void setCodigoVerificado(String codigoVerificacion) {
+        this.codigoVerificacion = codigoVerificacion;
+    }
+	
+	public boolean getVerificado() {
+		return verificado;
 	}
 
-	public void setCodigoVerificacion(String codigoVerificacion) {
-		this.codigoVerificacion = codigoVerificacion;
+	public void setVerificado(boolean verificado) {
+		this.verificado = verificado;
 	}
 
 	@Override
@@ -94,4 +104,6 @@ public class UsuarioDto {
 		return "UsuarioModelo{" + "id=" + id + ", nombreCompleto='" + nombreCompleto + '\'' + ", movil='" + movil + '\''
 				+ ", correoElectronico='" + correoElectronico + '\'' + ", tipoUsuario='" + tipoUsuario + '\'' + '}';
 	}
+
+	
 }

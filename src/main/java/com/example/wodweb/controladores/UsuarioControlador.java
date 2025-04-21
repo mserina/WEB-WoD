@@ -19,6 +19,8 @@ import com.example.wodweb.dtos.UsuarioDto;
 import com.example.wodweb.excepciones.CorreoExistenteExcepcion;
 import com.example.wodweb.servicios.UsuarioServicio;
 
+import jakarta.servlet.http.HttpSession;
+
 /**
  * Controlador para la gestión de usuarios.
  * msm - 050325
@@ -97,19 +99,19 @@ public class UsuarioControlador {
      * @return Redirige a la vista de bienvenida si el registro es exitoso, de lo contrario, vuelve a "registro".
      */
     @PostMapping("/registroDatos")
-    public String registrarUsuario(UsuarioDto usuarioCredenciales, Model model, RedirectAttributes redirectAttributes) {
+    public String registrarUsuario(HttpSession sesion ,UsuarioDto usuarioCredenciales, Model model, RedirectAttributes redirectAttributes) {
        try {
     	   
     	   // Generar código de verificación
            String codigo = usuarioServicio.generarCodigo();
+           usuarioCredenciales.setCodigoVerificado(codigo);
            
-           usuarioCredenciales.setCodigoVerificacion(codigo);
            
            UsuarioDto usuarioRegistrado = usuarioServicio.registrarUsuario(usuarioCredenciales);
 
+           
            // Si el registro es correcto 
     	   if (usuarioRegistrado != null) {
-           	   
                // Enviar el código por correo al usuario
                String asunto = "Código de verificación de registro";
                String mensaje = "Hola " + usuarioRegistrado.getNombreCompleto() + ",\n\n"
@@ -118,6 +120,12 @@ public class UsuarioControlador {
           
                usuarioServicio.enviarCorreo(usuarioRegistrado.getCorreoElectronico(), asunto, mensaje);
     		   	
+               
+             // Guardar código y correo en la sesión
+              sesion.setAttribute("codigoVerificacion", codigo);
+              sesion.setAttribute("correoPendiente", usuarioRegistrado.getCorreoElectronico());
+       
+              
                log.info(usuarioRegistrado.getNombreCompleto() + ", se ha registrado");    		   
                return "verificarCodigo";
            } else {
@@ -239,10 +247,19 @@ public class UsuarioControlador {
      * @return
      */
     @PostMapping("/verificarCodigo")
-    public String verificarCodigo(@RequestParam String codigoIngresado,RedirectAttributes redirectAttributes) {
-        boolean verificado = usuarioServicio.verificarCodigo(codigoIngresado);
+    public String verificarCodigo(@RequestParam String codigoIngresado,RedirectAttributes redirectAttributes, HttpSession sesion) {
+    	
+    	String codigoGuardado = (String) sesion.getAttribute("codigoVerificacion");
+        String correoPendiente = (String) sesion.getAttribute("correoPendiente");
 
-        if (verificado) {
+        if (codigoGuardado != null && codigoGuardado.equals(codigoIngresado)) {
+        	// Marcar usuario como verificado
+            usuarioServicio.marcarUsuarioComoVerificado(correoPendiente);
+
+            // Limpiar la sesión
+            sesion.removeAttribute("codigoVerificacion");
+            sesion.removeAttribute("correoPendiente");
+        	
             redirectAttributes.addFlashAttribute( "mensajeLoginCodigo", "Código verificado. ¡Ya puedes iniciar sesión!");
             return "redirect:/login";
         } else {

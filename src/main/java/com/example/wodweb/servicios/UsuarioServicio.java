@@ -144,24 +144,6 @@ public class UsuarioServicio {
         return codigo.toString();
     }
     
-    /**
-     * Verifica que el codigo de registro sea valido
-     * msm - 210425
-     * @param codigoIngresado
-     * @return un valor booleano
-     */
-    public Boolean verificarCodigo(String codigoIngresado) {
-        List<UsuarioDto> usuarios = obtenerUsuarios();
-        for (UsuarioDto usuario : usuarios) {
-            String codigoGuardado = usuario.getCodigoVerificacion();
-            // Primero comprueba nulos para evitar NullPointerException
-            if (codigoGuardado != null && codigoGuardado.equals(codigoIngresado)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     
     
     /**
@@ -178,4 +160,14 @@ public class UsuarioServicio {
         mailMessage.setText(mensaje);
         mailSender.send(mailMessage);
     }
+
+
+	public void marcarUsuarioComoVerificado(String correoPendiente) {
+		List<UsuarioDto> usuarios = obtenerUsuarios();
+        for (UsuarioDto usuario : usuarios) {
+            if (correoPendiente.equals(usuario.getCorreoElectronico())) {
+                usuario.setVerificado(true);
+            }
+        }
+	}
 }
