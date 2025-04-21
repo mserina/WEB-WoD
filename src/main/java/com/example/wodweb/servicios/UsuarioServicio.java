@@ -166,7 +166,7 @@ public class UsuarioServicio {
 		List<UsuarioDto> usuarios = obtenerUsuarios();
         for (UsuarioDto usuario : usuarios) {
             if (correoPendiente.equals(usuario.getCorreoElectronico())) {
-                usuario.setVerificado(true);
+                editarUsuario(correoPendiente, "verificado", "true");
             }
         }
 	}

@@ -2189,3 +2189,23 @@ Caused by: java.lang.ClassNotFoundException: HttpSesion
 	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:121)
 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	... 28 common frames omitted
+2025-04-21 21:37:08 - El usuario accedio a registro
+2025-04-21 21:37:13 - El usuario accedio a la pagina principal
+2025-04-21 21:37:22 - El usuario accedio a registro
+2025-04-21 21:37:41 - Migeu, se ha registrado
+2025-04-21 21:38:04 - El usuario accedio a login
+2025-04-21 22:07:35 - El usuario accedio a registro
+2025-04-21 22:19:03 - Migeu, se ha registrado
+2025-04-21 22:20:23 - El usuario accedio a login
+2025-04-21 22:22:32 - El usuario accedio a registro
+2025-04-21 22:23:00 - Migeu, se ha registrado
+2025-04-21 22:23:17 - El usuario accedio a login
+2025-04-21 22:29:39 - El usuario accedio a registro
+2025-04-21 22:30:08 - ss, se ha registrado
+2025-04-21 22:30:34 - El usuario accedio a login
+2025-04-21 22:31:34 - El usuario accedio a registro
+2025-04-21 22:32:27 - Migeu, se ha registrado
+2025-04-21 22:33:31 - El usuario accedio a login
+2025-04-21 22:33:44 - El usuario accedio a registro
+2025-04-21 22:34:18 - Migeu, se ha registrado
+2025-04-21 22:34:34 - El usuario accedio a login

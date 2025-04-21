@@ -260,6 +260,8 @@ public class UsuarioControlador {
             sesion.removeAttribute("codigoVerificacion");
             sesion.removeAttribute("correoPendiente");
         	
+            usuarioServicio.marcarUsuarioComoVerificado(correoPendiente);
+            
             redirectAttributes.addFlashAttribute( "mensajeLoginCodigo", "Código verificado. ¡Ya puedes iniciar sesión!");
             return "redirect:/login";
         } else {

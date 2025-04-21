@@ -53,6 +53,8 @@ public class InicioSesionServicio {
             System.err.println("Error: La contraseña debe tener al menos 8 caracteres.");
             return null;
         }
+        
+        
 
         try {
             // Configuración de los encabezados de la petición
