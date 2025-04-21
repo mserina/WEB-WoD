@@ -87,6 +87,10 @@
 	        <button class="btn btn-primary" id="boton" type="submit">Iniciar Sesión</button>
 	    </form>
 	    
+	    <div th:if="${mensajeLoginCodigo}" class="alert alert-dark" role="alert">
+		  	<span th:text="${mensajeLoginCodigo}"></span>
+		  	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+  		</div>
     </div>
     
   

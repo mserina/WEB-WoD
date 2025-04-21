@@ -80,15 +80,14 @@
 	        </div>
 	        
             <button id="boton" type="submit" class="btn btn-primary">Verificar Código</button>
+            
         </form>
-    </div>
-    
-    <div>
-    	<div th:if="${mensaje}" class="alert alert-info alert-dismissible fade show mt-3" role="alert">
-	  		<span th:text="${mensaje}"></span>
-	  		<!-- Botón de cierre -->
-	  		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        
+        <div th:if="${mensajeErrorCodigo}" class="alert alert-danger" role="alert">
+			<span th:text="${mensajeErrorCodigo}"></span>
+		  	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
   		</div>
     </div>
+ 
 </body>
 </html>

@@ -18,8 +18,8 @@ public class ConfiguracionMail {
         // Configuración para Gmail (modifica según tus necesidades)
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
-        mailSender.setUsername("miserina222@gmail.com");
-        mailSender.setPassword("ljhmuanszlbcdjmm");
+        mailSender.setUsername("willofd2004@gmail.com");
+        mailSender.setPassword("dnzvwkgphvtynejk");
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");

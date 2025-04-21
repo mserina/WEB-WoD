@@ -144,6 +144,12 @@ public class UsuarioServicio {
         return codigo.toString();
     }
     
+    /**
+     * Verifica que el codigo de registro sea valido
+     * msm - 210425
+     * @param codigoIngresado
+     * @return un valor booleano
+     */
     public Boolean verificarCodigo(String codigoIngresado) {
         List<UsuarioDto> usuarios = obtenerUsuarios();
         for (UsuarioDto usuario : usuarios) {

@@ -239,16 +239,16 @@ public class UsuarioControlador {
      * @return
      */
     @PostMapping("/verificarCodigo")
-    public String verificarCodigo(@RequestParam String codigoIngresado, RedirectAttributes redirectAttributes) {
-   
-        boolean verificado = usuarioServicio.verificarCodigo(codigoIngresado);     
-        
+    public String verificarCodigo(@RequestParam String codigoIngresado,RedirectAttributes redirectAttributes) {
+        boolean verificado = usuarioServicio.verificarCodigo(codigoIngresado);
+
         if (verificado) {
-            redirectAttributes.addFlashAttribute("mensaje", "Código verificado. ¡Registro completado!");
-            return "redirect:/registroDatos"; // Redirige a la página de bienvenida o lo que corresponda
+            redirectAttributes.addFlashAttribute( "mensajeLoginCodigo", "Código verificado. ¡Ya puedes iniciar sesión!");
+            return "redirect:/login";
         } else {
-            redirectAttributes.addFlashAttribute("mensaje", "Código incorrecto. Por favor, inténtelo de nuevo.");
+            redirectAttributes.addFlashAttribute("mensajeErrorCodigo", "Código incorrecto. Por favor, inténtelo de nuevo.");
             return "redirect:/verificarCodigo";
         }
     }
+
 }
