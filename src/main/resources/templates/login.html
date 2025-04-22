@@ -72,27 +72,77 @@
 	        <div class="mb-3">
 		        <label id="campos" for="email" class="form-label" >Correo Electrónico:</label>
 		        <input type="email" id="correoElectronico" name="email" class="form-control" required>
+		        <small class="error" id="correoElectronicoError" style="color: red;"></small>
 	        </div>
 	        
 	
 	       <div class="mb-3">
 		        <label id="campos" for="contrasena" class="form-label">Contraseña:</label>
 		        <input type="password" id="contrasena" name="password" class="form-control"required>
+		        <small class="error" id="contrasenaError" style="color: red;"></small>
 	       </div>
 	       
-			<div th:if="${logoutMessage != null}" role="alert">
-		    	<span th:text="${logoutMessage}" style="color: green;"></span>
-			</div>
-	        
-	        <button class="btn btn-primary" id="boton" type="submit">Iniciar Sesión</button>
+	        <button class="btn btn-primary" disabled id="boton" type="submit">Iniciar Sesión</button>
 	    </form>
 	    
+	    <!-- Alertas -->
+		<div th:if="${logoutMessage != null}" class="alert alert-danger" role="alert">
+		    <span th:text="${logoutMessage}" style="color: green;"></span>
+		    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+		</div>
+		
+	    <div th:if="${mensajeError}" class="alert alert-danger" role="alert">
+  			<span th:text="${mensajeError}" style="color: red;"></span>
+  			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+		</div>
+			
 	    <div th:if="${mensajeLoginCodigo}" class="alert alert-dark" role="alert">
 		  	<span th:text="${mensajeLoginCodigo}"></span>
 		  	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
   		</div>
+  		
+  		
     </div>
     
   
+  <!-- ///////////////////////////////////
+                JAVASCRIPT                  
+   //////////////////////////////////// -->
+  	<script>
+	    // Obtener los elementos del formulario
+	    const form = document.getElementById('formularioLogin');
+	    const correoElectronico = document.getElementById('correoElectronico');
+	    const contrasena = document.getElementById('contrasena');
+	    const botonFormulario = document.getElementById('boton');
+	
+	    // Función que valida ambos campos y habilita/deshabilita el botón
+	    function validarFormulario() {
+	        let correoValido = correoElectronico.value.trim() !== '' && correoElectronico.validity.valid;
+	        let contrasenaValida = contrasena.value.length >= 8;
+	
+	        // Mensajes de error
+	        if (!correoValido) {
+	            document.getElementById('correoElectronicoError').textContent = 'Por favor, ingresa un correo electrónico válido.';
+	        } else {
+	            document.getElementById('correoElectronicoError').textContent = '';
+	        }
+	
+	        if (!contrasenaValida) {
+	            document.getElementById('contrasenaError').textContent = 'La contraseña debe tener al menos 8 caracteres.';
+	        } else {
+	            document.getElementById('contrasenaError').textContent = '';
+	        }
+	
+	        // Activar o desactivar el botón según validación
+	        botonFormulario.disabled = !(correoValido && contrasenaValida);
+	    }
+	
+	    // Validaciones en tiempo real (mientras el usuario escribe)
+	    correoElectronico.addEventListener('input', validarFormulario);
+	    contrasena.addEventListener('input', validarFormulario);
+	
+	    // Desactivar el botón por defecto al cargar la página
+	    botonFormulario.disabled = true;
+	</script>
 </body>
 </html>

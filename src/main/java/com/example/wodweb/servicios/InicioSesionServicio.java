@@ -4,6 +4,9 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationServiceException;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
@@ -73,19 +76,29 @@ public class InicioSesionServicio {
             );
 
             // Verificar si la respuesta contiene un cuerpo válido
-            return response.getBody() != null ? response.getBody() : null;
-        
+            UsuarioDto usuario = response.getBody();
+            if (usuario == null) {
+                throw new BadCredentialsException("Correo o contraseña incorrectos");
+            }
+            
+            return usuario;
+
         } catch (HttpClientErrorException e) {
-            // Manejo de errores HTTP
-            System.err.println("Error en la autenticación: " + e.getStatusCode() + " - " + e.getResponseBodyAsString());
+            // 4xx: credenciales erróneas o usuario no encontrado
+            throw new BadCredentialsException("Correo o contraseña incorrectos", e);
+        
         } catch (ResourceAccessException e) {
-            // Manejo de errores de conexión
-            System.err.println("No se pudo conectar con la API externa: " + e.getMessage());
+            // No se pudo conectar
+            throw new AuthenticationServiceException("No se pudo conectar con el servidor de autenticación", e);
+        
+        } catch (AuthenticationException ae) {
+            throw ae;
+            
         } catch (Exception e) {
-            // Manejo de cualquier otro error inesperado
-            System.err.println("Error inesperado en la autenticación: " + e.getMessage());
+            // Cualquier otro error inesperado
+            throw new AuthenticationServiceException("Error interno de autenticación", e);
+        
         }
         
-        return null; // Retorna null en caso de error
     }
 }

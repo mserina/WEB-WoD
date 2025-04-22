@@ -1,12 +1,18 @@
 package com.example.wodweb.configuraciones;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 import com.example.wodweb.dtos.SesionDto;
@@ -61,16 +67,17 @@ public class SeguridadFiltrosNavegacion {
 
             // 3. Configurar el formulario de login
             .formLogin(form -> form
-                .loginPage("/login")              // URL de la página de login personalizada
-                .defaultSuccessUrl("/", true)     // Redirigir a "/" tras login exitoso
-                .permitAll()                      // Permitir el acceso a la página de login
-                .usernameParameter("email")       // Especificar que el campo de usuario es "email"
+                .loginPage("/login")              		// URL de la página de login personalizada
+                .failureHandler(loginErrorHandler())	// Llama a un handler para capturar excepciones
+                .defaultSuccessUrl("/", true)     		// Redirigir a "/" tras login exitoso
+                .permitAll()                      		// Permitir el acceso a la página de login
+                .usernameParameter("email")       		// Especificar que el campo de usuario es "email"
             )
 
             // 4. Configurar el logout
             .logout(logout -> logout
                 .logoutUrl("/logout")                               // URL para cerrar sesión
-                .logoutSuccessHandler(customLogoutSuccessHandler()) // Redirigir a login tras cerrar sesión
+                .logoutSuccessHandler(logoutHandler())              // Redirigir a login tras cerrar sesión
                 .permitAll()                                        // Permitir acceso al logout
             );
 
@@ -82,11 +89,40 @@ public class SeguridadFiltrosNavegacion {
     }
     
     /**
-     * LogoutSuccessHandler personalizado para realizar logueo de la acción de logout
-     * justo antes de invalidar la sesión del usuario.
+     * Handler que captura las exepciones del login
+     * msm - 220425
+     * @return Devuelve una instancia de AuthenticationFailureHandler
      */
     @Bean
-    public LogoutSuccessHandler customLogoutSuccessHandler() {
+    public AuthenticationFailureHandler loginErrorHandler() {
+        return (request, response, exception) -> {
+            String msg;
+            if (exception instanceof DisabledException) {
+                // Si la cuenta está deshabilitada, mostramos el mensaje que venga en la excepción
+                msg = exception.getMessage();
+            } else if (exception instanceof BadCredentialsException) {
+                // Si la contraseña o el usuario son incorrectos
+                msg = "Usuario o contraseña incorrectos";
+            } else {
+                // Para cualquier otro error (conexión, etc.)
+                msg = "Error interno, inténtalo más tarde";
+            }
+            // Codificamos el mensaje para pasarlo por URL (para evitar caracteres inválidos)
+            String encoded = URLEncoder.encode(msg, StandardCharsets.UTF_8);
+            // Redirigimos al login añadiendo ?error=<mensaje codificado>
+            response.sendRedirect("/login?error=" + encoded);
+        };
+    }
+    
+    
+    /**
+     * LogoutSuccessHandler personalizado para realizar logueo de la acción de logout
+     * justo antes de invalidar la sesión del usuario.
+     * msm - 220425
+     * @return Devuelve una instancia de LogoutSuccessHandler
+     */
+    @Bean
+    public LogoutSuccessHandler logoutHandler() {
         return (request, response, authentication) -> {
             // Antes de invalidar la sesión, verificamos si el principal es de tipo SesionDto
             if (authentication != null && authentication.getPrincipal() instanceof SesionDto) {
