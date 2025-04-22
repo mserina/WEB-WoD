@@ -100,12 +100,15 @@ public class SeguridadFiltrosNavegacion {
             if (exception instanceof DisabledException) {
                 // Si la cuenta está deshabilitada, mostramos el mensaje que venga en la excepción
                 msg = exception.getMessage();
+                
             } else if (exception instanceof BadCredentialsException) {
                 // Si la contraseña o el usuario son incorrectos
                 msg = "Usuario o contraseña incorrectos";
+                
             } else {
                 // Para cualquier otro error (conexión, etc.)
                 msg = "Error interno, inténtalo más tarde";
+                
             }
             // Codificamos el mensaje para pasarlo por URL (para evitar caracteres inválidos)
             String encoded = URLEncoder.encode(msg, StandardCharsets.UTF_8);

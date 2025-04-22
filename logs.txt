@@ -2743,3 +2743,19 @@ java.lang.NullPointerException: Cannot invoke "com.example.wodweb.dtos.UsuarioDt
 2025-04-22 13:57:52 - El usuario accedio a login
 2025-04-22 14:09:32 - The executor associated with thread pool [http-nio-8080] has not fully shutdown. Some application threads may still be running.
 2025-04-22 14:12:14 - El usuario accedio a login
+2025-04-22 22:06:19 - El usuario accedio a registro
+2025-04-22 22:06:20 - El usuario accedio a registro
+2025-04-22 22:06:25 - El usuario accedio a login
+2025-04-22 22:07:39 - El usuario accedio a login
+2025-04-22 22:12:04 - The executor associated with thread pool [http-nio-8080] has not fully shutdown. Some application threads may still be running.
+2025-04-22 22:12:22 - El usuario accedio a login
+2025-04-22 22:17:12 - El usuario accedio a login
+2025-04-22 22:25:27 - The executor associated with thread pool [http-nio-8080] has not fully shutdown. Some application threads may still be running.
+2025-04-22 22:26:15 - El usuario accedio a login
+2025-04-22 22:27:36 - El usuario accedio a login
+2025-04-22 22:27:55 - El usuario accedio a registro
+2025-04-22 22:29:01 - amargo, se ha registrado
+2025-04-22 22:29:22 - El usuario accedio a login
+2025-04-22 22:29:42 - amargo ha iniciado sesion
+2025-04-22 22:29:42 - amargo accedio a la pagina principal
+2025-04-22 22:29:45 - amargo accedio a la lista de usuarios

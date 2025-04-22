@@ -77,7 +77,7 @@ public class InicioSesionServicio {
 
             // Verificar si la respuesta contiene un cuerpo válido
             UsuarioDto usuario = response.getBody();
-            if (usuario == null) {
+            if (usuario.getNombreCompleto() == null) {
                 throw new BadCredentialsException("Correo o contraseña incorrectos");
             }
             
