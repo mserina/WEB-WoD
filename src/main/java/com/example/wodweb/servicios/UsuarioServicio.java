@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -32,6 +33,9 @@ public class UsuarioServicio {
     	
     @Autowired
     private JavaMailSender mailSender;
+    @Autowired
+    private PasswordEncoder cifradoContraseña;
+
 
     public UsuarioServicio() {
         this.restTemplate = new RestTemplate();
@@ -78,6 +82,11 @@ public class UsuarioServicio {
             throw new CorreoExistenteExcepcion("El correo ya está en uso.");
             // O alternativamente, retornar null o un objeto especial que indique el error.
         }
+        
+        String contraseñaUsuario = usuarioCredenciales.getContrasena();
+    	String contraseñaEncriptada = cifradoContraseña.encode(contraseñaUsuario);
+        usuarioCredenciales.setContrasena(contraseñaEncriptada);
+    	
     	try {
             HttpHeaders headers = new HttpHeaders();
             headers.set("Content-Type", "application/json");

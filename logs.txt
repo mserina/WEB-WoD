@@ -2778,3 +2778,5 @@ java.lang.NullPointerException: Cannot invoke "com.example.wodweb.dtos.UsuarioDt
 2025-04-23 12:42:58 - El usuario accedio a registro
 2025-04-23 12:43:38 - fef, se ha registrado
 2025-04-23 12:55:24 - El usuario accedio a login
+2025-04-23 13:52:15 - El usuario accedio a registro
+2025-04-23 13:53:10 - Roger, se ha registrado
