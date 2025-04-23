@@ -56,7 +56,7 @@ public class SeguridadFiltrosNavegacion {
             // 2. Configurar las reglas de acceso
             .authorizeHttpRequests(auth -> auth
                 // Permitir acceso sin autenticación a login, registro y recursos estáticos
-                .requestMatchers("/verificarCodigo","/login", "/registro", "/registroDatos", "/", "/css/**", "/images/**", "/favicon.ico").permitAll()
+                .requestMatchers("/reenviarCodigo" ,"/verificarCodigo","/login", "/registro", "/registroDatos", "/", "/css/**", "/images/**", "/favicon.ico").permitAll()
                 
                 // Restringir el acceso a las rutas de administrador solo a usuarios con rol ADMIN
                 .requestMatchers("/admin/**").hasRole("ADMIN")

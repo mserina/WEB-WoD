@@ -112,10 +112,16 @@
 	    <div class="spinner-border ms-auto" role="status" aria-hidden="true" style="color: white;"></div>
 	  </div>
 
-      
+     <!-- Alertas -->
       <div th:if="${mensajeErrorEmail}" role="alert">
     	<span th:text="${mensajeErrorEmail}" style="color: red;"></span>
+	  	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
 	  </div>
+	  
+	  <div th:if="${mensajeErrorCodigo}" class="alert alert-danger" role="alert">
+    	<span th:text="${mensajeErrorCodigo}" style="color: red;"></span>
+	  </div>
+	  
       <button id="boton" type="submit" class="btn btn-primary">Registrar</button>
     </form>
   </div>

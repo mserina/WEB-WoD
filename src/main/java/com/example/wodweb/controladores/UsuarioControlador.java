@@ -235,9 +235,16 @@ public class UsuarioControlador {
      * @return
      */
     @GetMapping("/verificarCodigo")
-    public String mostrarFormularioVerificacion(Model model) {
-        return "verificarCodigo";  // El nombre del template Thymeleaf
+    public String mostrarFormularioVerificacion(Model model, HttpSession session, RedirectAttributes mensajeFlash) {
+    	// Si la sesión ya no tiene el código, entendemos que expiró
+        if (session.getAttribute("codigoVerificacion") == null) {
+            mensajeFlash.addFlashAttribute("mensajeErrorCodigo", "El tiempo de verificación ha expirado. Por favor, regístrate de nuevo.");
+            // Puedes redirigir al registro, o a /verificarCodigo de nuevo:
+            return "redirect:/registro";
+        }
+        return "verificarCodigo";
     }
+    
     
     /**
      * Valida el codigo ingresado por el usuario
@@ -247,12 +254,18 @@ public class UsuarioControlador {
      * @return
      */
     @PostMapping("/verificarCodigo")
-    public String verificarCodigo(@RequestParam String codigoIngresado,RedirectAttributes redirectAttributes, HttpSession sesion) {
+    public String verificarCodigo(@RequestParam String codigoIngresado,RedirectAttributes mensajeFlash, HttpSession sesion) {
     	
     	String codigoGuardado = (String) sesion.getAttribute("codigoVerificacion");
         String correoPendiente = (String) sesion.getAttribute("correoPendiente");
-
-        if (codigoGuardado != null && codigoGuardado.equals(codigoIngresado)) {
+        
+        if (codigoGuardado == null) {
+            // Sesión expiró justo antes de enviar el POST
+        	mensajeFlash.addFlashAttribute("mensajeErrorCodigo", "El tiempo de verificación ha expirado. Por favor, regístrate de nuevo.");
+            return "redirect:/registro";
+        }
+        
+        if (codigoGuardado.equals(codigoIngresado)) {
         	// Marcar usuario como verificado
             usuarioServicio.marcarUsuarioComoVerificado(correoPendiente);
 
@@ -262,12 +275,39 @@ public class UsuarioControlador {
         	
             usuarioServicio.marcarUsuarioComoVerificado(correoPendiente);
             
-            redirectAttributes.addFlashAttribute( "mensajeLoginCodigo", "Código verificado. ¡Ya puedes iniciar sesión!");
+            mensajeFlash.addFlashAttribute( "mensajeLoginCodigo", "Código verificado. ¡Ya puedes iniciar sesión!");
             return "redirect:/login";
         } else {
-            redirectAttributes.addFlashAttribute("mensajeErrorCodigo", "Código incorrecto. Por favor, inténtelo de nuevo.");
+        	mensajeFlash.addFlashAttribute("mensajeErrorCodigo", "Código incorrecto. Por favor, inténtelo de nuevo.");
             return "redirect:/verificarCodigo";
         }
+    }
+    
+    @GetMapping("/reenviarCodigo")
+    public String reenviarCodigo(HttpSession sesion, RedirectAttributes redirectAttributes) {
+        
+    	String correo = (String) sesion.getAttribute("correoPendiente");
+
+        if (correo != null) {
+            try {
+                // Regenerar código y reenviarlo
+                String nuevoCodigo = usuarioServicio.generarCodigo();
+                sesion.setAttribute("codigoVerificacion", nuevoCodigo);
+
+                String asunto = "Nuevo código de verificación";
+                String mensaje = "Este es tu nuevo código de verificación: " + nuevoCodigo;
+
+                usuarioServicio.enviarCorreo(correo, asunto, mensaje);
+                redirectAttributes.addFlashAttribute("mensaje", "Se ha enviado un nuevo código a tu correo.");
+            } catch (Exception e) {
+                redirectAttributes.addFlashAttribute("mensaje", "No se pudo enviar el código. Intenta nuevamente.");
+            }
+        } else {
+            redirectAttributes.addFlashAttribute("mensajeErrorCodigo", "No hay un registro pendiente. Por favor, regístrate de nuevo.");
+            return "redirect:/registro";
+        }
+
+        return "redirect:/verificarCodigo";
     }
 
 }
