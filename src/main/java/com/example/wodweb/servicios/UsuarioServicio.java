@@ -1,6 +1,5 @@
 package com.example.wodweb.servicios;
 
-import java.net.URI;
 import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +10,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -193,19 +193,39 @@ public class UsuarioServicio {
      * @return el token devuelto por la API
      * @throws RuntimeException si la API responde error
      */
-    public String requestResetToken(String email) {
-        // construimos el body
-        Map<String,String> body = Map.of("email", email);
+    public void enviarTokenDeRecuperacion(String correo) {
+        try {
+            // 1. Preparar la solicitud al endpoint /request
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            Map<String, String> body = Map.of("email", correo);
+            HttpEntity<Map<String, String>> request = new HttpEntity<>(body, headers);
 
-        // llamamos al endpoint
-        URI uri = URI.create(apiUrl + "/request");
-        ResponseEntity<Map> respuesta = restTemplate.postForEntity(uri, body, Map.class);
+            // 2. Llamar a la API para obtener el token
+            ResponseEntity<Map> response = restTemplate.postForEntity(apiUrl + "/request", request, Map.class);
 
-        if (!respuesta.getStatusCode().is2xxSuccessful() || respuesta.getBody() == null) {
-            throw new RuntimeException("No se pudo generar el token");
+            
+            if (response.getBody() != null && response.getBody().get("token") != null) {
+                String token = (String) response.getBody().get("token");
+
+                // 3. Construir el enlace de recuperación
+                String link = "http://localhost:8080/reset-password?token=" + token;
+
+                
+                // 4. Enviar el correo con JavaMailSender (o como lo tengas configurado)
+                String asunto = "Recuperar Contraseña";
+                String mensaje = "Haz clic aquí para restablecer tu contraseña:\n" + link;
+
+                
+                enviarCorreo(correo, asunto, mensaje);
+                
+            } else {
+                throw new RuntimeException("Error al obtener el token de recuperación");
+            }
+
+        } catch (Exception e) {
+            //log.error("Error al enviar el correo de recuperación", e);
+            throw new RuntimeException("No fue posible enviar el correo de recuperación");
         }
-
-        // asumimos que la respuesta es { "token": "abc-123-..." }
-        return (String) respuesta.getBody().get("token");
-    }
+    }       
 }

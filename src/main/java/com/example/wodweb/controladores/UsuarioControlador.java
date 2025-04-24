@@ -310,5 +310,17 @@ public class UsuarioControlador {
 
         return "redirect:/verificarCodigo";
     }
+    
+    @PostMapping("/forgot-password")
+    public String handleForgot(@RequestParam String email, RedirectAttributes flash) {
+        try {
+            usuarioServicio.enviarTokenDeRecuperacion(email);
+            flash.addFlashAttribute("successMessage", "Se ha enviado un enlace de recuperación a tu correo.");
+            return "redirect:/forgot-password?success";
+        } catch (Exception ex) {
+            flash.addFlashAttribute("errorMessage", "No fue posible generar el enlace. Verifica tu correo.");
+            return "redirect:/forgot-password?error";
+        }
+    }
 
 }

@@ -11,12 +11,13 @@
   		<div class="mb-3">
     		<input type="email" name="email" placeholder="tu@correo.com" required class="form-control"/>
   		</div>
-  		<button class="btn btn-primary">Enviar instrucciones</button>
+  		<button type="submit" class="btn btn-primary">Enviar instrucciones</button>
 	</form>
 	
-	<div th:if="${message}" class="alert alert-success" th:text="${message}"/>
-	<div th:if="${error}" class="alert alert-danger" th:text="${error}"/>
-	
+	<!-- Mensajes de éxito o error -->
+	<div th:if="${successMessage}" th:text="${successMessage}" style="color: green;"></div>
+	<div th:if="${errorMessage}" th:text="${errorMessage}" style="color: red;"></div>
+		
 
 </body>
 </html>
