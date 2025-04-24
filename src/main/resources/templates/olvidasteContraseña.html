@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<form th:action="@{/forgot-password}" method="post">
+  		<h2>¿Olvidaste tu contraseña?</h2>
+  		<div class="mb-3">
+    		<input type="email" name="email" placeholder="tu@correo.com" required class="form-control"/>
+  		</div>
+  		<button class="btn btn-primary">Enviar instrucciones</button>
+	</form>
+	
+	<div th:if="${message}" class="alert alert-success" th:text="${message}"/>
+	<div th:if="${error}" class="alert alert-danger" th:text="${error}"/>
+	
+
+</body>
+</html>

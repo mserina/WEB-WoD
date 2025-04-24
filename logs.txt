@@ -2864,3 +2864,5 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 2025-04-24 10:10:32 - Admin accedio a la lista de usuarios
 2025-04-24 10:10:38 - Admin modifico el campo tipo_usuario del usuario Crist
 2025-04-24 10:10:38 - Admin accedio a la lista de usuarios
+2025-04-24 11:58:09 - El usuario accedio a login
+2025-04-24 11:58:54 - El usuario accedio a login
