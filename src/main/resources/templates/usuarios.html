@@ -191,7 +191,7 @@
         <div class="modal-content contenedorFormularioEditar">
           <form th:action="@{/admin/editarUsuario}" method="post">
             <div id="tituloModalEditar" class="modal-header">
-              <h5 class="modal-title" id="modalEditarLabel">Editar Usuario</h5>
+              <h5 class="modal-title" id="campos">Editar Usuario</h5>
             </div>
             <div class="modal-body">
               <!-- Campo oculto para el correo del usuario -->
@@ -230,7 +230,7 @@
                 <select name="nuevoValor" class="form-select" 
                         th:id="|nuevoValorSelect-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"
                         required disabled>
-                  <option value="usuario">usuario</option>
+                  <option value="user">usuario</option>
                   <option value="admin">admin</option>
                 </select>
               </div>
@@ -262,8 +262,8 @@
           <form th:action="@{/admin/borrarUsuario}" method="post">
             <!-- Campo oculto para pasar el email del usuario -->
             <input type="hidden" id="campoIdModal" name="id">
-            <button id="botonAccionBorrar" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button id="botonAccionBorrar" type="submit" class="btn btn-danger">Borrar</button>
+            <button id="botonAccionBorrar" type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+            <button id="botonAccionBorrar" type="submit" class="btn btn-light">Borrar</button>
           </form>
         </div>
       </div>

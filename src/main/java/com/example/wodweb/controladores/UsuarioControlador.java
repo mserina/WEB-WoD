@@ -151,7 +151,8 @@ public class UsuarioControlador {
      */
     @PostMapping("/admin/editarUsuario")
     public String editarUsuario(@RequestParam String correoElectronico, @RequestParam String campo, @RequestParam String nuevoValor, RedirectAttributes redirectAttributes) {
-        boolean actualizado = usuarioServicio.editarUsuario(correoElectronico, campo, nuevoValor);
+        
+    	boolean actualizado = usuarioServicio.editarUsuario(correoElectronico, campo, nuevoValor);
         credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
         String nombreUsuarioModificado = "";
         

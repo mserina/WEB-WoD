@@ -89,15 +89,6 @@
         <input type="email" placeholder="example@gmail.com" id="correoElectronico" name="correoElectronico" class="form-control" required>
       	<small class="error" id="correoElectronicoError" style="color: red;"></small>
       </div>
-      <!-- Tipo de Usuario -->
-      <div class="mb-3">
-        <label id="campos" for="tipoUsuario" class="form-label">Tipo de Usuario:</label>
-        <select id="tipoUsuario" name="tipoUsuario" class="form-select" required>
-          <option value="">Seleccione una opción</option>
-          <option value="user">Usuario</option>
-          <option value="admin">Administrador</option>
-        </select>
-      </div>
       <!-- Contraseña -->
       <div class="mb-3">
         <label id="campos" for="contrasena" class="form-label">Contraseña:</label>
@@ -138,7 +129,6 @@
         const nombreCompleto = document.getElementById('nombreCompleto');
         const movil = document.getElementById('movil');
         const correoElectronico = document.getElementById('correoElectronico');
-        const tipoUsuario = document.getElementById('tipoUsuario');
         const contrasena = document.getElementById('contrasena');
         
         const botonFormulario = document.getElementById('boton');
@@ -172,11 +162,6 @@
 	        'Por favor, ingresa un correo electrónico válido.';
 	    } else {
 	      document.getElementById('correoElectronicoError').textContent = '';
-	    }
-	
-	    if (tipoUsuario.value === '') {
-	      isValid = false;
-	      alert('Por favor, selecciona un tipo de usuario.');
 	    }
 	
 	    if (contrasena.value.length < 8) {

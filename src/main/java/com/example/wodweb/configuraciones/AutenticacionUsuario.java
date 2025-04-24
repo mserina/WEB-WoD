@@ -67,7 +67,7 @@ public class AutenticacionUsuario implements AuthenticationProvider {
         
         // Comprobar que el usuario esta verificado
         if (usuarioRecogido != null && Boolean.FALSE.equals(usuarioRecogido.getVerificado())) {
-        	throw new DisabledException("Debes verificar tu cuenta antes de ingresar");
+        	throw new DisabledException("Debes verificar tu cuenta antes de ingresar, contacte con soporte");
         }
         
         

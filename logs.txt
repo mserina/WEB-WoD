@@ -2780,3 +2780,87 @@ java.lang.NullPointerException: Cannot invoke "com.example.wodweb.dtos.UsuarioDt
 2025-04-23 12:55:24 - El usuario accedio a login
 2025-04-23 13:52:15 - El usuario accedio a registro
 2025-04-23 13:53:10 - Roger, se ha registrado
+2025-04-24 08:45:25 - El usuario accedio a la pagina principal
+2025-04-24 08:45:33 - El usuario accedio a registro
+2025-04-24 09:11:24 - 3, se ha registrado
+2025-04-24 09:12:01 - El usuario accedio a login
+2025-04-24 09:14:41 - El usuario accedio a registro
+2025-04-24 09:14:54 - Roger, se ha registrado
+2025-04-24 09:15:05 - El usuario accedio a login
+2025-04-24 09:15:21 - El usuario accedio a login
+2025-04-24 09:20:28 - El usuario accedio a login
+2025-04-24 09:21:20 - Roger ha iniciado sesion
+2025-04-24 09:21:20 - Roger accedio a la pagina principal
+2025-04-24 09:22:53 - Roger accedio a registro
+2025-04-24 09:23:15 - Roger, se ha registrado
+2025-04-24 09:23:33 - Roger accedio a login
+2025-04-24 09:23:49 - Roger ha iniciado sesion
+2025-04-24 09:23:49 - Roger accedio a la pagina principal
+2025-04-24 09:24:22 - Roger accedio a registro
+2025-04-24 09:24:25 - Roger ha cerrado la sesión
+2025-04-24 09:24:35 - El usuario accedio a registro
+2025-04-24 09:24:55 - Crist, se ha registrado
+2025-04-24 09:25:25 - El usuario accedio a login
+2025-04-24 09:25:36 - Crist ha iniciado sesion
+2025-04-24 09:25:36 - Crist accedio a la pagina principal
+2025-04-24 09:25:50 - Crist accedio a registro
+2025-04-24 09:26:22 - susto, se ha registrado
+2025-04-24 09:26:36 - Crist accedio a login
+2025-04-24 09:26:46 - susto ha iniciado sesion
+2025-04-24 09:26:46 - susto accedio a la pagina principal
+2025-04-24 09:26:48 - susto accedio a la lista de usuarios
+2025-04-24 09:31:23 - El usuario accedio a login
+2025-04-24 09:36:21 - El usuario accedio a registro
+2025-04-24 09:36:53 - El usuario accedio a registro
+2025-04-24 09:37:32 - Roger, se ha registrado
+2025-04-24 09:38:45 - El usuario accedio a login
+2025-04-24 09:39:30 - El usuario accedio a login
+2025-04-24 09:40:03 - Roger ha iniciado sesion
+2025-04-24 09:40:03 - Roger accedio a la pagina principal
+2025-04-24 09:40:38 - Roger ha cerrado la sesión
+2025-04-24 09:40:50 - El usuario accedio a login
+2025-04-24 09:42:27 - Admin ha iniciado sesion
+2025-04-24 09:42:27 - Admin accedio a la pagina principal
+2025-04-24 09:42:30 - Admin accedio a la lista de usuarios
+2025-04-24 09:45:22 - Admin accedio a la lista de usuarios
+2025-04-24 09:48:23 - Admin accedio a la lista de usuarios
+2025-04-24 09:48:39 - Admin modifico el campo tipo_usuario del usuario Admin
+2025-04-24 09:48:39 - Admin accedio a la lista de usuarios
+2025-04-24 09:48:50 - Admin modifico el campo tipo_usuario del usuario susto
+2025-04-24 09:48:50 - Admin accedio a la lista de usuarios
+2025-04-24 09:51:11 - El usuario accedio a login
+2025-04-24 09:51:20 - Admin ha iniciado sesion
+2025-04-24 09:51:20 - Admin accedio a la pagina principal
+2025-04-24 09:51:24 - Admin accedio a la lista de usuarios
+2025-04-24 09:51:40 - Admin modifico el campo tipo_usuario del usuario susto
+2025-04-24 09:51:40 - Admin accedio a la lista de usuarios
+2025-04-24 09:51:46 - Admin modifico el campo tipo_usuario del usuario susto
+2025-04-24 09:51:46 - Admin accedio a la lista de usuarios
+2025-04-24 09:51:53 - Admin modifico el campo tipo_usuario del usuario susto
+2025-04-24 09:51:53 - Admin accedio a la lista de usuarios
+2025-04-24 09:51:59 - Admin modifico el campo tipo_usuario del usuario susto
+2025-04-24 09:51:59 - Admin accedio a la lista de usuarios
+2025-04-24 09:54:21 - Admin modifico el campo tipo_usuario del usuario Crist
+2025-04-24 09:54:21 - Admin accedio a la lista de usuarios
+2025-04-24 10:09:35 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-04-24 10:10:19 - El usuario accedio a login
+2025-04-24 10:10:23 - Admin ha iniciado sesion
+2025-04-24 10:10:23 - Admin accedio a la pagina principal
+2025-04-24 10:10:25 - Admin accedio a la lista de usuarios
+2025-04-24 10:10:32 - Admin modifico el campo tipo_usuario del usuario susto
+2025-04-24 10:10:32 - Admin accedio a la lista de usuarios
+2025-04-24 10:10:38 - Admin modifico el campo tipo_usuario del usuario Crist
+2025-04-24 10:10:38 - Admin accedio a la lista de usuarios

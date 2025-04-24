@@ -14,7 +14,7 @@ public class UsuarioDto {
 
 	private String correoElectronico;
 
-	private String tipoUsuario;
+	private String tipoUsuario = "user";
 
 	private String contrasena;
 

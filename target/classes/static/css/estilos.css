@@ -390,7 +390,7 @@ th {
     background-image: url("../images/madera.jpg");
 }
 
-#botonAccionesEditar, #botonAccionBorrar{
+#botonAccionesEditar{
     padding: 10px;
     font-size: 16px;
     background-color: #FFCC00;
