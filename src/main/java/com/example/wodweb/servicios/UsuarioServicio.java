@@ -1,8 +1,10 @@
 package com.example.wodweb.servicios;
 
+import java.net.URI;
 import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -28,8 +30,8 @@ public class UsuarioServicio {
  
     private  RestTemplate restTemplate;    
     private  String apiUrl;
-    private SecureRandom random = new SecureRandom();
-    private int CODIGO_LONGITUD = 6;
+    private  SecureRandom random = new SecureRandom();
+    private  int CODIGO_LONGITUD = 6;
     	
     @Autowired
     private JavaMailSender mailSender;
@@ -179,4 +181,31 @@ public class UsuarioServicio {
             }
         }
 	}
+	
+	
+	
+	
+	/**
+     * Llama al endpoint POST /request de la API, enviando { "email": ... }
+     * y devuelve el token generado.
+     *
+     * @param email el correo del usuario que solicita la recuperación
+     * @return el token devuelto por la API
+     * @throws RuntimeException si la API responde error
+     */
+    public String requestResetToken(String email) {
+        // construimos el body
+        Map<String,String> body = Map.of("email", email);
+
+        // llamamos al endpoint
+        URI uri = URI.create(apiUrl + "/request");
+        ResponseEntity<Map> respuesta = restTemplate.postForEntity(uri, body, Map.class);
+
+        if (!respuesta.getStatusCode().is2xxSuccessful() || respuesta.getBody() == null) {
+            throw new RuntimeException("No se pudo generar el token");
+        }
+
+        // asumimos que la respuesta es { "token": "abc-123-..." }
+        return (String) respuesta.getBody().get("token");
+    }
 }
