@@ -312,6 +312,8 @@ public class UsuarioControlador {
         return "redirect:/verificarCodigo";
     }
     
+    // ------------- ¿OLVIDO CONTRASEÑA? ----------------------
+    
     @GetMapping("/contrasenaOlvidada")
     public String olvideContrasena() {
         return "olvidasteContrasena";
@@ -332,4 +334,38 @@ public class UsuarioControlador {
     	}
     }
 
+    
+    
+    @GetMapping("/reiniciarContrasena")
+    public String showResetForm(@RequestParam String token, Model model, RedirectAttributes flash) {
+        try {
+            // Validar el token (opcionalmente puedes llamar a tu servicio para comprobar expiración)
+            usuarioServicio.validateResetToken(token);
+            model.addAttribute("token", token);
+            return "resetearContraseña";
+        } catch (IllegalArgumentException e) {
+            flash.addFlashAttribute("mensajeError", e.getMessage());
+            return "redirect:/login";
+        }
+    }
+    
+    @PostMapping("/reset-password")
+    public String handleReset( @RequestParam String token, @RequestParam String contrasena, @RequestParam String confirmaContrasena, RedirectAttributes flash) {
+        if (!contrasena.equals(confirmaContrasena)) {
+            flash.addFlashAttribute("mensajeError", "Las contraseñas no coinciden.");
+            return "redirect:/reset-password?token=" + token;
+        }
+        try {
+            usuarioServicio.resetPassword(token, contrasena);
+            log.info("Contraseña cambiada correctamente para token {}", token);
+            flash.addFlashAttribute("mensajeExito", "Tu contraseña ha sido actualizada. Ya puedes iniciar sesión.");
+            return "redirect:/login?resetSuccess";
+        } catch (IllegalArgumentException e) {
+            flash.addFlashAttribute("mensajeError", e.getMessage());
+            return "redirect:/reset-password?token=" + token;
+        } catch (Exception e) {
+            flash.addFlashAttribute("mensajeError", "Error interno al cambiar la contraseña.");
+            return "redirect:/reset-password?token=" + token;
+        }
+    }
 }
