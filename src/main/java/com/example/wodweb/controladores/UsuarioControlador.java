@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.wodweb.dtos.SesionDto;
 import com.example.wodweb.dtos.UsuarioDto;
 import com.example.wodweb.excepciones.CorreoExistenteExcepcion;
+import com.example.wodweb.excepciones.UsuarioNoEncontradoExcepcion;
 import com.example.wodweb.servicios.UsuarioServicio;
 
 import jakarta.servlet.http.HttpSession;
@@ -311,16 +312,24 @@ public class UsuarioControlador {
         return "redirect:/verificarCodigo";
     }
     
-    @PostMapping("/forgot-password")
-    public String handleForgot(@RequestParam String email, RedirectAttributes flash) {
+    @GetMapping("/contrasenaOlvidada")
+    public String olvideContrasena() {
+        return "olvidasteContrasena";
+    }
+    
+    @PostMapping("/contrasenaOlvidada")
+    public String envioIntrucciones(@RequestParam String email, RedirectAttributes flash) {
         try {
             usuarioServicio.enviarTokenDeRecuperacion(email);
-            flash.addFlashAttribute("successMessage", "Se ha enviado un enlace de recuperación a tu correo.");
-            return "redirect:/forgot-password?success";
-        } catch (Exception ex) {
-            flash.addFlashAttribute("errorMessage", "No fue posible generar el enlace. Verifica tu correo.");
-            return "redirect:/forgot-password?error";
-        }
+            flash.addFlashAttribute("mensajeExito", "Se ha enviado un enlace de recuperación a tu correo.");
+            return "redirect:/contrasenaOlvidada?success";
+        } catch (UsuarioNoEncontradoExcepcion ci) {
+            flash.addFlashAttribute("mensajeError", "No fue posible generar el enlace. Verifica tu correo.");
+            return "redirect:/contrasenaOlvidada?error";
+    	} catch (Exception ex) {
+	        flash.addFlashAttribute("mensajeError", "Se ha producido un error, intentelo mas tarde.");
+	        return "redirect:/contrasenaOlvidada?error";
+    	}
     }
 
 }

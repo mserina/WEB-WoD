@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}"></script>
+<link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css}">
+</head>
+<body>
+
+	<form th:action="@{/contrasenaOlvidada}" method="post">
+  		<h2>¿Olvidaste tu contraseña?</h2>
+  		<div class="mb-3">
+    		<input type="email" name="email" placeholder="tu@correo.com" required class="form-control"/>
+  		</div>
+  		<button type="submit" class="btn btn-primary">Enviar instrucciones</button>
+	</form>
+	
+	<!-- Mensajes de éxito o error -->
+	<div th:if="${mensajeExito}" th:text="${mensajeExito}" style="color: green;"></div>
+	<div th:if="${mensajeError}" th:text="${mensajeError}" style="color: red;"></div>
+		
+
+</body>
+</html>

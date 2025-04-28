@@ -16,10 +16,12 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.wodweb.dtos.UsuarioDto;
 import com.example.wodweb.excepciones.CorreoExistenteExcepcion;
+import com.example.wodweb.excepciones.UsuarioNoEncontradoExcepcion;
 
 /**
  * Servicio que contiene la lógica de las funcionalidades de los usuarios.
@@ -202,7 +204,7 @@ public class UsuarioServicio {
             HttpEntity<Map<String, String>> request = new HttpEntity<>(body, headers);
 
             // 2. Llamar a la API para obtener el token
-            ResponseEntity<Map> response = restTemplate.postForEntity(apiUrl + "/request", request, Map.class);
+            ResponseEntity<Map> response = restTemplate.postForEntity(apiUrl + "/peticionIntrucciones", request, Map.class);
 
             
             if (response.getBody() != null && response.getBody().get("token") != null) {
@@ -222,8 +224,12 @@ public class UsuarioServicio {
             } else {
                 throw new RuntimeException("Error al obtener el token de recuperación");
             }
-
-        } catch (Exception e) {
+        
+        }catch (HttpClientErrorException.NotFound notFound) {
+           // aquí capturamos el 404 de la API y traducimos
+            throw new UsuarioNoEncontradoExcepcion("No existe ningún usuario con ese correo: " + correo);
+            
+    	}catch (Exception e) {
             //log.error("Error al enviar el correo de recuperación", e);
             throw new RuntimeException("No fue posible enviar el correo de recuperación");
         }
