@@ -3685,3 +3685,9 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [reset
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:1575)
 2025-04-29 10:29:13 - El usuario accedio a login
+2025-04-29 10:37:37 - El usuario accedio a la pagina principal
+2025-04-29 11:00:48 - El usuario accedio a registro
+2025-04-29 11:01:31 - pepe, se ha registrado
+2025-04-29 12:10:12 - El usuario accedio a registro
+2025-04-29 12:12:53 - El usuario accedio a la pagina principal
+2025-04-29 12:14:42 - El usuario accedio a login

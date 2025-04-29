@@ -16,8 +16,11 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.wodweb.dtos.UsuarioDto;
 import com.example.wodweb.excepciones.CorreoExistenteExcepcion;
@@ -258,6 +261,26 @@ public class UsuarioServicio {
             throw new IllegalArgumentException("Token expirado");
         } catch (Exception ex) {
             throw new RuntimeException("Error al validar token");
+        }
+    }
+    
+    @PostMapping("/reiniciarContrasena")
+    public String handleReset( @RequestParam String token, @RequestParam String contrasena, @RequestParam String confirmaContrasena, RedirectAttributes flash) {
+        if (!contrasena.equals(confirmaContrasena)) {
+            flash.addFlashAttribute("mensajeError", "Las contraseñas no coinciden.");
+            return "redirect:/reset-password?token=" + token;
+        }
+        try {
+            usuarioServicio.resetPassword(token, contrasena);
+            log.info("Contraseña cambiada correctamente para token {}", token);
+            flash.addFlashAttribute("mensajeExito", "Tu contraseña ha sido actualizada. Ya puedes iniciar sesión.");
+            return "redirect:/login?resetSuccess";
+        } catch (IllegalArgumentException e) {
+            flash.addFlashAttribute("mensajeError", e.getMessage());
+            return "redirect:/reset-password?token=" + token;
+        } catch (Exception e) {
+            flash.addFlashAttribute("mensajeError", "Error interno al cambiar la contraseña.");
+            return "redirect:/reset-password?token=" + token;
         }
     }
 }
