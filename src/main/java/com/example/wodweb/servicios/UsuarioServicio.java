@@ -142,6 +142,8 @@ public class UsuarioServicio {
     }
     
     
+    // ----------------- ALTA CORREO ---------------------- //
+    
     /**
      * Genera un codigo aleatorio para el alta de usuario
      * msm - 110425
@@ -211,7 +213,7 @@ public class UsuarioServicio {
                 String token = (String) response.getBody().get("token");
 
                 // 3. Construir el enlace de recuperación
-                String link = "http://localhost:8080/reset-password?token=" + token;
+                String link = "http://localhost:8080/reiniciarContrasena?token=" + token;
 
                 
                 // 4. Enviar el correo con JavaMailSender (o como lo tengas configurado)
@@ -233,5 +235,29 @@ public class UsuarioServicio {
             //log.error("Error al enviar el correo de recuperación", e);
             throw new RuntimeException("No fue posible enviar el correo de recuperación");
         }
-    }       
+    }
+    
+    
+    
+    // ----------------- ALTA CORREO ----------------------//
+    
+    /**
+     * Valida que el token de recuperación exista y no haya expirado.
+     * Lanza IllegalArgumentException si es inválido o expirado.
+     * msm - 290424
+     */
+    public void validarToken(String token) {
+        try {
+            // Asumimos que la API expone GET /validarToken?token=…
+            ResponseEntity<Void> resp = restTemplate.getForEntity(apiUrl + "/validarToken?token=" + token, Void.class);
+            
+            // Si devuelve 200 OK, token válido; si 4xx, saltará excepción
+        } catch (HttpClientErrorException.NotFound ex) {
+            throw new IllegalArgumentException("Token inválido");
+        } catch (HttpClientErrorException.BadRequest ex) {
+            throw new IllegalArgumentException("Token expirado");
+        } catch (Exception ex) {
+            throw new RuntimeException("Error al validar token");
+        }
+    }
 }

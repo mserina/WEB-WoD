@@ -14,17 +14,17 @@
 	  <div th:if="${mensajeError}" class="alert alert-danger" th:text="${mensajeError}"></div>
 	  <div th:if="${mensajeExito}" class="alert alert-success" th:text="${mensajeExito}"></div>
 	
-	  <form th:action="@{/reset-password}" method="post">
+	  <form th:action="@{/reiniciarContrasena}" method="post">
 	    <!-- Token oculto -->
 	    <input type="hidden" name="token" th:value="${token}" />
 	
 	    <div class="mb-3">
 	      <label for="password" class="form-label">Nueva contraseña</label>
-	      <input type="password" id="password" name="password" class="form-control" required minlength="8">
+	      <input type="password" id="contrasena" name="contrasena" class="form-control" required minlength="8">
 	    </div>
 	    <div class="mb-3">
 	      <label for="confirmPassword" class="form-label">Repite la contraseña</label>
-	      <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required>
+	      <input type="password" id="confirmaContrasena" name="confirmaContrasena" class="form-control" required>
 	    </div>
 	
 	    <button type="submit" class="btn btn-primary w-100">Actualizar contraseña</button>
