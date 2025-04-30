@@ -263,24 +263,16 @@ public class UsuarioServicio {
             throw new RuntimeException("Error al validar token");
         }
     }
+  
     
-    @PostMapping("/reiniciarContrasena")
-    public String handleReset( @RequestParam String token, @RequestParam String contrasena, @RequestParam String confirmaContrasena, RedirectAttributes flash) {
-        if (!contrasena.equals(confirmaContrasena)) {
-            flash.addFlashAttribute("mensajeError", "Las contraseñas no coinciden.");
-            return "redirect:/reset-password?token=" + token;
-        }
-        try {
-            usuarioServicio.resetPassword(token, contrasena);
-            log.info("Contraseña cambiada correctamente para token {}", token);
-            flash.addFlashAttribute("mensajeExito", "Tu contraseña ha sido actualizada. Ya puedes iniciar sesión.");
-            return "redirect:/login?resetSuccess";
-        } catch (IllegalArgumentException e) {
-            flash.addFlashAttribute("mensajeError", e.getMessage());
-            return "redirect:/reset-password?token=" + token;
-        } catch (Exception e) {
-            flash.addFlashAttribute("mensajeError", "Error interno al cambiar la contraseña.");
-            return "redirect:/reset-password?token=" + token;
-        }
+    public void reiniciarContrasena(String token, String contrasenaNueva) {
+        
+    	HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        Map<String,String> body = Map.of("token", token, "contrasenaNueva", contrasenaNueva);
+        HttpEntity<Map<String,String>> req = new HttpEntity<>(body, headers);
+
+        // Lanza excepción si la API responde 4xx/5xx
+        restTemplate.postForEntity(apiUrl + "/reiniciarContrasena", req, Void.class);
     }
 }

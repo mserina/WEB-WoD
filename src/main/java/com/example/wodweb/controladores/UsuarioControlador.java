@@ -334,6 +334,7 @@ public class UsuarioControlador {
     	}
     }
 
+    
     @GetMapping("/reiniciarContrasena")
     public String showResetForm(@RequestParam String token, Model model, RedirectAttributes flash) {
         try {
@@ -348,5 +349,33 @@ public class UsuarioControlador {
         }
     }
     
+    /**
+     * Cambia la contraseña por la nueva 
+     * msm - 300425
+     * @param token
+     * @param contrasena
+     * @param confirmaContrasena
+     * @param flash mensaje que saldra en la pantalla dependiendo del resultado
+     * @return una ruta
+     */
+    @PostMapping("/reiniciarContrasena")
+    public String reinicioContraseña( @RequestParam String token, @RequestParam String contrasena, @RequestParam String confirmaContrasena, RedirectAttributes flash) {
+        if (!contrasena.equals(confirmaContrasena)) {
+            flash.addFlashAttribute("mensajeError", "Las contraseñas no coinciden.");
+            return "redirect:/reset-password?token=" + token;
+        }
+        try {
+            usuarioServicio.reiniciarContrasena(token, contrasena);
+            log.info("Contraseña cambiada correctamente para token {}", token);
+            flash.addFlashAttribute("mensajeExito", "Tu contraseña ha sido actualizada. Ya puedes iniciar sesión.");
+            return "redirect:/login?resetSuccess";
+        } catch (IllegalArgumentException e) {
+            flash.addFlashAttribute("mensajeError", e.getMessage());
+            return "redirect:/reset-password?token=" + token;
+        } catch (Exception e) {
+            flash.addFlashAttribute("mensajeError", "Error interno al cambiar la contraseña.");
+            return "redirect:/reset-password?token=" + token;
+        }
+    }
     
 }
