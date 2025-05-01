@@ -18,9 +18,9 @@ import com.example.wodweb.dtos.SesionDto;
 @Controller
 public class InicioSesionControlador {
 
-	public Authentication credencialesSesion;
-	String nombreUsuarioLog = "El usuario";
-	public static final Logger log = LoggerFactory.getLogger(PaginaPrincipal.class);
+	private static final Logger log = LoggerFactory.getLogger(PaginaPrincipal.class); //Instancia de clase para generar logs
+	Authentication credencialesSesion; //Variable que se usa para guardar los datos de una sesion
+	String nombreUsuarioLog = "El usuario"; //Nombre que se usara en el log, en caso de no haber sesion de un usuario
 	
 	
 	/* /////////////////////////////////// */

@@ -30,10 +30,10 @@ import jakarta.servlet.http.HttpSession;
 public class UsuarioControlador {
   
 	@Autowired
-	private UsuarioServicio usuarioServicio;
-	private static final Logger log = LoggerFactory.getLogger(PaginaPrincipal.class);
-	Authentication credencialesSesion;
-	String nombreUsuarioLog = "El usuario";
+	private UsuarioServicio usuarioServicio; //Inyeccion del servicio para usuarios
+	private static final Logger log = LoggerFactory.getLogger(PaginaPrincipal.class); //Instancia de clase para generar logs
+	Authentication credencialesSesion; //Variable que se usa para guardar los datos de una sesion
+	String nombreUsuarioLog = "El usuario"; //Nombre que se usara en el log, en caso de no haber sesion de un usuario
     
     
     /* /////////////////////////////////// */
@@ -48,13 +48,14 @@ public class UsuarioControlador {
      */
     @GetMapping("/admin/obtenerUsuario")
     public String obtenerUsuarios(Model model) {
-    	
+    	//Se guarda los datos de la sesion 
     	credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("usuarios", usuarioServicio.obtenerUsuarios());
+    	model.addAttribute("usuarios", usuarioServicio.obtenerUsuarios());
         
+    	//Se comprueba que la sesion no sea null
         if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
             SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
-            // Usamos el nombre del usuario de sesión
+            // En caso de que se cumpla las condiciones, se usa el nombre del usuario de sesión
             nombreUsuarioLog = sesion.getNombre();
             model.addAttribute("auth", sesion); // Enviar usuario autenticado a la vista
         }
@@ -312,31 +313,52 @@ public class UsuarioControlador {
         return "redirect:/verificarCodigo";
     }
     
-    // ------------- ¿OLVIDO CONTRASEÑA? ----------------------
     
+    // ------------- ¿OLVIDO CONTRASEÑA? ----------------------//
+    
+    /**
+     * Dirige al usuario a la pagina para ingresar su correo
+     * msm - 010525
+     * @return La pagina de olvidasteContraseña
+     */
     @GetMapping("/contrasenaOlvidada")
     public String olvideContrasena() {
         return "olvidasteContrasena";
     }
     
+    /**
+     * Se comprueba que existe el correo y se le manda al usuario un correo, ademas de crearle un token
+     * msm - 010525
+     * @param email correo ingresado por el usuario
+     * @param mensajeInterfaz Mensajes que se imprimen en la pantalla
+     * @return La pagina de contraseñaOlvidada (con mensaje de exito o error)
+     */
     @PostMapping("/contrasenaOlvidada")
-    public String envioIntrucciones(@RequestParam String email, RedirectAttributes flash) {
+    public String envioIntrucciones(@RequestParam String email, RedirectAttributes mensajeInterfaz) {
         try {
             usuarioServicio.enviarTokenDeRecuperacion(email);
-            flash.addFlashAttribute("mensajeExito", "Se ha enviado un enlace de recuperación a tu correo.");
+            mensajeInterfaz.addFlashAttribute("mensajeExito", "Se ha enviado un enlace de recuperación a tu correo.");
             return "redirect:/contrasenaOlvidada?success";
         } catch (UsuarioNoEncontradoExcepcion ci) {
-            flash.addFlashAttribute("mensajeError", "No fue posible generar el enlace. Verifica tu correo.");
+        	mensajeInterfaz.addFlashAttribute("mensajeError", "No fue posible generar el enlace. Verifica tu correo.");
             return "redirect:/contrasenaOlvidada?error";
     	} catch (Exception ex) {
-	        flash.addFlashAttribute("mensajeError", "Se ha producido un error, intentelo mas tarde.");
+    		mensajeInterfaz.addFlashAttribute("mensajeError", "Se ha producido un error, intentelo mas tarde.");
 	        return "redirect:/contrasenaOlvidada?error";
     	}
     }
 
     
+    /**
+     * Se comprueba el token antes de permitir el acceso al usuario
+     * msm - 010525
+     * @param token se extrae de la peticion
+     * @param model 
+     * @param mensajeInterfaz Mensajes que se imprimen en la pantalla
+     * @return Devuelve la pagina reiniciarContrasena
+     */
     @GetMapping("/reiniciarContrasena")
-    public String showResetForm(@RequestParam String token, Model model, RedirectAttributes flash) {
+    public String showResetForm(@RequestParam String token, Model model, RedirectAttributes mensajeInterfaz) {
         try {
             // Validar el token 
             usuarioServicio.validarToken(token);
@@ -344,7 +366,7 @@ public class UsuarioControlador {
             return "resetearContrasena";
             
         } catch (IllegalArgumentException e) {
-            flash.addFlashAttribute("mensajeError", e.getMessage());
+        	mensajeInterfaz.addFlashAttribute("mensajeError", e.getMessage());
             return "redirect:/login";
         }
     }
@@ -352,15 +374,17 @@ public class UsuarioControlador {
     /**
      * Cambia la contraseña por la nueva 
      * msm - 300425
-     * @param token
-     * @param contrasena
-     * @param confirmaContrasena
-     * @param flash mensaje que saldra en la pantalla dependiendo del resultado
-     * @return una ruta
+     * @param token, se extrae de la peticion
+     * @param contrasena, nueva contraseña que ingresa el usuario 
+     * @param confirmaContrasena, contraseña que se vuelve a insertar
+     * @param mensajeInterfaz Mensajes que se imprimen en la pantalla
+     * @return la pagina de login si sale bien, vuelve a la pagina misma pagina en caso contrario
      */
     @PostMapping("/reiniciarContrasena")
     public String reinicioContraseña( @RequestParam String token, @RequestParam String contrasena, @RequestParam String confirmaContrasena, RedirectAttributes flash) {
-        if (!contrasena.equals(confirmaContrasena)) {
+        
+    	//Se comprueba que la contraseña se ingreso correctamente en ambos campos
+    	if (!contrasena.equals(confirmaContrasena)) {
             flash.addFlashAttribute("mensajeError", "Las contraseñas no coinciden.");
             return "redirect:/reset-password?token=" + token;
         }

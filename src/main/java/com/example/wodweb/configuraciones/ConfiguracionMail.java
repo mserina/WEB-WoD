@@ -9,9 +9,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
+/**
+ * Clase para mandar correos
+ * msm - 010525
+ */
 @Configuration
 public class ConfiguracionMail {
 
+	/**
+	 * Metodo donde se configura los parametros para eviar correos
+	 * msm - 01052
+	 * @return Devuelbve un objeto mail JavaMailSender
+	 */
     @Bean
     public JavaMailSender javaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();

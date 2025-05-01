@@ -264,7 +264,12 @@ public class UsuarioServicio {
         }
     }
   
-    
+    /**
+     * Manda a la API el token del usuario y la nueva contraseña que ingreso
+     * msm - 020525
+     * @param token
+     * @param contrasenaNueva
+     */
     public void reiniciarContrasena(String token, String contrasenaNueva) {
         
     	HttpHeaders headers = new HttpHeaders();
