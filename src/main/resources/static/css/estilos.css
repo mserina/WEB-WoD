@@ -355,10 +355,13 @@ h2 {
     background-color: "#FFCC00";
 }
 
-#tituloLogin, #tituloModalEditar, #mensajeError, #textoContenedor  {
+#tituloLogin, #tituloOlvidaContrasena, #tituloModalEditar, #mensajeError, #textoContenedor  {
     text-align: center;
 }
 
+#tituloOlvidaContrasena{
+	font-size: 25px;
+}
 
 /* /////////////////////////////////// */
 /*   ESTILOS DE LA LISTA DE USUARIOS  */
@@ -390,6 +393,7 @@ th {
     background-image: url("../images/madera.jpg");
 }
 
+/*--------- BOTONES --------	*/
 #botonAccionesEditar{
     padding: 10px;
     font-size: 16px;
@@ -407,6 +411,14 @@ th {
     margin-left: 1rem;
 }
 
+#botonAccionOlvidarContrasena {
+    padding: 12px;
+    font-size: 15px;
+    background-color: #FFCC00;
+    color: black;
+    font-weight: bold;
+    margin-left: 1rem;
+}
 
 /* /////////////////////////////////// */
 /*   ESTILOS DE LA PAGINA VERIFICAR CODIGO */

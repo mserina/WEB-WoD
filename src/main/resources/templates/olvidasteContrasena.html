@@ -59,19 +59,59 @@
 		</div>
 	</div>
 	
-	<div id="contenedorRegistro" class="container mt-5">
+	<!-- ///////////////////////////
+	              CONTENIDO 
+	   //////////////////////////////-->
+	<div id="contenedorRegistro" class="contenedor-formulario">
 		<form id="formularioUsuario" th:action="@{/contrasenaOlvidada}" method="post">
-	  		<h2>¿Olvidaste tu contraseña?</h2>
+	  		<h2 id="tituloOlvidaContrasena">¿Olvidaste tu contraseña?</h2>
 	  		<div class="mb-3">
 	    		<input type="email" name="email" placeholder="tu@correo.com" required class="form-control"/>
 	  		</div>
-	  		<button type="submit" class="btn btn-primary">Enviar instrucciones</button>
+	  		
+	  		<div id="spinner" class="d-none align-items-center mt-3">
+	    		<strong style="color: white;">Enviando peticion…</strong>
+	    		<div class="spinner-border ms-auto" role="status" aria-hidden="true" style="color: white;"></div>
+	  		</div>
+	  		
+	  		<button id="botonAccionOlvidarContrasena" type="submit" class="btn btn-primary">Enviar instrucciones</button>
 		</form>
 		
 		<!-- Mensajes de éxito o error -->
-		<div th:if="${mensajeExito}" th:text="${mensajeExito}" style="color: green;"></div>
-		<div th:if="${mensajeError}" th:text="${mensajeError}" style="color: red;"></div>
+		<div th:if="${mensajeExito}" class="alert alert-secondary" role="alert">
+    		<span th:text="${mensajeExito}" style="color: green;"></span>
+    		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+	  	</div>
+		<div th:if="${mensajeError}" class="alert alert-secondary" role="alert">
+    		<span th:text="${mensajeError}" style="color: red;"></span>
+    		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+	  	</div>
 	</div>
+	
+  <!-- ///////////////////////////////////
+                JAVASCRIPT                  
+   //////////////////////////////////// -->
+	<script>
+	document.addEventListener('DOMContentLoaded', () => {
+	    const form    = document.getElementById('formularioUsuario');
+	    const spinner = document.getElementById('spinner');
+	    const boton   = document.getElementById('botonAccionOlvidarContrasena');
 
+	    form.addEventListener('submit', function(event) {
+	      // 1) detenemos el envío inmediato
+	      event.preventDefault();
+
+	      // 2) deshabilitamos el botón y mostramos el spinner
+	      boton.disabled = true;
+	      spinner.classList.remove('d-none');
+	      spinner.classList.add('d-flex');
+
+	      // 3) dejamos un pequeño retardo para que el navegador pinte el spinner
+	      setTimeout(() => form.submit(), 200);
+	    });
+	  });
+	</script>
+	
+	
 </body>
 </html>

@@ -4907,3 +4907,198 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [olvid
 2025-05-01 23:08:03 - El usuario accedio a login
 2025-05-01 23:08:03 - El usuario accedio a login
 2025-05-01 23:51:03 - El usuario accedio a login
+2025-05-02 08:18:42 - El usuario accedio a la pagina principal
+2025-05-02 08:18:46 - El usuario accedio a login
+2025-05-02 08:21:57 - El usuario accedio a la pagina principal
+2025-05-02 08:22:01 - El usuario accedio a login
+2025-05-02 08:24:50 - El usuario accedio a login
+2025-05-02 08:33:15 - El usuario accedio a la pagina principal
+2025-05-02 08:33:19 - El usuario accedio a la pagina principal
+2025-05-02 08:33:23 - El usuario accedio a login
+2025-05-02 08:37:51 - Contraseña cambiada correctamente para token 2a2c3d0c-0e6b-4f1b-8606-bd9d11d56384
+2025-05-02 08:37:51 - El usuario accedio a login
+2025-05-02 08:38:22 - Contraseña cambiada correctamente para token 2a2c3d0c-0e6b-4f1b-8606-bd9d11d56384
+2025-05-02 08:38:22 - El usuario accedio a login
+2025-05-02 08:43:48 - El usuario accedio a login
+2025-05-02 09:05:40 - El usuario accedio a la pagina principal
+2025-05-02 09:05:45 - El usuario accedio a login
+2025-05-02 09:09:40 - El usuario accedio a login
+2025-05-02 09:12:54 - Contraseña cambiada correctamente para token 6646c090-f8c1-47b4-bafe-b137e4a7c220
+2025-05-02 09:12:54 - El usuario accedio a login
+2025-05-02 09:38:23 - Contraseña cambiada correctamente para token d2593ac3-5999-43ca-8a5e-60ac104a1cf4
+2025-05-02 09:38:23 - El usuario accedio a login
+2025-05-02 09:43:07 - Contraseña cambiada correctamente para token 6f25890f-f150-4f91-8fd7-4e40ffcb481d
+2025-05-02 09:43:07 - El usuario accedio a login
+2025-05-02 09:51:39 - Contraseña cambiada correctamente para token e33498d0-8860-4626-8d1f-135ac5c6d33a
+2025-05-02 09:51:39 - El usuario accedio a login
+2025-05-02 09:54:57 - El usuario accedio a login
+2025-05-02 09:55:21 - Contraseña cambiada correctamente para token e33498d0-8860-4626-8d1f-135ac5c6d33a
+2025-05-02 09:55:21 - El usuario accedio a login
+2025-05-02 10:06:41 - Contraseña cambiada correctamente para token e33498d0-8860-4626-8d1f-135ac5c6d33a
+2025-05-02 10:06:41 - El usuario accedio a login
+2025-05-02 10:18:15 - Contraseña cambiada correctamente para token e33498d0-8860-4626-8d1f-135ac5c6d33a
+2025-05-02 10:18:15 - El usuario accedio a login
+2025-05-02 10:18:56 - Contraseña cambiada correctamente para token e33498d0-8860-4626-8d1f-135ac5c6d33a
+2025-05-02 10:18:56 - El usuario accedio a login
+2025-05-02 10:19:58 - Contraseña cambiada correctamente para token e33498d0-8860-4626-8d1f-135ac5c6d33a
+2025-05-02 10:19:58 - El usuario accedio a login
+2025-05-02 10:32:03 - El usuario accedio a login
+2025-05-02 10:32:09 - El usuario accedio a login
+2025-05-02 10:32:26 - Contraseña cambiada correctamente para token e33498d0-8860-4626-8d1f-135ac5c6d33a
+2025-05-02 10:32:26 - El usuario accedio a login
+2025-05-02 10:33:33 - El usuario accedio a login
+2025-05-02 10:34:52 - El usuario accedio a login
+2025-05-02 10:37:58 - The executor associated with thread pool [http-nio-8080] has not fully shutdown. Some application threads may still be running.
+2025-05-02 10:43:20 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalStateException: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@b611d9e has been closed already] with root cause
+java.lang.IllegalStateException: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@b611d9e has been closed already
+	at org.springframework.context.support.AbstractApplicationContext.assertBeanFactoryActive(AbstractApplicationContext.java:1216)
+	at org.springframework.context.support.GenericApplicationContext.getAutowireCapableBeanFactory(GenericApplicationContext.java:337)
+	at org.thymeleaf.spring6.view.ThymeleafViewResolver.createView(ThymeleafViewResolver.java:779)
+	at org.springframework.web.servlet.view.AbstractCachingViewResolver.resolveViewName(AbstractCachingViewResolver.java:174)
+	at org.springframework.web.servlet.view.ContentNegotiatingViewResolver.getCandidateViews(ContentNegotiatingViewResolver.java:316)
+	at org.springframework.web.servlet.view.ContentNegotiatingViewResolver.resolveViewName(ContentNegotiatingViewResolver.java:229)
+	at org.springframework.web.servlet.DispatcherServlet.resolveViewName(DispatcherServlet.java:1472)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1407)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1167)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1106)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:227)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:225)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-05-02 10:43:32 - El usuario accedio a login
+2025-05-02 10:45:33 - El usuario accedio a login
+2025-05-02 10:45:44 - El usuario accedio a login
+2025-05-02 10:45:45 - El usuario accedio a la pagina principal
+2025-05-02 10:46:34 - Contraseña cambiada correctamente para token 2e92306b-4be0-4538-9b37-cfa3cbe5be3f
+2025-05-02 10:46:34 - El usuario accedio a login
+2025-05-02 10:46:57 - El usuario accedio a login
+2025-05-02 10:47:31 - El usuario accedio a login
+2025-05-02 10:48:13 - El usuario accedio a login
+2025-05-02 10:48:24 - Contraseña cambiada correctamente para token e92115b1-a4ed-4eda-85ab-1631ab5842a8
+2025-05-02 10:48:24 - El usuario accedio a login
+2025-05-02 10:49:23 - El usuario accedio a login
+2025-05-02 10:50:31 - El usuario accedio a login
+2025-05-02 10:52:10 - El usuario accedio a login
+2025-05-02 10:52:50 - El usuario accedio a login
+2025-05-02 10:53:14 - El usuario accedio a login
+2025-05-02 10:59:49 - El usuario accedio a login
+2025-05-02 11:00:01 - El usuario accedio a login
+2025-05-02 11:00:47 - Contraseña cambiada correctamente para token 21544197-370a-49c3-bf07-92bc6435f880
+2025-05-02 11:00:47 - El usuario accedio a login
+2025-05-02 11:01:56 - El usuario accedio a login
+2025-05-02 11:03:09 - Contraseña cambiada correctamente para token c7604236-d8c2-4de4-9843-57407af37f3b
+2025-05-02 11:03:09 - El usuario accedio a login
+2025-05-02 11:03:43 - El usuario accedio a login
+2025-05-02 11:04:04 - El usuario accedio a login
+2025-05-02 11:05:37 - El usuario accedio a login
+2025-05-02 11:05:51 - El usuario accedio a login
+2025-05-02 11:18:30 - El usuario accedio a login
+2025-05-02 11:20:26 - Contraseña cambiada correctamente para token e6cdf064-b259-43dc-80b3-0be7ec5b843f
+2025-05-02 11:20:26 - El usuario accedio a login
+2025-05-02 12:21:31 - Contraseña cambiada correctamente para token e6cdf064-b259-43dc-80b3-0be7ec5b843f
+2025-05-02 12:21:31 - El usuario accedio a login
+2025-05-02 12:33:28 - Contraseña cambiada correctamente para token e6cdf064-b259-43dc-80b3-0be7ec5b843f
+2025-05-02 12:33:28 - El usuario accedio a login
+2025-05-02 12:47:11 - Contraseña cambiada correctamente para token e6cdf064-b259-43dc-80b3-0be7ec5b843f
+2025-05-02 12:47:11 - El usuario accedio a login
+2025-05-02 12:49:12 - Contraseña cambiada correctamente para token e6cdf064-b259-43dc-80b3-0be7ec5b843f
+2025-05-02 12:49:12 - El usuario accedio a login
+2025-05-02 13:06:04 - El usuario accedio a login
+2025-05-02 13:07:10 - El usuario accedio a login
+2025-05-02 13:07:49 - Contraseña cambiada correctamente para token e6cdf064-b259-43dc-80b3-0be7ec5b843f
+2025-05-02 13:07:49 - El usuario accedio a login
+2025-05-02 13:16:55 - Contraseña cambiada correctamente para token e6cdf064-b259-43dc-80b3-0be7ec5b843f
+2025-05-02 13:16:55 - El usuario accedio a login
+2025-05-02 13:47:35 - Contraseña cambiada correctamente para token 3883987c-18dd-4c4f-a4c2-c02fb592792e
+2025-05-02 13:47:49 - El usuario accedio a login
+2025-05-02 13:50:21 - Contraseña cambiada correctamente para token 269af266-c8be-425f-9c10-0a9f08671614
+2025-05-02 13:50:21 - El usuario accedio a login
+2025-05-02 13:51:31 - Contraseña cambiada correctamente para token ff9fa721-6e18-4334-89dc-646e443b06c4
+2025-05-02 13:51:31 - El usuario accedio a login
+2025-05-02 13:56:35 - El usuario accedio a login
+2025-05-02 14:03:18 - El usuario accedio a login
+2025-05-02 14:06:27 - El usuario accedio a login
+2025-05-02 14:11:41 - Contraseña cambiada correctamente para token 83112aea-ac4a-4f05-b38d-fe07f41f1b7f
+2025-05-02 14:11:41 - El usuario accedio a login

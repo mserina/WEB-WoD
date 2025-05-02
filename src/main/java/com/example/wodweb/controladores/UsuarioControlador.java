@@ -366,7 +366,7 @@ public class UsuarioControlador {
             return "resetearContrasena";
             
         } catch (IllegalArgumentException e) {
-        	mensajeInterfaz.addFlashAttribute("mensajeError", e.getMessage());
+        	mensajeInterfaz.addFlashAttribute("mensajeError", "El token ha expirado");
             return "redirect:/login";
         }
     }
