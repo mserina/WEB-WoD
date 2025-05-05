@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -16,11 +17,10 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.wodweb.dtos.UsuarioDto;
 import com.example.wodweb.excepciones.CorreoExistenteExcepcion;
@@ -75,31 +75,50 @@ public class UsuarioServicio {
      * @param usuarioCredenciales Datos del usuario a registrar.
      * @return Usuario registrado o null si ocurre un error.
      */
-    public UsuarioDto registrarUsuario(UsuarioDto usuarioCredenciales) {
+    public UsuarioDto registrarUsuario(UsuarioDto usuarioCredenciales, byte[] fotoBytes) {
     	
-    	// Obtener todos los usuarios registrados
+    	// 1) Primero, las validaciones habituales
         List<UsuarioDto> usuarios = obtenerUsuarios();
-        
-        // Comprobar si ya existe un usuario con el mismo correo (ignorando mayúsculas/minúsculas)
         boolean correoEnUso = usuarios.stream()
-            .anyMatch(u -> u.getCorreoElectronico().equalsIgnoreCase(usuarioCredenciales.getCorreoElectronico()));
-        
+            .anyMatch(u -> u.getCorreoElectronico()
+                            .equalsIgnoreCase(usuarioCredenciales.getCorreoElectronico()));
         if (correoEnUso) {
-            // Puedes lanzar una excepción personalizada para que el controlador la maneje y envíe un mensaje al front
             throw new CorreoExistenteExcepcion("El correo ya está en uso.");
-            // O alternativamente, retornar null o un objeto especial que indique el error.
         }
         
-        String contraseñaUsuario = usuarioCredenciales.getContrasena();
-    	String contraseñaEncriptada = cifradoContraseña.encode(contraseñaUsuario);
-        usuarioCredenciales.setContrasena(contraseñaEncriptada);
+        // 2) Cifrar la contraseña
+        String contrasenaSinEncriptar = usuarioCredenciales.getContrasena();
+        String contrasenaEncriptada = cifradoContraseña.encode(contrasenaSinEncriptar);
+        usuarioCredenciales.setContrasena(contrasenaEncriptada);
     	
     	try {
-            HttpHeaders headers = new HttpHeaders();
-            headers.set("Content-Type", "application/json");
+    		// 3) Montar el cuerpo multipart
+            MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
 
-            HttpEntity<UsuarioDto> requestEntity = new HttpEntity<>(usuarioCredenciales, headers);
-            ResponseEntity<UsuarioDto> response = restTemplate.postForEntity(apiUrl + "/crear", requestEntity, UsuarioDto.class);
+            // Campos de texto
+            body.add("nombreCompleto", usuarioCredenciales.getNombreCompleto());
+            body.add("movil",           usuarioCredenciales.getMovil());
+            body.add("correoElectronico", usuarioCredenciales.getCorreoElectronico());
+            body.add("tipoUsuario",     usuarioCredenciales.getTipoUsuario());
+            body.add("contrasena",      usuarioCredenciales.getContrasena());
+
+            // La foto como recurso
+            ByteArrayResource archivoFoto = new ByteArrayResource(fotoBytes) {
+                @Override public String getFilename() {
+                    // Aquí podrías derivar la extensión real si quisieras
+                    return "perfil.jpg";
+                }
+            };
+    		
+            body.add("foto", archivoFoto);
+            
+            // 4) Cabeceras multipart
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+            // 5) Envío
+            HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(body, headers);
+            ResponseEntity<UsuarioDto> response = restTemplate.postForEntity(apiUrl + "/crear", request, UsuarioDto.class);
 
             return response.getBody();
         } catch (Exception e) {

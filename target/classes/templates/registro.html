@@ -69,8 +69,12 @@
    //////////////////////////////////// -->
   <div id="contenedorRegistro" class="container mt-5">
     
-    <form id="formularioUsuario" th:action="@{/registroDatos}" method="post">
+    <form id="formularioUsuario" th:action="@{/registroDatos}" method="post" enctype="multipart/form-data">
       <h2 id="tituloRegistro" class="mb-4">Registro de Usuario</h2>
+      
+      <input type="hidden"
+       th:name="${_csrf.parameterName}"
+       th:value="${_csrf.token}" />
       <!-- Nombre Completo -->
       <div class="mb-3">
         <label id="campos" for="nombreCompleto" class="form-label">Nombre Completo:</label>
@@ -95,7 +99,11 @@
         <input type="password" id="contrasena" name="contrasena" class="form-control" required>
         <small class="error" id="contrasenaError" style="color: red;"></small>
       </div>
-      
+      <!-- Foto -->
+     <div class="mb-3">
+    	<label id="campos" for="foto" class="form-label">Foto de perfil</label>
+    	<input type="file" id="foto" name="archivoFoto" accept="image/*" class="form-control" required>
+  	 </div>
       
 	      <!-- Justo antes del botón “Registrar” -->
 	  <div id="spinner" class="d-none align-items-center mt-3">

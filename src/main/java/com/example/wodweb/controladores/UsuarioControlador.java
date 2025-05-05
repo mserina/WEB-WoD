@@ -1,5 +1,6 @@
 package com.example.wodweb.controladores;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.wodweb.dtos.SesionDto;
@@ -101,15 +103,16 @@ public class UsuarioControlador {
      * @return Redirige a la vista de bienvenida si el registro es exitoso, de lo contrario, vuelve a "registro".
      */
     @PostMapping("/registroDatos")
-    public String registrarUsuario(HttpSession sesion ,UsuarioDto usuarioCredenciales, Model model, RedirectAttributes redirectAttributes) {
+    public String registrarUsuario(HttpSession sesion ,UsuarioDto usuarioCredenciales, Model model, RedirectAttributes redirectAttributes,  @RequestParam("archivoFoto") MultipartFile foto) {
        try {
     	   
     	   // Generar código de verificación
            String codigo = usuarioServicio.generarCodigo();
            usuarioCredenciales.setCodigoVerificado(codigo);
            
-           
-           UsuarioDto usuarioRegistrado = usuarioServicio.registrarUsuario(usuarioCredenciales);
+           byte[] fotoBytes = foto.getBytes();
+           usuarioCredenciales.setFoto(fotoBytes);
+           UsuarioDto usuarioRegistrado = usuarioServicio.registrarUsuario(usuarioCredenciales, fotoBytes);
 
            
            // Si el registro es correcto 
@@ -137,6 +140,9 @@ public class UsuarioControlador {
        }catch (CorreoExistenteExcepcion errorEmail) {
            model.addAttribute("mensajeErrorEmail", errorEmail.getMessage());
            return "registro";        
+       }catch (IOException e) {
+    	   model.addAttribute("mensajeError", "No pudimos procesar la foto.");
+           return "registro";
        }
     }
 

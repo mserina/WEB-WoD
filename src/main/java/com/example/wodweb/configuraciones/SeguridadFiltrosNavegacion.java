@@ -49,9 +49,10 @@ public class SeguridadFiltrosNavegacion {
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
+        
+    	
+    	http
             // 1. Desactivar CSRF (para simplificar; en producción debe configurarse adecuadamente)
-            .csrf(csrf -> csrf.disable())
 
             // 2. Configurar las reglas de acceso
             .authorizeHttpRequests(auth -> auth
@@ -63,6 +64,8 @@ public class SeguridadFiltrosNavegacion {
                 
                 // Todas las demás rutas requieren autenticación
                 .anyRequest().authenticated()
+                
+                
             )
 
             // 3. Configurar el formulario de login
@@ -73,7 +76,7 @@ public class SeguridadFiltrosNavegacion {
                 .permitAll()                      		// Permitir el acceso a la página de login
                 .usernameParameter("email")       		// Especificar que el campo de usuario es "email"
             )
-
+            
             // 4. Configurar el logout
             .logout(logout -> logout
                 .logoutUrl("/logout")                               // URL para cerrar sesión
