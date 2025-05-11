@@ -2,6 +2,7 @@ package com.example.wodweb.controladores;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.wodweb.dtos.SesionDto;
+import com.example.wodweb.dtos.UsuarioDto;
+import com.example.wodweb.servicios.UsuarioServicio;
 
 
 /**
@@ -23,7 +26,9 @@ public class PaginaPrincipal {
 	private static final Logger log = LoggerFactory.getLogger(PaginaPrincipal.class); //Instancia de clase para generar logs
 	Authentication credencialesSesion; //Variable que se usa para guardar los datos de una sesion
 	String nombreUsuarioLog = "El usuario"; //Nombre que se usara en el log, en caso de no haber sesion de un usuario
-	 
+	@Autowired 
+	private UsuarioServicio usuarioServicio;
+	
 	/* /////////////////////////////////// */
     /*             METODOS                  */
     /* //////////////////////////////////// */
@@ -40,6 +45,9 @@ public class PaginaPrincipal {
 		credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
 		if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
             SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
+            String correo = sesion.getUsername();
+            UsuarioDto u = usuarioServicio.buscarUsuario(correo);
+            modelo.addAttribute("usuario", u);
             // Usamos el nombre del usuario de sesión
             nombreUsuarioLog = sesion.getNombre();
         }

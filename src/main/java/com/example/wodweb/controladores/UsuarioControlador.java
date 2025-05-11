@@ -1,6 +1,7 @@
 package com.example.wodweb.controladores;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -146,6 +147,15 @@ public class UsuarioControlador {
        }
     }
 
+    @GetMapping("/perfil")
+    public String verPerfil(Model model, Principal principal) {
+        // Asume que obtienes el email del principal y buscas al usuario
+        String email = principal.getName();
+    	UsuarioDto u = usuarioServicio.buscarUsuario(email);
+        model.addAttribute("usuario", u);
+        return "perfil"; // Thymeleaf template: perfil.html
+    }
+    
     
     
     /**

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Mi Perfil</title>
+</head>
+<body>
+  <h1 th:text="${usuario.nombreCompleto}">Nombre</h1>
+
+  <img th:src="@{'http://localhost:9511/usuario/foto/' + ${usuario.id}}"/>
+
+
+  <!-- el resto de tu perfil... -->
+</body>
+</html>

@@ -36,12 +36,23 @@
 			<div class="col-auto ms-auto">
 				<div class="dropdown">
 
+					<!-- Imagen de usuario autenticado -->
 					<img 
-					class="rounded-circle dropdown-toggle-img" 
-		            th:src="@{/images/iconoUsuario.png}" 
-		            alt="Usuario" width="40" height="40"
-		            data-bs-toggle="dropdown"
-		            aria-expanded="false">
+						class="rounded-circle dropdown-toggle-img"
+						sec:authorize="isAuthenticated()"
+						th:src="@{'http://localhost:9511/usuario/foto/' + ${usuario.id}}"
+						alt="Usuario" width="40" height="40"
+						data-bs-toggle="dropdown"
+						aria-expanded="false">
+			
+					<!-- Imagen por defecto para usuarios no autenticados -->
+					<img 
+						class="rounded-circle dropdown-toggle-img"
+						sec:authorize="isAnonymous()"
+						th:src="@{/images/iconoUsuario.png}"
+						alt="Usuario" width="40" height="40"
+						data-bs-toggle="dropdown"
+						aria-expanded="false">
 
 					<!-- Menú desplegable -->
 					<ul class="dropdown-menu dropdown-menu-end"

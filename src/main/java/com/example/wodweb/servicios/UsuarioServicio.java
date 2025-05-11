@@ -67,6 +67,17 @@ public class UsuarioServicio {
         return Arrays.asList(usuarios);
     }
 
+    public UsuarioDto buscarUsuario(String correo) {
+    	UsuarioDto usuarioEncontrado = null;
+    	List <UsuarioDto> usuarios = obtenerUsuarios();
+    	for (UsuarioDto usuario : usuarios) {
+    		if(usuario.getCorreoElectronico().equals(correo)) {
+    			usuarioEncontrado = usuario;
+    		}
+    	}
+    	
+    	return usuarioEncontrado;
+    }
     
     
     /**
