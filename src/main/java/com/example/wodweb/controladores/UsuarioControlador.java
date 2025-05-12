@@ -1,6 +1,7 @@
 package com.example.wodweb.controladores;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -23,6 +25,7 @@ import com.example.wodweb.excepciones.CorreoExistenteExcepcion;
 import com.example.wodweb.excepciones.UsuarioNoEncontradoExcepcion;
 import com.example.wodweb.servicios.UsuarioServicio;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /**
@@ -252,6 +255,63 @@ public class UsuarioControlador {
         return "redirect:/admin/obtenerUsuario"; // Redirige a la vista con la lista de usuarios
     }
     
+    
+    @GetMapping("/admin/usuarios/exportar")
+    @ResponseBody
+    public void exportarExcelHtml(HttpServletResponse response) throws IOException {
+    	PrintWriter writer = response.getWriter();
+
+    	// 1. Declaración de Excel-HTML
+    	writer.println("<html " +
+    	    "xmlns:o='urn:schemas-microsoft-com:office:office' " +
+    	    "xmlns:x='urn:schemas-microsoft-com:office:excel' " +
+    	    "xmlns='http://www.w3.org/TR/REC-html40'>");
+    	writer.println("<head>");
+    	writer.println("  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>");
+
+    	// 2. Estilos CSS (¡no olvidar los ; al final de cada regla!)
+    	writer.println("  <style>");
+    	writer.println("    table { border-collapse: collapse; width: 100%; }");
+    	writer.println("    th, td { border: 1px solid #444; padding: 6px; }");
+    	writer.println("    th { background-color: #007bff; color: #fff; }");
+    	writer.println("    tr:nth-child(even) { background-color: #f2f2f2; }");
+    	writer.println("  </style>");
+    	writer.println("</head>");
+
+    	writer.println("<body>");
+    	writer.println("  <table>");
+    	writer.println("    <thead>");
+    	writer.println("      <tr>");
+    	writer.println("        <th>Id</th>");
+    	writer.println("        <th>Nombre Completo</th>");
+    	writer.println("        <th>Móvil</th>");
+    	writer.println("        <th>Correo Electrónico</th>");
+    	writer.println("        <th>Tipo Usuario</th>");
+    	writer.println("      </tr>");
+    	writer.println("    </thead>");
+    	writer.println("    <tbody>");
+
+    	// 3. Datos de la tabla
+    	List<UsuarioDto> usuarios = usuarioServicio.obtenerUsuarios();
+    	for (UsuarioDto u : usuarios) {
+    	    writer.printf("      <tr>%n");
+    	    writer.printf("        <td>%d</td>%n", u.getId());
+    	    writer.printf("        <td>%s</td>%n", u.getNombreCompleto());
+    	    writer.printf("        <td>%s</td>%n", u.getMovil());
+    	    writer.printf("        <td>%s</td>%n", u.getCorreoElectronico());
+    	    writer.printf("        <td>%s</td>%n", u.getTipoUsuario());
+    	    writer.printf("      </tr>%n");
+    	}
+
+    	writer.println("    </tbody>");
+    	writer.println("  </table>");
+    	writer.println("</body>");
+    	writer.println("</html>");
+
+    	writer.flush();
+    	writer.close();
+    }
+
     
     /**
      * Muestra la pagina para insertar el codigo de verificacion
