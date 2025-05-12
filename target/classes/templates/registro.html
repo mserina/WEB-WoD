@@ -80,10 +80,7 @@
     
     <form id="formularioUsuario" th:action="@{/registroDatos}" method="post" enctype="multipart/form-data">
       <h2 id="tituloRegistro" class="mb-4">Registro de Usuario</h2>
-      
-      <input type="hidden"
-       th:name="${_csrf.parameterName}"
-       th:value="${_csrf.token}" />
+
       <!-- Nombre Completo -->
       <div class="mb-3">
         <label id="campos" for="nombreCompleto" class="form-label">Nombre Completo:</label>

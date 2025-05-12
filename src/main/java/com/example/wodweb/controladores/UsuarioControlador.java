@@ -259,57 +259,53 @@ public class UsuarioControlador {
     @GetMapping("/admin/usuarios/exportar")
     @ResponseBody
     public void exportarExcelHtml(HttpServletResponse response) throws IOException {
-    	PrintWriter writer = response.getWriter();
+        // 1) Poner los headers ANTES de cualquier getWriter() o write()
+        response.setContentType("application/vnd.ms-excel; charset=UTF-8");
+        response.setHeader("Content-Disposition","attachment; filename=\"usuarios.xls\"");
 
-    	// 1. Declaración de Excel-HTML
-    	writer.println("<html " +
-    	    "xmlns:o='urn:schemas-microsoft-com:office:office' " +
-    	    "xmlns:x='urn:schemas-microsoft-com:office:excel' " +
-    	    "xmlns='http://www.w3.org/TR/REC-html40'>");
-    	writer.println("<head>");
-    	writer.println("  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>");
+        // 2) Ahora abrimos el writer
+        PrintWriter writer = response.getWriter();
 
-    	// 2. Estilos CSS (¡no olvidar los ; al final de cada regla!)
-    	writer.println("  <style>");
-    	writer.println("    table { border-collapse: collapse; width: 100%; }");
-    	writer.println("    th, td { border: 1px solid #444; padding: 6px; }");
-    	writer.println("    th { background-color: #007bff; color: #fff; }");
-    	writer.println("    tr:nth-child(even) { background-color: #f2f2f2; }");
-    	writer.println("  </style>");
-    	writer.println("</head>");
+        // 3) El resto de tu HTML/Excel-HTML
+        writer.println("<html "+ "xmlns:o='urn:schemas-microsoft-com:office:office' "+ "xmlns:x='urn:schemas-microsoft-com:office:excel' " + "xmlns='http://www.w3.org/TR/REC-html40'>");
+        writer.println("<head>");
+        writer.println("  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>");
+        writer.println("  <style>");
+        writer.println("    table { border-collapse: collapse; width: 100%; }");
+        writer.println("    th, td { border: 1px solid #444; padding: 6px; }");
+        writer.println("    th { background-color: #007bff; color: #fff; }");
+        writer.println("    tr:nth-child(even) { background-color: #f2f2f2; }");
+        writer.println("  </style>");
+        writer.println("</head>");
+        writer.println("<body>");
+        writer.println("  <table>");
+        writer.println("    <thead>");
+        writer.println("      <tr>");
+        writer.println("        <th>Nombre Completo</th>");
+        writer.println("        <th>Móvil</th>");
+        writer.println("        <th>Correo Electrónico</th>");
+        writer.println("        <th>Tipo Usuario</th>");
+        writer.println("      </tr>");
+        writer.println("    </thead>");
+        writer.println("    <tbody>");
 
-    	writer.println("<body>");
-    	writer.println("  <table>");
-    	writer.println("    <thead>");
-    	writer.println("      <tr>");
-    	writer.println("        <th>Id</th>");
-    	writer.println("        <th>Nombre Completo</th>");
-    	writer.println("        <th>Móvil</th>");
-    	writer.println("        <th>Correo Electrónico</th>");
-    	writer.println("        <th>Tipo Usuario</th>");
-    	writer.println("      </tr>");
-    	writer.println("    </thead>");
-    	writer.println("    <tbody>");
+        List<UsuarioDto> usuarios = usuarioServicio.obtenerUsuarios();
+        for (UsuarioDto u : usuarios) {
+            writer.printf("      <tr>%n");
+            writer.printf("        <td>%s</td>%n", u.getNombreCompleto());
+            writer.printf("        <td>%s</td>%n", u.getMovil());
+            writer.printf("        <td>%s</td>%n", u.getCorreoElectronico());
+            writer.printf("        <td>%s</td>%n", u.getTipoUsuario());
+            writer.printf("      </tr>%n");
+        }
 
-    	// 3. Datos de la tabla
-    	List<UsuarioDto> usuarios = usuarioServicio.obtenerUsuarios();
-    	for (UsuarioDto u : usuarios) {
-    	    writer.printf("      <tr>%n");
-    	    writer.printf("        <td>%d</td>%n", u.getId());
-    	    writer.printf("        <td>%s</td>%n", u.getNombreCompleto());
-    	    writer.printf("        <td>%s</td>%n", u.getMovil());
-    	    writer.printf("        <td>%s</td>%n", u.getCorreoElectronico());
-    	    writer.printf("        <td>%s</td>%n", u.getTipoUsuario());
-    	    writer.printf("      </tr>%n");
-    	}
+        writer.println("    </tbody>");
+        writer.println("  </table>");
+        writer.println("</body>");
+        writer.println("</html>");
 
-    	writer.println("    </tbody>");
-    	writer.println("  </table>");
-    	writer.println("</body>");
-    	writer.println("</html>");
-
-    	writer.flush();
-    	writer.close();
+        writer.flush();
+        writer.close();
     }
 
     

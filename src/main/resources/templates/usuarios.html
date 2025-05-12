@@ -190,6 +190,11 @@
         </tr>        
       </tbody>
     </table>
+    
+    <a id="botonAcciones" th:href="@{/admin/usuarios/exportar(q=${q})}" class="btn btn-outline-primary mb-3">
+  		<i class="bi bi-file-earmark-spreadsheet"><h6>Exportar CSV</h6></i> 
+  	</a>
+  
   </div>
   
   
@@ -223,10 +228,6 @@
                   <option value="contrasena">Contraseña</option>
                 </select>
               </div>
-              
-              <a th:href="@{/admin/usuarios/exportar}" class="btn btn-outline-primary mb-3">
-  				<i class="bi bi-file-earmark-spreadsheet"></i> Exportar CSV
-  			  </a>
               
               
               <!-- Contenedor para input de texto (por defecto visible) -->
@@ -287,9 +288,7 @@
     </div>
   </div>
   
-  <a th:href="@{/admin/usuarios/exportar(q=${q})}" class="btn btn-outline-primary mb-3">
-  	<i class="bi bi-file-earmark-spreadsheet"></i> Exportar CSV
-  </a>
+  
  
  <!-- ///////////////////////////////////
                 JAVASCRIPT                  
@@ -298,7 +297,7 @@
 	  	document.getElementById('filtroNombre').addEventListener('input', function() {
 	  	  const texto = this.value.toLowerCase();
 	  	  document.querySelectorAll('tbody tr').forEach(tr => {
-	  	    const nombre = tr.children[1].textContent.toLowerCase();
+	  	    const nombre = tr.children[0].textContent.toLowerCase();
 	  	    tr.style.display = nombre.includes(texto) ? '' : 'none';
 	  	  });
 	  	});
