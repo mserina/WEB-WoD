@@ -50,17 +50,20 @@ public class UsuarioControlador {
      * @return Devuelve la vista "usuarios".
      */
     @GetMapping("/admin/obtenerUsuario")
-    public String obtenerUsuarios(Model model) {
+    public String obtenerUsuarios(Model modelo) {
     	//Se guarda los datos de la sesion 
     	credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
-    	model.addAttribute("usuarios", usuarioServicio.obtenerUsuarios());
+    	modelo.addAttribute("usuarios", usuarioServicio.obtenerUsuarios());
         
     	//Se comprueba que la sesion no sea null
         if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
             SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
+            String correo = sesion.getUsername();
+            UsuarioDto u = usuarioServicio.buscarUsuario(correo);
+            modelo.addAttribute("usuario", u);
             // En caso de que se cumpla las condiciones, se usa el nombre del usuario de sesión
             nombreUsuarioLog = sesion.getNombre();
-            model.addAttribute("auth", sesion); // Enviar usuario autenticado a la vista
+            modelo.addAttribute("auth", sesion); // Enviar usuario autenticado a la vista
         }
         else {
     		nombreUsuarioLog = "El usuario";
@@ -77,12 +80,15 @@ public class UsuarioControlador {
      * @return Devuelve la vista "registro".
      */
     @GetMapping("/registro")
-    public String mostrarFormularioRegistro() {
+    public String mostrarFormularioRegistro(Model modelo) {
     	
     	credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
 
     	if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
             SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
+            String correo = sesion.getUsername();
+            UsuarioDto u = usuarioServicio.buscarUsuario(correo);
+            modelo.addAttribute("usuario", u);
             // Usamos el nombre del usuario de sesión
             nombreUsuarioLog = sesion.getNombre();
         }
@@ -254,10 +260,14 @@ public class UsuarioControlador {
      * @return
      */
     @GetMapping("/verificarCodigo")
-    public String mostrarFormularioVerificacion(Model model, HttpSession session, RedirectAttributes mensajeFlash) {
+    public String mostrarFormularioVerificacion(Model modelo, HttpSession session, RedirectAttributes mensajeFlash) {
     	// Si la sesión ya no tiene el código, entendemos que expiró
         if (session.getAttribute("codigoVerificacion") == null) {
-            mensajeFlash.addFlashAttribute("mensajeErrorCodigo", "El tiempo de verificación ha expirado. Por favor, regístrate de nuevo.");
+        	SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
+            String correo = sesion.getUsername();
+            UsuarioDto u = usuarioServicio.buscarUsuario(correo);
+            modelo.addAttribute("usuario", u);
+        	mensajeFlash.addFlashAttribute("mensajeErrorCodigo", "El tiempo de verificación ha expirado. Por favor, regístrate de nuevo.");
             // Puedes redirigir al registro, o a /verificarCodigo de nuevo:
             return "redirect:/registro";
         }

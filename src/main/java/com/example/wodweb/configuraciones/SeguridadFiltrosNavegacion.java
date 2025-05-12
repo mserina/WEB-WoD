@@ -53,7 +53,7 @@ public class SeguridadFiltrosNavegacion {
     	
     	http
             // 1. Desactivar CSRF (para simplificar; en producción debe configurarse adecuadamente)
-
+    		.csrf(csrf -> csrf.disable())
             // 2. Configurar las reglas de acceso
             .authorizeHttpRequests(auth -> auth
                 // Permitir acceso sin autenticación a login, registro y recursos estáticos

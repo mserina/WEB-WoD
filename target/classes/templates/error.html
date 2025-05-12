@@ -9,56 +9,7 @@
 </head>
 <body>
 
-<!-- ///////////////////////////////////
-            BARRA NAVEGACION                  
-   //////////////////////////////////// -->
-	<div class="container-fluid fondoBarraNavegacion">
-		<div class="row align-items-center w-100">
 
-			<!-- Logo -->
-			<div class="col-auto">
-				<a class="btn-icon" th:href="@{/}"> 
-					<img class="logo" th:src="@{/images/logo.png}" alt="Logo">
-				</a>
-			</div>
-
-			<!-- Opciones de navegación (centradas) -->
-			<div class="col text-center d-none d-md-block">
-				<nav class="nav justify-content-center">
-					<h2><a class="nav-link text-white" th:href="@{/manga}">MANGA</a></h2>
-					<h2><a class="nav-link text-white" th:href="@{/poster}">POSTER</a></h2> 
-					<h2><a class="nav-link text-white" th:href="@{/figura}">FIGURA</a></h2>
-				</nav>
-			</div>
-			
-			<!-- Icono de usuario (activador del menú) -->
-			<div class="col-auto ms-auto">
-				<div class="dropdown">
-
-					<img 
-					class="rounded-circle dropdown-toggle-img" 
-		            th:src="@{/images/iconoUsuario.png}" 
-		            alt="Usuario" width="40" height="40"
-		            data-bs-toggle="dropdown"
-		            aria-expanded="false">
-
-					<!-- Menú desplegable -->
-					<ul class="dropdown-menu dropdown-menu-end"
-						aria-labelledby="dropdownMenuButton">
-						<li th:if="${auth != null and auth.admin}"><a
-							class="dropdown-item" th:href="@{/admin}">Lista de Usuarios</a></li>
-						<li><a class="dropdown-item" th:href="@{/registro}">Registro</a></li>
-						<li><a class="dropdown-item" th:href="@{/login}">Login</a></li>
-						<li sec:authorize="hasRole('ADMIN')" ><a class="dropdown-item" th:href="@{/admin/obtenerUsuario}">Admin</a></li>
-						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item text-danger" th:href="@{/logout}">Logout</a></li>
-					</ul>
-				</div>
-			</div>
-
-		</div>
-	</div>
-	
 	
 	<!--/////////////////////////////////
                  CONTENIDO                
@@ -66,9 +17,12 @@
     <div class="contenedorMensajeError1">
 	    
 	    <div id="contenedorMensajeError2">
-	    	<h2 id="mensajeError">Se a producido un error</h2>	          
+	    	<h2 id="mensajeError">Se ha producido un error</h2>	
+	    	<a class="btn-icon" th:href="@{/}"> 
+				<h4 id="mensajeError">Volver a la pagina principal</h4>
+			</a>   
 	    </div>
-	    
+    
     </div>
 </body>
 </html>
