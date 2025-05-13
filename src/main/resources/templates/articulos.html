@@ -92,6 +92,7 @@
           <th>Precio</th>
           <th>Stock</th>
           <th>Tipo Articulo</th>
+          <th>Imagen</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -104,9 +105,7 @@
           <td th:text="${articulo.precio}"></td>
           <td th:text="${articulo.stock}"></td>
 		  <td th:text="${articulo.tipoArticulo}"></td>
-          <td>
-            
-          </td>
+          <td><img th:src="@{/images/shanksPoster.jpg}"></td>
         </tr>        
       </tbody>
     </table>
