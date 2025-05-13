@@ -221,7 +221,6 @@ public class UsuarioServicio {
 	
 	
 	
-	
 	/**
      * Llama al endpoint POST /request de la API, enviando { "email": ... }
      * y devuelve el token generado.

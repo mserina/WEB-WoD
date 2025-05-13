@@ -62,6 +62,7 @@
 						<li><a class="dropdown-item" th:href="@{/registro}">Registro</a></li>
 						<li><a class="dropdown-item" th:href="@{/login}">Login</a></li>
 						<li sec:authorize="hasRole('ADMIN')" ><a class="dropdown-item" th:href="@{/admin/obtenerUsuario}">Admin</a></li>
+						<li sec:authorize="hasRole('ADMIN')" ><a class="dropdown-item" th:href="@{/admin/obtenerArticulos}">Articulos</a></li>
 						<li><hr class="dropdown-divider"></li>
 						<li><a class="dropdown-item text-danger" th:href="@{/logout}">Logout</a></li>
 					</ul>
