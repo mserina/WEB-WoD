@@ -145,15 +145,15 @@ public class UsuarioControlador {
                log.info(usuarioRegistrado.getNombreCompleto() + ", se ha registrado");    		   
                return "verificarCodigo";
            } else {
-               redirectAttributes.addFlashAttribute("mensaje", "Error en el registro. Inténtelo de nuevo.");
-               return "registro"; // Regresa al formulario
+               redirectAttributes.addFlashAttribute("mensajeErrorCodigo", "Error en el registro. Inténtelo de nuevo.");
+               return "redirect:/registro"; // Regresa al formulario
            }
        }catch (CorreoExistenteExcepcion errorEmail) {
            model.addAttribute("mensajeErrorEmail", errorEmail.getMessage());
-           return "registro";        
+           return "redirect:/registro";        
        }catch (IOException e) {
     	   model.addAttribute("mensajeError", "No pudimos procesar la foto.");
-           return "registro";
+    	   return "redirect:/registro";
        }
     }
 

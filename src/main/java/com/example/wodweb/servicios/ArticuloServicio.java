@@ -3,6 +3,8 @@ package com.example.wodweb.servicios;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -33,5 +35,29 @@ public class ArticuloServicio {
         String url = apiUrl + "/mostrarArticulos";
         ArticuloDto[] articulo = restTemplate.getForObject(url, ArticuloDto[].class);
         return Arrays.asList(articulo);
+    }
+    
+    /**
+     * Elimina un articulo por su ID.
+     * msm - 050325
+     * @param id ID del articulo a eliminar.
+     * @return true si el articulo fue eliminado con éxito, false en caso de error.
+     */
+    public boolean borrarArticulo(Long id) {
+        try {
+            String url = apiUrl + "/borrarArticulo/" + id;
+            ResponseEntity<?> response = restTemplate.exchange(url, HttpMethod.DELETE, null, UsuarioDto.class);
+            return response.getStatusCode().is2xxSuccessful();
+        } catch (Exception e) {
+            System.err.println("Error al borrar usuario en la API externa: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    
+    public ArticuloDto obtenerArticulosPorId(Long id) {
+        String url = apiUrl + "/mostrarArticulos";
+        ArticuloDto articulo = restTemplate.getForObject(url, ArticuloDto.class);
+        return articulo;
     }
 }

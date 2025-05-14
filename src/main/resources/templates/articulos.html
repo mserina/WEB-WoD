@@ -108,8 +108,7 @@
           <td><img id="imagenesArticulosLista" th:src="@{/images/shanksPoster.jpg}"></td>
           <td>
           	<button id="botonAcciones" class="btn btn-danger" type="button"
-		        th:attr="data-id=${usuario.id}"
-		        th:disabled="${auth != null and auth.getUsername() == usuario.correoElectronico}"
+		        th:attr="data-id=${articulo.id}"
 		        onclick="abrirModalBorrar(this.getAttribute('data-id'))">
 		        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
 				  	<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
@@ -130,10 +129,10 @@
 	          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
 	        </div>
 	        <div id="campos" class="modal-body">
-	          ¿Está seguro de que desea borrar este usuario?
+	          ¿Está seguro de que desea borrar este articulo?
 	        </div>
 	        <div class="modal-footer">
-	          <form th:action="@{/admin/borrarUsuario}" method="post">
+	          <form th:action="@{/admin/borrarArticulo}" method="post">
 	            <!-- Campo oculto para pasar el email del usuario -->
 	            <input type="hidden" id="campoIdModal" name="id">
 	            <button id="botonAccionBorrar" type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
