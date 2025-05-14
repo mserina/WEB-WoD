@@ -1,7 +1,6 @@
 package com.example.wodweb.controladores;
 
 import java.util.Map;
-import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +11,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.wodweb.dtos.ArticuloDto;
 import com.example.wodweb.dtos.SesionDto;
@@ -75,16 +75,21 @@ public class ArticuloControlador {
      * @param id Identificador único del usuario.
      * @return ResponseEntity con mensaje de éxito o error si el usuario no existe.
      */
-    @DeleteMapping("/admin/borrarArticulo/{id}")
-    public ResponseEntity<?> borrarUsuario(@PathVariable Long id) {
-        ArticuloDto articulo = articuloServicio.obtenerArticulosPorId(id);
-
-        if (articulo != null) {
-            articuloServicio.borrarArticulo(id); // Llamar al servicio para eliminar el usuario
-            return ResponseEntity.ok(Map.of("mensaje", "Usuario " + articulo.getNombre() + " ha sido eliminado"));
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Map.of("mensaje", "Usuario no encontrado"));
-        }
+    @PostMapping("/admin/borrarArticulo")
+    public String borrarUsuario(@RequestParam Long id, RedirectAttributes redirectAttributes) {
+    	credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
+    	String nombreArticuloBorrado = "";
+    	
+    	boolean borrado = articuloServicio.borrarArticulo(id); // Llamar al servicio para eliminar el articulo
+        log.info(nombreUsuarioLog + " elimino el articulo " + nombreArticuloBorrado);
+        
+        	
+        	if (borrado) {
+                redirectAttributes.addFlashAttribute("mensaje", "Articulo borrado correctamente.");
+            } else {
+                redirectAttributes.addFlashAttribute("mensaje", "Error al borrar el articulo.");
+            }
+        
+        return "redirect:/admin/obtenerArticulos";
     }
 }

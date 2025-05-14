@@ -55,9 +55,4 @@ public class ArticuloServicio {
     }
     
     
-    public ArticuloDto obtenerArticulosPorId(Long id) {
-        String url = apiUrl + "/mostrarArticulos";
-        ArticuloDto articulo = restTemplate.getForObject(url, ArticuloDto.class);
-        return articulo;
-    }
 }
