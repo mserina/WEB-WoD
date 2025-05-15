@@ -3,14 +3,21 @@ package com.example.wodweb.servicios;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.wodweb.dtos.ArticuloDto;
 import com.example.wodweb.dtos.UsuarioDto;
+import com.example.wodweb.excepciones.CorreoExistenteExcepcion;
 
 /**
  * Contiene la implementacion de los metodos de los articulos
@@ -52,6 +59,54 @@ public class ArticuloServicio {
         } catch (Exception e) {
             System.err.println("Error al borrar usuario en la API externa: " + e.getMessage());
             return false;
+        }
+    }
+    
+    
+    /**
+     * Registra un nuevo usuario.
+     * msm - 050325
+     * @param usuarioCredenciales Datos del usuario a registrar.
+     * @return Usuario registrado o null si ocurre un error.
+     */
+    public ArticuloDto registrarArticulo(ArticuloDto articuloNuevo, byte[] fotoBytes) {
+    	
+    	// 1) Primero, las validaciones habituales
+        List<ArticuloDto> articulos = obtenerArticulos();
+        boolean nombreEnUso = articulos.stream()
+            .anyMatch(a -> a.getNombre()
+                            .equalsIgnoreCase(articuloNuevo.getNombre()));
+        if (nombreEnUso) {
+            throw new CorreoExistenteExcepcion("Este articulo ya esta creado.");
+        }
+           	
+    	try {
+    		// 3) Montar el cuerpo multipart
+            MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+
+            // Campos de texto
+            body.add("nombre", articuloNuevo.getNombre());
+            body.add("descripcion", articuloNuevo.getDescripcion());
+            body.add("precio", articuloNuevo.getPrecio());
+            body.add("tipoArticulo", articuloNuevo.getTipoArticulo());
+            
+            // La foto como recurso
+            ByteArrayResource archivoFoto = new ByteArrayResource(fotoBytes);
+    		
+            body.add("foto", archivoFoto);
+            
+            // 4) Cabeceras multipart
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+            // 5) Envío
+            HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(body, headers);
+            ResponseEntity<ArticuloDto> response = restTemplate.postForEntity(apiUrl + "/crearArticulos", request, ArticuloDto.class);
+
+            return response.getBody();
+        } catch (Exception e) {
+            System.err.println("Error al registrar usuario en la API externa: " + e.getMessage());
+            return null;
         }
     }
     

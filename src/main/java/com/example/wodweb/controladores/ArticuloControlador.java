@@ -1,5 +1,6 @@
 package com.example.wodweb.controladores;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -15,13 +16,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.wodweb.dtos.ArticuloDto;
 import com.example.wodweb.dtos.SesionDto;
 import com.example.wodweb.dtos.UsuarioDto;
+import com.example.wodweb.excepciones.CorreoExistenteExcepcion;
 import com.example.wodweb.servicios.ArticuloServicio;
 import com.example.wodweb.servicios.UsuarioServicio;
+
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Controlador para la gestión de articulo.
@@ -121,5 +126,25 @@ public class ArticuloControlador {
             }
         
         return "redirect:/admin/obtenerArticulos";
+    }
+    
+    @PostMapping("/admin/crearArticulo")
+    public String registrarArticulo(HttpSession sesion ,ArticuloDto articuloNuevo, Model modelo, RedirectAttributes redirectAttributes,  @RequestParam("archivoFoto") MultipartFile foto) {
+       try {
+    	   
+           byte[] fotoBytes = foto.getBytes();
+           articuloNuevo.setFotoArticulo(fotoBytes);
+           ArticuloDto articuloRegistrado = articuloServicio.registrarArticulo(articuloNuevo, fotoBytes);       
+           
+           log.info(articuloRegistrado.getNombre() + ", se ha registrado");    		   
+           return "articulos";
+           
+       }catch (CorreoExistenteExcepcion errorEmail) {
+    	   redirectAttributes.addAttribute("mensajeErrorEmail", errorEmail.getMessage());
+           return "redirect:/admin/obtenerArticulos";        
+       }catch (IOException e) {
+    	   redirectAttributes.addAttribute("mensajeError", "No pudimos procesar la foto.");
+    	   return "redirect:/admin/obtenerArticulos";
+       }
     }
 }

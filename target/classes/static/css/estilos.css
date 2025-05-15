@@ -389,7 +389,7 @@ th {
     background-color: #b7c871 !important;
 }
 
-.contenedorFormularioEditar, .contenedorAvisoBorrar {
+.contenedorFormularioModal {
     background-image: url("../images/madera.jpg");
 }
 

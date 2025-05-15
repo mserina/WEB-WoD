@@ -81,8 +81,13 @@
   <div class="container mt-3">
      <input id="filtroNombre" type="text" class="form-control" placeholder="Buscar por nombre...">
   </div>
-
+	
+    	
+	
   <div class="container mt-5">
+    <button id="botonAccionesEditar" class="btn" data-bs-toggle="modal" data-bs-target="#modalNuevoArticulo">
+  		<i class="bi bi-plus-circle"></i> Nuevo Artículo
+	</button>
     <table class="table table-bordered">
       <thead id="cabezeraTablaUsuarios">
         <tr>
@@ -136,7 +141,64 @@
     </table>
     
     
-    <!-- Modal para editar articulo (generado para cada articulo) -->
+  <!-- Modal para registrar nuevo artículo -->
+<div class="modal fade" id="modalNuevoArticulo" tabindex="-1" aria-labelledby="modalNuevoArticuloLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content contenedorFormularioModal">
+      <form th:action="@{/admin/crearArticulo}" method="post" enctype="multipart/form-data">
+        <div class="modal-header">
+          <h5  class="modal-title" id="campos">Registrar Nuevo Artículo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Nombre -->
+          <div class="mb-3">
+            <label id="campos" for="nombreArticulo" class="form-label">Nombre</label>
+            <input type="text" id="nombreArticulo" name="nombre" class="form-control" required maxlength="100">
+          </div>
+          <!-- Descripción -->
+          <div class="mb-3">
+            <label id="campos" for="descripcionArticulo" class="form-label">Descripción</label>
+            <textarea id="descripcionArticulo" name="descripcion" class="form-control" rows="3" required></textarea>
+          </div>
+          <!-- Precio -->
+          <div class="mb-3">
+            <label id="campos" for="precioArticulo" class="form-label">Precio</label>
+            <input type="number" id="precioArticulo" name="precio" class="form-control" min="0" required>
+          </div>
+          <!-- Stock -->
+          <div class="mb-3">
+            <label id="campos" for="stockArticulo" class="form-label">Stock</label>
+            <input type="number" id="stockArticulo" name="stock" class="form-control" min="0" required>
+          </div>
+          <!-- Tipo de artículo -->
+          <div class="mb-3">
+            <label id="campos" for="tipoArticulo" class="form-label">Tipo de Artículo</label>
+            <select id="tipoArticulo" name="tipoArticulo" class="form-select" required>
+              <option value="" disabled selected>Selecciona...</option>
+              <option value="manga">Manga</option>
+              <option value="poster">Poster</option>
+              <option value="figura">Figura</option>
+            </select>
+          </div>
+          <!-- Imágenes -->
+          <div class="mb-3">
+            <label id="campos" for="imagenesArticulo" class="form-label">Imágenes</label>
+            <input type="file" id="foto" name="archivoFoto" accept="image/*" class="form-control" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="botonAccionesEditar" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button id="botonAccionesEditar" type="submit" class="btn btn-primary">Guardar Artículo</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>  
+    
+  
+  
+  <!-- Modal para editar articulo (generado para cada articulo) -->
   <div th:each="articulo : ${articulos}"
   	   th:with="clave=${#strings.toLowerCase(
                        #strings.replace(
@@ -151,7 +213,7 @@
          aria-hidden="true">
          
       <div class="modal-dialog">
-        <div class="modal-content contenedorFormularioEditar">
+        <div class="modal-content contenedorFormularioModal">
           <form th:action="@{/admin/editarArticulo}" method="post">
             <div id="tituloModalEditar" class="modal-header">
               <h5 class="modal-title" id="campos">Editar Articulo</h5>
@@ -214,7 +276,7 @@
     <!-- Modal para confirmar borrado -->
 	  <div class="modal fade" id="modalBorrar" tabindex="-1" aria-labelledby="modalBorrarLabel" aria-hidden="true">
 	    <div class="modal-dialog">
-	      <div class="modal-content contenedorAvisoBorrar" >
+	      <div class="modal-content contenedorFormularioModal" >
 	        <div class="modal-header">
 	          <h5 id="campos" class="modal-title">Confirmar Borrado</h5>
 	          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
