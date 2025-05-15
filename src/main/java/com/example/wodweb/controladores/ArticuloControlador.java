@@ -1,5 +1,6 @@
 package com.example.wodweb.controladores;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -66,6 +67,35 @@ public class ArticuloControlador {
     	}
         log.info(nombreUsuarioLog + " accedio a la lista de articulos");
         return "articulos";
+    }
+    
+    
+    /**
+     * Método para editar un articulo.
+     * msm - 050325
+     * @param nombre nombre del usuario a modificar.
+     * @param campo Campo a actualizar.
+     * @param nuevoValor Nuevo valor a asignar.
+     * @param redirectAttributes Permite redirigir con mensajes flash.
+     * @return Redirige a la vista con la lista de articulos.
+     */
+    @PostMapping("/admin/editarArticulo")
+    public String editarArticulo(@RequestParam String nombre, @RequestParam String campo, @RequestParam String nuevoValor, RedirectAttributes redirectAttributes) {
+        
+    	boolean actualizado = articuloServicio.editarArticulo(nombre, campo, nuevoValor);
+        credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
+        String nombreUsuarioModificado = "";
+        
+        if (actualizado) {
+            redirectAttributes.addFlashAttribute("mensaje", "Articulo actualizado con éxito.");
+            redirectAttributes.addFlashAttribute("tipoMensaje", "success");
+        } else {
+            redirectAttributes.addFlashAttribute("mensaje", "Error al actualizar articulo.");
+            redirectAttributes.addFlashAttribute("tipoMensaje", "danger");
+        }
+       
+    	log.info("Se modifico el campo " + campo + " del articulo " + nombre);
+        return "redirect:/admin/obtenerArticulos"; // Redirigir de nuevo a la lista de usuarios
     }
     
     

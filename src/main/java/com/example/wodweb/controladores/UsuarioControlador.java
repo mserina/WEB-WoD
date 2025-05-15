@@ -46,35 +46,6 @@ public class UsuarioControlador {
     /* /////////////////////////////////// */
     /*             METODOS                  */
     /* //////////////////////////////////// */
-    
-    /**
-     * Método para obtener la lista de usuarios y enviarla a la vista.
-     * msm - 050325
-     * @param model Modelo para pasar los datos a la vista.
-     * @return Devuelve la vista "usuarios".
-     */
-    @GetMapping("/admin/obtenerUsuario")
-    public String obtenerUsuarios(Model modelo) {
-    	//Se guarda los datos de la sesion 
-    	credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
-    	modelo.addAttribute("usuarios", usuarioServicio.obtenerUsuarios());
-        
-    	//Se comprueba que la sesion no sea null
-        if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
-            SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
-            String correo = sesion.getUsername();
-            UsuarioDto u = usuarioServicio.buscarUsuario(correo);
-            modelo.addAttribute("usuario", u);
-            // En caso de que se cumpla las condiciones, se usa el nombre del usuario de sesión
-            nombreUsuarioLog = sesion.getNombre();
-            modelo.addAttribute("auth", sesion); // Enviar usuario autenticado a la vista
-        }
-        else {
-    		nombreUsuarioLog = "El usuario";
-    	}
-        log.info(nombreUsuarioLog + " accedio a la lista de usuarios");
-        return "usuarios";
-    }
 
     
     
@@ -166,6 +137,35 @@ public class UsuarioControlador {
         return "perfil"; // Thymeleaf template: perfil.html
     }
     
+    
+    /**
+     * Método para obtener la lista de usuarios y enviarla a la vista.
+     * msm - 050325
+     * @param model Modelo para pasar los datos a la vista.
+     * @return Devuelve la vista "usuarios".
+     */
+    @GetMapping("/admin/obtenerUsuario")
+    public String obtenerUsuarios(Model modelo) {
+    	//Se guarda los datos de la sesion 
+    	credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
+    	modelo.addAttribute("usuarios", usuarioServicio.obtenerUsuarios());
+        
+    	//Se comprueba que la sesion no sea null
+        if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
+            SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
+            String correo = sesion.getUsername();
+            UsuarioDto u = usuarioServicio.buscarUsuario(correo);
+            modelo.addAttribute("usuario", u);
+            // En caso de que se cumpla las condiciones, se usa el nombre del usuario de sesión
+            nombreUsuarioLog = sesion.getNombre();
+            modelo.addAttribute("auth", sesion); // Enviar usuario autenticado a la vista
+        }
+        else {
+    		nombreUsuarioLog = "El usuario";
+    	}
+        log.info(nombreUsuarioLog + " accedio a la lista de usuarios");
+        return "usuarios";
+    }
     
     
     /**

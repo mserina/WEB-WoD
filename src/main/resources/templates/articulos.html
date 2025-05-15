@@ -98,15 +98,30 @@
       </thead>
       <tbody>
         <!-- Mostrar usuarios -->
-        <tr th:each="articulo : ${articulos}">
+        <tr th:each="articulo : ${articulos}"
+    	th:with="clave=${#strings.toLowerCase(
+                       #strings.replace(
+                         #strings.replace(
+                           #strings.replace(articulo.nombre,' ','-'),'.','-'),'@','-')
+                     )}">
           
           <td th:text="${articulo.nombre}"></td>
           <td th:text="${articulo.descripcion}"></td>
           <td th:text="${articulo.precio}"></td>
           <td th:text="${articulo.stock}"></td>
 		  <td th:text="${articulo.tipoArticulo}"></td>
-          <td><img id="imagenesArticulosLista" th:src="@{/images/shanksPoster.jpg}"></td>
+          <td><img id="imagenesArticulosLista" th:src="@{'http://localhost:9511/articulo/fotoArticulo/' + ${articulo.id}}"></td>
           <td>
+          <!-- Botón para abrir el formulario de edición con collapse de Bootstrap -->
+            <button id="botonAcciones" class="btn btn-primary" type="button"
+                    data-bs-toggle="modal"
+                    th:data-bs-target="|#modalEditar-${clave}|"
+                    aria-expanded="false"
+                    th:aria-controls="|collapseEditar-${clave}|">
+	              	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+					  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
+					</svg>
+            </button>
           	<button id="botonAcciones" class="btn btn-danger" type="button"
 		        th:attr="data-id=${articulo.id}"
 		        onclick="abrirModalBorrar(this.getAttribute('data-id'))">
@@ -114,11 +129,87 @@
 				  	<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
 				 </svg>
 			</button>
+			
           </td>
         </tr>        
       </tbody>
     </table>
     
+    
+    <!-- Modal para editar articulo (generado para cada articulo) -->
+  <div th:each="articulo : ${articulos}"
+  	   th:with="clave=${#strings.toLowerCase(
+                       #strings.replace(
+                         #strings.replace(
+                           #strings.replace(articulo.nombre,' ','-'),'.','-'),'@','-')
+                     )}">
+  
+    <div class="modal fade" 
+         th:id="|modalEditar-${clave}|"
+         tabindex="-1" 
+         aria-labelledby="modalEditarLabel" 
+         aria-hidden="true">
+         
+      <div class="modal-dialog">
+        <div class="modal-content contenedorFormularioEditar">
+          <form th:action="@{/admin/editarArticulo}" method="post">
+            <div id="tituloModalEditar" class="modal-header">
+              <h5 class="modal-title" id="campos">Editar Articulo</h5>
+            </div>
+            <div class="modal-body">
+              <!-- Campo oculto para el nombre del articulo -->
+              <input type="hidden" name="nombre" th:value="${articulo.nombre}">
+              <!-- Selección del campo a modificar -->
+              <div class="mb-3">
+                <label id="campos" for="campo" class="form-label">Campo a modificar:</label>
+                <select name="campo" 
+                		class="form-select" required 
+                        th:id="|campo-${clave}|"
+		                th:attr="data-nombre=${clave}"
+		                onchange="toggleNuevoValor(this.getAttribute('data-nombre'))">
+                  <option value="nombre">Nombre</option>
+                  <option value="descripcion">Descripcion</option>
+                  <option value="precio">Precio</option>
+                  <option value="stock">Stock</option>
+                  <option value="tipo_articulo">Tipo Articulo</option>
+                </select>
+              </div>
+              
+              
+              <!-- Contenedor para input de texto (por defecto visible) -->
+              <div class="mb-3" 
+                   th:id="|nuevoValorInputContainer-${clave}|">
+                <label id="campos" for="nuevoValor" class="form-label">Nuevo valor:</label>
+                <input type="text" name="nuevoValor" class="form-control" 
+                       th:id="|nuevoValorInput-${clave}|"
+                       placeholder="Ingrese el nuevo valor" required>
+              </div>
+              
+              
+              <!-- Contenedor para select (oculto por defecto) para 'tipo_usuario' -->
+              <div class="mb-3" 
+                   th:id="|nuevoValorSelectContainer-${clave}|"
+                   style="display: none;">
+                <label id="campos" for="nuevoValorSelect" class="form-label">Nuevo valor:</label>
+                <select name="nuevoValor" class="form-select" 
+                        th:id="|nuevoValorSelect-${clave}|"
+                        required disabled>
+                  <option value="poster">poster</option>
+                  <option value="manga">manga</option>
+                  <option value="figura">figura</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button id="botonAccionesEditar" type="submit" class="btn btn-success">Guardar Cambios</button>
+              <button id="botonAccionesEditar" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
     
     <!-- Modal para confirmar borrado -->
 	  <div class="modal fade" id="modalBorrar" tabindex="-1" aria-labelledby="modalBorrarLabel" aria-hidden="true">
@@ -167,6 +258,46 @@
 	        myModal.show();
 	        
 	      }
+	  	
+	  	function toggleNuevoValor(clave) {
+	  	  console.log("Clave para el modal:", clave);
+
+	  	  // Obtenemos el select que determina el campo a modificar
+	  	  var campoSelect = document.getElementById("campo-" + clave);
+	  	  // Obtenemos el contenedor del input (por defecto visible)
+	  	  var nuevoValorInputContainer = document.getElementById("nuevoValorInputContainer-" + clave);
+	  	  // Obtenemos el contenedor del select (oculto por defecto)
+	  	  var nuevoValorSelectContainer = document.getElementById("nuevoValorSelectContainer-" + clave);
+
+	  	  console.log("Valor seleccionado:", campoSelect.value);
+	  	  console.log("Contenedor INPUT:", nuevoValorInputContainer);
+	  	  console.log("Contenedor SELECT:", nuevoValorSelectContainer);
+
+	  	  // Ajusta aquí el nombre que usas para el campo rol en tu modal de artículo
+	  	  // Si tu <option> para tipo de artículo tiene value="tipoArticulo", usa ese literal:
+	  	  if (campoSelect.value.trim() === "tipo_articulo") {
+	  	    // Ocultamos el input libre
+	  	    nuevoValorInputContainer.style.display = "none";
+	  	    var inputField = nuevoValorInputContainer.querySelector("input[name='nuevoValor']");
+	  	    if (inputField) inputField.disabled = true;
+
+	  	    // Mostramos y habilitamos el select de tipos
+	  	    nuevoValorSelectContainer.style.display = "block";
+	  	    var selectField = nuevoValorSelectContainer.querySelector("select[name='nuevoValor']");
+	  	    if (selectField) selectField.disabled = false;
+	  	  } else {
+	  	    // Para cualquier otro campo, mostramos el input y ocultamos el select
+	  	    nuevoValorInputContainer.style.display = "block";
+	  	    var inputField = nuevoValorInputContainer.querySelector("input[name='nuevoValor']");
+	  	    if (inputField) inputField.disabled = false;
+
+	  	    nuevoValorSelectContainer.style.display = "none";
+	  	    var selectField = nuevoValorSelectContainer.querySelector("select[name='nuevoValor']");
+	  	    if (selectField) selectField.disabled = true;
+	  	  }
+	  	}
+
+	  	
   	</script>
 </body>
 </html>

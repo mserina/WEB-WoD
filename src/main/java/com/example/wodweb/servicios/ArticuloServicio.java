@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -39,7 +40,7 @@ public class ArticuloServicio {
     
     /**
      * Elimina un articulo por su ID.
-     * msm - 050325
+     * msm - 140525
      * @param id ID del articulo a eliminar.
      * @return true si el articulo fue eliminado con éxito, false en caso de error.
      */
@@ -52,6 +53,22 @@ public class ArticuloServicio {
             System.err.println("Error al borrar usuario en la API externa: " + e.getMessage());
             return false;
         }
+    }
+    
+    
+    /**
+     * Modifica un articulo existente.
+     * msm - 150525
+     * @param nombre Nombre del articulo a modificar.
+     * @param campo Campo a actualizar.
+     * @param nuevoValor Nuevo valor del campo.
+     * @return true si la operación fue exitosa, false en caso contrario.
+     */
+    public boolean editarArticulo(String nombre, String campo, String nuevoValor) {
+        String url = apiUrl + "/modificarArticulo?nombre=" + nombre + "&campo=" + campo + "&nuevoValor=" + nuevoValor;
+        
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, null, String.class);
+        return response.getStatusCode() == HttpStatus.OK;
     }
     
     
