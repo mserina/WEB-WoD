@@ -157,6 +157,7 @@
           <th>Correo Electrónico</th>
           <th>Tipo Usuario</th>
           <th>Contraseña</th>
+          <th>Estado</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -169,6 +170,7 @@
           <td th:text="${usuario.correoElectronico}"></td>
           <td th:text="${usuario.tipoUsuario}"></td>
 		  <td th:text="${usuario.contrasena != null ? '********' : 'No asignada'}"></td>
+          <td th:text="${usuario.verificado} ? 'Verificado' : 'No verificado'"></td>
           <td>
             <!-- Botón para abrir el formulario de edición con collapse de Bootstrap -->
             <button id="botonAcciones" class="btn btn-primary" type="button"

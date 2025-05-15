@@ -88,12 +88,18 @@ public class ArticuloServicio {
             body.add("nombre", articuloNuevo.getNombre());
             body.add("descripcion", articuloNuevo.getDescripcion());
             body.add("precio", articuloNuevo.getPrecio());
+            body.add("stock", articuloNuevo.getStock());
             body.add("tipoArticulo", articuloNuevo.getTipoArticulo());
-            
+         
             // La foto como recurso
-            ByteArrayResource archivoFoto = new ByteArrayResource(fotoBytes);
-    		
-            body.add("foto", archivoFoto);
+            ByteArrayResource archivoFoto = new ByteArrayResource(fotoBytes) {
+                @Override public String getFilename() {
+                    // Aquí podrías derivar la extensión real si quisieras
+                    return "fotoArticulo.jpg";
+                }
+            };
+                       
+            body.add("fotoArticulo", archivoFoto);
             
             // 4) Cabeceras multipart
             HttpHeaders headers = new HttpHeaders();

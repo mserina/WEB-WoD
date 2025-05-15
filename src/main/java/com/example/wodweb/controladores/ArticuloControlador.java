@@ -137,7 +137,7 @@ public class ArticuloControlador {
            ArticuloDto articuloRegistrado = articuloServicio.registrarArticulo(articuloNuevo, fotoBytes);       
            
            log.info(articuloRegistrado.getNombre() + ", se ha registrado");    		   
-           return "articulos";
+           return "redirect:/admin/obtenerArticulos";
            
        }catch (CorreoExistenteExcepcion errorEmail) {
     	   redirectAttributes.addAttribute("mensajeErrorEmail", errorEmail.getMessage());
