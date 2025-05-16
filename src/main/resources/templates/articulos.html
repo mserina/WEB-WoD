@@ -145,7 +145,7 @@
 <div class="modal fade" id="modalNuevoArticulo" tabindex="-1" aria-labelledby="modalNuevoArticuloLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content contenedorFormularioModal">
-      <form th:action="@{/admin/crearArticulo}" method="post" enctype="multipart/form-data">
+      <form id="nuevoArticuloFormulario" th:action="@{/admin/crearArticulo}" method="post" enctype="multipart/form-data">
         <div class="modal-header">
           <h5  class="modal-title" id="campos">Registrar Nuevo Artículo</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
@@ -184,7 +184,7 @@
           <!-- Imágenes -->
           <div class="mb-3">
             <label id="campos" for="imagenesArticulo" class="form-label">Imágenes</label>
-            <input type="file" id="foto" name="archivoFoto" accept="image/*" class="form-control" required>
+            <input type="file" id="foto" name="foto" accept="image/*" class="form-control" required>
           </div>
         </div>
         <div class="modal-footer">
@@ -234,6 +234,7 @@
                   <option value="precio">Precio</option>
                   <option value="stock">Stock</option>
                   <option value="tipo_articulo">Tipo Articulo</option>
+                  <option value="foto">Imagen</option>
                 </select>
               </div>
               
@@ -262,6 +263,18 @@
                 </select>
               </div>
             </div>
+            
+            <!-- Contenedor para subir imagen -->
+			<div class="mb-3" 
+			     th:id="|nuevoValorFileContainer-${clave}|"
+			     style="display: none;">
+			  <label id="campos" for="nuevoValorFile" class="form-label">Nueva imagen:</label>
+			  <input type="file" name="foto" 
+			         class="form-control" 
+			         th:id="|nuevoValorFile-${clave}|"
+			         accept="image/*" disabled>
+			</div>
+			
             <div class="modal-footer">
               <button id="botonAccionesEditar" type="submit" class="btn btn-success">Guardar Cambios</button>
               <button id="botonAccionesEditar" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -303,63 +316,69 @@
  <!-- ///////////////////////////////////
                 JAVASCRIPT                  
    //////////////////////////////////// -->
-  	<script>	
-	  	document.getElementById('filtroNombre').addEventListener('input', function() {
-	  	  const texto = this.value.toLowerCase();
-	  	  document.querySelectorAll('tbody tr').forEach(tr => {
-	  	    const nombre = tr.children[0].textContent.toLowerCase();
-	  	    tr.style.display = nombre.includes(texto) ? '' : 'none';
-	  	  });
-	  	});
-	  	
-	  	function abrirModalBorrar(id) {
-	        // Asigna el email al campo oculto del modal
-	        document.getElementById("campoIdModal").value = id;
-	        // Muestra el modal usando Bootstrap Modal
-	        var myModal = new bootstrap.Modal(document.getElementById('modalBorrar'));
-	        myModal.show();
-	        
-	      }
-	  	
-	  	function toggleNuevoValor(clave) {
-	  	  console.log("Clave para el modal:", clave);
+  	<script>
+    
+    // Función para abrir el modal de borrado
+    function abrirModalBorrar(id) {
+      document.getElementById('campoIdModal').value = id;
+      new bootstrap.Modal(document.getElementById('modalBorrar')).show();
+    }
 
-	  	  // Obtenemos el select que determina el campo a modificar
-	  	  var campoSelect = document.getElementById("campo-" + clave);
-	  	  // Obtenemos el contenedor del input (por defecto visible)
-	  	  var nuevoValorInputContainer = document.getElementById("nuevoValorInputContainer-" + clave);
-	  	  // Obtenemos el contenedor del select (oculto por defecto)
-	  	  var nuevoValorSelectContainer = document.getElementById("nuevoValorSelectContainer-" + clave);
+    
+    
+ // Función que controla el toggle dentro del modal de editar
+    function toggleNuevoValor(clave) {
+      // Obtenemos todos los contenedores posibles de inputs
+      const campoSelect               = document.getElementById('campo-' + clave);
+      const nuevoValorInputContainer  = document.getElementById('nuevoValorInputContainer-' + clave);
+      const nuevoValorSelectContainer = document.getElementById('nuevoValorSelectContainer-' + clave);
+      const nuevoValorFileContainer   = document.getElementById('nuevoValorFileContainer-' + clave);
 
-	  	  console.log("Valor seleccionado:", campoSelect.value);
-	  	  console.log("Contenedor INPUT:", nuevoValorInputContainer);
-	  	  console.log("Contenedor SELECT:", nuevoValorSelectContainer);
+      // Obtenemos los inputs dentro de cada contenedor
+      const nuevoValorInput  = nuevoValorInputContainer?.querySelector("input[name='nuevoValor']");
+      const nuevoValorSelect = nuevoValorSelectContainer?.querySelector("select[name='nuevoValor']");
+      const nuevoValorFile   = nuevoValorFileContainer?.querySelector("input[name='foto']");
 
-	  	  // Ajusta aquí el nombre que usas para el campo rol en tu modal de artículo
-	  	  // Si tu <option> para tipo de artículo tiene value="tipoArticulo", usa ese literal:
-	  	  if (campoSelect.value.trim() === "tipo_articulo") {
-	  	    // Ocultamos el input libre
-	  	    nuevoValorInputContainer.style.display = "none";
-	  	    var inputField = nuevoValorInputContainer.querySelector("input[name='nuevoValor']");
-	  	    if (inputField) inputField.disabled = true;
+      const campo = campoSelect.value.trim();
 
-	  	    // Mostramos y habilitamos el select de tipos
-	  	    nuevoValorSelectContainer.style.display = "block";
-	  	    var selectField = nuevoValorSelectContainer.querySelector("select[name='nuevoValor']");
-	  	    if (selectField) selectField.disabled = false;
-	  	  } else {
-	  	    // Para cualquier otro campo, mostramos el input y ocultamos el select
-	  	    nuevoValorInputContainer.style.display = "block";
-	  	    var inputField = nuevoValorInputContainer.querySelector("input[name='nuevoValor']");
-	  	    if (inputField) inputField.disabled = false;
+      // Ocultamos todos los contenedores por defecto
+      nuevoValorInputContainer.style.display = 'none';
+      nuevoValorSelectContainer.style.display = 'none';
+      nuevoValorFileContainer.style.display = 'none';
 
-	  	    nuevoValorSelectContainer.style.display = "none";
-	  	    var selectField = nuevoValorSelectContainer.querySelector("select[name='nuevoValor']");
-	  	    if (selectField) selectField.disabled = true;
-	  	  }
-	  	}
+      // Y desactivamos todos sus inputs
+      if (nuevoValorInput) nuevoValorInput.disabled = true;
+      if (nuevoValorSelect) nuevoValorSelect.disabled = true;
+      if (nuevoValorFile) nuevoValorFile.disabled = true;
 
-	  	
-  	</script>
+      // Según el campo seleccionado, mostramos y activamos el input correspondiente
+      if (campo === 'tipo_articulo') {
+        // Mostrar select (para tipo_articulo)
+        nuevoValorSelectContainer.style.display = 'block';
+        if (nuevoValorSelect) nuevoValorSelect.disabled = false;
+
+      } else if (campo === 'foto') {
+        // Mostrar input de archivo (para imagen)
+        nuevoValorFileContainer.style.display = 'block';
+        if (nuevoValorFile) nuevoValorFile.disabled = false;
+
+      } else {
+        // Mostrar input de texto para otros campos
+        nuevoValorInputContainer.style.display = 'block';
+        if (nuevoValorInput) nuevoValorInput.disabled = false;
+      }
+    }
+
+    
+    
+    // Filtro de búsqueda por nombre
+    document.getElementById('filtroNombre').addEventListener('input', function() {
+      const texto = this.value.toLowerCase();
+      document.querySelectorAll('tbody tr').forEach(tr => {
+        const nombre = tr.children[0].textContent.toLowerCase();
+        tr.style.display = nombre.includes(texto) ? '' : 'none';
+      });
+    });
+  </script>
 </body>
 </html>

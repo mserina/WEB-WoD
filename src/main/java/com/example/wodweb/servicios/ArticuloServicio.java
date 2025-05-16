@@ -7,13 +7,13 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.wodweb.dtos.ArticuloDto;
 import com.example.wodweb.dtos.UsuarioDto;
@@ -125,11 +125,43 @@ public class ArticuloServicio {
      * @param nuevoValor Nuevo valor del campo.
      * @return true si la operación fue exitosa, false en caso contrario.
      */
-    public boolean editarArticulo(String nombre, String campo, String nuevoValor) {
-        String url = apiUrl + "/modificarArticulo?nombre=" + nombre + "&campo=" + campo + "&nuevoValor=" + nuevoValor;
-        
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, null, String.class);
-        return response.getStatusCode() == HttpStatus.OK;
+    public boolean editarArticulo(String nombre, String campo, String nuevoValor, MultipartFile foto) {
+        try {
+            // Aquí prepararías la llamada a la API externa, por ejemplo usando restTemplate.exchange()
+            // Montas un cuerpo multipart/form-data si hay foto, o application/x-www-form-urlencoded si sólo texto.
+
+            MultiValueMap<String,Object> body = new LinkedMultiValueMap<>();
+            body.add("nombre", nombre);
+            body.add("campo", campo);
+
+            if ("foto".equals(campo) && foto != null && !foto.isEmpty()) {
+                // adjuntamos la foto
+                body.add("foto", new ByteArrayResource(foto.getBytes()) {
+                    @Override public String getFilename() {
+                    	return foto.getOriginalFilename(); 
+                    }
+                });
+            } else {
+                // adjuntamos el nuevo valor de texto
+                body.add("nuevoValor", nuevoValor);
+            }
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+            HttpEntity<MultiValueMap<String,Object>> request = new HttpEntity<>(body, headers);
+
+            ResponseEntity<Void> response = restTemplate.exchange(
+                    apiUrl + "/modificarArticulo",
+                    HttpMethod.PUT,
+                    request,
+                    Void.class
+            );
+            return response.getStatusCode().is2xxSuccessful();
+
+        } catch (Exception e) {
+            return false;
+        }
     }
     
     

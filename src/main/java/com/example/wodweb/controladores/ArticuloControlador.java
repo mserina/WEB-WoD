@@ -85,22 +85,26 @@ public class ArticuloControlador {
      * @return Redirige a la vista con la lista de articulos.
      */
     @PostMapping("/admin/editarArticulo")
-    public String editarArticulo(@RequestParam String nombre, @RequestParam String campo, @RequestParam String nuevoValor, RedirectAttributes redirectAttributes) {
+    public String editarArticulo(@RequestParam String nombre, @RequestParam String campo,@RequestParam(required = false) String nuevoValor,@RequestParam(name = "foto", required = false) MultipartFile foto,RedirectAttributes redirectAttributes) {
         
-    	boolean actualizado = articuloServicio.editarArticulo(nombre, campo, nuevoValor);
-        credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
-        String nombreUsuarioModificado = "";
-        
+    	boolean actualizado;
+        if ("foto".equals(campo) && foto != null && !foto.isEmpty()) {
+            // Llamamos a la versión del servicio que recibe el archivo
+            actualizado = articuloServicio.editarArticulo(nombre, campo, null, foto);
+        } else {
+            // Llamamos a la versión que sólo recibe texto
+            actualizado = articuloServicio.editarArticulo(nombre, campo, nuevoValor, null);
+        }
+
         if (actualizado) {
-            redirectAttributes.addFlashAttribute("mensaje", "Articulo actualizado con éxito.");
+            redirectAttributes.addFlashAttribute("mensaje", "Artículo actualizado con éxito.");
             redirectAttributes.addFlashAttribute("tipoMensaje", "success");
         } else {
-            redirectAttributes.addFlashAttribute("mensaje", "Error al actualizar articulo.");
+            redirectAttributes.addFlashAttribute("mensaje", "Error al actualizar artículo.");
             redirectAttributes.addFlashAttribute("tipoMensaje", "danger");
         }
-       
-    	log.info("Se modifico el campo " + campo + " del articulo " + nombre);
-        return "redirect:/admin/obtenerArticulos"; // Redirigir de nuevo a la lista de usuarios
+        log.info("Se modificó el campo " + campo + " del artículo " + nombre);
+        return "redirect:/admin/obtenerArticulos";
     }
     
     
