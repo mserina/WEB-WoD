@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.sorg">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
 <title>Bienvenido a la Tienda de Manga</title>
@@ -36,14 +36,29 @@
 			<div class="col-auto ms-auto">
 				<div class="dropdown">
 
-					<!-- Imagen de usuario autenticado -->
-					<img 
-						class="rounded-circle dropdown-toggle-img"
-						sec:authorize="isAuthenticated()"
-						th:src="@{'http://localhost:9511/usuario/foto/' + ${usuario.id}}"
-						alt="Usuario" width="40" height="40"
-						data-bs-toggle="dropdown"
-						aria-expanded="false">
+					<p th:text="'Perfil activo = ' + ${perfilActivo}">Perfil activo = ?</p>
+
+					<!-- Para local -->
+					<img
+					  th:if="${perfilActivo == 'local'}"
+					  class="rounded-circle dropdown-toggle-img"
+					  sec:authorize="isAuthenticated()"
+					  th:src="@{http://localhost:9511/usuario/foto/{id}(id=${usuario.id})}"
+					  alt="Usuario"
+					  width="40" height="40"
+					  data-bs-toggle="dropdown"
+					  aria-expanded="false" />
+					
+					<!-- Para producción -->
+					<img
+					  th:if="${perfilActivo != 'local'}"
+					  class="rounded-circle dropdown-toggle-img"
+					  sec:authorize="isAuthenticated()"
+					  th:src="@{https://msm-sevilla.es/usuario/foto/{id}(id=${usuario.id})}"
+					  alt="Usuario"
+					  width="40" height="40"
+					  data-bs-toggle="dropdown"
+					  aria-expanded="false" />
 			
 					<!-- Imagen por defecto para usuarios no autenticados -->
 					<img 
