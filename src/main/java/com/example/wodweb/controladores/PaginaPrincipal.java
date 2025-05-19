@@ -3,7 +3,6 @@ package com.example.wodweb.controladores;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -29,8 +28,6 @@ public class PaginaPrincipal {
 	String nombreUsuarioLog = "El usuario"; //Nombre que se usara en el log, en caso de no haber sesion de un usuario
 	@Autowired 
 	private UsuarioServicio usuarioServicio;
-	@Autowired
-	private Environment env;
 	
 	/* /////////////////////////////////// */
     /*             METODOS                  */
@@ -44,25 +41,22 @@ public class PaginaPrincipal {
 	 */
 	@GetMapping("/")
 	public String bienvenida(Model modelo) {
-	    // 1) Perfil activo (si no hay ninguno, "default")
-	    String perfil = env.getActiveProfiles().length > 0
-	                    ? env.getActiveProfiles()[0]
-	                    : "default";
-	    modelo.addAttribute("perfilActivo", perfil);
+		
+		credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
+		if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
+            SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
+            String correo = sesion.getUsername();
+            UsuarioDto u = usuarioServicio.buscarUsuario(correo);
+            modelo.addAttribute("usuario", u);
+            // Usamos el nombre del usuario de sesión
+            nombreUsuarioLog = sesion.getNombre();
+        }
+		else {
+    		nombreUsuarioLog = "El usuario";
+    	}
+        log.info(nombreUsuarioLog + " accedio a la pagina principal");
+		return "bienvenida";
 
-	    // 2) Usuario (cuando haya)
-	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    if (auth != null && auth.getPrincipal() instanceof SesionDto) {
-	        SesionDto sesion = (SesionDto) auth.getPrincipal();
-	        modelo.addAttribute("usuario", usuarioServicio.buscarUsuario(sesion.getUsername()));
-	        nombreUsuarioLog = sesion.getNombre();
-	    } else {
-	        nombreUsuarioLog = "El usuario";
-	    }
-
-	    log.info(nombreUsuarioLog + " accedió a la página principal");
-	    return "bienvenida";
 	}
-
 
 }
