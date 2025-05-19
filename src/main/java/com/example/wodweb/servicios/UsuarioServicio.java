@@ -246,6 +246,7 @@ public class UsuarioServicio {
 
                 // 3. Construir el enlace de recuperación
                 String link = "http://localhost:8080/reiniciarContrasena?token=" + token;
+               //String link = "https://msm-sevilla.es/reiniciarContrasena?token=" + token;
 
                 
                 // 4. Enviar el correo con JavaMailSender (o como lo tengas configurado)

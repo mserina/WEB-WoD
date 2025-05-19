@@ -76,7 +76,7 @@
 
 
 <!-- ///////////////////////////////////
-            LISTA DE USUARIOS                  
+            LISTA DE ARTICULOS                  
    //////////////////////////////////// -->
   <div class="container mt-3">
      <input id="filtroNombre" type="text" class="form-control" placeholder="Buscar por nombre...">
@@ -115,7 +115,8 @@
           <td th:text="${articulo.precio}"></td>
           <td th:text="${articulo.stock}"></td>
 		  <td th:text="${articulo.tipoArticulo}"></td>
-          <td><img id="imagenesArticulosLista" th:src="@{'http://localhost:9511/articulo/fotoArticulo/' + ${articulo.id}}"></td>
+          <!--<td><img id="imagenesArticulosLista" th:src="@{'http://localhost:9511/articulo/fotoArticulo/' + ${articulo.id}}"></td>-->
+          <td><img id="imagenesArticulosLista" th:src="@{'https://msm-sevilla.es/articulo/fotoArticulo/' + ${articulo.id}}"></td>
           <td>
           <!-- Botón para abrir el formulario de edición con collapse de Bootstrap -->
             <button id="botonAcciones" class="btn btn-primary" type="button"
