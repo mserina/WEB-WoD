@@ -3,6 +3,7 @@ package com.example.wodweb.controladores;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,8 @@ public class InicioSesionControlador {
 	String nombreUsuarioLog = "El usuario"; //Nombre que se usara en el log, en caso de no haber sesion de un usuario
 	@Autowired
 	UsuarioServicio usuarioServicio;
+	@Autowired
+	private Environment env;
 	
 	/* /////////////////////////////////// */
     /*             METODOS                  */
@@ -56,7 +59,13 @@ public class InicioSesionControlador {
 	    } else {
 	      // Si no es un logout, intentamos averiguar quién es el usuario actual
 	    	if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
-	    	  // Usuario autenticado correctamente
+	    		// 1) Perfil activo (si no hay ninguno, "default")
+	    	    String perfil = env.getActiveProfiles().length > 0
+	    	                    ? env.getActiveProfiles()[0]
+	    	                    : "default";
+	    	    modelo.addAttribute("perfilActivo", perfil);
+	    		
+	    		// Usuario autenticado correctamente
 	    		SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
 	    		String correo = sesion.getUsername();
 	            UsuarioDto u = usuarioServicio.buscarUsuario(correo);

@@ -1,7 +1,6 @@
 package com.example.wodweb.controladores;
 
 import java.io.IOException;
-
 import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.List;
@@ -9,6 +8,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -41,7 +41,8 @@ public class UsuarioControlador {
 	private static final Logger log = LoggerFactory.getLogger(PaginaPrincipal.class); //Instancia de clase para generar logs
 	Authentication credencialesSesion; //Variable que se usa para guardar los datos de una sesion
 	String nombreUsuarioLog = "El usuario"; //Nombre que se usara en el log, en caso de no haber sesion de un usuario
-    
+	@Autowired
+	private Environment env;
     
     /* /////////////////////////////////// */
     /*             METODOS                  */
@@ -60,7 +61,14 @@ public class UsuarioControlador {
     	credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
 
     	if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
-            SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
+    		// 1) Perfil activo (si no hay ninguno, "default")
+    	    String perfil = env.getActiveProfiles().length > 0
+    	                    ? env.getActiveProfiles()[0]
+    	                    : "default";
+    	    modelo.addAttribute("perfilActivo", perfil);
+    			
+    	    
+    		SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
             String correo = sesion.getUsername();
             UsuarioDto u = usuarioServicio.buscarUsuario(correo);
             modelo.addAttribute("usuario", u);
@@ -85,7 +93,7 @@ public class UsuarioControlador {
      * @return Redirige a la vista de bienvenida si el registro es exitoso, de lo contrario, vuelve a "registro".
      */
     @PostMapping("/registroDatos")
-    public String registrarUsuario(HttpSession sesion ,UsuarioDto usuarioCredenciales, Model model, RedirectAttributes redirectAttributes,  @RequestParam("archivoFoto") MultipartFile foto) {
+    public String registrarUsuario(HttpSession sesion ,UsuarioDto usuarioCredenciales, Model modelo, RedirectAttributes mensajesRedireccion,  @RequestParam("archivoFoto") MultipartFile foto) {
        try {
     	   
     	   // Generar código de verificación
@@ -116,14 +124,14 @@ public class UsuarioControlador {
                log.info(usuarioRegistrado.getNombreCompleto() + ", se ha registrado");    		   
                return "verificarCodigo";
            } else {
-               redirectAttributes.addFlashAttribute("mensajeErrorCodigo", "Error en el registro. Inténtelo de nuevo.");
+        	   mensajesRedireccion.addFlashAttribute("mensajeErrorCodigo", "Error en el registro. Inténtelo de nuevo.");
                return "redirect:/registro"; // Regresa al formulario
            }
        }catch (CorreoExistenteExcepcion errorEmail) {
-           model.addAttribute("mensajeErrorEmail", errorEmail.getMessage());
+    	   mensajesRedireccion.addFlashAttribute("mensajeErrorEmail", "El gmail ya esta en uso");
            return "redirect:/registro";        
        }catch (IOException e) {
-    	   model.addAttribute("mensajeError", "No pudimos procesar la foto.");
+    	   mensajesRedireccion.addFlashAttribute("mensajeError", "No pudimos procesar la foto.");
     	   return "redirect:/registro";
        }
     }
@@ -152,7 +160,13 @@ public class UsuarioControlador {
         
     	//Se comprueba que la sesion no sea null
         if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
-            SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
+        	// 1) Perfil activo (si no hay ninguno, "default")
+    	    String perfil = env.getActiveProfiles().length > 0
+    	                    ? env.getActiveProfiles()[0]
+    	                    : "default";
+    	    modelo.addAttribute("perfilActivo", perfil);
+        	
+        	SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
             String correo = sesion.getUsername();
             UsuarioDto u = usuarioServicio.buscarUsuario(correo);
             modelo.addAttribute("usuario", u);
@@ -405,7 +419,12 @@ public class UsuarioControlador {
      * @return La pagina de olvidasteContraseña
      */
     @GetMapping("/contrasenaOlvidada")
-    public String olvideContrasena() {
+    public String olvideContrasena(Model modelo) {
+    	// 1) Perfil activo (si no hay ninguno, "default")
+	    String perfil = env.getActiveProfiles().length > 0
+	                    ? env.getActiveProfiles()[0]
+	                    : "default";
+	    modelo.addAttribute("perfilActivo", perfil);
         return "olvidasteContrasena";
     }
     

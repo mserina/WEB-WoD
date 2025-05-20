@@ -36,14 +36,28 @@
 			<div class="col-auto ms-auto">
 				<div class="dropdown">
 
-					<!-- Imagen de usuario autenticado -->
-					<img 
-						class="rounded-circle dropdown-toggle-img"
-						sec:authorize="isAuthenticated()"
-						th:src="@{'http://localhost:9511/usuario/foto/' + ${usuario.id}}"
-						alt="Usuario" width="40" height="40"
-						data-bs-toggle="dropdown"
-						aria-expanded="false">
+
+					<!-- Para local -->
+					<img
+					  th:if="${perfilActivo == 'local'}"
+					  class="rounded-circle dropdown-toggle-img"
+					  sec:authorize="isAuthenticated()"
+					  th:src="@{http://localhost:9511/usuario/foto/{id}(id=${usuario.id})}"
+					  alt="Usuario"
+					  width="40" height="40"
+					  data-bs-toggle="dropdown"
+					  aria-expanded="false" />
+					
+					<!-- Para producción -->
+					<img
+					  th:if="${perfilActivo != 'local'}"
+					  class="rounded-circle dropdown-toggle-img"
+					  sec:authorize="isAuthenticated()"
+					  th:src="@{https://msm-sevilla.es/usuario/foto/{id}(id=${usuario.id})}"
+					  alt="Usuario"
+					  width="40" height="40"
+					  data-bs-toggle="dropdown"
+					  aria-expanded="false" />
 			
 					<!-- Imagen por defecto para usuarios no autenticados -->
 					<img 
@@ -57,11 +71,11 @@
 					<!-- Menú desplegable -->
 					<ul class="dropdown-menu dropdown-menu-end"
 						aria-labelledby="dropdownMenuButton">
-						<li th:if="${auth != null and auth.admin}"><a
-							class="dropdown-item" th:href="@{/admin}">Lista de Usuarios</a></li>
+						<li th:if="${auth != null and auth.admin}"><a class="dropdown-item" th:href="@{/admin}">Lista de Usuarios</a></li>
 						<li><a class="dropdown-item" th:href="@{/registro}">Registro</a></li>
 						<li><a class="dropdown-item" th:href="@{/login}">Login</a></li>
 						<li sec:authorize="hasRole('ADMIN')" ><a class="dropdown-item" th:href="@{/admin/obtenerUsuario}">Admin</a></li>
+						<li sec:authorize="hasRole('ADMIN')" ><a class="dropdown-item" th:href="@{/admin/obtenerArticulos}">Articulos</a></li>
 						<li><hr class="dropdown-divider"></li>
 						<li><a class="dropdown-item text-danger" th:href="@{/logout}">Logout</a></li>
 					</ul>
@@ -70,7 +84,6 @@
 
 		</div>
 	</div>
-
 
 
 <!-- ///////////////////////////////////
@@ -118,14 +131,14 @@
 	  </div>
 
      <!-- Alertas -->
-      <div th:if="${mensajeErrorEmail}" role="alert">
-    	<span th:text="${mensajeErrorEmail}" style="color: red;"></span>
-	  	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
-	  </div>
+      <div th:if="${mensajeError}" class="alert alert-secondary" role="alert">
+    		<span th:text="${mensajeError}" style="color: red;"></span>
+    		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+	  	</div>
 	  
-	  <div th:if="${mensajeErrorCodigo}" class="alert alert-danger" role="alert">
-    	<span th:text="${mensajeErrorCodigo}" style="color: red;"></span>
-    	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+	  <div th:if="${mensajeErrorEmail}" class="alert alert-danger" role="alert">
+		  <span th:text="${mensajeErrorEmail}"></span>
+		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
 	  </div>
 	  
       <button id="boton" type="submit" class="btn btn-primary">Registrar</button>

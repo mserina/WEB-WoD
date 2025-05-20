@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -42,7 +43,8 @@ public class UsuarioServicio {
     private JavaMailSender mailSender;
     @Autowired
     private PasswordEncoder cifradoContraseña;
-
+    @Autowired
+	private Environment env;
 
     public UsuarioServicio() {
         this.restTemplate = new RestTemplate();
@@ -245,7 +247,17 @@ public class UsuarioServicio {
                 String token = (String) response.getBody().get("token");
 
                 // 3. Construir el enlace de recuperación
-                String link = "http://localhost:8080/reiniciarContrasena?token=" + token;
+                String perfil = env.getActiveProfiles().length > 0
+	                    ? env.getActiveProfiles()[0]
+	                    : "default";
+                
+                String link;
+                if(perfil.equals("local")){
+                    link = "http://localhost:8080/reiniciarContrasena?token=" + token;
+                }
+                else {
+                    link = "http://msm-sevilla.es/reiniciarContrasena?token=" + token;
+                }
 
                 
                 // 4. Enviar el correo con JavaMailSender (o como lo tengas configurado)

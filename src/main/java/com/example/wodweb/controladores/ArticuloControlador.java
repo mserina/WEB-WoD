@@ -7,6 +7,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -42,7 +43,8 @@ public class ArticuloControlador {
 	private static final Logger log = LoggerFactory.getLogger(PaginaPrincipal.class); //Instancia de clase para generar logs
 	Authentication credencialesSesion; //Variable que se usa para guardar los datos de una sesion
 	String nombreUsuarioLog = "El usuario"; //Nombre que se usara en el log, en caso de no haber sesion de un usuario
-    
+	@Autowired
+	private Environment env;
 	
 	
 	/**
@@ -59,7 +61,13 @@ public class ArticuloControlador {
         
     	//Se comprueba que la sesion no sea null
         if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
-            SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
+        	// 1) Perfil activo (si no hay ninguno, "default")
+    	    String perfil = env.getActiveProfiles().length > 0
+    	                    ? env.getActiveProfiles()[0]
+    	                    : "default";
+    	    modelo.addAttribute("perfilActivo", perfil);
+        	
+        	SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
             String correo = sesion.getUsername();
             UsuarioDto u = usuarioServicio.buscarUsuario(correo);
             modelo.addAttribute("usuario", u);
@@ -85,7 +93,7 @@ public class ArticuloControlador {
      * @return Redirige a la vista con la lista de articulos.
      */
     @PostMapping("/admin/editarArticulo")
-    public String editarArticulo(@RequestParam String nombre, @RequestParam String campo,@RequestParam(required = false) String nuevoValor,@RequestParam(name = "foto", required = false) MultipartFile foto,RedirectAttributes redirectAttributes) {
+    public String editarArticulo(@RequestParam String nombre, @RequestParam String campo, @RequestParam(required = false) String nuevoValor,@RequestParam(name = "foto", required = false) MultipartFile foto,RedirectAttributes redirectAttributes) {
         
     	boolean actualizado;
         if ("foto".equals(campo) && foto != null && !foto.isEmpty()) {
@@ -133,7 +141,7 @@ public class ArticuloControlador {
     }
     
     @PostMapping("/admin/crearArticulo")
-    public String registrarArticulo(HttpSession sesion ,ArticuloDto articuloNuevo, Model modelo, RedirectAttributes redirectAttributes,  @RequestParam("archivoFoto") MultipartFile foto) {
+    public String registrarArticulo(HttpSession sesion ,ArticuloDto articuloNuevo, Model modelo, RedirectAttributes redirectAttributes,  @RequestParam(name = "foto", required = false) MultipartFile foto) {
        try {
     	   
            byte[] fotoBytes = foto.getBytes();
