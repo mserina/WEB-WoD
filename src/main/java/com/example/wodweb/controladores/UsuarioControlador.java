@@ -38,7 +38,7 @@ public class UsuarioControlador {
   
 	@Autowired
 	private UsuarioServicio usuarioServicio; //Inyeccion del servicio para usuarios
-	private static final Logger log = LoggerFactory.getLogger(PaginaPrincipal.class); //Instancia de clase para generar logs
+	private static final Logger log = LoggerFactory.getLogger("logMensajes"); //Instancia de clase para generar logs
 	Authentication credencialesSesion; //Variable que se usa para guardar los datos de una sesion
 	String nombreUsuarioLog = "El usuario"; //Nombre que se usara en el log, en caso de no haber sesion de un usuario
 	@Autowired

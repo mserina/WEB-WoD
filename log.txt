@@ -1,0 +1,8 @@
+2025-05-21 22:56:23 - El usuario accedió a la página principal
+2025-05-21 22:56:27 - El usuario accedio a login
+2025-05-21 22:56:30 - El usuario accedio a registro
+2025-05-21 22:56:32 - El usuario accedió a la página principal
+2025-05-21 22:56:35 - El usuario accedio a login
+2025-05-21 22:56:42 - Carla accedió a la página principal
+2025-05-21 23:03:49 - Carla accedió a la página principal
+2025-05-21 23:04:12 - El usuario cerro sesion
