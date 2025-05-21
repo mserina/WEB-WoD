@@ -192,12 +192,17 @@ public class UsuarioControlador {
      * @return Redirige a la vista con la lista de usuarios.
      */
     @PostMapping("/admin/editarUsuario")
-    public String editarUsuario(@RequestParam String correoElectronico, @RequestParam String campo, @RequestParam String nuevoValor, RedirectAttributes redirectAttributes) {
-        
-    	boolean actualizado = usuarioServicio.editarUsuario(correoElectronico, campo, nuevoValor);
-        credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
+    public String editarUsuario(@RequestParam String correoElectronico,
+                                @RequestParam String campo,
+                                @RequestParam String nuevoValor,
+                                HttpSession session,
+                                RedirectAttributes redirectAttributes) {
+
+        boolean actualizado = usuarioServicio.editarUsuario(correoElectronico, campo, nuevoValor);
+
+        Authentication credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
         String nombreUsuarioModificado = "";
-        
+
         if (actualizado) {
             redirectAttributes.addFlashAttribute("mensaje", "Usuario actualizado con éxito.");
             redirectAttributes.addFlashAttribute("tipoMensaje", "success");
@@ -205,26 +210,42 @@ public class UsuarioControlador {
             redirectAttributes.addFlashAttribute("mensaje", "Error al actualizar usuario.");
             redirectAttributes.addFlashAttribute("tipoMensaje", "danger");
         }
-        
 
-    	if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
+        // Obtener nombre para el log
+        String nombreUsuarioLog = "Desconocido";
+        boolean modificoSuPropioCorreo = false;
+
+        if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
             SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
-            // Usamos el nombre del usuario de sesión
             nombreUsuarioLog = sesion.getNombre();
-        }
-    	else {
-    		nombreUsuarioLog = "El usuario";
-    	}
 
-    	List<UsuarioDto> usuarios = usuarioServicio.obtenerUsuarios();
-    	for (UsuarioDto usuario : usuarios) {
-    		if(usuario.getCorreoElectronico().equals(correoElectronico)) {
-    			nombreUsuarioModificado = usuario.getNombreCompleto();
-    		}
-    	}
-    	log.info(nombreUsuarioLog + " modifico el campo " + campo + " del usuario " + nombreUsuarioModificado);
-        return "redirect:/admin/obtenerUsuario"; // Redirigir de nuevo a la lista de usuarios
+            // Si se modifica el campo "correo_electronico" del usuario autenticado, marcar para logout
+            if (campo.equals("correo_electronico") && correoElectronico.equals(sesion.getUsername())) {
+                modificoSuPropioCorreo = true;
+            }
+        }
+
+        // Obtener nombre del usuario modificado para el log
+        List<UsuarioDto> usuarios = usuarioServicio.obtenerUsuarios();
+        for (UsuarioDto usuario : usuarios) {
+            if (usuario.getCorreoElectronico().equals(correoElectronico)) {
+                nombreUsuarioModificado = usuario.getNombreCompleto();
+                break;
+            }
+        }
+
+        log.info(nombreUsuarioLog + " modificó el campo " + campo + " del usuario " + nombreUsuarioModificado);
+
+        // 🔐 Si el usuario cambió su propio correo, forzar logout
+        if (modificoSuPropioCorreo) {
+            session.invalidate();
+            SecurityContextHolder.clearContext();
+            return "redirect:/logout";
+        }
+
+        return "redirect:/admin/obtenerUsuario";
     }
+
 
     
     
@@ -338,7 +359,7 @@ public class UsuarioControlador {
             String correo = sesion.getUsername();
             UsuarioDto u = usuarioServicio.buscarUsuario(correo);
             modelo.addAttribute("usuario", u);
-        	mensajeFlash.addFlashAttribute("mensajeErrorCodigo", "El tiempo de verificación ha expirado. Por favor, regístrate de nuevo.");
+        	mensajeFlash.addFlashAttribute("mensaje	ErrorCodigo", "El tiempo de verificación ha expirado. Por favor, regístrate de nuevo.");
             // Puedes redirigir al registro, o a /verificarCodigo de nuevo:
             return "redirect:/registro";
         }

@@ -25,4 +25,9 @@
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="FILE" />
     </root>
+
+<!-- Logger específico para tus clases personalizadas -->
+    <logger name="com.example.wodweb.logs" level="INFO" additivity="false">
+        <appender-ref ref="PERSONALIZADO"/>
+    </logger>
 </configuration>

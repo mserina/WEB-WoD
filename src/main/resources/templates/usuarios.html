@@ -159,7 +159,6 @@
   <div class="container mt-3">
      <input id="filtroNombre" type="text" class="form-control" placeholder="Buscar por nombre...">
   </div>
-
   <div class="container mt-5">
     <table class="table table-bordered">
       <thead id="cabezeraTablaUsuarios">
@@ -261,16 +260,20 @@
               <div class="mb-3" 
                    th:id="|nuevoValorSelectContainer-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"
                    style="display: none;">
+                   
                 <label id="campos" for="nuevoValorSelect" class="form-label">Nuevo valor:</label>
                 <select name="nuevoValor" class="form-select" 
                         th:id="|nuevoValorSelect-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"
                         required disabled>
                   <option value="user">usuario</option>
                   <option value="admin">admin</option>
-                </select>
-              </div>
+                </select>             
+			 </div>
             </div>
             <div class="modal-footer">
+            <p class="text-danger">
+				   ⚠ Atención: si modificas tu propio correo, deberás volver a iniciar sesión.
+				</p> 
               <button id="botonAccionesEditar" type="submit" class="btn btn-success">Guardar Cambios</button>
               <button id="botonAccionesEditar" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
             </div>
@@ -279,7 +282,6 @@
       </div>
     </div>
   </div>
-  
   
   
   <!-- Modal para confirmar borrado -->
@@ -318,6 +320,8 @@
 	  	    tr.style.display = nombre.includes(texto) ? '' : 'none';
 	  	  });
 	  	});
+	  	
+	  	
   	</script>
 </body>
 </html>
