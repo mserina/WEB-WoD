@@ -49,15 +49,24 @@ public class ArticuloControlador {
 	@GetMapping("/catalogo/manga")
 	public String catalogoManga(Model modelo) {
 	    List<ArticuloDto> articulos = articuloServicio.obtenerPorTipo("manga");
-	 // 1) Perfil activo (si no hay ninguno, "default")
+
 	    String perfil = env.getActiveProfiles().length > 0
 	                    ? env.getActiveProfiles()[0]
 	                    : "default";
 	    modelo.addAttribute("perfilActivo", perfil);
-	    
-	    modelo.addAttribute("articulosLista", articulos); // ← Aquí se inyecta al modelo
+
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    if (auth != null && auth.getPrincipal() instanceof SesionDto) {
+	        SesionDto sesion = (SesionDto) auth.getPrincipal();
+	        modelo.addAttribute("usuario", usuarioServicio.buscarUsuario(sesion.getUsername()));
+	    }
+
+	    modelo.addAttribute("articulosLista", articulos);
+	    modelo.addAttribute("titulo", "Manga");
+
 	    return "catalogo";
 	}
+
 	
 	@GetMapping("/catalogo/figura")
 	public String catalogoFigura(Model modelo) {
@@ -67,9 +76,15 @@ public class ArticuloControlador {
 	                    ? env.getActiveProfiles()[0]
 	                    : "default";
 	    modelo.addAttribute("perfilActivo", perfil);
-	    modelo.addAttribute("titulo", "Figura");
 	    
-	    modelo.addAttribute("articulosLista", articulos); // ← Aquí se inyecta al modelo
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    if (auth != null && auth.getPrincipal() instanceof SesionDto) {
+	        SesionDto sesion = (SesionDto) auth.getPrincipal();
+	        modelo.addAttribute("usuario", usuarioServicio.buscarUsuario(sesion.getUsername()));
+	    }
+
+	    modelo.addAttribute("titulo", "Figura");
+        modelo.addAttribute("articulosLista", articulos); // ← Aquí se inyecta al modelo
 	    return "catalogo";
 	}
 	
@@ -81,8 +96,14 @@ public class ArticuloControlador {
 	                    ? env.getActiveProfiles()[0]
 	                    : "default";
 	    modelo.addAttribute("perfilActivo", perfil);
-	    modelo.addAttribute("titulo", "Poster");
 	    
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    if (auth != null && auth.getPrincipal() instanceof SesionDto) {
+	        SesionDto sesion = (SesionDto) auth.getPrincipal();
+	        modelo.addAttribute("usuario", usuarioServicio.buscarUsuario(sesion.getUsername()));
+	    }
+
+	    modelo.addAttribute("titulo", "Poster");
 	    modelo.addAttribute("articulosLista", articulos); // ← Aquí se inyecta al modelo
 	    return "catalogo";
 	}

@@ -108,3 +108,79 @@
 2025-05-22 14:19:35 - El usuario accedio a login
 2025-05-22 14:19:36 - El usuario accedio a login
 2025-05-22 14:19:46 - El usuario accedió a la página principal
+2025-05-22 18:17:25 - El usuario accedió a la página principal
+2025-05-22 18:17:27 - El usuario accedio a login
+2025-05-22 18:17:31 - El usuario accedio a login
+2025-05-22 18:17:34 - El usuario accedió a la página principal
+2025-05-22 18:19:02 - Se cerro la sesion
+2025-05-22 18:19:17 - Migeu accedió a la página principal
+2025-05-22 18:23:57 - Migeu accedió a la página principal
+2025-05-22 18:24:01 - Migeu accedió a la página principal
+2025-05-22 18:24:03 - Migeu accedió a la página principal
+2025-05-22 18:24:05 - Migeu accedió a la página principal
+2025-05-22 18:28:15 - Migeu accedió a la página principal
+2025-05-22 18:28:18 - Migeu accedió a la página principal
+2025-05-22 18:28:20 - Migeu accedió a la página principal
+2025-05-22 18:28:22 - Migeu accedió a la página principal
+2025-05-22 18:50:10 - El usuario accedió a la página principal
+2025-05-22 18:50:11 - El usuario accedio a login
+2025-05-22 18:50:12 - El usuario accedio a login
+2025-05-22 18:50:12 - El usuario accedio a login
+2025-05-22 18:50:14 - El usuario accedió a la página principal
+2025-05-22 18:50:14 - El usuario accedio a login
+2025-05-22 18:50:14 - El usuario accedio a login
+2025-05-22 18:50:15 - El usuario accedio a login
+2025-05-22 18:50:15 - El usuario accedio a login
+2025-05-22 18:50:15 - El usuario accedio a login
+2025-05-22 18:50:16 - El usuario accedio a login
+2025-05-22 18:50:16 - El usuario accedio a login
+2025-05-22 18:50:17 - El usuario accedio a login
+2025-05-22 18:50:17 - El usuario accedio a login
+2025-05-22 18:50:18 - El usuario accedio a login
+2025-05-22 18:50:18 - El usuario accedio a login
+2025-05-22 18:50:19 - El usuario accedio a login
+2025-05-22 18:50:19 - El usuario accedio a login
+2025-05-22 18:50:21 - El usuario accedió a la página principal
+2025-05-22 18:50:21 - El usuario accedio a login
+2025-05-22 18:51:05 - El usuario accedió a la página principal
+2025-05-22 18:51:05 - El usuario accedio a login
+2025-05-22 18:51:07 - El usuario accedio a registro
+2025-05-22 18:51:07 - El usuario accedio a login
+2025-05-22 18:51:09 - El usuario accedio a login
+2025-05-22 18:51:09 - El usuario accedio a login
+2025-05-22 18:51:09 - El usuario accedio a login
+2025-05-22 18:51:09 - El usuario accedio a login
+2025-05-22 18:51:10 - El usuario accedio a login
+2025-05-22 18:51:10 - El usuario accedio a login
+2025-05-22 18:51:12 - El usuario accedió a la página principal
+2025-05-22 18:51:12 - El usuario accedio a login
+2025-05-22 18:51:13 - El usuario accedio a login
+2025-05-22 18:51:13 - El usuario accedio a login
+2025-05-22 18:51:15 - El usuario accedió a la página principal
+2025-05-22 18:51:15 - El usuario accedio a login
+2025-05-22 18:51:16 - El usuario accedio a login
+2025-05-22 18:51:16 - El usuario accedio a login
+2025-05-22 19:01:54 - El usuario accedió a la página principal
+2025-05-22 19:01:54 - El usuario accedio a login
+2025-05-22 19:01:55 - El usuario accedio a login
+2025-05-22 19:01:59 - El usuario accedio a login
+2025-05-22 19:01:59 - El usuario accedio a login
+2025-05-22 19:02:55 - El usuario accedio a login
+2025-05-22 19:02:55 - El usuario accedio a login
+2025-05-22 19:02:56 - El usuario accedio a login
+2025-05-22 19:02:56 - El usuario accedio a login
+2025-05-22 19:02:57 - El usuario accedio a login
+2025-05-22 19:02:57 - El usuario accedio a login
+2025-05-22 19:02:58 - El usuario accedió a la página principal
+2025-05-22 19:02:58 - El usuario accedio a login
+2025-05-22 19:02:59 - El usuario accedio a login
+2025-05-22 19:02:59 - El usuario accedio a login
+2025-05-22 19:03:52 - El usuario accedió a la página principal
+2025-05-22 19:03:52 - El usuario accedio a login
+2025-05-22 19:03:53 - El usuario accedio a login
+2025-05-22 19:03:54 - El usuario accedio a login
+2025-05-22 19:03:56 - El usuario accedio a login
+2025-05-22 19:03:57 - El usuario accedio a login
+2025-05-22 19:03:58 - El usuario accedio a login
+2025-05-22 19:04:01 - El usuario accedió a la página principal
+2025-05-22 19:04:01 - El usuario accedio a login
