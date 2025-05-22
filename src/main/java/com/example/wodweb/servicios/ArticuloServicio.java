@@ -45,6 +45,12 @@ public class ArticuloServicio {
         return Arrays.asList(articulo);
     }
     
+    public List<ArticuloDto> obtenerPorTipo(String articuloTipo) {
+        String url = apiUrl + "/mostrarArticulosPorTipo?tipo=" + articuloTipo;
+        ArticuloDto[] articulos = restTemplate.getForObject(url, ArticuloDto[].class);
+        return Arrays.asList(articulos);
+    }
+    
     /**
      * Elimina un articulo por su ID.
      * msm - 140525

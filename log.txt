@@ -6,3 +6,105 @@
 2025-05-21 22:56:42 - Carla accedió a la página principal
 2025-05-21 23:03:49 - Carla accedió a la página principal
 2025-05-21 23:04:12 - El usuario cerro sesion
+2025-05-22 10:01:11 - El usuario accedió a la página principal
+2025-05-22 10:01:24 - El usuario accedio a login
+2025-05-22 10:01:30 - El usuario accedio a login
+2025-05-22 10:07:07 - El usuario accedio a login
+2025-05-22 10:08:39 - El usuario accedió a la página principal
+2025-05-22 10:15:18 - El usuario accedio a login
+2025-05-22 10:15:25 - El usuario accedio a login
+2025-05-22 10:15:27 - El usuario ingreso a la pagina `olvidaste tu contraseña?`
+2025-05-22 10:16:08 - El usuario ingreso a la pagina `olvidaste tu contraseña?`
+2025-05-22 10:16:21 - El usuario ingreso credenciales erroneas
+2025-05-22 10:16:21 - El usuario ingreso credenciales erroneas
+2025-05-22 10:16:21 - El usuario accedio a login
+2025-05-22 11:05:05 - El usuario accedió a la página principal
+2025-05-22 11:05:06 - El usuario accedio a login
+2025-05-22 11:05:47 - El usuario accedió a la página principal
+2025-05-22 11:06:20 - El usuario accedio a login
+2025-05-22 12:34:23 - El usuario accedió a la página principal
+2025-05-22 12:34:25 - El usuario accedio a login
+2025-05-22 12:35:55 - El usuario accedio a login
+2025-05-22 12:36:33 - El usuario accedio a login
+2025-05-22 12:36:35 - El usuario accedió a la página principal
+2025-05-22 12:37:13 - El usuario accedio a login
+2025-05-22 13:01:05 - El usuario accedió a la página principal
+2025-05-22 13:16:54 - El usuario accedio a login
+2025-05-22 13:16:54 - El usuario accedio a login
+2025-05-22 13:24:17 - El usuario accedio a login
+2025-05-22 13:24:31 - El usuario accedió a la página principal
+2025-05-22 13:24:43 - El usuario accedio a login
+2025-05-22 13:26:40 - El usuario accedio a login
+2025-05-22 13:32:20 - El usuario accedió a la página principal
+2025-05-22 13:32:35 - El usuario accedió a la página principal
+2025-05-22 13:34:20 - El usuario accedio a login
+2025-05-22 13:37:15 - El usuario accedio a login
+2025-05-22 13:45:08 - El usuario accedio a login
+2025-05-22 13:56:34 - El usuario accedio a login
+2025-05-22 13:56:37 - El usuario accedio a login
+2025-05-22 13:56:55 - El usuario accedio a login
+2025-05-22 13:57:09 - El usuario accedio a login
+2025-05-22 13:57:28 - El usuario accedio a login
+2025-05-22 14:00:02 - El usuario accedio a login
+2025-05-22 14:08:22 - El usuario accedió a la página principal
+2025-05-22 14:08:24 - El usuario accedio a login
+2025-05-22 14:08:42 - dragon accedió a la página principal
+2025-05-22 14:08:50 - dragon accedio a la lista de usuarios
+2025-05-22 14:11:46 - El usuario accedió a la página principal
+2025-05-22 14:12:11 - El usuario accedio a login
+2025-05-22 14:12:54 - El usuario accedio a login
+2025-05-22 14:15:21 - El usuario accedio a login
+2025-05-22 14:15:22 - El usuario accedió a la página principal
+2025-05-22 14:15:22 - El usuario accedio a login
+2025-05-22 14:15:23 - El usuario accedio a login
+2025-05-22 14:15:23 - El usuario accedio a login
+2025-05-22 14:16:02 - El usuario accedió a la página principal
+2025-05-22 14:16:02 - El usuario accedio a login
+2025-05-22 14:16:03 - El usuario accedio a login
+2025-05-22 14:16:05 - El usuario accedió a la página principal
+2025-05-22 14:16:05 - El usuario accedio a login
+2025-05-22 14:16:06 - El usuario accedio a login
+2025-05-22 14:16:12 - El usuario accedió a la página principal
+2025-05-22 14:16:12 - El usuario accedio a login
+2025-05-22 14:16:13 - El usuario accedio a login
+2025-05-22 14:16:15 - El usuario accedió a la página principal
+2025-05-22 14:16:15 - El usuario accedio a login
+2025-05-22 14:17:32 - El usuario accedió a la página principal
+2025-05-22 14:17:32 - El usuario accedio a login
+2025-05-22 14:17:35 - El usuario accedio a login
+2025-05-22 14:17:36 - El usuario accedió a la página principal
+2025-05-22 14:17:36 - El usuario accedio a login
+2025-05-22 14:17:37 - El usuario accedio a login
+2025-05-22 14:17:39 - El usuario accedió a la página principal
+2025-05-22 14:17:39 - El usuario accedio a login
+2025-05-22 14:17:49 - El usuario accedió a la página principal
+2025-05-22 14:17:49 - El usuario accedio a login
+2025-05-22 14:17:51 - El usuario accedio a login
+2025-05-22 14:17:51 - El usuario accedio a login
+2025-05-22 14:17:52 - El usuario accedio a login
+2025-05-22 14:17:52 - El usuario accedio a login
+2025-05-22 14:17:58 - El usuario accedió a la página principal
+2025-05-22 14:17:58 - El usuario accedio a login
+2025-05-22 14:18:00 - El usuario accedio a login
+2025-05-22 14:18:01 - El usuario accedió a la página principal
+2025-05-22 14:18:01 - El usuario accedio a login
+2025-05-22 14:18:02 - El usuario accedio a login
+2025-05-22 14:18:06 - El usuario accedió a la página principal
+2025-05-22 14:18:06 - El usuario accedio a login
+2025-05-22 14:18:08 - El usuario accedio a login
+2025-05-22 14:18:09 - El usuario accedió a la página principal
+2025-05-22 14:18:10 - El usuario accedio a login
+2025-05-22 14:18:11 - El usuario accedio a login
+2025-05-22 14:18:16 - El usuario accedió a la página principal
+2025-05-22 14:18:16 - El usuario accedio a login
+2025-05-22 14:18:17 - El usuario accedio a login
+2025-05-22 14:18:19 - El usuario accedió a la página principal
+2025-05-22 14:18:19 - El usuario accedio a login
+2025-05-22 14:18:20 - El usuario accedio a login
+2025-05-22 14:18:26 - El usuario accedió a la página principal
+2025-05-22 14:18:27 - El usuario accedio a login
+2025-05-22 14:18:31 - El usuario accedio a login
+2025-05-22 14:19:35 - El usuario accedió a la página principal
+2025-05-22 14:19:35 - El usuario accedio a login
+2025-05-22 14:19:36 - El usuario accedio a login
+2025-05-22 14:19:46 - El usuario accedió a la página principal

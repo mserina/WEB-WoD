@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo de Mangas (Grid)</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: #f5f5f5;
+        }
+        .catalogo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+            padding: 1rem;
+        }
+        .producto {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow .2s;
+        }
+        .producto:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .producto img {
+            width: 100%;
+            height: 23rem;
+            object-fit: cover;
+        }
+        .info {
+            flex: 1;
+            padding: .75rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .info h3 {
+            margin: 0 0 .5rem;
+            font-size: 1.1rem;
+        }
+        .info p {
+            flex: 1;
+            font-size: .9rem;
+            color: #555;
+            margin-bottom: .5rem;
+        }
+        .meta {
+            font-size: .85rem;
+            color: #777;
+            margin-bottom: .75rem;
+        }
+        .info button {
+            align-self: stretch;
+            background: #0d6efd;
+            color: #fff;
+            border: none;
+            padding: .5rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+  <div class="container mt-4">
+    <h2 class="text-center mb-4">Catálogo + {titulo}</h2>
+    <div class="catalogo-grid">
+      <div class="producto" th:each="articulo : ${articulosLista}">
+        <!-- Imagen con lazy-loading -->
+        <img loading="lazy"
+             th:if="${perfilActivo == 'local'}"
+             th:src="@{'http://localhost:9511/articulo/fotoArticulo/' + ${articulo.id}}"
+             alt="Imagen de [[${articulo.nombre}]]">
+        <img loading="lazy"
+             th:if="${perfilActivo != 'local'}"
+             th:src="@{'https://msm-sevilla.es/articulo/fotoArticulo/' + ${articulo.id}}"
+             alt="Imagen de [[${articulo.nombre}]]">
+
+        <div class="info">
+          <h3 th:text="${articulo.nombre}">Nombre</h3>
+          <p th:text="${articulo.descripcion}">Descripción breve…</p>
+          <div class="meta">
+            <span th:text="'Stock: ' + ${articulo.stock}">Stock</span> ·
+            <span th:text="'€' + ${articulo.precio}">Precio</span>
+          </div>
+          <button>Añadir al carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

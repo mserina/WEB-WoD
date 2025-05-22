@@ -446,6 +446,7 @@ public class UsuarioControlador {
 	                    ? env.getActiveProfiles()[0]
 	                    : "default";
 	    modelo.addAttribute("perfilActivo", perfil);
+	    log.info("El usuario ingreso a la pagina `olvidaste tu contraseña?`");
         return "olvidasteContrasena";
     }
     

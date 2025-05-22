@@ -1,5 +1,7 @@
 package com.example.wodweb.servicios;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -26,6 +28,7 @@ public class InicioSesionServicio {
     
     private RestTemplate restTemplate = new RestTemplate();
     private String apiBaseUrl = "http://localhost:9511/usuario"; // URL de la API externa
+	private static final Logger log = LoggerFactory.getLogger("logMensajes"); //Instancia de clase para generar logs
 
     
 
@@ -78,15 +81,17 @@ public class InicioSesionServicio {
             // Verificar si la respuesta contiene un cuerpo válido
             UsuarioDto usuario = response.getBody();
             if (usuario == null) {
+            	log.info("El usuario ingreso credenciales erroneas");
                 throw new BadCredentialsException("Correo o contraseña incorrectos");
             }
             
             return usuario;
 
         } catch (HttpClientErrorException e) {
+        	log.info("El usuario ingreso credenciales erroneas");
             // 4xx: credenciales erróneas o usuario no encontrado
             throw new BadCredentialsException("Correo o contraseña incorrectos", e);
-        
+            
         } catch (ResourceAccessException e) {
             // No se pudo conectar
             throw new AuthenticationServiceException("No se pudo conectar con el servidor de autenticación", e);
@@ -95,6 +100,7 @@ public class InicioSesionServicio {
             throw ae;
             
         } catch (Exception e) {
+        	log.info("Se produjo un error interno:" +  e.getMessage());
             // Cualquier otro error inesperado
             throw new AuthenticationServiceException("Error interno de autenticación", e);
         

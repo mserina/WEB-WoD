@@ -2,14 +2,11 @@ package com.example.wodweb.controladores;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -45,6 +42,50 @@ public class ArticuloControlador {
 	String nombreUsuarioLog = "El usuario"; //Nombre que se usara en el log, en caso de no haber sesion de un usuario
 	@Autowired
 	private Environment env;
+	
+	
+	
+	
+	@GetMapping("/catalogo/manga")
+	public String catalogoManga(Model modelo) {
+	    List<ArticuloDto> articulos = articuloServicio.obtenerPorTipo("manga");
+	 // 1) Perfil activo (si no hay ninguno, "default")
+	    String perfil = env.getActiveProfiles().length > 0
+	                    ? env.getActiveProfiles()[0]
+	                    : "default";
+	    modelo.addAttribute("perfilActivo", perfil);
+	    
+	    modelo.addAttribute("articulosLista", articulos); // ← Aquí se inyecta al modelo
+	    return "catalogo";
+	}
+	
+	@GetMapping("/catalogo/figura")
+	public String catalogoFigura(Model modelo) {
+	    List<ArticuloDto> articulos = articuloServicio.obtenerPorTipo("figura");
+	 // 1) Perfil activo (si no hay ninguno, "default")
+	    String perfil = env.getActiveProfiles().length > 0
+	                    ? env.getActiveProfiles()[0]
+	                    : "default";
+	    modelo.addAttribute("perfilActivo", perfil);
+	    modelo.addAttribute("titulo", "Figura");
+	    
+	    modelo.addAttribute("articulosLista", articulos); // ← Aquí se inyecta al modelo
+	    return "catalogo";
+	}
+	
+	@GetMapping("/catalogo/poster")
+	public String catalogoPoster(Model modelo) {
+	    List<ArticuloDto> articulos = articuloServicio.obtenerPorTipo("poster");
+	 // 1) Perfil activo (si no hay ninguno, "default")
+	    String perfil = env.getActiveProfiles().length > 0
+	                    ? env.getActiveProfiles()[0]
+	                    : "default";
+	    modelo.addAttribute("perfilActivo", perfil);
+	    modelo.addAttribute("titulo", "Poster");
+	    
+	    modelo.addAttribute("articulosLista", articulos); // ← Aquí se inyecta al modelo
+	    return "catalogo";
+	}
 	
 	
 	/**
