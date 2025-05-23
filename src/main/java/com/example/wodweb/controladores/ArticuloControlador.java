@@ -37,7 +37,7 @@ public class ArticuloControlador {
 	private ArticuloServicio articuloServicio;
 	@Autowired
 	private UsuarioServicio usuarioServicio; //Inyeccion del servicio para usuarios
-	private static final Logger log = LoggerFactory.getLogger(PaginaPrincipal.class); //Instancia de clase para generar logs
+	private static final Logger log = LoggerFactory.getLogger("logMensajes"); //Instancia de clase para generar logs
 	Authentication credencialesSesion; //Variable que se usa para guardar los datos de una sesion
 	String nombreUsuarioLog = "El usuario"; //Nombre que se usara en el log, en caso de no haber sesion de un usuario
 	@Autowired
@@ -64,6 +64,7 @@ public class ArticuloControlador {
 	    modelo.addAttribute("articulosLista", articulos);
 	    modelo.addAttribute("titulo", "Manga");
 
+	    log.info(nombreUsuarioLog + " accedió al catalogo de manga");
 	    return "catalogo";
 	}
 
@@ -85,6 +86,8 @@ public class ArticuloControlador {
 
 	    modelo.addAttribute("titulo", "Figura");
         modelo.addAttribute("articulosLista", articulos); // ← Aquí se inyecta al modelo
+        
+        log.info(nombreUsuarioLog + " accedió al catalogo de figura");
 	    return "catalogo";
 	}
 	
@@ -105,6 +108,8 @@ public class ArticuloControlador {
 
 	    modelo.addAttribute("titulo", "Poster");
 	    modelo.addAttribute("articulosLista", articulos); // ← Aquí se inyecta al modelo
+	    
+	    log.info(nombreUsuarioLog + " accedió al catalogo de poster");
 	    return "catalogo";
 	}
 	

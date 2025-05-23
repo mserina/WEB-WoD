@@ -89,10 +89,12 @@
 <!-- ///////////////////////////////////
             CONTENIDO                  
    //////////////////////////////////// -->
-  <div class="container mt-4">
-    <h2 class="text-center mb-4">
-  		Catálogo <span th:text="${titulo}">TÍTULO</span>
-	</h2>
+  <div class="contenedorCatalogo container mt-4">
+    <div class="text-center border-bottom pb-3 mb-4">
+    	<h2 class="fw-bold">
+            Catálogo <span th:text="${titulo}">TÍTULO</span>
+        </h2>
+	</div>
     <div class="catalogo-grid">
       <div class="producto" th:each="articulo : ${articulosLista}">
         <!-- Imagen con lazy-loading -->
@@ -105,14 +107,14 @@
              th:src="@{'https://msm-sevilla.es/articulo/fotoArticulo/' + ${articulo.id}}"
              alt="Imagen de [[${articulo.nombre}]]">
 
-        <div class="info">
+        <div class="text-center info">
           <h3 th:text="${articulo.nombre}">Nombre</h3>
           <p th:text="${articulo.descripcion}">Descripción breve…</p>
           <div class="meta">
             <span th:text="'Stock: ' + ${articulo.stock}">Stock</span> ·
             <span th:text="'€' + ${articulo.precio}">Precio</span>
           </div>
-          <button>Añadir al carrito</button>
+          <button id="boton">Añadir al carrito</button>
         </div>
       </div>
     </div>

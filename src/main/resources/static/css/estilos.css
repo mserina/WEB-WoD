@@ -281,6 +281,7 @@ h2 {
     color: black;
     font-weight: bold;
     border: black;
+    border-style: inset;
 }
 
 #tituloRegistro {
@@ -502,6 +503,7 @@ th {
             padding: .75rem;
             display: flex;
             flex-direction: column;
+            border-top: ridge;
         }
         .info h3 {
             margin: 0 0 .5rem;
@@ -526,6 +528,15 @@ th {
             padding: .5rem;
             border-radius: 4px;
             cursor: pointer;
+        }
+        .contenedorCatalogo{
+        	background-image: url("../images/madera.jpg");
+        	padding-top: 1rem;
+    		border-radius: 10px;
+        }
+        
+        .producto{
+        	background-color: #F5DEB3;
         }
         
         
