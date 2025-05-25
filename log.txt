@@ -204,3 +204,63 @@
 2025-05-23 10:27:36 - El usuario accedio a login
 2025-05-23 10:27:44 - El usuario accedio a login
 2025-05-23 10:34:01 - El usuario accedio a login
+2025-05-25 21:03:48 - El usuario accedió a la página principal
+2025-05-25 21:03:51 - El usuario accedio a login
+2025-05-25 21:03:54 - El usuario accedio a login
+2025-05-25 21:03:54 - El usuario accedio a login
+2025-05-25 21:03:55 - El usuario accedio a login
+2025-05-25 21:03:55 - El usuario accedio a login
+2025-05-25 21:03:55 - El usuario accedio a login
+2025-05-25 21:03:55 - El usuario accedio a login
+2025-05-25 21:03:56 - El usuario accedio a login
+2025-05-25 21:03:56 - El usuario accedio a login
+2025-05-25 21:03:56 - El usuario accedio a login
+2025-05-25 21:03:56 - El usuario accedio a login
+2025-05-25 21:03:56 - El usuario accedio a login
+2025-05-25 21:03:57 - El usuario accedio a login
+2025-05-25 21:03:57 - El usuario accedio a login
+2025-05-25 21:03:57 - El usuario accedio a login
+2025-05-25 21:03:57 - El usuario accedio a login
+2025-05-25 21:03:57 - El usuario accedio a login
+2025-05-25 21:03:58 - El usuario accedió a la página principal
+2025-05-25 21:03:59 - El usuario accedio a login
+2025-05-25 21:04:00 - El usuario accedio a login
+2025-05-25 21:04:00 - El usuario accedio a login
+2025-05-25 21:04:01 - El usuario accedió a la página principal
+2025-05-25 21:04:21 - El usuario accedio a login
+2025-05-25 21:04:22 - El usuario accedio a login
+2025-05-25 21:04:22 - El usuario accedió a la página principal
+2025-05-25 21:05:06 - El usuario accedió al catalogo de manga
+2025-05-25 21:05:48 - El usuario accedió al catalogo de manga
+2025-05-25 21:06:09 - El usuario accedió al catalogo de poster
+2025-05-25 21:06:11 - El usuario accedió al catalogo de figura
+2025-05-25 21:06:12 - El usuario accedió al catalogo de poster
+2025-05-25 21:06:13 - El usuario accedió al catalogo de manga
+2025-05-25 21:08:59 - El usuario accedio a login
+2025-05-25 21:09:01 - El usuario accedió a la página principal
+2025-05-25 21:09:02 - El usuario accedió al catalogo de manga
+2025-05-25 21:09:52 - El usuario accedió a la página principal
+2025-05-25 21:09:55 - El usuario accedio a login
+2025-05-25 21:09:56 - El usuario accedio a login
+2025-05-25 21:11:37 - El usuario accedió a la página principal
+2025-05-25 21:11:39 - El usuario accedió a la página principal
+2025-05-25 21:11:53 - El usuario accedió a la página principal
+2025-05-25 21:12:34 - El usuario accedió a la página principal
+2025-05-25 21:12:50 - El usuario accedió al catalogo de manga
+2025-05-25 21:13:04 - El usuario accedió a la página principal
+2025-05-25 21:13:08 - El usuario accedio a login
+2025-05-25 21:13:47 - El usuario accedió a la página principal
+2025-05-25 21:13:48 - El usuario accedió al catalogo de manga
+2025-05-25 21:13:57 - El usuario accedio a login
+2025-05-25 21:13:59 - El usuario accedió a la página principal
+2025-05-25 21:16:02 - El usuario accedió a la página principal
+2025-05-25 21:16:03 - El usuario accedió al catalogo de manga
+2025-05-25 21:16:05 - El usuario accedio a login
+2025-05-25 21:16:06 - El usuario accedio a login
+2025-05-25 21:16:08 - El usuario accedió a la página principal
+2025-05-25 21:18:58 - El usuario accedió a la página principal
+2025-05-25 21:19:00 - El usuario accedió al catalogo de manga
+2025-05-25 21:54:09 - El usuario accedió a la página principal
+2025-05-25 21:55:23 - El usuario accedió a la página principal
+2025-05-25 21:55:27 - El usuario accedió al catalogo de manga
+2025-05-25 21:55:29 - El usuario accedio a login

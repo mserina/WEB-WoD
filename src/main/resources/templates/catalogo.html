@@ -94,6 +94,11 @@
     	<h2 class="fw-bold">
             Catálogo <span th:text="${titulo}">TÍTULO</span>
         </h2>
+        <!-- Alertas -->
+		<div class="alert alert-success" role="alert">
+		    <span th:text="${mensajeArticulo}" style="color: green;"></span>
+		    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+		</div>
 	</div>
     <div class="catalogo-grid">
       <div class="producto" th:each="articulo : ${articulosLista}">
@@ -114,7 +119,10 @@
             <span th:text="'Stock: ' + ${articulo.stock}">Stock</span> ·
             <span th:text="'€' + ${articulo.precio}">Precio</span>
           </div>
-          <button id="boton">Añadir al carrito</button>
+          <form th:action="@{/añadirCarrito}" method="post" class="mt-2">
+		    <input type="hidden" name="articuloId" th:value="${articulo.id}" />
+		    <button type="submit" class="btn btn-primary btn-sm">Añadir al carrito</button>
+		 </form>
         </div>
       </div>
     </div>
