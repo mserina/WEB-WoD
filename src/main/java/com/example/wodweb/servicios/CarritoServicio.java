@@ -1,7 +1,10 @@
 package com.example.wodweb.servicios;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -59,15 +62,19 @@ public class CarritoServicio {
         	HttpStatusCode status = e.getStatusCode();
 
              if (status == HttpStatus.CONFLICT) {
+            	 
                  // 409
                  throw new IllegalStateException("Este artículo ya está en tu carrito.");
              } else if (status == HttpStatus.NOT_FOUND) {
+            	 
                  // 404
                  throw new NoSuchElementException("Usuario o artículo no encontrado.");
              } else if (status == HttpStatus.BAD_REQUEST) {
+            	 
                  // 400
                  throw new IllegalArgumentException("Datos inválidos: " + e.getResponseBodyAsString());
              } else {
+            	 
                  // otros 4xx
                  throw new RuntimeException("Error en la petición: " + status);
              }
@@ -82,4 +89,47 @@ public class CarritoServicio {
         }
         
 	}
+	
+	
+	 /**
+	  * Muestra el carrito de un usuario
+	  * msm - 260525
+	  * @param usuarioId id del usuario que queremos ver el carrito
+	  * @return el carrito 
+	  */
+    public List<CarritoDto> obtenerCarritoDeUsuario(Long usuarioId) {
+        
+    	String url = apiUrl + "/carrito/" + usuarioId;
+    	
+        try {
+        	//Realizamos la peticion
+            ResponseEntity<List<CarritoDto>> resp = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
+            return resp.getBody();
+
+        } catch (HttpClientErrorException e) {
+        	
+        	//En caso de error, guardamos el estado del HTTP, y lanzamos la excepcion  
+        	HttpStatusCode status = e.getStatusCode();
+        	if (status == HttpStatus.NOT_FOUND) {
+            	
+        		// 404
+                throw new NoSuchElementException("Carrito no encontrado para el usuario");
+            } else {
+            	
+            	// otros 4xx
+                throw new RuntimeException("Error en la petición: " + status);
+            }
+
+        } catch (HttpServerErrorException e) {
+        	
+            // 5xx: errores del servidor
+            throw new RuntimeException("Error interno del servidor: " + e.getStatusText());
+
+        } catch (Exception e) {
+        	
+            // otras excepciones (network, serialización, etc.)
+            throw new RuntimeException("No se pudo conectar con la API: " + e.getMessage(), e);
+        }
+    }
+	
 }

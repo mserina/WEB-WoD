@@ -170,3 +170,104 @@
 2025-05-26 13:43:36 - El usuario accedio a login
 2025-05-26 13:43:37 - El usuario accedió a la página principal
 2025-05-26 13:43:38 - El usuario accedió al catalogo de manga
+2025-05-26 21:23:02 - El usuario accedió a la página principal
+2025-05-26 21:23:07 - El usuario accedio a login
+2025-05-26 21:23:15 - Carla accedió a la página principal
+2025-05-26 21:23:16 - El usuario accedió al catalogo de manga
+2025-05-26 21:23:53 - El usuario accedió al catalogo de poster
+2025-05-26 21:23:59 - El usuario accedió al catalogo de figura
+2025-05-26 21:24:01 - El usuario accedió al catalogo de manga
+2025-05-26 21:25:37 - El usuario accedió a la página principal
+2025-05-26 21:25:40 - El usuario accedio a login
+2025-05-26 21:25:47 - El usuario ingreso credenciales erroneas
+2025-05-26 21:25:47 - El usuario ingreso credenciales erroneas
+2025-05-26 21:25:47 - El usuario accedio a login
+2025-05-26 21:25:53 - Carla accedió a la página principal
+2025-05-26 21:25:55 - El usuario accedió al catalogo de manga
+2025-05-26 21:26:37 - El usuario accedió al catalogo de manga
+2025-05-26 21:26:40 - El usuario accedió al catalogo de poster
+2025-05-26 21:26:51 - El usuario accedió al catalogo de poster
+2025-05-26 21:27:56 - El usuario accedió al catalogo de poster
+2025-05-26 21:27:59 - Carla accedió a la página principal
+2025-05-26 21:28:01 - Carla accedio a login
+2025-05-26 21:28:06 - Carla accedió a la página principal
+2025-05-26 21:28:07 - El usuario accedió al catalogo de manga
+2025-05-26 21:28:35 - El usuario accedio a login
+2025-05-26 21:28:44 - Carla accedió a la página principal
+2025-05-26 21:28:47 - El usuario accedió al catalogo de manga
+2025-05-26 21:32:35 - Error al obtener carrito: Cannot invoke "org.springframework.security.core.Authentication.getPrincipal()" because "this.credencialesSesion" is null
+2025-05-26 21:37:46 - Usuario anónimo intentó ver el carrito
+2025-05-26 21:37:46 - El usuario accedio a login
+2025-05-26 21:37:52 - Carla accedió a la página principal
+2025-05-26 21:37:54 - El usuario accedió al catalogo de manga
+2025-05-26 21:45:27 - Carla agrego el articulo 11 en el carrito
+2025-05-26 21:45:27 - El usuario accedió al catalogo de manga
+2025-05-26 21:48:05 - El usuario accedió a la página principal
+2025-05-26 21:48:08 - El usuario accedio a login
+2025-05-26 21:48:12 - Carla accedió a la página principal
+2025-05-26 21:48:16 - El usuario accedió al catalogo de manga
+2025-05-26 21:50:48 - El usuario accedió a la página principal
+2025-05-26 21:50:50 - El usuario accedio a login
+2025-05-26 21:50:55 - Carla accedió a la página principal
+2025-05-26 21:50:57 - El usuario accedió al catalogo de manga
+2025-05-26 21:54:17 - El usuario accedió a la página principal
+2025-05-26 21:54:19 - El usuario accedio a login
+2025-05-26 21:54:25 - Carla accedió a la página principal
+2025-05-26 21:54:31 - El usuario accedió al catalogo de manga
+2025-05-26 21:55:36 - El usuario accedio a login
+2025-05-26 21:56:14 - Carla accedió a la página principal
+2025-05-26 21:56:15 - El usuario accedió al catalogo de manga
+2025-05-26 21:57:49 - El usuario accedió a la página principal
+2025-05-26 21:57:50 - El usuario accedio a login
+2025-05-26 21:57:55 - Carla accedió a la página principal
+2025-05-26 21:57:56 - El usuario accedió al catalogo de manga
+2025-05-26 22:32:56 - El usuario accedió a la página principal
+2025-05-26 22:39:06 - El usuario accedió a la página principal
+2025-05-26 22:39:11 - El usuario accedio a login
+2025-05-26 22:39:17 - Carla accedió a la página principal
+2025-05-26 22:39:18 - Carla accedió a la página principal
+2025-05-26 22:39:19 - El usuario accedió al catalogo de manga
+2025-05-26 22:39:29 - Carla agrego el articulo 11 en el carrito
+2025-05-26 22:39:29 - El usuario accedió al catalogo de manga
+2025-05-26 22:39:30 - El usuario accedió al catalogo de poster
+2025-05-26 22:39:31 - Carla agrego el articulo 10 en el carrito
+2025-05-26 22:39:32 - El usuario accedió al catalogo de poster
+2025-05-26 22:39:33 - Carla agrego el articulo 10 en el carrito
+2025-05-26 22:39:33 - El usuario accedió al catalogo de poster
+2025-05-26 22:39:34 - Carla agrego el articulo 10 en el carrito
+2025-05-26 22:39:34 - El usuario accedió al catalogo de poster
+2025-05-26 22:39:36 - El usuario accedió al catalogo de figura
+2025-05-26 22:39:37 - Carla agrego el articulo 9 en el carrito
+2025-05-26 22:39:37 - El usuario accedió al catalogo de figura
+2025-05-26 22:39:38 - Carla agrego el articulo 9 en el carrito
+2025-05-26 22:39:38 - El usuario accedió al catalogo de figura
+2025-05-26 22:45:28 - El usuario accedio a login
+2025-05-26 22:45:33 - Carla accedió a la página principal
+2025-05-26 22:45:34 - El usuario accedió al catalogo de manga
+2025-05-26 23:17:27 - El usuario accedió a la página principal
+2025-05-26 23:17:28 - El usuario accedio a login
+2025-05-26 23:17:35 - Carla accedió a la página principal
+2025-05-26 23:17:37 - Carla accedio a login
+2025-05-26 23:17:41 - Carla accedió a la página principal
+2025-05-26 23:17:42 - El usuario accedió al catalogo de manga
+2025-05-26 23:17:49 - El usuario accedió al catalogo de manga
+2025-05-26 23:18:21 - El usuario accedió al catalogo de manga
+2025-05-26 23:18:48 - El usuario accedio a login
+2025-05-26 23:18:53 - Carla accedió a la página principal
+2025-05-26 23:18:54 - El usuario accedió al catalogo de manga
+2025-05-26 23:19:53 - El usuario accedio a login
+2025-05-26 23:19:58 - Carla accedió a la página principal
+2025-05-26 23:20:00 - El usuario accedió al catalogo de manga
+2025-05-26 23:20:18 - El usuario accedió al catalogo de manga
+2025-05-26 23:22:05 - El usuario accedio a login
+2025-05-26 23:22:11 - Carla accedió a la página principal
+2025-05-26 23:22:12 - El usuario accedió al catalogo de manga
+2025-05-26 23:22:15 - El usuario accedió al catalogo de manga
+2025-05-26 23:23:37 - El usuario accedio a login
+2025-05-26 23:23:42 - Carla accedió a la página principal
+2025-05-26 23:23:43 - El usuario accedió al catalogo de manga
+2025-05-26 23:29:59 - El usuario accedio a login
+2025-05-26 23:30:06 - Carla accedió a la página principal
+2025-05-26 23:30:08 - El usuario accedió al catalogo de manga
+2025-05-26 23:31:05 - El usuario accedió al catalogo de manga
+2025-05-26 23:33:34 - El usuario accedió al catalogo de manga

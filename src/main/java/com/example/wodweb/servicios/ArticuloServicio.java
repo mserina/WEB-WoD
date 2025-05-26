@@ -2,6 +2,7 @@ package com.example.wodweb.servicios;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpEntity;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -45,10 +47,33 @@ public class ArticuloServicio {
         return Arrays.asList(articulo);
     }
     
+    
+    /**
+     * Muestra una lista filtrada por un tipo de articulo
+     * msm - 260525
+     * @param articuloTipo 
+     * @return devuelve los articulos del tipoe especificado
+     */
     public List<ArticuloDto> obtenerPorTipo(String articuloTipo) {
         String url = apiUrl + "/mostrarArticulosPorTipo?tipo=" + articuloTipo;
         ArticuloDto[] articulos = restTemplate.getForObject(url, ArticuloDto[].class);
         return Arrays.asList(articulos);
+    }
+   
+    /**
+     * Busca un usuario por id
+     * msm - 260525
+     * @param articuloId
+     * @return
+     */
+    public ArticuloDto obtenerArticuloPorId(Long articuloId) {
+        String url = apiUrl + "/articulo/mostrarArticuloId/" + articuloId;
+        try {
+            return restTemplate.getForObject(url, ArticuloDto.class);
+            
+        } catch (RestClientException e) {
+            throw new NoSuchElementException("No se pudo cargar el artículo con ID " + articuloId);
+        }
     }
     
     /**
