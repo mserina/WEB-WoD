@@ -6,9 +6,11 @@ import java.util.NoSuchElementException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -17,6 +19,7 @@ import com.example.wodweb.dtos.SesionDto;
 import com.example.wodweb.dtos.UsuarioDto;
 import com.example.wodweb.servicios.CarritoServicio;
 import com.example.wodweb.servicios.UsuarioServicio;
+
 
 /**
  * Controlador para la gestión del carrito.
@@ -32,6 +35,9 @@ public class CarritoControlador {
 	  private UsuarioServicio usuarioServicio;
 	  Authentication credencialesSesion;
 	  private static final Logger log = LoggerFactory.getLogger("logMensajes"); //Instancia de clase para generar logs
+	  @Autowired
+	  private Environment env;
+	  String nombreUsuarioLog = "El usuario"; //Nombre que se usara en el log, en caso de no haber sesion de un usuario
 
 
 	 
@@ -43,8 +49,24 @@ public class CarritoControlador {
 	  * @return la pagina del catalogo con la respuesta
 	  */
 	 @PostMapping("/anadirCarrito")
-	    public String anadirAlCarrito(@RequestParam String catalogo, @RequestParam Long articuloId, @RequestParam(defaultValue = "1") Integer cantidad, RedirectAttributes mensajesRedireccion) {
-		 log.info(catalogo);
+	    public String anadirAlCarrito(@RequestParam String catalogo, @RequestParam Long articuloId, @RequestParam(defaultValue = "1") Integer cantidad, RedirectAttributes mensajesRedireccion, Model modelo) {
+		// Perfil activo (si no hay ninguno, "default")
+		    String perfil = env.getActiveProfiles().length > 0
+		                    ? env.getActiveProfiles()[0]
+		                    : "default";
+		    modelo.addAttribute("perfilActivo", perfil);
+		    
+		 // Usuario (cuando haya)
+		    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    if (auth != null && auth.getPrincipal() instanceof SesionDto) {
+		        SesionDto sesion = (SesionDto) auth.getPrincipal();
+		        modelo.addAttribute("usuario", usuarioServicio.buscarUsuario(sesion.getUsername()));
+		        nombreUsuarioLog = sesion.getNombre();
+		    } else {
+		        nombreUsuarioLog = "El usuario";
+		    }
+
+		    
 		 Long usuarioSesionId = null;
 		 credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
 		 
@@ -71,31 +93,41 @@ public class CarritoControlador {
 		    // Una vez se tenga los campos necesarios, se llama al metodo para añadir articulos, pasandole los atributos corresponidnetes    
             carritoServicio.agregarAlCarrito(usuarioSesionId, articuloId, cantidad);           
             mensajesRedireccion.addFlashAttribute("mensajeArticulo", "Articulo agregado al carrito.");
-	        return "redirect:/catalogo/" + catalogo; 
+            log.info(nombreUsuarioLog + " agrego el articulo " + articuloId + " en el carrito");
+            return "redirect:/catalogo/" + catalogo; 
 	        
+            
 	       // Error al convertir las credenciales de sesión (sesión inválida o no autenticada)
 		    } catch (ClassCastException e) {
 		        log.error("Error al obtener sesión del usuario: " + e.getMessage());
 		        mensajesRedireccion.addFlashAttribute("errorSesion", "Error de sesión. Intenta iniciar sesión nuevamente.");
 		        return "redirect:/login";
 
+		        
 		   // El artículo ya está en el carrito (estado no permitido)
 		    } catch (IllegalStateException e) {
+		        log.error("Error: El articulo " + articuloId + " ya se agrego al carrito: " + e.getMessage());
 		        mensajesRedireccion.addFlashAttribute("mensajeError", e.getMessage());
 		        return "redirect:/catalogo/" + catalogo;
 
+		        
 		   // Usuario o artículo no encontrado en la base de datos
 		    } catch (NoSuchElementException e) {
+		        log.error("Error: No se encontro el usuario o el articulo: " + e.getMessage());
 		        mensajesRedireccion.addFlashAttribute("mensajeError", e.getMessage());
 		        return "redirect:/login";
 
+		        
 		   // Datos inválidos (por ejemplo, cantidad negativa)
 		    } catch (IllegalArgumentException e) {
+		        log.error("Error: la cantidad es negativa: " + e.getMessage());
 		        mensajesRedireccion.addFlashAttribute("mensajeError", e.getMessage());
 		        return "redirect:/login";
 
+		        
 		    // Cualquier otro error inesperado al conectar con la API
 		    } catch (Exception e) {
+		        log.error("Error en la API: " + e.getMessage());
 		        mensajesRedireccion.addFlashAttribute("mensajeError", "Error al conectar con la API.");
 		        return "redirect:/login";
 		    }

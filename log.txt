@@ -150,3 +150,23 @@
 2025-05-26 13:28:32 - manga
 2025-05-26 13:28:32 - Intento de agregar al carrito sin iniciar sesión
 2025-05-26 13:28:32 - El usuario accedio a login
+2025-05-26 13:39:27 - El usuario accedió a la página principal
+2025-05-26 13:39:39 - El usuario accedió a la página principal
+2025-05-26 13:39:42 - El usuario accedio a login
+2025-05-26 13:41:00 - El usuario accedió a la página principal
+2025-05-26 13:41:02 - El usuario accedió a la página principal
+2025-05-26 13:42:43 - El usuario accedió a la página principal
+2025-05-26 13:43:08 - El usuario accedió al catalogo de figura
+2025-05-26 13:43:13 - El usuario accedió al catalogo de poster
+2025-05-26 13:43:15 - El usuario accedió al catalogo de manga
+2025-05-26 13:43:20 - El usuario accedió a la página principal
+2025-05-26 13:43:21 - El usuario accedió al catalogo de poster
+2025-05-26 13:43:22 - El usuario accedió al catalogo de figura
+2025-05-26 13:43:26 - El usuario accedio a registro
+2025-05-26 13:43:28 - El usuario accedio a login
+2025-05-26 13:43:29 - El usuario accedió a la página principal
+2025-05-26 13:43:32 - El usuario accedio a registro
+2025-05-26 13:43:35 - El usuario accedio a login
+2025-05-26 13:43:36 - El usuario accedio a login
+2025-05-26 13:43:37 - El usuario accedió a la página principal
+2025-05-26 13:43:38 - El usuario accedió al catalogo de manga

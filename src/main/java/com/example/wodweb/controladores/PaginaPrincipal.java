@@ -44,13 +44,13 @@ public class PaginaPrincipal {
 	 */
 	@GetMapping("/")
 	public String bienvenida(Model modelo) {
-	    // 1) Perfil activo (si no hay ninguno, "default")
+	    // Perfil activo (si no hay ninguno, "default")
 	    String perfil = env.getActiveProfiles().length > 0
 	                    ? env.getActiveProfiles()[0]
 	                    : "default";
 	    modelo.addAttribute("perfilActivo", perfil);
 
-	    // 2) Usuario (cuando haya)
+	    // Usuario (cuando haya)
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    if (auth != null && auth.getPrincipal() instanceof SesionDto) {
 	        SesionDto sesion = (SesionDto) auth.getPrincipal();
