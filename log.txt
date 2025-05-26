@@ -1,266 +1,152 @@
-2025-05-21 22:56:23 - El usuario accedió a la página principal
-2025-05-21 22:56:27 - El usuario accedio a login
-2025-05-21 22:56:30 - El usuario accedio a registro
-2025-05-21 22:56:32 - El usuario accedió a la página principal
-2025-05-21 22:56:35 - El usuario accedio a login
-2025-05-21 22:56:42 - Carla accedió a la página principal
-2025-05-21 23:03:49 - Carla accedió a la página principal
-2025-05-21 23:04:12 - El usuario cerro sesion
-2025-05-22 10:01:11 - El usuario accedió a la página principal
-2025-05-22 10:01:24 - El usuario accedio a login
-2025-05-22 10:01:30 - El usuario accedio a login
-2025-05-22 10:07:07 - El usuario accedio a login
-2025-05-22 10:08:39 - El usuario accedió a la página principal
-2025-05-22 10:15:18 - El usuario accedio a login
-2025-05-22 10:15:25 - El usuario accedio a login
-2025-05-22 10:15:27 - El usuario ingreso a la pagina `olvidaste tu contraseña?`
-2025-05-22 10:16:08 - El usuario ingreso a la pagina `olvidaste tu contraseña?`
-2025-05-22 10:16:21 - El usuario ingreso credenciales erroneas
-2025-05-22 10:16:21 - El usuario ingreso credenciales erroneas
-2025-05-22 10:16:21 - El usuario accedio a login
-2025-05-22 11:05:05 - El usuario accedió a la página principal
-2025-05-22 11:05:06 - El usuario accedio a login
-2025-05-22 11:05:47 - El usuario accedió a la página principal
-2025-05-22 11:06:20 - El usuario accedio a login
-2025-05-22 12:34:23 - El usuario accedió a la página principal
-2025-05-22 12:34:25 - El usuario accedio a login
-2025-05-22 12:35:55 - El usuario accedio a login
-2025-05-22 12:36:33 - El usuario accedio a login
-2025-05-22 12:36:35 - El usuario accedió a la página principal
-2025-05-22 12:37:13 - El usuario accedio a login
-2025-05-22 13:01:05 - El usuario accedió a la página principal
-2025-05-22 13:16:54 - El usuario accedio a login
-2025-05-22 13:16:54 - El usuario accedio a login
-2025-05-22 13:24:17 - El usuario accedio a login
-2025-05-22 13:24:31 - El usuario accedió a la página principal
-2025-05-22 13:24:43 - El usuario accedio a login
-2025-05-22 13:26:40 - El usuario accedio a login
-2025-05-22 13:32:20 - El usuario accedió a la página principal
-2025-05-22 13:32:35 - El usuario accedió a la página principal
-2025-05-22 13:34:20 - El usuario accedio a login
-2025-05-22 13:37:15 - El usuario accedio a login
-2025-05-22 13:45:08 - El usuario accedio a login
-2025-05-22 13:56:34 - El usuario accedio a login
-2025-05-22 13:56:37 - El usuario accedio a login
-2025-05-22 13:56:55 - El usuario accedio a login
-2025-05-22 13:57:09 - El usuario accedio a login
-2025-05-22 13:57:28 - El usuario accedio a login
-2025-05-22 14:00:02 - El usuario accedio a login
-2025-05-22 14:08:22 - El usuario accedió a la página principal
-2025-05-22 14:08:24 - El usuario accedio a login
-2025-05-22 14:08:42 - dragon accedió a la página principal
-2025-05-22 14:08:50 - dragon accedio a la lista de usuarios
-2025-05-22 14:11:46 - El usuario accedió a la página principal
-2025-05-22 14:12:11 - El usuario accedio a login
-2025-05-22 14:12:54 - El usuario accedio a login
-2025-05-22 14:15:21 - El usuario accedio a login
-2025-05-22 14:15:22 - El usuario accedió a la página principal
-2025-05-22 14:15:22 - El usuario accedio a login
-2025-05-22 14:15:23 - El usuario accedio a login
-2025-05-22 14:15:23 - El usuario accedio a login
-2025-05-22 14:16:02 - El usuario accedió a la página principal
-2025-05-22 14:16:02 - El usuario accedio a login
-2025-05-22 14:16:03 - El usuario accedio a login
-2025-05-22 14:16:05 - El usuario accedió a la página principal
-2025-05-22 14:16:05 - El usuario accedio a login
-2025-05-22 14:16:06 - El usuario accedio a login
-2025-05-22 14:16:12 - El usuario accedió a la página principal
-2025-05-22 14:16:12 - El usuario accedio a login
-2025-05-22 14:16:13 - El usuario accedio a login
-2025-05-22 14:16:15 - El usuario accedió a la página principal
-2025-05-22 14:16:15 - El usuario accedio a login
-2025-05-22 14:17:32 - El usuario accedió a la página principal
-2025-05-22 14:17:32 - El usuario accedio a login
-2025-05-22 14:17:35 - El usuario accedio a login
-2025-05-22 14:17:36 - El usuario accedió a la página principal
-2025-05-22 14:17:36 - El usuario accedio a login
-2025-05-22 14:17:37 - El usuario accedio a login
-2025-05-22 14:17:39 - El usuario accedió a la página principal
-2025-05-22 14:17:39 - El usuario accedio a login
-2025-05-22 14:17:49 - El usuario accedió a la página principal
-2025-05-22 14:17:49 - El usuario accedio a login
-2025-05-22 14:17:51 - El usuario accedio a login
-2025-05-22 14:17:51 - El usuario accedio a login
-2025-05-22 14:17:52 - El usuario accedio a login
-2025-05-22 14:17:52 - El usuario accedio a login
-2025-05-22 14:17:58 - El usuario accedió a la página principal
-2025-05-22 14:17:58 - El usuario accedio a login
-2025-05-22 14:18:00 - El usuario accedio a login
-2025-05-22 14:18:01 - El usuario accedió a la página principal
-2025-05-22 14:18:01 - El usuario accedio a login
-2025-05-22 14:18:02 - El usuario accedio a login
-2025-05-22 14:18:06 - El usuario accedió a la página principal
-2025-05-22 14:18:06 - El usuario accedio a login
-2025-05-22 14:18:08 - El usuario accedio a login
-2025-05-22 14:18:09 - El usuario accedió a la página principal
-2025-05-22 14:18:10 - El usuario accedio a login
-2025-05-22 14:18:11 - El usuario accedio a login
-2025-05-22 14:18:16 - El usuario accedió a la página principal
-2025-05-22 14:18:16 - El usuario accedio a login
-2025-05-22 14:18:17 - El usuario accedio a login
-2025-05-22 14:18:19 - El usuario accedió a la página principal
-2025-05-22 14:18:19 - El usuario accedio a login
-2025-05-22 14:18:20 - El usuario accedio a login
-2025-05-22 14:18:26 - El usuario accedió a la página principal
-2025-05-22 14:18:27 - El usuario accedio a login
-2025-05-22 14:18:31 - El usuario accedio a login
-2025-05-22 14:19:35 - El usuario accedió a la página principal
-2025-05-22 14:19:35 - El usuario accedio a login
-2025-05-22 14:19:36 - El usuario accedio a login
-2025-05-22 14:19:46 - El usuario accedió a la página principal
-2025-05-22 18:17:25 - El usuario accedió a la página principal
-2025-05-22 18:17:27 - El usuario accedio a login
-2025-05-22 18:17:31 - El usuario accedio a login
-2025-05-22 18:17:34 - El usuario accedió a la página principal
-2025-05-22 18:19:02 - Se cerro la sesion
-2025-05-22 18:19:17 - Migeu accedió a la página principal
-2025-05-22 18:23:57 - Migeu accedió a la página principal
-2025-05-22 18:24:01 - Migeu accedió a la página principal
-2025-05-22 18:24:03 - Migeu accedió a la página principal
-2025-05-22 18:24:05 - Migeu accedió a la página principal
-2025-05-22 18:28:15 - Migeu accedió a la página principal
-2025-05-22 18:28:18 - Migeu accedió a la página principal
-2025-05-22 18:28:20 - Migeu accedió a la página principal
-2025-05-22 18:28:22 - Migeu accedió a la página principal
-2025-05-22 18:50:10 - El usuario accedió a la página principal
-2025-05-22 18:50:11 - El usuario accedio a login
-2025-05-22 18:50:12 - El usuario accedio a login
-2025-05-22 18:50:12 - El usuario accedio a login
-2025-05-22 18:50:14 - El usuario accedió a la página principal
-2025-05-22 18:50:14 - El usuario accedio a login
-2025-05-22 18:50:14 - El usuario accedio a login
-2025-05-22 18:50:15 - El usuario accedio a login
-2025-05-22 18:50:15 - El usuario accedio a login
-2025-05-22 18:50:15 - El usuario accedio a login
-2025-05-22 18:50:16 - El usuario accedio a login
-2025-05-22 18:50:16 - El usuario accedio a login
-2025-05-22 18:50:17 - El usuario accedio a login
-2025-05-22 18:50:17 - El usuario accedio a login
-2025-05-22 18:50:18 - El usuario accedio a login
-2025-05-22 18:50:18 - El usuario accedio a login
-2025-05-22 18:50:19 - El usuario accedio a login
-2025-05-22 18:50:19 - El usuario accedio a login
-2025-05-22 18:50:21 - El usuario accedió a la página principal
-2025-05-22 18:50:21 - El usuario accedio a login
-2025-05-22 18:51:05 - El usuario accedió a la página principal
-2025-05-22 18:51:05 - El usuario accedio a login
-2025-05-22 18:51:07 - El usuario accedio a registro
-2025-05-22 18:51:07 - El usuario accedio a login
-2025-05-22 18:51:09 - El usuario accedio a login
-2025-05-22 18:51:09 - El usuario accedio a login
-2025-05-22 18:51:09 - El usuario accedio a login
-2025-05-22 18:51:09 - El usuario accedio a login
-2025-05-22 18:51:10 - El usuario accedio a login
-2025-05-22 18:51:10 - El usuario accedio a login
-2025-05-22 18:51:12 - El usuario accedió a la página principal
-2025-05-22 18:51:12 - El usuario accedio a login
-2025-05-22 18:51:13 - El usuario accedio a login
-2025-05-22 18:51:13 - El usuario accedio a login
-2025-05-22 18:51:15 - El usuario accedió a la página principal
-2025-05-22 18:51:15 - El usuario accedio a login
-2025-05-22 18:51:16 - El usuario accedio a login
-2025-05-22 18:51:16 - El usuario accedio a login
-2025-05-22 19:01:54 - El usuario accedió a la página principal
-2025-05-22 19:01:54 - El usuario accedio a login
-2025-05-22 19:01:55 - El usuario accedio a login
-2025-05-22 19:01:59 - El usuario accedio a login
-2025-05-22 19:01:59 - El usuario accedio a login
-2025-05-22 19:02:55 - El usuario accedio a login
-2025-05-22 19:02:55 - El usuario accedio a login
-2025-05-22 19:02:56 - El usuario accedio a login
-2025-05-22 19:02:56 - El usuario accedio a login
-2025-05-22 19:02:57 - El usuario accedio a login
-2025-05-22 19:02:57 - El usuario accedio a login
-2025-05-22 19:02:58 - El usuario accedió a la página principal
-2025-05-22 19:02:58 - El usuario accedio a login
-2025-05-22 19:02:59 - El usuario accedio a login
-2025-05-22 19:02:59 - El usuario accedio a login
-2025-05-22 19:03:52 - El usuario accedió a la página principal
-2025-05-22 19:03:52 - El usuario accedio a login
-2025-05-22 19:03:53 - El usuario accedio a login
-2025-05-22 19:03:54 - El usuario accedio a login
-2025-05-22 19:03:56 - El usuario accedio a login
-2025-05-22 19:03:57 - El usuario accedio a login
-2025-05-22 19:03:58 - El usuario accedio a login
-2025-05-22 19:04:01 - El usuario accedió a la página principal
-2025-05-22 19:04:01 - El usuario accedio a login
-2025-05-23 08:44:11 - El usuario accedió a la página principal
-2025-05-23 08:44:37 - El usuario accedio a login
-2025-05-23 08:56:10 - El usuario accedio a login
-2025-05-23 08:57:23 - El usuario accedio a login
-2025-05-23 09:14:39 - El usuario accedio a login
-2025-05-23 09:16:42 - El usuario accedio a login
-2025-05-23 09:27:59 - El usuario accedio a login
-2025-05-23 09:28:02 - El usuario accedio a login
-2025-05-23 09:29:27 - El usuario accedio a login
-2025-05-23 09:29:38 - El usuario accedio a login
-2025-05-23 09:29:39 - El usuario accedio a login
-2025-05-23 09:54:24 - El usuario accedio a login
-2025-05-23 10:17:20 - El usuario accedio a login
-2025-05-23 10:25:36 - El usuario accedio a login
-2025-05-23 10:27:02 - El usuario accedio a login
-2025-05-23 10:27:04 - El usuario accedio a login
-2025-05-23 10:27:32 - El usuario accedio a login
-2025-05-23 10:27:36 - El usuario accedio a login
-2025-05-23 10:27:44 - El usuario accedio a login
-2025-05-23 10:34:01 - El usuario accedio a login
-2025-05-25 21:03:48 - El usuario accedió a la página principal
-2025-05-25 21:03:51 - El usuario accedio a login
-2025-05-25 21:03:54 - El usuario accedio a login
-2025-05-25 21:03:54 - El usuario accedio a login
-2025-05-25 21:03:55 - El usuario accedio a login
-2025-05-25 21:03:55 - El usuario accedio a login
-2025-05-25 21:03:55 - El usuario accedio a login
-2025-05-25 21:03:55 - El usuario accedio a login
-2025-05-25 21:03:56 - El usuario accedio a login
-2025-05-25 21:03:56 - El usuario accedio a login
-2025-05-25 21:03:56 - El usuario accedio a login
-2025-05-25 21:03:56 - El usuario accedio a login
-2025-05-25 21:03:56 - El usuario accedio a login
-2025-05-25 21:03:57 - El usuario accedio a login
-2025-05-25 21:03:57 - El usuario accedio a login
-2025-05-25 21:03:57 - El usuario accedio a login
-2025-05-25 21:03:57 - El usuario accedio a login
-2025-05-25 21:03:57 - El usuario accedio a login
-2025-05-25 21:03:58 - El usuario accedió a la página principal
-2025-05-25 21:03:59 - El usuario accedio a login
-2025-05-25 21:04:00 - El usuario accedio a login
-2025-05-25 21:04:00 - El usuario accedio a login
-2025-05-25 21:04:01 - El usuario accedió a la página principal
-2025-05-25 21:04:21 - El usuario accedio a login
-2025-05-25 21:04:22 - El usuario accedio a login
-2025-05-25 21:04:22 - El usuario accedió a la página principal
-2025-05-25 21:05:06 - El usuario accedió al catalogo de manga
-2025-05-25 21:05:48 - El usuario accedió al catalogo de manga
-2025-05-25 21:06:09 - El usuario accedió al catalogo de poster
-2025-05-25 21:06:11 - El usuario accedió al catalogo de figura
-2025-05-25 21:06:12 - El usuario accedió al catalogo de poster
-2025-05-25 21:06:13 - El usuario accedió al catalogo de manga
-2025-05-25 21:08:59 - El usuario accedio a login
-2025-05-25 21:09:01 - El usuario accedió a la página principal
-2025-05-25 21:09:02 - El usuario accedió al catalogo de manga
-2025-05-25 21:09:52 - El usuario accedió a la página principal
-2025-05-25 21:09:55 - El usuario accedio a login
-2025-05-25 21:09:56 - El usuario accedio a login
-2025-05-25 21:11:37 - El usuario accedió a la página principal
-2025-05-25 21:11:39 - El usuario accedió a la página principal
-2025-05-25 21:11:53 - El usuario accedió a la página principal
-2025-05-25 21:12:34 - El usuario accedió a la página principal
-2025-05-25 21:12:50 - El usuario accedió al catalogo de manga
-2025-05-25 21:13:04 - El usuario accedió a la página principal
-2025-05-25 21:13:08 - El usuario accedio a login
-2025-05-25 21:13:47 - El usuario accedió a la página principal
-2025-05-25 21:13:48 - El usuario accedió al catalogo de manga
-2025-05-25 21:13:57 - El usuario accedio a login
-2025-05-25 21:13:59 - El usuario accedió a la página principal
-2025-05-25 21:16:02 - El usuario accedió a la página principal
-2025-05-25 21:16:03 - El usuario accedió al catalogo de manga
-2025-05-25 21:16:05 - El usuario accedio a login
-2025-05-25 21:16:06 - El usuario accedio a login
-2025-05-25 21:16:08 - El usuario accedió a la página principal
-2025-05-25 21:18:58 - El usuario accedió a la página principal
-2025-05-25 21:19:00 - El usuario accedió al catalogo de manga
-2025-05-25 21:54:09 - El usuario accedió a la página principal
-2025-05-25 21:55:23 - El usuario accedió a la página principal
-2025-05-25 21:55:27 - El usuario accedió al catalogo de manga
-2025-05-25 21:55:29 - El usuario accedio a login
+2025-05-26 11:13:28 - El usuario accedio a login
+2025-05-26 11:13:30 - El usuario accedió a la página principal
+2025-05-26 11:13:31 - El usuario accedió al catalogo de manga
+2025-05-26 11:13:33 - manga
+2025-05-26 11:13:33 - Intento de agregar al carrito sin iniciar sesión
+2025-05-26 11:13:33 - El usuario accedio a login
+2025-05-26 11:13:38 - Miguel Serrano accedió a la página principal
+2025-05-26 11:13:40 - El usuario accedió al catalogo de manga
+2025-05-26 11:13:41 - manga
+2025-05-26 11:13:42 - El usuario accedió al catalogo de manga
+2025-05-26 11:14:00 - manga
+2025-05-26 11:17:48 - manga
+2025-05-26 11:17:48 - Intento de agregar al carrito sin iniciar sesión
+2025-05-26 11:17:48 - El usuario accedio a login
+2025-05-26 11:17:55 - Miguel Serrano accedió a la página principal
+2025-05-26 11:17:56 - El usuario accedió al catalogo de manga
+2025-05-26 11:17:58 - manga
+2025-05-26 11:25:01 - Miguel Serrano accedió a la página principal
+2025-05-26 11:25:02 - El usuario accedió al catalogo de manga
+2025-05-26 11:25:04 - manga
+2025-05-26 11:25:06 - Miguel Serrano accedió a la página principal
+2025-05-26 11:25:11 - El usuario accedió al catalogo de manga
+2025-05-26 11:25:12 - manga
+2025-05-26 11:25:13 - Miguel Serrano accedió a la página principal
+2025-05-26 11:25:16 - Se cerro la sesion
+2025-05-26 11:25:19 - El usuario accedio a login
+2025-05-26 11:25:23 - Miguel Serrano accedió a la página principal
+2025-05-26 11:25:26 - El usuario accedió al catalogo de manga
+2025-05-26 11:25:27 - manga
+2025-05-26 11:25:38 - El usuario accedió a la página principal
+2025-05-26 11:25:41 - El usuario accedio a login
+2025-05-26 11:25:47 - Miguel Serrano accedió a la página principal
+2025-05-26 11:25:48 - El usuario accedió al catalogo de manga
+2025-05-26 11:25:49 - manga
+2025-05-26 11:26:32 - Miguel Serrano accedió a la página principal
+2025-05-26 11:26:32 - El usuario accedió al catalogo de manga
+2025-05-26 11:26:33 - manga
+2025-05-26 11:26:35 - Miguel Serrano accedió a la página principal
+2025-05-26 11:27:15 - El usuario accedió a la página principal
+2025-05-26 11:27:18 - El usuario accedio a login
+2025-05-26 11:27:23 - Miguel Serrano accedió a la página principal
+2025-05-26 11:27:24 - El usuario accedió al catalogo de manga
+2025-05-26 11:28:35 - manga
+2025-05-26 11:28:38 - Miguel Serrano accedió a la página principal
+2025-05-26 11:28:39 - El usuario accedió al catalogo de manga
+2025-05-26 11:28:44 - manga
+2025-05-26 11:29:08 - Miguel Serrano accedió a la página principal
+2025-05-26 11:29:10 - El usuario accedió al catalogo de manga
+2025-05-26 11:29:14 - manga
+2025-05-26 11:30:26 - El usuario accedió a la página principal
+2025-05-26 11:30:28 - El usuario accedio a login
+2025-05-26 11:30:34 - Miguel Serrano accedió a la página principal
+2025-05-26 11:30:35 - El usuario accedió al catalogo de manga
+2025-05-26 11:30:37 - manga
+2025-05-26 11:35:03 - Miguel Serrano accedió a la página principal
+2025-05-26 11:35:06 - Se cerro la sesion
+2025-05-26 11:35:12 - Miguel Serrano accedió a la página principal
+2025-05-26 11:35:13 - El usuario accedió al catalogo de manga
+2025-05-26 11:35:14 - manga
+2025-05-26 11:44:34 - Miguel Serrano accedió a la página principal
+2025-05-26 11:44:40 - Se cerro la sesion
+2025-05-26 11:44:44 - Miguel Serrano accedió a la página principal
+2025-05-26 11:44:45 - El usuario accedió al catalogo de manga
+2025-05-26 11:44:46 - manga
+2025-05-26 11:48:54 - Miguel Serrano accedió a la página principal
+2025-05-26 11:48:56 - Se cerro la sesion
+2025-05-26 11:49:01 - Miguel Serrano accedió a la página principal
+2025-05-26 11:49:02 - El usuario accedió al catalogo de manga
+2025-05-26 11:49:04 - manga
+2025-05-26 12:30:57 - El usuario accedió a la página principal
+2025-05-26 12:30:59 - El usuario accedio a login
+2025-05-26 12:31:10 - Miguel Serrano accedió a la página principal
+2025-05-26 12:32:51 - El usuario accedió al catalogo de manga
+2025-05-26 12:33:03 - manga
+2025-05-26 12:39:56 - El usuario accedió a la página principal
+2025-05-26 12:39:58 - El usuario accedio a login
+2025-05-26 12:40:04 - Miguel Serrano accedió a la página principal
+2025-05-26 12:40:05 - El usuario accedió al catalogo de manga
+2025-05-26 12:40:11 - manga
+2025-05-26 12:46:17 - El usuario accedió a la página principal
+2025-05-26 12:46:19 - El usuario accedio a login
+2025-05-26 12:46:24 - Miguel Serrano accedió a la página principal
+2025-05-26 12:46:25 - El usuario accedió al catalogo de manga
+2025-05-26 12:46:41 - manga
+2025-05-26 12:50:39 - Miguel Serrano accedio a login
+2025-05-26 12:55:32 - Miguel Serrano accedió a la página principal
+2025-05-26 12:56:25 - El usuario accedió al catalogo de manga
+2025-05-26 12:56:34 - manga
+2025-05-26 13:03:01 - El usuario accedió a la página principal
+2025-05-26 13:03:04 - El usuario accedio a login
+2025-05-26 13:03:09 - Miguel Serrano accedió a la página principal
+2025-05-26 13:03:11 - El usuario accedió al catalogo de manga
+2025-05-26 13:03:13 - manga
+2025-05-26 13:03:32 - Miguel Serrano accedio a login
+2025-05-26 13:03:37 - Miguel Serrano accedió a la página principal
+2025-05-26 13:03:38 - El usuario accedió al catalogo de manga
+2025-05-26 13:03:39 - manga
+2025-05-26 13:04:29 - manga
+2025-05-26 13:04:29 - Intento de agregar al carrito sin iniciar sesión
+2025-05-26 13:04:29 - El usuario accedio a login
+2025-05-26 13:04:37 - Miguel Serrano accedió a la página principal
+2025-05-26 13:04:39 - El usuario accedió al catalogo de manga
+2025-05-26 13:04:41 - manga
+2025-05-26 13:04:46 - Miguel Serrano accedio a login
+2025-05-26 13:16:08 - Miguel Serrano accedió a la página principal
+2025-05-26 13:16:10 - El usuario accedió al catalogo de manga
+2025-05-26 13:23:24 - El usuario accedió a la página principal
+2025-05-26 13:23:27 - El usuario accedio a login
+2025-05-26 13:23:32 - Miguel Serrano accedió a la página principal
+2025-05-26 13:23:33 - El usuario accedió al catalogo de manga
+2025-05-26 13:23:35 - manga
+2025-05-26 13:24:09 - El usuario accedió al catalogo de manga
+2025-05-26 13:24:34 - manga
+2025-05-26 13:24:58 - El usuario accedió al catalogo de manga
+2025-05-26 13:25:02 - manga
+2025-05-26 13:25:06 - El usuario accedió al catalogo de manga
+2025-05-26 13:25:19 - manga
+2025-05-26 13:26:35 - El usuario accedió al catalogo de manga
+2025-05-26 13:26:38 - El usuario accedió al catalogo de manga
+2025-05-26 13:26:39 - manga
+2025-05-26 13:26:55 - El usuario accedió al catalogo de manga
+2025-05-26 13:27:13 - manga
+2025-05-26 13:27:13 - Intento de agregar al carrito sin iniciar sesión
+2025-05-26 13:27:13 - El usuario accedio a login
+2025-05-26 13:27:18 - Miguel Serrano accedió a la página principal
+2025-05-26 13:27:19 - El usuario accedió al catalogo de manga
+2025-05-26 13:27:21 - manga
+2025-05-26 13:27:21 - El usuario accedió al catalogo de manga
+2025-05-26 13:27:26 - manga
+2025-05-26 13:27:26 - El usuario accedió al catalogo de manga
+2025-05-26 13:27:46 - manga
+2025-05-26 13:27:46 - El usuario accedió al catalogo de manga
+2025-05-26 13:27:58 - El usuario accedió al catalogo de poster
+2025-05-26 13:28:00 - El usuario accedió al catalogo de figura
+2025-05-26 13:28:01 - El usuario accedió al catalogo de poster
+2025-05-26 13:28:02 - poster
+2025-05-26 13:28:03 - El usuario accedió al catalogo de poster
+2025-05-26 13:28:05 - poster
+2025-05-26 13:28:05 - El usuario accedió al catalogo de poster
+2025-05-26 13:28:08 - El usuario accedió al catalogo de figura
+2025-05-26 13:28:09 - figura
+2025-05-26 13:28:09 - El usuario accedió al catalogo de figura
+2025-05-26 13:28:11 - figura
+2025-05-26 13:28:11 - El usuario accedió al catalogo de figura
+2025-05-26 13:28:26 - Se cerro la sesion
+2025-05-26 13:28:28 - El usuario accedio a login
+2025-05-26 13:28:29 - El usuario accedio a login
+2025-05-26 13:28:30 - El usuario accedió a la página principal
+2025-05-26 13:28:31 - El usuario accedió al catalogo de manga
+2025-05-26 13:28:32 - manga
+2025-05-26 13:28:32 - Intento de agregar al carrito sin iniciar sesión
+2025-05-26 13:28:32 - El usuario accedio a login

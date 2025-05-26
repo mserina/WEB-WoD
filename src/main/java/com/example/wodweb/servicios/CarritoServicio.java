@@ -1,5 +1,13 @@
 package com.example.wodweb.servicios;
 
+import java.util.NoSuchElementException;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.wodweb.dtos.CarritoDto;
@@ -8,6 +16,7 @@ import com.example.wodweb.dtos.CarritoDto;
  * Servicio que contiene la lógica de las funcionalidades del carrito.
  * msm - 250525
  */
+@Service
 public class CarritoServicio {
 
 	private  RestTemplate restTemplate;    
@@ -15,7 +24,7 @@ public class CarritoServicio {
 
     public CarritoServicio() {
         this.restTemplate = new RestTemplate();
-        this.apiUrl = "http://localhost:9511/articulo";
+        this.apiUrl = "http://localhost:9511";
     }
 	 
     /**
@@ -27,13 +36,50 @@ public class CarritoServicio {
      * @return Devuelve el carrito con el articulo agregado
      */
 	public CarritoDto agregarAlCarrito(Long usuarioId, Long articuloId, Integer cantidad) {
+		
+		//Creamos la entidad carrito, con los campos del parametro
 		CarritoDto peticionCarrito = new CarritoDto();
 		
 		peticionCarrito.setUsuarioId(usuarioId);
         peticionCarrito.setArticuloId(articuloId);
         peticionCarrito.setCantidad(cantidad);
         
+        //Definimos la url de la API
         String url = apiUrl + "/carrito/crearArticulos";
-        return restTemplate.postForObject(url, peticionCarrito, CarritoDto.class);
-    }
+        
+        
+        try {
+        	//Hacemos la llamada a la API para guardar el articulo
+        	ResponseEntity<CarritoDto> response = restTemplate.postForEntity(url, peticionCarrito, CarritoDto.class);
+        	return response.getBody();   
+        	
+        }catch (HttpClientErrorException e){
+        	
+        	//En caso de error, guardamos el estado del HTTP, y lanzamos la excepcion  
+        	HttpStatusCode status = e.getStatusCode();
+
+             if (status == HttpStatus.CONFLICT) {
+                 // 409
+                 throw new IllegalStateException("Este artículo ya está en tu carrito.");
+             } else if (status == HttpStatus.NOT_FOUND) {
+                 // 404
+                 throw new NoSuchElementException("Usuario o artículo no encontrado.");
+             } else if (status == HttpStatus.BAD_REQUEST) {
+                 // 400
+                 throw new IllegalArgumentException("Datos inválidos: " + e.getResponseBodyAsString());
+             } else {
+                 // otros 4xx
+                 throw new RuntimeException("Error en la petición: " + status);
+             }
+
+        } catch (HttpServerErrorException e) {
+            // 5xx: errores del servidor
+            throw new RuntimeException("Error interno del servidor: " + e.getStatusText());
+
+        } catch (Exception e) {
+            // otras excepciones (network, serialización, etc.)
+            throw new RuntimeException("No se pudo conectar con la API: " + e.getMessage(), e);
+        }
+        
+	}
 }
