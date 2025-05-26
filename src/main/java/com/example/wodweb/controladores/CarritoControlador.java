@@ -50,12 +50,7 @@ public class CarritoControlador {
 	  */
 	 @PostMapping("/anadirCarrito")
 	    public String anadirAlCarrito(@RequestParam String catalogo, @RequestParam Long articuloId, @RequestParam(defaultValue = "1") Integer cantidad, RedirectAttributes mensajesRedireccion, Model modelo) {
-		// Perfil activo (si no hay ninguno, "default")
-		    String perfil = env.getActiveProfiles().length > 0
-		                    ? env.getActiveProfiles()[0]
-		                    : "default";
-		    modelo.addAttribute("perfilActivo", perfil);
-		    
+		
 		 // Usuario (cuando haya)
 		    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		    if (auth != null && auth.getPrincipal() instanceof SesionDto) {

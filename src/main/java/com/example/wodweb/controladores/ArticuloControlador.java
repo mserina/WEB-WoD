@@ -34,33 +34,41 @@ import jakarta.servlet.http.HttpSession;
 public class ArticuloControlador {
 	
 	@Autowired
-	private ArticuloServicio articuloServicio;
+	private ArticuloServicio articuloServicio; // Inyeccion del servicio de articulos
 	@Autowired
 	private UsuarioServicio usuarioServicio; //Inyeccion del servicio para usuarios
 	private static final Logger log = LoggerFactory.getLogger("logMensajes"); //Instancia de clase para generar logs
 	Authentication credencialesSesion; //Variable que se usa para guardar los datos de una sesion
 	String nombreUsuarioLog = "El usuario"; //Nombre que se usara en el log, en caso de no haber sesion de un usuario
 	@Autowired
-	private Environment env;
+	private Environment env; 
 	
 	
 	
-	
+	/**
+	 * Muestra el catalogo de articulos tipo manga
+	 * msm - 260525
+	 * @param modelo Modelo para pasar datos a la vista.
+	 * @return la ruta del catalogo
+	 */
 	@GetMapping("/catalogo/manga")
 	public String catalogoManga(Model modelo) {
-	    List<ArticuloDto> articulos = articuloServicio.obtenerPorTipo("manga");
-
-	    String perfil = env.getActiveProfiles().length > 0
+		
+    // Determina el perfil activo (dev, prod, etc.) y lo añade al modelo
+		String perfil = env.getActiveProfiles().length > 0
 	                    ? env.getActiveProfiles()[0]
 	                    : "default";
 	    modelo.addAttribute("perfilActivo", perfil);
 
+	  // Verifica si hay un usuario autenticado y añade su info al modelo
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    if (auth != null && auth.getPrincipal() instanceof SesionDto) {
 	        SesionDto sesion = (SesionDto) auth.getPrincipal();
 	        modelo.addAttribute("usuario", usuarioServicio.buscarUsuario(sesion.getUsername()));
 	    }
-
+	    
+	 // Obtiene todos los artículos de tipo "manga" y los pasa a la vista
+	    List<ArticuloDto> articulos = articuloServicio.obtenerPorTipo("manga");
 	    modelo.addAttribute("articulosLista", articulos);
 	    modelo.addAttribute("titulo", "Manga");
 
@@ -71,19 +79,22 @@ public class ArticuloControlador {
 	
 	@GetMapping("/catalogo/figura")
 	public String catalogoFigura(Model modelo) {
-	    List<ArticuloDto> articulos = articuloServicio.obtenerPorTipo("figura");
-	 // 1) Perfil activo (si no hay ninguno, "default")
-	    String perfil = env.getActiveProfiles().length > 0
+	    
+	    // Determina el perfil activo (dev, prod, etc.) y lo añade al modelo
+		String perfil = env.getActiveProfiles().length > 0
 	                    ? env.getActiveProfiles()[0]
 	                    : "default";
 	    modelo.addAttribute("perfilActivo", perfil);
 	    
+		// Verifica si hay un usuario autenticado y añade su info al modelo
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    if (auth != null && auth.getPrincipal() instanceof SesionDto) {
 	        SesionDto sesion = (SesionDto) auth.getPrincipal();
 	        modelo.addAttribute("usuario", usuarioServicio.buscarUsuario(sesion.getUsername()));
 	    }
-
+	    
+	    // Obtiene todos los artículos de tipo "manga" y los pasa a la vista
+		List<ArticuloDto> articulos = articuloServicio.obtenerPorTipo("figura");
 	    modelo.addAttribute("titulo", "Figura");
         modelo.addAttribute("articulosLista", articulos); // ← Aquí se inyecta al modelo
         
@@ -93,19 +104,22 @@ public class ArticuloControlador {
 	
 	@GetMapping("/catalogo/poster")
 	public String catalogoPoster(Model modelo) {
-	    List<ArticuloDto> articulos = articuloServicio.obtenerPorTipo("poster");
-	 // 1) Perfil activo (si no hay ninguno, "default")
-	    String perfil = env.getActiveProfiles().length > 0
+	    
+	    // Determina el perfil activo (dev, prod, etc.) y lo añade al modelo
+		String perfil = env.getActiveProfiles().length > 0
 	                    ? env.getActiveProfiles()[0]
 	                    : "default";
 	    modelo.addAttribute("perfilActivo", perfil);
 	    
+		// Verifica si hay un usuario autenticado y añade su info al modelo
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    if (auth != null && auth.getPrincipal() instanceof SesionDto) {
 	        SesionDto sesion = (SesionDto) auth.getPrincipal();
 	        modelo.addAttribute("usuario", usuarioServicio.buscarUsuario(sesion.getUsername()));
 	    }
-
+	    
+	    // Obtiene todos los artículos de tipo "manga" y los pasa a la vista
+		List<ArticuloDto> articulos = articuloServicio.obtenerPorTipo("poster");
 	    modelo.addAttribute("titulo", "Poster");
 	    modelo.addAttribute("articulosLista", articulos); // ← Aquí se inyecta al modelo
 	    
@@ -122,29 +136,36 @@ public class ArticuloControlador {
      */
     @GetMapping("/admin/obtenerArticulos")
     public String obtenerArticulos(Model modelo) {
-    	//Se guarda los datos de la sesion 
-    	credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
-    	modelo.addAttribute("articulos", articuloServicio.obtenerArticulos());
         
+    	// Determina el perfil activo (dev, prod, etc.) y lo añade al modelo
+	    String perfil = env.getActiveProfiles().length > 0
+	                    ? env.getActiveProfiles()[0]
+	                    : "default";
+	    modelo.addAttribute("perfilActivo", perfil);
+	  
+	    
+	    //Se guarda los datos de la sesion 
+    	credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
+    	
     	//Se comprueba que la sesion no sea null
         if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
-        	// 1) Perfil activo (si no hay ninguno, "default")
-    	    String perfil = env.getActiveProfiles().length > 0
-    	                    ? env.getActiveProfiles()[0]
-    	                    : "default";
-    	    modelo.addAttribute("perfilActivo", perfil);
         	
         	SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
             String correo = sesion.getUsername();
             UsuarioDto u = usuarioServicio.buscarUsuario(correo);
             modelo.addAttribute("usuario", u);
+            
             // En caso de que se cumpla las condiciones, se usa el nombre del usuario de sesión
             nombreUsuarioLog = sesion.getNombre();
             modelo.addAttribute("auth", sesion); // Enviar usuario autenticado a la vista
+    
         }
         else {
     		nombreUsuarioLog = "El usuario";
     	}
+        
+        //Se guarda y muestra la lista de articulos en pantalla
+    	modelo.addAttribute("articulos", articuloServicio.obtenerArticulos());
         log.info(nombreUsuarioLog + " accedio a la lista de articulos");
         return "articulos";
     }
