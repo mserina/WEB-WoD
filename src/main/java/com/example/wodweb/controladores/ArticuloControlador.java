@@ -24,8 +24,6 @@ import com.example.wodweb.excepciones.CorreoExistenteExcepcion;
 import com.example.wodweb.servicios.ArticuloServicio;
 import com.example.wodweb.servicios.UsuarioServicio;
 
-import jakarta.servlet.http.HttpSession;
-
 /**
  * Controlador para la gestión de articulo.
  * msm - 130525
@@ -37,19 +35,19 @@ public class ArticuloControlador {
 	private ArticuloServicio articuloServicio; // Inyeccion del servicio de articulos
 	@Autowired
 	private UsuarioServicio usuarioServicio; //Inyeccion del servicio para usuarios
+	@Autowired
+	private Environment env; 
 	private static final Logger log = LoggerFactory.getLogger("logMensajes"); //Instancia de clase para generar logs
 	Authentication credencialesSesion; //Variable que se usa para guardar los datos de una sesion
 	String nombreUsuarioLog = "El usuario"; //Nombre que se usara en el log, en caso de no haber sesion de un usuario
-	@Autowired
-	private Environment env; 
 	
 	
 	
 	/**
-	 * Muestra el catalogo de articulos tipo manga
+	 * Muestra el catalogo de mangas
 	 * msm - 260525
 	 * @param modelo Modelo para pasar datos a la vista.
-	 * @return la ruta del catalogo
+	 * @return Devuelve la vista del catalogo
 	 */
 	@GetMapping("/catalogo/manga")
 	public String catalogoManga(Model modelo) {
@@ -75,8 +73,14 @@ public class ArticuloControlador {
 	    log.info(nombreUsuarioLog + " accedió al catalogo de manga");
 	    return "catalogo";
 	}
-
 	
+
+	/**
+	 * Muestra el catalogo de figuras
+	 * msm - 270525
+	 * @param modelo Modelo para pasar los datos a la vista.
+	 * @return Devuelve la vista del catalogo
+	 */
 	@GetMapping("/catalogo/figura")
 	public String catalogoFigura(Model modelo) {
 	    
@@ -102,6 +106,12 @@ public class ArticuloControlador {
 	    return "catalogo";
 	}
 	
+	/**
+	 * Muestra el catalogo de posters
+	 * msm - 270525
+	 * @param modelo Modelo para pasar los datos a la vista.
+	 * @return Devuelve la vista del catalogo
+	 */
 	@GetMapping("/catalogo/poster")
 	public String catalogoPoster(Model modelo) {
 	    
@@ -177,11 +187,11 @@ public class ArticuloControlador {
      * @param nombre nombre del usuario a modificar.
      * @param campo Campo a actualizar.
      * @param nuevoValor Nuevo valor a asignar.
-     * @param redirectAttributes Permite redirigir con mensajes flash.
+     * @param mensajesRedireccion Para mandar mensajes en pantalla tras una redireccion
      * @return Redirige a la vista con la lista de articulos.
      */
     @PostMapping("/admin/editarArticulo")
-    public String editarArticulo(@RequestParam String nombre, @RequestParam String campo, @RequestParam(required = false) String nuevoValor,@RequestParam(name = "foto", required = false) MultipartFile foto,RedirectAttributes redirectAttributes) {
+    public String editarArticulo(@RequestParam String nombre, @RequestParam String campo, @RequestParam(required = false) String nuevoValor,@RequestParam(name = "foto", required = false) MultipartFile foto,RedirectAttributes mensajesRedireccion) {
         
     	boolean actualizado;
         if ("foto".equals(campo) && foto != null && !foto.isEmpty()) {
@@ -193,11 +203,11 @@ public class ArticuloControlador {
         }
 
         if (actualizado) {
-            redirectAttributes.addFlashAttribute("mensaje", "Artículo actualizado con éxito.");
-            redirectAttributes.addFlashAttribute("tipoMensaje", "success");
+        	mensajesRedireccion.addFlashAttribute("mensaje", "Artículo actualizado con éxito.");
+        	mensajesRedireccion.addFlashAttribute("tipoMensaje", "success");
         } else {
-            redirectAttributes.addFlashAttribute("mensaje", "Error al actualizar artículo.");
-            redirectAttributes.addFlashAttribute("tipoMensaje", "danger");
+        	mensajesRedireccion.addFlashAttribute("mensaje", "Error al actualizar artículo.");
+        	mensajesRedireccion.addFlashAttribute("tipoMensaje", "danger");
         }
         log.info("Se modificó el campo " + campo + " del artículo " + nombre);
         return "redirect:/admin/obtenerArticulos";
@@ -205,31 +215,41 @@ public class ArticuloControlador {
     
     
     /**
-     * Borra un usuario de la base de datos utilizando su ID.
-     *
-     * @param id Identificador único del usuario.
-     * @return ResponseEntity con mensaje de éxito o error si el usuario no existe.
+     * Borra un articulo
+     * msm - 270525
+     * @param id El id del articulo a borrar
+     * @param mensajesRedireccion Para mandar mensajes en pantalla tras una redireccion
+     * @return Devlve la vista de la lista de articulo (se visualizar que el articulo fue borrado)
      */
     @PostMapping("/admin/borrarArticulo")
-    public String borrarUsuario(@RequestParam Long id, RedirectAttributes redirectAttributes) {
+    public String borrarArticulo(@RequestParam Long id, RedirectAttributes mensajesRedireccion) {
     	credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
     	String nombreArticuloBorrado = "";
     	
     	boolean borrado = articuloServicio.borrarArticulo(id); // Llamar al servicio para eliminar el articulo
         log.info(nombreUsuarioLog + " elimino el articulo " + nombreArticuloBorrado);
         
-        	
         	if (borrado) {
-                redirectAttributes.addFlashAttribute("mensaje", "Articulo borrado correctamente.");
+        		mensajesRedireccion.addFlashAttribute("mensaje", "Articulo borrado correctamente.");
             } else {
-                redirectAttributes.addFlashAttribute("mensaje", "Error al borrar el articulo.");
+            	mensajesRedireccion.addFlashAttribute("mensaje", "Error al borrar el articulo.");
             }
         
         return "redirect:/admin/obtenerArticulos";
     }
     
+    
+    /**
+     * Para crear un nuevo articulo
+     * msm - 270525
+     * @param articuloNuevo El articulo que se quiere agregar
+     * @param modelo Modelo para pasar los datos a la vista.
+     * @param mensajesRedireccion Para mandar mensajes en pantalla tras una redireccion
+     * @param foto La foto de articulo
+     * @return Devuelve la vista de la lista de articulos
+     */
     @PostMapping("/admin/crearArticulo")
-    public String registrarArticulo(HttpSession sesion ,ArticuloDto articuloNuevo, Model modelo, RedirectAttributes redirectAttributes,  @RequestParam(name = "foto", required = false) MultipartFile foto) {
+    public String registrarArticulo(ArticuloDto articuloNuevo, Model modelo, RedirectAttributes mensajesRedireccion,  @RequestParam(name = "foto", required = false) MultipartFile foto) {
        try {
     	   
            byte[] fotoBytes = foto.getBytes();
@@ -240,10 +260,10 @@ public class ArticuloControlador {
            return "redirect:/admin/obtenerArticulos";
            
        }catch (CorreoExistenteExcepcion errorEmail) {
-    	   redirectAttributes.addAttribute("mensajeErrorEmail", errorEmail.getMessage());
+    	   mensajesRedireccion.addAttribute("mensajeErrorEmail", errorEmail.getMessage());
            return "redirect:/admin/obtenerArticulos";        
        }catch (IOException e) {
-    	   redirectAttributes.addAttribute("mensajeError", "No pudimos procesar la foto.");
+    	   mensajesRedireccion.addAttribute("mensajeError", "No pudimos procesar la foto.");
     	   return "redirect:/admin/obtenerArticulos";
        }
     }

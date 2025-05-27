@@ -1,9 +1,9 @@
 package com.example.wodweb.controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -138,60 +138,62 @@ public class CarritoControlador {
 	 	}
 	 
 	 
-	 
+	 /**
+	  * 
+	  * Ver el carrito del usuario logueado
+	  * msm - 270525 
+	  * @param modelo 
+	  * @param mensajesRedireccion Para imprimir mensajes por pantalla
+	  * @return devuelve la direccion para ver la pagina de carrito
+	  */
 	 @GetMapping("/verCarrito")
 	    public String verCarrito(Model modelo, RedirectAttributes mensajesRedireccion) {
-		 	Long usuarioSesionId = null;
-		 	autenticacion = SecurityContextHolder.getContext().getAuthentication();
-            SesionDto sesion = (SesionDto) autenticacion.getPrincipal();
-
-		 	
-		 // Perfil activo (si no hay ninguno, "default")
-		    String perfil = env.getActiveProfiles().length > 0
-		                    ? env.getActiveProfiles()[0]
-		                    : "default";
-		    modelo.addAttribute("perfilActivo", perfil);
-		 	
-	        //  Verificar sesión
-	        if (autenticacion == null || !autenticacion.isAuthenticated() || autenticacion.getPrincipal().equals("anonymousUser")) {
+	        //  Comprobar sesión
+	        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	        if (auth == null || !auth.isAuthenticated() || "anonymousUser".equals(auth.getPrincipal())) {
 	            log.warn("Usuario anónimo intentó ver el carrito");
 	            mensajesRedireccion.addFlashAttribute("mensajeError", "Debes iniciar sesión para ver tu carrito.");
 	            return "redirect:/login";
 	        }
 
-	        
+	     // Perfil activo (si no hay ninguno, "default")
+		    String perfil = env.getActiveProfiles().length > 0
+		                    ? env.getActiveProfiles()[0]
+		                    : "default";
+		    modelo.addAttribute("perfilActivo", perfil);
+		    
 	        try {
-	        	String correo = autenticacion.getName();
-	            UsuarioDto usuarioLogueado = usuarioServicio.buscarUsuario(correo);
-	            usuarioSesionId = usuarioLogueado.getId();
-	            modelo.addAttribute("usuario", usuarioLogueado);
-	        	
-	            // Obtengo los elementos del carrito (solo ID y cantidad)
-	            List<CarritoDto> elementosCarrito = carritoServicio.obtenerCarritoDeUsuario(usuarioSesionId);
+	            // Obtener usuario y su ID
+	            SesionDto sesion = (SesionDto) auth.getPrincipal();
+	            UsuarioDto usuario = usuarioServicio.buscarUsuario(sesion.getUsername());
+	            Long usuarioId = usuario.getId();
+	            modelo.addAttribute("usuario", usuario);
 
-	            List<Map<String,?>> carritoArticulos = elementosCarrito.stream()
-	            	    .map(item -> {
-	            	        ArticuloDto articulo = articuloServicio.obtenerArticuloPorId(item.getArticuloId());
-	            	        return Map.of(
-	            	            "itemId",     item.getId(),
-	            	            "articuloId", articulo.getId(),
-	            	            "nombre",     articulo.getNombre(),
-	            	            "precio",     articulo.getPrecio(),
-	            	            "cantidad",   item.getCantidad(),
-	            	            "subtotal",   articulo.getPrecio() * item.getCantidad()
-	            	        );
-	            	    })
-	            	    .collect(Collectors.toList());
+	            // Llamar al servicio para traer los artículos del carrito
+	            List<Map<String, ?>> carritoArticulos = carritoServicio.obtenerCarritoDeUsuario(usuarioId);
 
+	            // Calcular total
+	            double total = carritoArticulos.stream()
+	                    .mapToDouble(m -> ((Number) m.get("subtotal")).doubleValue())
+	                    .sum();
+
+	            //  Añadir datos al modelo
 	            modelo.addAttribute("elementosCarrito", carritoArticulos);
+	            modelo.addAttribute("totalCarrito", total);
+
+	            // Muestra el html del carrito
 	            return "carrito";
 
 	        } catch (NoSuchElementException e) {
-	        	mensajesRedireccion.addFlashAttribute("mensajeError", e.getMessage());
-		        log.error("Error de carga: " + e.getMessage());
-	        	return "redirect:/catalogo/manga";
+	            // Carrito o artículo no encontrado
+	            log.error("Error al cargar carrito: {}", e.getMessage());
+	            mensajesRedireccion.addFlashAttribute("mensajeError", e.getMessage());
+	            return "redirect:/catalogo/manga";
+
 	        } catch (Exception e) {
-	        	mensajesRedireccion.addFlashAttribute("mensajeError", "No se pudo cargar el carrito.");
+	            // Cualquier otro fallo
+	            log.error("Error inesperado al obtener carrito", e);
+	            mensajesRedireccion.addFlashAttribute("mensajeError", "No se pudo cargar el carrito. Intenta de nuevo.");
 	            return "redirect:/catalogo/manga";
 	        }
 	    }

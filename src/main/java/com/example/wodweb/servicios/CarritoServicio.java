@@ -1,8 +1,11 @@
 package com.example.wodweb.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -13,6 +16,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import com.example.wodweb.dtos.ArticuloDto;
 import com.example.wodweb.dtos.CarritoDto;
 
 /**
@@ -24,7 +28,9 @@ public class CarritoServicio {
 
 	private  RestTemplate restTemplate;    
     private  String apiUrl;
-
+    @Autowired
+	  private ArticuloServicio articuloServicio;
+    
     public CarritoServicio() {
         this.restTemplate = new RestTemplate();
         this.apiUrl = "http://localhost:9511";
@@ -97,15 +103,37 @@ public class CarritoServicio {
 	  * @param usuarioId id del usuario que queremos ver el carrito
 	  * @return el carrito 
 	  */
-    public List<CarritoDto> obtenerCarritoDeUsuario(Long usuarioId) {
+    public List<Map<String, ?>> obtenerCarritoDeUsuario(Long usuarioId) {
         
     	String url = apiUrl + "/carrito/" + usuarioId;
     	
         try {
-        	//Realizamos la peticion
-            ResponseEntity<List<CarritoDto>> resp = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
-            return resp.getBody();
+        	//Realizamos la peticion para sacar el carrito del usuario
+        	ResponseEntity<List<CarritoDto>> resp = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
+        	
+        	//Obtén los items del carrito
+            List<CarritoDto> elementosCarrito = resp.getBody();
 
+         //Recorre uno a uno y maneja excepciones individuales
+            List<Map<String, ?>> carritoArticulos = new ArrayList<>();
+            for (CarritoDto item : elementosCarrito) {
+                try {
+                    ArticuloDto articulo = articuloServicio.obtenerArticuloPorId(item.getArticuloId());
+                    carritoArticulos.add(Map.of(
+                    	"id",       item.getId(),
+                        "nombre",   articulo.getNombre(),
+                        "precio",   articulo.getPrecio(),
+                        "cantidad", item.getCantidad(),
+                        "subtotal", articulo.getPrecio() * item.getCantidad()
+                    ));
+                } catch (NoSuchElementException e) {
+                    // Si falla para este artículo, lo registramos y seguimos
+                	String mensajeError = "No se encontró el artículo con ID: " + item.getArticuloId() +" : "+ e.getMessage();
+                    throw new NoSuchElementException(mensajeError);
+                }
+            }
+        	
+            return carritoArticulos;
         } catch (HttpClientErrorException e) {
         	
         	//En caso de error, guardamos el estado del HTTP, y lanzamos la excepcion  

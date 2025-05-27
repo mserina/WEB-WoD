@@ -67,7 +67,7 @@ public class ArticuloServicio {
      * @return
      */
     public ArticuloDto obtenerArticuloPorId(Long articuloId) {
-        String url = apiUrl + "/articulo/mostrarArticuloId/" + articuloId;
+        String url = apiUrl + "/mostrarArticuloId/" + articuloId;
         try {
             return restTemplate.getForObject(url, ArticuloDto.class);
             
