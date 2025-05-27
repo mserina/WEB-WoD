@@ -197,4 +197,46 @@ public class CarritoControlador {
 	            return "redirect:/catalogo/manga";
 	        }
 	    }
+	 
+	 /**
+	  * Actualiza la cantidad 
+	  * msm - 270525
+	  * @param elementoCarritoId 
+	  * @param articuloId 
+	  * @param cantidad  
+	  * @param mensajeRedireccion
+	  * @return Devuelve la vista de carrito
+	  */
+	 @PostMapping("/carrito/actualizar")
+	    public String actualizarCantidad(@RequestParam Long elementoCarritoId, @RequestParam Long articuloId, @RequestParam Integer cantidad, RedirectAttributes mensajeRedireccion) {
+
+	        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	        // Controlamos que el usuario esté autenticado
+	        if (auth == null || !auth.isAuthenticated() || "anonymousUser".equals(auth.getPrincipal())) {
+	            log.warn("Intento de actualizar carrito sin sesión válida");
+	            mensajeRedireccion.addFlashAttribute("mensajeError", "Debes iniciar sesión para modificar el carrito.");
+	            return "redirect:/login";
+	        }
+
+	        try {
+	            // Llamada al servicio frontend que reenvía a la API
+	            carritoServicio.actualizarCantidad(elementoCarritoId, articuloId, cantidad);
+	            mensajeRedireccion.addFlashAttribute("mensajeExito", "Cantidad actualizada correctamente.");
+
+	        } catch (IllegalArgumentException e) {
+	            log.warn("Cantidad inválida al actualizar carrito: {}", e.getMessage());
+	            mensajeRedireccion.addFlashAttribute("mensajeError", e.getMessage());
+
+	        } catch (NoSuchElementException e) {
+	            log.error("Elemento de carrito no encontrado: {}", e.getMessage());
+	            mensajeRedireccion.addFlashAttribute("mensajeError", e.getMessage());
+
+	        } catch (Exception e) {
+	            log.error("Error inesperado al actualizar carrito", e);
+	            mensajeRedireccion.addFlashAttribute("mensajeError", "No se pudo actualizar el carrito. Intenta de nuevo.");
+	        }
+
+	        // Siempre redirigimos a verCarrito para recargar la vista con los nuevos datos
+	        return "redirect:/verCarrito";
+	    }
 	}   

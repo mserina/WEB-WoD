@@ -89,14 +89,23 @@
 
 		</div>
 	</div>
+	
+	
+<!-- ///////////////////////////////////
+	             CONTENIDO
+   //////////////////////////////////// -->
 
-
-<div class="container mt-5">
   <h2 class="mb-4 text-center">Tu Carrito</h2>
+  
+<!-- Mensaje de error -->
+  <div th:if="${mensajeError}" class="alert alert-danger" role="alert">
+  		<span th:text="${mensajeError}" style="color: red;"></span>
+  		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+  </div>
+  
+<div class="container mt-5">
 
-  <!-- Mensaje de error -->
-  <div th:if="${mensajeError}" class="alert alert-danger" role="alert"
-       th:text="${mensajeError}"></div>
+  
 
   <table class="table align-middle">
     <thead class="table-light">
@@ -117,14 +126,16 @@
         <!-- Cantidad con botones de +/- -->
         <td class="text-center">
           <form th:action="@{/carrito/actualizar}" method="post" class="d-inline">
-            <input type="hidden" name="itemId" th:value="${elementoCarrito.id}" />
+            <input type="hidden" name="elementoCarritoId" th:value="${elementoCarrito.id}" />
+            <input type="hidden" name="articuloId" th:value="${elementoCarrito.articuloId}" />
             <button type="submit" name="cantidad" th:value="${elementoCarrito.cantidad - 1}"
                     class="btn btn-sm btn-outline-secondary"
                     th:disabled="${elementoCarrito.cantidad <= 1}">−</button>
           </form>
           <span class="mx-2" th:text="${elementoCarrito.cantidad}">1</span>
           <form th:action="@{/carrito/actualizar}" method="post" class="d-inline">
-            <input type="hidden" name="itemId" th:value="${elementoCarrito.id}" />
+            <input type="hidden" name="elementoCarritoId" th:value="${elementoCarrito.id}" />
+            <input type="hidden" name="articuloId" th:value="${elementoCarrito.articuloId}" />
             <button type="submit" name="cantidad" th:value="${elementoCarrito.cantidad + 1}"
                     class="btn btn-sm btn-outline-secondary">+</button>
           </form>

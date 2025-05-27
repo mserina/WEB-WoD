@@ -212,14 +212,6 @@ body {
     text-align: center;
 }
 
-.flechas-cotenedor {
-    display: flex;
-    justify-content: space-between; /* Distribuye las flechas */
-    width: 100%; /* Ajusta el ancho según necesites */
-    max-width: 89rem; /* Evita que las flechas se separen demasiado */
-    margin-top: 2rem;
-}
-
 .icoPricipal{
     width: 22rem;
 }
@@ -228,12 +220,6 @@ body {
     color: white;
     font-size: 4rem;
     width: 63rem;
-}
-
-#flecha1, #flecha2 {
-    width: 11rem;
-    transform: rotate(360deg);
-    height: 10rem;
 }
 
 h2 {
@@ -295,31 +281,6 @@ h2 {
 
 .form-control, .form-select {
     background-color: #F5DEB3 !important;
-}
-
-/* Estilo para el snackbar (notificación emergente) */
-#snackbar {
-    visibility: hidden;
-    min-width: 250px;
-    margin-left: -125px;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    border-radius: 5px;
-    padding: 16px;
-    position: fixed;
-    left: 50%;
-    bottom: 30px;
-    z-index: 1;
-    font-size: 17px;
-    opacity: 0;
-    transition: opacity 0.5s, bottom 0.5s ease-in-out;
-}
-
-#snackbar.show {
-    visibility: visible;
-    opacity: 1;
-    bottom: 50px;
 }
 
 
@@ -454,13 +415,6 @@ th {
     align-items: center;
     height: 100vh;
 }
-
-
-/* /////////////////////////////////// */
-
-/*   ESTILOS DE LA ARTICULOS     */
-
-/* //////////////////////////////////// */
 
 
 

@@ -1,5 +1,6 @@
 package com.example.wodweb.servicios;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -46,16 +47,15 @@ public class CarritoServicio {
      */
 	public CarritoDto agregarAlCarrito(Long usuarioId, Long articuloId, Integer cantidad) {
 		
+		 //Definimos la url de la API
+        String url = apiUrl + "/carrito/crearArticulos";
+        
 		//Creamos la entidad carrito, con los campos del parametro
 		CarritoDto peticionCarrito = new CarritoDto();
 		
 		peticionCarrito.setUsuarioId(usuarioId);
         peticionCarrito.setArticuloId(articuloId);
-        peticionCarrito.setCantidad(cantidad);
-        
-        //Definimos la url de la API
-        String url = apiUrl + "/carrito/crearArticulos";
-        
+        peticionCarrito.setCantidad(cantidad);      
         
         try {
         	//Hacemos la llamada a la API para guardar el articulo
@@ -105,6 +105,7 @@ public class CarritoServicio {
 	  */
     public List<Map<String, ?>> obtenerCarritoDeUsuario(Long usuarioId) {
         
+    	//Definimos la url de la API
     	String url = apiUrl + "/carrito/" + usuarioId;
     	
         try {
@@ -120,13 +121,15 @@ public class CarritoServicio {
                 try {
                     ArticuloDto articulo = articuloServicio.obtenerArticuloPorId(item.getArticuloId());
                     carritoArticulos.add(Map.of(
-                    	"id",       item.getId(),
-                        "nombre",   articulo.getNombre(),
-                        "precio",   articulo.getPrecio(),
-                        "cantidad", item.getCantidad(),
-                        "subtotal", articulo.getPrecio() * item.getCantidad()
+                    	"id",           item.getId(),
+                    	"articuloId",   articulo.getId(),
+                        "nombre",       articulo.getNombre(),
+                        "precio",       articulo.getPrecio(),
+                        "cantidad",     item.getCantidad(),
+                        "subtotal",     articulo.getPrecio() * item.getCantidad()
                     ));
                 } catch (NoSuchElementException e) {
+                	
                     // Si falla para este artículo, lo registramos y seguimos
                 	String mensajeError = "No se encontró el artículo con ID: " + item.getArticuloId() +" : "+ e.getMessage();
                     throw new NoSuchElementException(mensajeError);
@@ -134,6 +137,7 @@ public class CarritoServicio {
             }
         	
             return carritoArticulos;
+            
         } catch (HttpClientErrorException e) {
         	
         	//En caso de error, guardamos el estado del HTTP, y lanzamos la excepcion  
@@ -159,5 +163,41 @@ public class CarritoServicio {
             throw new RuntimeException("No se pudo conectar con la API: " + e.getMessage(), e);
         }
     }
+    
+    
+    public CarritoDto actualizarCantidad(Long articuloCarritoId, Long articuloId, Integer cantidad) {
+		
+    	// Construimos la URL con parámetros quer 
+    	String url = apiUrl + "/carrito" + "actualizar";
+
+		try {
+			//Realizamos la peticion para actualizar
+			ResponseEntity<CarritoDto> resp = restTemplate.postForEntity(new URI(url),null, CarritoDto.class);
+			return resp.getBody();
+			
+		} catch (HttpClientErrorException e) {
+			
+		//En caso de error, guardamos el estado del HTTP, y lanzamos la excepcion  
+		 HttpStatusCode status = e.getStatusCode();
+			
+		if (status == HttpStatus.BAD_REQUEST) {
+			throw new IllegalArgumentException("Cantidad inválida: " + e.getResponseBodyAsString());
+			
+		} else if (status == HttpStatus.NOT_FOUND) {
+			throw new NoSuchElementException("Carrito o artículo no encontrado");
+			
+		} else {
+			throw new RuntimeException("Error en la petición: " + status);
+		
+		}
+		
+		} catch (HttpServerErrorException e) {
+		throw new RuntimeException("Error interno del servidor: " + e.getStatusText());
+		
+		} catch (Exception e) {
+		throw new RuntimeException("No se pudo conectar con la API: " + e.getMessage(), e);
+		
+		}
+}
 	
 }
