@@ -20,6 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.example.wodweb.dtos.ArticuloDto;
 import com.example.wodweb.dtos.CarritoDto;
+import com.example.wodweb.dtos.UsuarioDto;
 
 /**
  * Servicio que contiene la lógica de las funcionalidades del carrito.
@@ -126,7 +127,7 @@ public class CarritoServicio {
                     	"articuloId",   articulo.getId(),
                         "nombre",       articulo.getNombre(),
                         "precio",       articulo.getPrecio(),
-                        "cantidad",     item.getCantidad(),
+                        "stock",        item.getCantidad(),
                         "subtotal",     articulo.getPrecio() * item.getCantidad()
                     ));
                 } catch (NoSuchElementException e) {
@@ -209,6 +210,17 @@ public class CarritoServicio {
 		throw new RuntimeException("No se pudo conectar con la API: " + e.getMessage(), e);
 		
 		}
+    }
+    
+    public boolean borrarElementoCarrito(Long elementoCarritoId) {
+        try {
+            String url = apiUrl + "/carrito" + "/eliminarElementoCarrito/" + elementoCarritoId;
+            ResponseEntity<?> response = restTemplate.exchange(url, HttpMethod.DELETE, null, Void.class);
+            return response.getStatusCode().is2xxSuccessful();
+        } catch (Exception e) {
+            System.err.println("Error al borrar elemento del carrito en la API externa: " + e.getMessage());
+            return false;
+        }
     }
 	
 }

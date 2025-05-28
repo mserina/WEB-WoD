@@ -5,9 +5,9 @@
   <title>Tu Carrito</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" th:href="@{/css/estilos.css}">
-	
 </head>
 <body>
+
 
 <!-- ///////////////////////////////////
             BARRA NAVEGACION                  
@@ -78,7 +78,7 @@
 						    Mi carrito
 						  </a>
 						</li>
-						<li><hr class="dropdown-divider"></li>
+					    <li><hr class="dropdown-divider"></li>
 						<li sec:authorize="hasRole('ADMIN')" ><a class="dropdown-item" th:href="@{/admin/obtenerUsuario}">Admin</a></li>
 						<li sec:authorize="hasRole('ADMIN')" ><a class="dropdown-item" th:href="@{/admin/obtenerArticulos}">Articulos</a></li>
 						<li><hr class="dropdown-divider"></li>
@@ -90,23 +90,22 @@
 		</div>
 	</div>
 
-
 <!-- ///////////////////////////////////
-	             CONTENIDO
+             CONTENIDO
    //////////////////////////////////// -->
 <div class="container mt-5">
   <h2 class="mb-4 text-center">Tu Carrito</h2>
 
   <!-- Mensaje de error -->
   <div th:if="${mensajeError}" class="alert alert-danger" role="alert">
-  		<span th:text="${mensajeError}" style="color: red;"></span>
-  		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    <span th:text="${mensajeError}" style="color: red;"></span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
   </div>
 
-  	<table class="table align-middle">
+  <table class="table align-middle">
     <thead class="table-light">
       <tr>
-        <th scope="col"><input type="checkbox" id="selectAll" /></th>
+        <th><input type="checkbox" id="selectAll" /></th>
         <th>Artículo</th>
         <th class="text-center">Cantidad</th>
         <th class="text-end">Precio unitario</th>
@@ -115,126 +114,98 @@
       </tr>
     </thead>
     <tbody>
-      <!-- Itera sobre elementosCarrito -->
-      <tr th:each="elementoCarrito : ${elementosCarrito}">
-      <!-- Casilla de selección -->
+      <tr th:each="elementoCarrito : ${elementosCarrito}" th:classappend="${elementoCarrito.stock == 0} ? 'table-secondary'">
         <td>
           <input type="checkbox"
+                 class="item-checkbox"
                  name="selectedItemIds"
-                 th:value="${elementoCarrito.id}" 
-                 th:attr="data-subtotal=${elementoCarrito.precio * elementoCarrito.cantidad}" />
+                 th:value="${elementoCarrito.id}"
+                 th:attr="data-subtotal=${elementoCarrito.precio * elementoCarrito.stock}"
+                 th:disabled="${elementoCarrito.stock == 0}" />
         </td>
-      
-        <!-- Nombre del artículo -->
-        <td th:text="${elementoCarrito.nombre}">Nombre Artículo</td>
-
-        <!-- Cantidad con botones de +/- -->
+        <td>
+          <span th:text="${elementoCarrito.nombre}">Artículo</span>
+          <br />
+          <small th:if="${elementoCarrito.stock == 0}" class="text-danger">(Agotado)</small>
+        </td>
         <td class="text-center">
           <form th:action="@{/carrito/actualizar}" method="post" class="d-inline">
             <input type="hidden" name="elementoCarritoId" th:value="${elementoCarrito.id}" />
             <input type="hidden" name="articuloId" th:value="${elementoCarrito.articuloId}" />
-            <button type="submit" name="cantidad" th:value="${elementoCarrito.cantidad - 1}"
+            <button type="submit" name="cantidad" th:value="${elementoCarrito.stock - 1}" 
                     class="btn btn-sm btn-outline-secondary"
-                    th:disabled="${elementoCarrito.cantidad <= 1}">−</button>
+                    th:disabled="${elementoCarrito.stock <= 1}">−</button>
           </form>
-          <span class="mx-2" th:text="${elementoCarrito.cantidad}">1</span>
+          <span class="mx-2" th:text="${elementoCarrito.stock}">1</span>
           <form th:action="@{/carrito/actualizar}" method="post" class="d-inline">
             <input type="hidden" name="elementoCarritoId" th:value="${elementoCarrito.id}" />
             <input type="hidden" name="articuloId" th:value="${elementoCarrito.articuloId}" />
-            <button type="submit" name="cantidad" th:value="${elementoCarrito.cantidad + 1}"
-                    class="btn btn-sm btn-outline-secondary">+</button>
+            <button type="submit" name="cantidad" th:value="${elementoCarrito.stock + 1}"
+                    class="btn btn-sm btn-outline-secondary"
+                    th:disabled="${elementoCarrito.stock == 0}">+</button>
           </form>
         </td>
-
-        <!-- Precio unitario -->
         <td class="text-end">
-          €<span th:text="${#numbers.formatDecimal(elementoCarrito.precio, 1, 'COMMA', 2, 'POINT')}">0.00</span>
+          €<span th:text="${#numbers.formatDecimal(elementoCarrito.precio,1,'COMMA',2,'POINT')}">0.00</span>
         </td>
-
-        <!-- Subtotal = precio × cantidad -->
         <td class="text-end">
-          €<span th:text="${#numbers.formatDecimal(elementoCarrito.precio * elementoCarrito.cantidad, 1, 'COMMA', 2, 'POINT')}">0.00</span>
+          €<span th:text="${#numbers.formatDecimal(elementoCarrito.precio * elementoCarrito.stock,1,'COMMA',2,'POINT')}">0.00</span>
         </td>
-
-        <!-- Botón eliminar -->
         <td>
           <form th:action="@{/carrito/eliminar}" method="post">
             <input type="hidden" name="itemId" th:value="${elementoCarrito.id}" />
-            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+            <button type="submit" class="btn btn-sm btn-danger"
+                    th:disabled="${elementoCarrito.stock == 0}">Eliminar</button>
           </form>
         </td>
       </tr>
     </tbody>
     <tfoot>
-	  <tr>
-	    <th colspan="4" class="text-end">Total:</th>
-	    <th class="text-end">
-	      €
-	      <span id="valorTotal" th:text="${#numbers.formatDecimal(totalCarrito, 1, 'COMMA', 2, 'POINT')}">0.00</span>
-	    </th>
-	    <th></th>
-	  </tr>
-  	</tfoot>
+      <tr>
+        <th colspan="4" class="text-end">Total:</th>
+        <th class="text-end">
+          €<span id="totalDisplay">0.00</span>
+        </th>
+        <th></th>
+      </tr>
+    </tfoot>
   </table>
-  
 
   <div class="text-center mt-4">
     <a th:href="@{/catalogo/manga}" class="btn btn-secondary me-2">Seguir Comprando</a>
-    <a th:href="@{/checkout}" class="btn btn-success">Proceder al Pago</a>
+    <form th:action="@{/checkout}" method="post" class="d-inline">
+      <button type="submit" class="btn btn-success">Proceder al Pago</button>
+    </form>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-
-  // Checkbox “Seleccionar todo”
-  document.getElementById('selectAll').addEventListener('change', function() {
-    document.querySelectorAll('input[name="selectedItemIds"]').forEach(chk => {
-      chk.checked = this.checked;
-    });
-  });
-  
-  
- // Esperamos a que todo el DOM esté cargado
   document.addEventListener('DOMContentLoaded', () => {
-    // Seleccionamos todos los checkboxes individuales
-    const checkboxes = document.querySelectorAll('.item-checkbox');
-    // Seleccionamos el checkbox “Seleccionar todo”
-    const selectAll = document.getElementById('selectAll');
-    // Referencia al <span> donde mostraremos el total
+    const checkboxes   = document.querySelectorAll('.item-checkbox');
+    const selectAll    = document.getElementById('selectAll');
     const totalDisplay = document.getElementById('totalDisplay');
 
-    /**
-     *    Función que recorre cada checkbox marcado, 
-     *    suma su atributo data-subtotal y actualiza el total en pantalla.
-     */
     function recalcTotal() {
-      let total = 0;                                 //  Inicializamos acumulador
-      checkboxes.forEach(cb => {                     //  Recorremos cada checkbox…
-        if (cb.checked) {                            //  …si está marcado…
-          const subtotal = parseFloat(cb.getAttribute('data-subtotal'));
-                                                     // Leemos data-subtotal (es string), lo pasamos a número
-          total += subtotal;                         // Acumulamos en total
+      let total = 0;
+      checkboxes.forEach(cb => {
+        if (cb.checked) {
+          total += parseFloat(cb.getAttribute('data-subtotal')) || 0;
         }
       });
-      // Damos formato al número con separador de miles y dos decimales
       totalDisplay.textContent = total
         .toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
-    // Atamos el evento 'change' a cada checkbox para recalcTotal al cambiar
     checkboxes.forEach(cb => cb.addEventListener('change', recalcTotal));
+    if (selectAll) {
+      selectAll.addEventListener('change', () => {
+        checkboxes.forEach(cb => cb.checked = selectAll.checked);
+        recalcTotal();
+      });
+    }
 
-    // Cuando se cambie “Seleccionar todo”, igualamos el checked de todos 
-    selectAll.addEventListener('change', function() {
-      checkboxes.forEach(cb => cb.checked = this.checked);
-      recalcTotal();                                 // Y recalcTotal tras cambiar
-    });
-
-    //  Inicializamos el total a 0 (o si quieres marcarlos todos al cargar, 
-    //    descomenta la siguiente línea)
-    // selectAll.checked = true; checkboxes.forEach(cb => cb.checked = true);
-    recalcTotal();                                  // 8.1. Llamada inicial para poner total correcto
+    recalcTotal();
   });
 </script>
 </body>

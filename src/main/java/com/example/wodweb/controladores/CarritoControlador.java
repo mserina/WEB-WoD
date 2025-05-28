@@ -239,4 +239,22 @@ public class CarritoControlador {
 	        // Siempre redirigimos a verCarrito para recargar la vista con los nuevos datos
 	        return "redirect:/verCarrito";
 	    }
+	 
+	 
+	 @PostMapping("/admin/borrarArticulo")
+	    public String borrarArticulo(@RequestParam Long id, RedirectAttributes mensajesRedireccion) {
+		    autenticacion = SecurityContextHolder.getContext().getAuthentication();
+	    	String nombreElmentoBorrado = "";
+	    	
+	    	boolean borrado = carritoServicio.borrarElementoCarrito(id); 
+	        log.info(nombreUsuarioLog + " elimino el articulo " + nombreElmentoBorrado + " del carrito");
+	        
+	        	if (borrado) {
+	        		mensajesRedireccion.addFlashAttribute("mensaje", "Articulo borrado correctamente.");
+	            } else {
+	            	mensajesRedireccion.addFlashAttribute("mensaje", "Error al borrar el articulo.");
+	            }
+	        
+	        return "redirect:/verCarrito";
+	    }
 	}   

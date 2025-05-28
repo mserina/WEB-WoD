@@ -38,3 +38,70 @@
 2025-05-28 13:34:47 - El usuario accedió al catalogo de manga
 2025-05-28 13:35:49 - Cantidad inválida al actualizar carrito:
 2025-05-28 13:36:11 - Cantidad inválida al actualizar carrito:
+2025-05-28 22:07:55 - El usuario accedió a la página principal
+2025-05-28 22:07:58 - El usuario accedió al catalogo de manga
+2025-05-28 22:08:01 - El usuario accedio a login
+2025-05-28 22:08:06 - Carla accedió a la página principal
+2025-05-28 22:08:08 - El usuario accedió al catalogo de manga
+2025-05-28 22:09:11 - El usuario accedió a la página principal
+2025-05-28 22:09:13 - El usuario accedio a login
+2025-05-28 22:09:18 - Carla accedió a la página principal
+2025-05-28 22:09:20 - El usuario accedió al catalogo de manga
+2025-05-28 22:10:47 - El usuario accedió a la página principal
+2025-05-28 22:10:48 - El usuario accedió al catalogo de manga
+2025-05-28 22:10:50 - El usuario accedio a login
+2025-05-28 22:11:00 - Carla accedió a la página principal
+2025-05-28 22:11:02 - El usuario accedió al catalogo de manga
+2025-05-28 22:14:00 - Carla accedió a la página principal
+2025-05-28 22:14:02 - Carla accedio a login
+2025-05-28 22:14:11 - El usuario ingreso credenciales erroneas
+2025-05-28 22:14:11 - El usuario ingreso credenciales erroneas
+2025-05-28 22:14:11 - Carla accedio a login
+2025-05-28 22:14:20 - Carla accedió a la página principal
+2025-05-28 22:15:16 - El usuario accedió a la página principal
+2025-05-28 22:15:17 - El usuario accedió al catalogo de manga
+2025-05-28 22:15:20 - El usuario accedio a login
+2025-05-28 22:15:32 - Carla accedió a la página principal
+2025-05-28 22:15:33 - El usuario accedió al catalogo de manga
+2025-05-28 22:31:33 - El usuario accedió a la página principal
+2025-05-28 22:31:36 - El usuario accedio a login
+2025-05-28 22:31:41 - Carla accedió a la página principal
+2025-05-28 22:31:43 - El usuario accedió al catalogo de manga
+2025-05-28 22:32:06 - Carla agrego el articulo 11 en el carrito
+2025-05-28 22:32:06 - El usuario accedió al catalogo de manga
+2025-05-28 22:41:56 - El usuario accedio a login
+2025-05-28 22:42:02 - Carla accedió a la página principal
+2025-05-28 22:42:03 - Carla accedio a login
+2025-05-28 22:42:07 - Carla accedio a registro
+2025-05-28 22:42:28 - Migeu, se ha registrado
+2025-05-28 22:46:48 - Carla accedio a registro
+2025-05-28 22:49:45 - Carla accedio a registro
+2025-05-28 22:50:11 - 32, se ha registrado
+2025-05-28 22:50:36 - Carla accedio a registro
+2025-05-28 22:51:16 - Carla accedió a la página principal
+2025-05-28 22:51:24 - El usuario accedió al catalogo de manga
+2025-05-28 23:19:47 - El usuario accedio a registro
+2025-05-28 23:19:50 - El usuario accedio a login
+2025-05-28 23:19:56 - Carla accedió a la página principal
+2025-05-28 23:20:43 - El usuario accedió al catalogo de manga
+2025-05-28 23:21:00 - Cantidad inválida al actualizar carrito:
+2025-05-28 23:21:07 - Cantidad inválida al actualizar carrito:
+2025-05-28 23:25:05 - El usuario accedió al catalogo de manga
+2025-05-28 23:25:05 - Carla accedió a la página principal
+2025-05-28 23:25:06 - El usuario accedió al catalogo de manga
+2025-05-28 23:25:09 - Carla accedio a login
+2025-05-28 23:25:11 - Carla accedió a la página principal
+2025-05-28 23:26:28 - El usuario accedió a la página principal
+2025-05-28 23:26:29 - El usuario accedió al catalogo de manga
+2025-05-28 23:26:32 - Intento de agregar al carrito sin iniciar sesión
+2025-05-28 23:26:32 - El usuario accedio a login
+2025-05-28 23:26:38 - Carla accedió a la página principal
+2025-05-28 23:26:39 - El usuario accedió al catalogo de manga
+2025-05-28 23:26:41 - Error: El articulo 11 ya se agrego al carrito: Este artículo ya está en tu carrito.
+2025-05-28 23:26:41 - El usuario accedió al catalogo de manga
+2025-05-28 23:26:42 - El usuario accedió al catalogo de poster
+2025-05-28 23:26:44 - Carla agrego el articulo 10 en el carrito
+2025-05-28 23:26:44 - El usuario accedió al catalogo de poster
+2025-05-28 23:26:44 - El usuario accedió al catalogo de figura
+2025-05-28 23:26:46 - Carla agrego el articulo 9 en el carrito
+2025-05-28 23:26:46 - El usuario accedió al catalogo de figura
