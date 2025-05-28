@@ -224,7 +224,7 @@ public class CarritoControlador {
 	            mensajeRedireccion.addFlashAttribute("mensajeExito", "Cantidad actualizada correctamente.");
 
 	        } catch (IllegalArgumentException e) {
-	            log.warn("Cantidad inválida al actualizar carrito: {}", e.getMessage());
+	            log.warn("Cantidad inválida al actualizar carrito:", e.getMessage());
 	            mensajeRedireccion.addFlashAttribute("mensajeError", e.getMessage());
 
 	        } catch (NoSuchElementException e) {

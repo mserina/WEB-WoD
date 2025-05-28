@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.example.wodweb.dtos.ArticuloDto;
 import com.example.wodweb.dtos.CarritoDto;
@@ -168,11 +169,21 @@ public class CarritoServicio {
     public CarritoDto actualizarCantidad(Long articuloCarritoId, Long articuloId, Integer cantidad) {
 		
     	// Construimos la URL con parámetros quer 
-    	String url = apiUrl + "/carrito" + "actualizar";
+    	String url = apiUrl + "/carrito" + "/actualizar";
+    	
+    	//URI (Uniform Resource Identifier), sirve para añadir a la URL los parametros
+    	URI uri = UriComponentsBuilder
+    	        .fromUriString(url)
+    	        .queryParam("articuloCarritoId", articuloCarritoId)
+    	        .queryParam("articuloId", articuloId)
+    	        .queryParam("cantidad", cantidad)
+    	        .build()
+    	        .toUri();
 
+    	
 		try {
 			//Realizamos la peticion para actualizar
-			ResponseEntity<CarritoDto> resp = restTemplate.postForEntity(new URI(url),null, CarritoDto.class);
+			ResponseEntity<CarritoDto> resp = restTemplate.postForEntity(uri ,null, CarritoDto.class);
 			return resp.getBody();
 			
 		} catch (HttpClientErrorException e) {
@@ -198,6 +209,6 @@ public class CarritoServicio {
 		throw new RuntimeException("No se pudo conectar con la API: " + e.getMessage(), e);
 		
 		}
-}
+    }
 	
 }
