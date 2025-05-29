@@ -1,6 +1,5 @@
 package com.example.wodweb.controladores;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -18,8 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.wodweb.dtos.ArticuloDto;
-import com.example.wodweb.dtos.CarritoDto;
 import com.example.wodweb.dtos.SesionDto;
 import com.example.wodweb.dtos.UsuarioDto;
 import com.example.wodweb.servicios.ArticuloServicio;
@@ -55,13 +52,14 @@ public class CarritoControlador {
 	  * @param cantidad cantidad del producto
 	  * @return la pagina del catalogo con la respuesta
 	  */
-	 @PostMapping("/anadirCarrito")
+	 @PostMapping("/carrito/anadirCarrito")
 	    public String anadirAlCarrito(@RequestParam String catalogo, @RequestParam Long articuloId, @RequestParam(defaultValue = "1") Integer cantidad, RedirectAttributes mensajesRedireccion, Model modelo) {
 		
 		 // Usuario (cuando haya)
-		    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		    if (auth != null && auth.getPrincipal() instanceof SesionDto) {
-		        SesionDto sesion = (SesionDto) auth.getPrincipal();
+		 autenticacion = SecurityContextHolder.getContext().getAuthentication();
+
+		    if (autenticacion != null && autenticacion.getPrincipal() instanceof SesionDto) {
+		        SesionDto sesion = (SesionDto) autenticacion.getPrincipal();
 		        modelo.addAttribute("usuario", usuarioServicio.buscarUsuario(sesion.getUsername()));
 		        nombreUsuarioLog = sesion.getNombre();
 		    } else {
@@ -70,8 +68,6 @@ public class CarritoControlador {
 
 		    
 		 Long usuarioSesionId = null;
-		 autenticacion = SecurityContextHolder.getContext().getAuthentication();
-		 
 		 
 		 // Verificar si el usuario está autenticado
 		    if (autenticacion == null || !autenticacion.isAuthenticated() || autenticacion.getPrincipal().equals("anonymousUser")) {
@@ -84,7 +80,6 @@ public class CarritoControlador {
 		    try {
 		        SesionDto sesion = (SesionDto) autenticacion.getPrincipal();
 		        List<UsuarioDto> usuarios = usuarioServicio.obtenerUsuarios();
-		        usuarioSesionId = null;
 		        
 		        for (UsuarioDto usuario : usuarios) {
 		            if (usuario.getCorreoElectronico().equals(sesion.getUsername())) {
@@ -146,7 +141,7 @@ public class CarritoControlador {
 	  * @param mensajesRedireccion Para imprimir mensajes por pantalla
 	  * @return devuelve la direccion para ver la pagina de carrito
 	  */
-	 @GetMapping("/verCarrito")
+	 @GetMapping("/carrito/verCarrito")
 	    public String verCarrito(Model modelo, RedirectAttributes mensajesRedireccion) {
 	        //  Comprobar sesión
 	        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -237,24 +232,95 @@ public class CarritoControlador {
 	        }
 
 	        // Siempre redirigimos a verCarrito para recargar la vista con los nuevos datos
-	        return "redirect:/verCarrito";
+	        return "redirect:/carrito/verCarrito";
 	    }
 	 
 	 
-	 @PostMapping("/admin/borrarArticulo")
-	    public String borrarArticulo(@RequestParam Long id, RedirectAttributes mensajesRedireccion) {
+	 @PostMapping("/carrito/eliminarElemento")
+	    public String borrarArticulo(@RequestParam Long elementoCarritoId, RedirectAttributes mensajesRedireccion) {
+		    
 		    autenticacion = SecurityContextHolder.getContext().getAuthentication();
 	    	String nombreElmentoBorrado = "";
 	    	
-	    	boolean borrado = carritoServicio.borrarElementoCarrito(id); 
+	    	boolean borrado = carritoServicio.borrarElementoCarrito(elementoCarritoId); 
 	        log.info(nombreUsuarioLog + " elimino el articulo " + nombreElmentoBorrado + " del carrito");
 	        
 	        	if (borrado) {
-	        		mensajesRedireccion.addFlashAttribute("mensaje", "Articulo borrado correctamente.");
+	    	        log.info(nombreUsuarioLog + " elimino el articulo " + nombreElmentoBorrado + " del carrito");
+	        		mensajesRedireccion.addFlashAttribute("mensajeError", "Articulo borrado correctamente.");
 	            } else {
-	            	mensajesRedireccion.addFlashAttribute("mensaje", "Error al borrar el articulo.");
+	    	        log.info(nombreUsuarioLog + " elimino el articulo " + nombreElmentoBorrado + " del carrito");
+	            	mensajesRedireccion.addFlashAttribute("mensajeError", "Error al borrar el articulo.");
 	            }
 	        
-	        return "redirect:/verCarrito";
+	        return "redirect:/carrito/verCarrito";
+	    }
+	 
+	 @PostMapping("/carrito/pagar")
+	    public String realizarPago(RedirectAttributes mensajeRedireccion, Model modelo) {
+		   autenticacion = SecurityContextHolder.getContext().getAuthentication();
+	       
+		 // Validar sesion
+		   if (autenticacion == null || !autenticacion.isAuthenticated() || "anonymousUser".equals(autenticacion.getPrincipal())) {
+	        	mensajeRedireccion.addFlashAttribute("mensajeError", "Debes iniciar sesión para continuar.");
+	            return "redirect:/login";
+	        }
+
+		// Perfil activo (si no hay ninguno, "default")
+		    String perfil = env.getActiveProfiles().length > 0
+		                    ? env.getActiveProfiles()[0]
+		                    : "default";
+		    modelo.addAttribute("perfilActivo", perfil);
+		   
+		   //Extraer username de la sesion y buscar su ID
+	        Long usuarioId = null;
+	        try {
+	            SesionDto sesion = (SesionDto) autenticacion.getPrincipal();
+	            String username = sesion.getUsername();
+	            for (UsuarioDto usuario : usuarioServicio.obtenerUsuarios()) {
+	                if (usuario.getCorreoElectronico().equals(username)) {
+	                	modelo.addAttribute("usuario", usuario);
+	                	usuarioId = usuario.getId();
+	                    break;
+	                }
+	            }
+	            if (usuarioId == null) {
+	                throw new NoSuchElementException("No se encontró el usuario logueado.");
+	            }
+	        } catch (ClassCastException e) {
+	            log.error("Tipo de principal inesperado en sesión: {}", e.getMessage());
+	            mensajeRedireccion.addFlashAttribute("mensajeError", "Error de sesión. Por favor, inicia sesión nuevamente.");
+	            return "redirect:/login";
+	        } catch (NoSuchElementException e) {
+	            log.error("Usuario no encontrado: {}", e.getMessage());
+	            mensajeRedireccion.addFlashAttribute("mensajeError", e.getMessage());
+	            return "redirect:/login";
+	        } catch (Exception e) {
+	            log.error("Error al obtener usuario de sesión: {}", e.getMessage());
+	            mensajeRedireccion.addFlashAttribute("mensajeError", "Error interno. Intenta de nuevo.");
+	            return "redirect:/login";
+	        }
+
+	        
+	     //  Intentar vaciar el carrito y manejar posibles errores
+	        try {
+	            boolean ok = carritoServicio.vaciarCarrito(usuarioId);
+	            if (ok) {
+	                mensajeRedireccion.addFlashAttribute("mensajeExito", "Tu carrito se ha vaciado. Procede al pago.");
+	                return "pago"; // Renderiza pago.html
+	            } else {
+	            	mensajeRedireccion.addFlashAttribute("mensajeError", "No se pudo vaciar el carrito.");
+	                return "redirect:/verCarrito";  // Volver al carrito si falla
+	            }
+	            
+	        } catch (NoSuchElementException e) {
+	            log.warn("Vaciar carrito: no existen artículos para usuario {}: {}", usuarioId, e.getMessage());
+	            mensajeRedireccion.addFlashAttribute("mensajeError", "Tu carrito está vacío.");
+	            return "redirect:/verCarrito";
+	        } catch (Exception e) {
+	            log.error("Error inesperado al vaciar carrito del usuario {}: {}", usuarioId, e);
+	            mensajeRedireccion.addFlashAttribute("mensajeError", "Ocurrió un error al vaciar el carrito. Intenta más tarde.");
+	            return "redirect:/verCarrito";
+	        }
 	    }
 	}   

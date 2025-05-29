@@ -115,25 +115,26 @@ public class CarritoServicio {
         	ResponseEntity<List<CarritoDto>> resp = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
         	
         	//Obtén los items del carrito
-            List<CarritoDto> elementosCarrito = resp.getBody();
+            List<CarritoDto> carrito = resp.getBody();
 
          //Recorre uno a uno y maneja excepciones individuales
             List<Map<String, ?>> carritoArticulos = new ArrayList<>();
-            for (CarritoDto item : elementosCarrito) {
+            
+            for (CarritoDto elementoCarrito : carrito) {
                 try {
-                    ArticuloDto articulo = articuloServicio.obtenerArticuloPorId(item.getArticuloId());
+                    ArticuloDto articulo = articuloServicio.obtenerArticuloPorId(elementoCarrito.getArticuloId());
                     carritoArticulos.add(Map.of(
-                    	"id",           item.getId(),
+                    	"id",           elementoCarrito.getId(),
                     	"articuloId",   articulo.getId(),
                         "nombre",       articulo.getNombre(),
                         "precio",       articulo.getPrecio(),
-                        "stock",        item.getCantidad(),
-                        "subtotal",     articulo.getPrecio() * item.getCantidad()
+                        "stock",        elementoCarrito.getCantidad(),
+                        "subtotal",     articulo.getPrecio() * elementoCarrito.getCantidad()
                     ));
                 } catch (NoSuchElementException e) {
                 	
                     // Si falla para este artículo, lo registramos y seguimos
-                	String mensajeError = "No se encontró el artículo con ID: " + item.getArticuloId() +" : "+ e.getMessage();
+                	String mensajeError = "No se encontró el artículo con ID: " + elementoCarrito.getArticuloId() +" : "+ e.getMessage();
                     throw new NoSuchElementException(mensajeError);
                 }
             }
@@ -193,7 +194,7 @@ public class CarritoServicio {
 		 HttpStatusCode status = e.getStatusCode();
 			
 		if (status == HttpStatus.BAD_REQUEST) {
-			throw new IllegalArgumentException("Cantidad inválida: " + e.getResponseBodyAsString());
+			throw new IllegalArgumentException(e.getResponseBodyAsString());
 			
 		} else if (status == HttpStatus.NOT_FOUND) {
 			throw new NoSuchElementException("Carrito o artículo no encontrado");
@@ -212,13 +213,41 @@ public class CarritoServicio {
 		}
     }
     
+    /**
+     * Borra elementos del carrito 
+     * msm - 290525
+     * @param elementoCarritoId Id del elemento a borrar
+     * @return Devuelve la respuesta de la peticion
+     */
     public boolean borrarElementoCarrito(Long elementoCarritoId) {
         try {
-            String url = apiUrl + "/carrito" + "/eliminarElementoCarrito/" + elementoCarritoId;
-            ResponseEntity<?> response = restTemplate.exchange(url, HttpMethod.DELETE, null, Void.class);
+        	 String url = apiUrl + "/carrito/eliminarElementoCarrito/" + elementoCarritoId;            
+        	 ResponseEntity<?> response = restTemplate.exchange(url, HttpMethod.DELETE, null, Void.class);
             return response.getStatusCode().is2xxSuccessful();
         } catch (Exception e) {
             System.err.println("Error al borrar elemento del carrito en la API externa: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    /**
+     * Vacia el carrito de un usuario
+     * msm - 290525
+     * @param usuarioId Id del usuario al que se le va a vaciar el carrito
+     * @return Devuelve la respuesta de la peticion
+     */
+    public boolean vaciarCarrito(Long usuarioId) {
+        try {
+        	 String url = apiUrl + "/carrito//vaciarCarrito/" + usuarioId;            
+        	 ResponseEntity<?> response = restTemplate.exchange(url, HttpMethod.DELETE, null, Void.class);
+            return response.getStatusCode().is2xxSuccessful();
+            
+        } catch (HttpClientErrorException.NotFound e) {
+            // 404 → no existía carrito
+            return false;
+            
+        } catch (Exception e) {
+            System.err.println("Error al vaciar el carrito en la API externa: " + e.getMessage());
             return false;
         }
     }

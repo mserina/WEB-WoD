@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Catálogo de Mangas (Grid)</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/estilos.css}">
+<link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css}" rel="stylesheet">
+<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}"></script>
 </head>
 <body>
-
-
 
 <!-- ///////////////////////////////////
             BARRA NAVEGACION                  
@@ -87,59 +86,19 @@
 		</div>
 	</div>
 
-
-<!-- ///////////////////////////////////
-            CONTENIDO                  
-   //////////////////////////////////// -->
-  <div class="contenedorCatalogo container mt-4">
-    <div class="text-center border-bottom pb-3 mb-4">
-    	<h2 class="fw-bold">
-            Catálogo <span th:text="${titulo}">TÍTULO</span>
-        </h2>
-        
-        <!-- Alertas -->
-		<div th:if="${mensajeArticulo}" class="alert alert-success" role="alert">
-    		<span th:text="${mensajeArticulo}" style="color: green;"></span>
-    		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
-		</div>
-		<div th:if="${mensajeError}" class="alert alert-success" role="alert">
-    		<span th:text="${mensajeError}" style="color: green;"></span>
-    		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
-		</div>
-
-	</div>
-    <div class="catalogo-grid">
-      <div class="producto" th:each="articulo : ${articulosLista}">
-        <!-- Imagen con lazy-loading -->
-        <img loading="lazy"
-             th:if="${perfilActivo == 'local'}"
-             th:src="@{'http://localhost:9511/articulo/fotoArticulo/' + ${articulo.id}}"
-             alt="Imagen de [[${articulo.nombre}]]">
-        <img loading="lazy"
-             th:if="${perfilActivo != 'local'}"
-             th:src="@{'https://msm-sevilla.es/articulo/fotoArticulo/' + ${articulo.id}}"
-             alt="Imagen de [[${articulo.nombre}]]">
-
-        <div class="text-center info">
-          <h3 th:text="${articulo.nombre}">Nombre</h3>
-          <p th:text="${articulo.descripcion}">Descripción breve…</p>
-          <div class="meta">
-            <span th:text="'Stock: ' + ${articulo.stock}">Stock</span> ·
-            <span th:text="'€' + ${articulo.precio}">Precio</span>
-          </div>
-          <form th:action="@{/carrito/anadirCarrito}" method="post" class="mt-2">
-		    <input type="hidden" name="articuloId" th:value="${articulo.id}" />
-		    <input type="hidden" name="catalogo" th:value="${titulo.toLowerCase()}" />
-		    
-		    <button type="submit" class="btn btn-primary btn-sm">
-		        Añadir al carrito
-		    </button>
-		</form>
-        </div>
-      </div>
+	
+	<!--/////////////////////////////////
+                 CONTENIDO                
+    //////////////////////////////////// -->
+    <div class="contenedorMensajeError1">
+	    
+	    <div id="contenedorMensajeError2">
+	    	<h2 id="mensajeError">Se ha realizado la compra satisfactoriamente</h2>	
+	    	<a class="btn-icon" th:href="@{/}"> 
+				<h4 id="mensajeError">Volver a la pagina principal</h4>
+			</a>   
+	    </div>
+    
     </div>
-  </div>
-  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

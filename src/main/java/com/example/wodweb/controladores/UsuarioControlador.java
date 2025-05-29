@@ -257,37 +257,52 @@ public class UsuarioControlador {
      * @return Redirige a la vista con la lista de usuarios después de eliminar.
      */
     @PostMapping("/admin/borrarUsuario")
-    public String borrarUsuario(@RequestParam Long id, RedirectAttributes redirectAttributes) {
+    public String borrarUsuario(@RequestParam Long id, @RequestParam String emailInsertado ,RedirectAttributes mensajeRedireccion) {
 
     	credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
-        String nombreUsuarioBorrado = "";
+    	
+    	//Comprobamos la sesion
+    	if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
+            SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
+            // Usamos el nombre del usuario de sesión
+            nombreUsuarioLog = sesion.getNombre();
+        }else {
+    		nombreUsuarioLog = "El usuario";
+    	}
+    	
+    	
+    	String nombreUsuarioBorrado = "";
+        String correoElectronicoUsuario = "";
         
+        // Sacamos el gmail y el id del usuario
         List<UsuarioDto> usuarios = usuarioServicio.obtenerUsuarios();
     	for (UsuarioDto usuario : usuarios) {
     		if(usuario.getId() == id) {
     			nombreUsuarioBorrado = usuario.getNombreCompleto();
+    			correoElectronicoUsuario = usuario.getCorreoElectronico(); 
     		}
     	}
     	
+    	
+    	 // Verificar email coincide
+        if (!correoElectronicoUsuario.equals(emailInsertado)) {
+            mensajeRedireccion.addFlashAttribute("mensajeError", "El correo no coincide. Operación cancelada.");
+            return "redirect:/admin/obtenerUsuario";
+        }
+    	
+        
+    	//Llamamos al servicio para que borreo el usuario
     	log.info(nombreUsuarioLog + " elimino al usuario " + nombreUsuarioBorrado);
-        boolean borrado = usuarioServicio.borrarUsuario(id);
+        boolean borrado = usuarioServicio.borrarUsuario(id, correoElectronicoUsuario);
 
+        
         if (borrado) {
-            redirectAttributes.addFlashAttribute("mensaje", "Usuario borrado correctamente.");
+        	mensajeRedireccion.addFlashAttribute("mensajeError", "Usuario borrado correctamente.");
         } else {
-            redirectAttributes.addFlashAttribute("mensaje", "Error al borrar el usuario.");
+        	mensajeRedireccion.addFlashAttribute("mensajeError", "Error al borrar el usuario.");
         }
         
-        if (credencialesSesion != null && credencialesSesion.getPrincipal() instanceof SesionDto) {
-            SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();
-            // Usamos el nombre del usuario de sesión
-            nombreUsuarioLog = sesion.getNombre();
-        }
-    	else {
-    		nombreUsuarioLog = "El usuario";
-    	}
 
-        
         return "redirect:/admin/obtenerUsuario"; // Redirige a la vista con la lista de usuarios
     }
     

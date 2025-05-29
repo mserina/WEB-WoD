@@ -163,12 +163,14 @@ public class UsuarioServicio {
      * Elimina un usuario por su ID.
      * msm - 050325
      * @param id ID del usuario a eliminar.
+     * @param correoElectronicoUsuario Correo del usuario
      * @return true si el usuario fue eliminado con éxito, false en caso de error.
      */
-    public boolean borrarUsuario(Long id) {
-        try {
+    public boolean borrarUsuario(Long id, String correoElectronicoUsuario) {
+    	
+    	try {
             String url = apiUrl + "/borrar/" + id;
-            ResponseEntity<?> response = restTemplate.exchange(url, HttpMethod.DELETE, null, UsuarioDto.class);
+            ResponseEntity<?> response = restTemplate.exchange(url, HttpMethod.DELETE, null, Void.class);
             return response.getStatusCode().is2xxSuccessful();
         } catch (Exception e) {
             System.err.println("Error al borrar usuario en la API externa: " + e.getMessage());
