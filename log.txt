@@ -76,3 +76,151 @@
 2025-05-29 13:51:48 - Miguel Serrano accedio a la lista de usuarios
 2025-05-29 13:52:06 - Miguel Serrano elimino al usuario Roger
 2025-05-29 13:52:06 - Miguel Serrano accedio a la lista de usuarios
+2025-05-30 08:19:05 - El usuario accedió a la página principal
+2025-05-30 08:19:10 - El usuario accedio a login
+2025-05-30 08:19:12 - El usuario accedió a la página principal
+2025-05-30 08:19:14 - Se cerro la sesion
+2025-05-30 08:19:19 - El usuario accedió a la página principal
+2025-05-30 08:19:21 - El usuario accedio a login
+2025-05-30 08:19:29 - El usuario accedio a registro
+2025-05-30 08:19:54 - El usuario accedio a login
+2025-05-30 08:20:03 - dragon accedió a la página principal
+2025-05-30 08:20:07 - dragon accedio a la lista de usuarios
+2025-05-30 08:49:28 - El usuario accedió a la página principal
+2025-05-30 09:03:15 - El usuario accedio a login
+2025-05-30 09:03:20 - El usuario ingreso credenciales erroneas
+2025-05-30 09:03:20 - El usuario ingreso credenciales erroneas
+2025-05-30 09:03:20 - El usuario accedio a login
+2025-05-30 09:03:26 - dragon accedió a la página principal
+2025-05-30 09:03:29 - dragon accedio a la lista de usuarios
+2025-05-30 09:10:35 - dragon accedio a la lista de usuarios
+2025-05-30 09:11:03 - El usuario accedio a login
+2025-05-30 09:11:09 - dragon accedió a la página principal
+2025-05-30 09:11:11 - dragon accedio a la lista de articulos
+2025-05-30 09:11:12 - dragon accedio a la lista de usuarios
+2025-05-30 09:11:37 - dragon modificó el campo nombre_completo del usuario Julian Poseidon
+2025-05-30 09:11:37 - dragon accedio a la lista de usuarios
+2025-05-30 09:27:00 - El usuario accedió a la página principal
+2025-05-30 09:27:02 - El usuario accedio a login
+2025-05-30 09:27:08 - Miguel Serrano accedió a la página principal
+2025-05-30 09:27:11 - Miguel Serrano accedio a la lista de usuarios
+2025-05-30 09:32:49 - El usuario accedio a login
+2025-05-30 09:32:56 - dragon accedió a la página principal
+2025-05-30 09:32:58 - dragon accedio a la lista de usuarios
+2025-05-30 09:33:14 - dragon elimino al usuario Miguel Serrano
+2025-05-30 09:33:14 - dragon accedio a la lista de usuarios
+2025-05-30 09:46:20 - El usuario accedió a la página principal
+2025-05-30 09:46:24 - El usuario accedio a login
+2025-05-30 09:46:33 - dragon accedió a la página principal
+2025-05-30 09:46:35 - dragon accedio a la lista de articulos
+2025-05-30 09:46:36 - dragon accedio a la lista de usuarios
+2025-05-30 09:51:23 - El usuario accedió al catalogo de poster
+2025-05-30 09:51:25 - El usuario accedio a login
+2025-05-30 09:51:29 - El usuario ingreso credenciales erroneas
+2025-05-30 09:51:29 - El usuario ingreso credenciales erroneas
+2025-05-30 09:51:29 - El usuario accedio a login
+2025-05-30 09:51:34 - dragon accedió a la página principal
+2025-05-30 09:51:36 - dragon accedio a la lista de usuarios
+2025-05-30 10:03:58 - El usuario accedio a login
+2025-05-30 10:04:18 - dragon accedió a la página principal
+2025-05-30 10:04:21 - dragon accedio a la lista de usuarios
+2025-05-30 10:12:40 - El usuario accedio a login
+2025-05-30 10:12:51 - dragon accedió a la página principal
+2025-05-30 10:12:54 - dragon accedio a la lista de articulos
+2025-05-30 10:12:57 - dragon accedio a la lista de usuarios
+2025-05-30 10:25:08 - El usuario accedio a login
+2025-05-30 10:25:13 - El usuario ingreso credenciales erroneas
+2025-05-30 10:25:13 - El usuario ingreso credenciales erroneas
+2025-05-30 10:25:13 - El usuario accedio a login
+2025-05-30 10:25:23 - dragon accedió a la página principal
+2025-05-30 10:25:25 - dragon accedio a la lista de articulos
+2025-05-30 10:25:27 - dragon accedio a la lista de usuarios
+2025-05-30 10:40:12 - El usuario accedio a login
+2025-05-30 10:40:20 - dragon accedió a la página principal
+2025-05-30 10:40:29 - dragon accedio a la lista de usuarios
+2025-05-30 11:15:05 - El usuario accedio a login
+2025-05-30 11:31:06 - El usuario accedio a login
+2025-05-30 11:31:10 - El usuario ingreso credenciales erroneas
+2025-05-30 11:31:10 - El usuario ingreso credenciales erroneas
+2025-05-30 11:31:10 - El usuario accedio a login
+2025-05-30 11:31:16 - dragon accedió a la página principal
+2025-05-30 11:31:18 - dragon accedio a la lista de usuarios
+2025-05-30 11:44:41 - El usuario accedio a login
+2025-05-30 11:44:47 - El usuario ingreso credenciales erroneas
+2025-05-30 11:44:47 - El usuario ingreso credenciales erroneas
+2025-05-30 11:44:47 - El usuario accedio a login
+2025-05-30 11:44:54 - dragon accedió a la página principal
+2025-05-30 11:44:56 - dragon accedio a la lista de articulos
+2025-05-30 11:44:59 - dragon accedio a la lista de articulos
+2025-05-30 11:45:00 - dragon accedio a la lista de usuarios
+2025-05-30 12:12:50 - El usuario accedio a login
+2025-05-30 12:12:50 - El usuario accedio a login
+2025-05-30 12:12:55 - El usuario ingreso credenciales erroneas
+2025-05-30 12:12:55 - El usuario ingreso credenciales erroneas
+2025-05-30 12:12:55 - El usuario accedio a login
+2025-05-30 12:14:01 - dragon accedió a la página principal
+2025-05-30 12:14:03 - dragon accedio a la lista de usuarios
+2025-05-30 12:18:21 - El usuario accedió a la página principal
+2025-05-30 12:18:22 - El usuario accedio a login
+2025-05-30 12:18:23 - El usuario accedio a login
+2025-05-30 12:18:23 - El usuario accedio a login
+2025-05-30 12:18:31 - dragon accedió a la página principal
+2025-05-30 12:18:33 - dragon accedio a la lista de articulos
+2025-05-30 12:18:34 - dragon accedio a la lista de usuarios
+2025-05-30 12:43:41 - El usuario accedio a login
+2025-05-30 12:43:47 - dragon accedió a la página principal
+2025-05-30 12:43:48 - dragon accedio a la lista de usuarios
+2025-05-30 13:17:53 - El usuario accedio a login
+2025-05-30 13:17:59 - dragon accedió a la página principal
+2025-05-30 13:18:01 - dragon accedio a la lista de usuarios
+2025-05-30 13:18:14 - dragon accedio a la lista de usuarios
+2025-05-30 13:21:19 - dragon accedio a la lista de usuarios
+2025-05-30 13:21:20 - dragon accedió a la página principal
+2025-05-30 13:21:32 - El usuario accedio a login
+2025-05-30 13:21:33 - El usuario accedio a login
+2025-05-30 13:21:40 - dragon accedió a la página principal
+2025-05-30 13:21:42 - dragon accedio a la lista de usuarios
+2025-05-30 13:49:47 - El usuario accedio a registro
+2025-05-30 13:49:48 - El usuario accedio a login
+2025-05-30 13:49:50 - El usuario accedio a login
+2025-05-30 13:49:50 - El usuario accedio a login
+2025-05-30 13:49:58 - dragon accedió a la página principal
+2025-05-30 13:50:00 - dragon accedio a la lista de usuarios
+2025-05-30 14:03:26 - El usuario accedio a login
+2025-05-30 14:03:26 - El usuario accedio a login
+2025-05-30 14:03:32 - dragon accedió a la página principal
+2025-05-30 14:03:33 - dragon accedio a la lista de usuarios
+2025-05-30 14:03:38 - dragon accedio a la lista de usuarios
+2025-05-30 14:03:39 - dragon accedio a la lista de usuarios
+2025-05-30 14:03:40 - dragon accedio a la lista de usuarios
+2025-05-30 14:03:40 - dragon accedio a la lista de usuarios
+2025-05-30 14:03:40 - dragon accedio a la lista de usuarios
+2025-05-30 14:03:41 - dragon accedio a la lista de usuarios
+2025-05-30 14:03:41 - dragon accedio a la lista de usuarios
+2025-05-30 14:03:41 - dragon accedio a la lista de usuarios
+2025-05-30 14:03:42 - dragon accedio a la lista de usuarios
+2025-05-30 14:03:42 - dragon accedio a la lista de usuarios
+2025-05-30 14:03:42 - dragon accedio a la lista de usuarios
+2025-05-30 14:05:31 - El usuario accedio a login
+2025-05-30 14:05:31 - El usuario accedio a login
+2025-05-30 14:05:36 - dragon accedió a la página principal
+2025-05-30 14:05:38 - dragon accedio a la lista de articulos
+2025-05-30 14:05:41 - dragon accedio a la lista de usuarios
+2025-05-30 14:06:01 - dragon elimino al usuario Julian Poseidon
+2025-05-30 14:06:01 - dragon accedio a la lista de usuarios
+2025-05-30 14:10:01 - El usuario accedio a login
+2025-05-30 14:10:01 - El usuario accedio a login
+2025-05-30 14:10:06 - dragon accedió a la página principal
+2025-05-30 14:10:09 - dragon accedio a la lista de usuarios
+2025-05-30 14:18:02 - El usuario accedio a login
+2025-05-30 14:18:02 - El usuario accedio a login
+2025-05-30 14:18:09 - dragon accedió a la página principal
+2025-05-30 14:18:13 - dragon accedio a la lista de usuarios
+2025-05-30 14:22:39 - El usuario accedio a login
+2025-05-30 14:22:40 - El usuario accedio a login
+2025-05-30 14:22:45 - El usuario ingreso credenciales erroneas
+2025-05-30 14:22:45 - El usuario ingreso credenciales erroneas
+2025-05-30 14:22:45 - El usuario accedio a login
+2025-05-30 14:22:45 - El usuario accedio a login
+2025-05-30 14:22:50 - dragon accedió a la página principal
+2025-05-30 14:22:53 - dragon accedio a la lista de usuarios

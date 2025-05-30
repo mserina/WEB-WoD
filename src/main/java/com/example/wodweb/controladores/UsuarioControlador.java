@@ -135,15 +135,6 @@ public class UsuarioControlador {
     	   return "redirect:/registro";
        }
     }
-
-    @GetMapping("/perfil")
-    public String verPerfil(Model model, Principal principal) {
-        // Asume que obtienes el email del principal y buscas al usuario
-        String email = principal.getName();
-    	UsuarioDto u = usuarioServicio.buscarUsuario(email);
-        model.addAttribute("usuario", u);
-        return "perfil"; // Thymeleaf template: perfil.html
-    }
     
     
     /**
@@ -368,6 +359,12 @@ public class UsuarioControlador {
      */
     @GetMapping("/verificarCodigo")
     public String mostrarFormularioVerificacion(Model modelo, HttpSession session, RedirectAttributes mensajeFlash) {
+    	// 1) Perfil activo (si no hay ninguno, "default")
+	    String perfil = env.getActiveProfiles().length > 0
+	                    ? env.getActiveProfiles()[0]
+	                    : "default";
+	    modelo.addAttribute("perfilActivo", perfil);
+    	
     	// Si la sesión ya no tiene el código, entendemos que expiró
         if (session.getAttribute("codigoVerificacion") == null) {
         	SesionDto sesion = (SesionDto) credencialesSesion.getPrincipal();

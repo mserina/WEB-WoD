@@ -26,9 +26,9 @@
 			<!-- Opciones de navegación (centradas) -->
 			<div class="col text-center d-none d-md-block">
 				<nav class="nav justify-content-center">
-					<h2><a class="nav-link text-white" th:href="@{/manga}">MANGA</a></h2>
-					<h2><a class="nav-link text-white" th:href="@{/poster}">POSTER</a></h2> 
-					<h2><a class="nav-link text-white" th:href="@{/figura}">FIGURA</a></h2>
+					<h2><a class="nav-link text-white" th:href="@{/catalogo/manga}">MANGA</a></h2>
+					<h2><a class="nav-link text-white" th:href="@{/catalogo/poster}">POSTER</a></h2> 
+					<h2><a class="nav-link text-white" th:href="@{/catalogo/figura}">FIGURA</a></h2>
 				</nav>
 			</div>
 			
@@ -74,6 +74,8 @@
 						<li th:if="${auth != null and auth.admin}"><a class="dropdown-item" th:href="@{/admin}">Lista de Usuarios</a></li>
 						<li><a class="dropdown-item" th:href="@{/registro}">Registro</a></li>
 						<li><a class="dropdown-item" th:href="@{/login}">Login</a></li>
+						<li sec:authorize="isAuthenticated()"><a class="dropdown-item" th:href="@{/carrito/verCarrito}">Mi carrito</a></li>
+					    <li><hr class="dropdown-divider"></li>
 						<li sec:authorize="hasRole('ADMIN')" ><a class="dropdown-item" th:href="@{/admin/obtenerUsuario}">Admin</a></li>
 						<li sec:authorize="hasRole('ADMIN')" ><a class="dropdown-item" th:href="@{/admin/obtenerArticulos}">Articulos</a></li>
 						<li><hr class="dropdown-divider"></li>
