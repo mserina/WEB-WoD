@@ -69,6 +69,12 @@ public class UsuarioServicio {
         return Arrays.asList(usuarios);
     }
 
+    /**
+     * Obtiene un usuario a traves del correo
+     * msm - 010325
+     * @param correo Correo del usuario
+     * @return El Dto del usuario
+     */
     public UsuarioDto buscarUsuario(String correo) {
     	UsuarioDto usuarioEncontrado = null;
     	List <UsuarioDto> usuarios = obtenerUsuarios();
@@ -213,7 +219,11 @@ public class UsuarioServicio {
         mailSender.send(mailMessage);
     }
 
-
+   /**
+    * Verifica que un usuario a completado el registro
+    * msm - 310525
+    * @param correoPendiente Correo del usuario verificado
+    */
 	public void marcarUsuarioComoVerificado(String correoPendiente) {
 		List<UsuarioDto> usuarios = obtenerUsuarios();
         for (UsuarioDto usuario : usuarios) {

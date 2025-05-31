@@ -1,3 +1,7 @@
+/* /////////////////////////////////// */
+    /*             LISTO                  */
+    /* //////////////////////////////////// */
+
 package com.example.wodweb.controladores;
 
 import java.util.List;
@@ -19,7 +23,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.wodweb.dtos.SesionDto;
 import com.example.wodweb.dtos.UsuarioDto;
-import com.example.wodweb.servicios.ArticuloServicio;
 import com.example.wodweb.servicios.CarritoServicio;
 import com.example.wodweb.servicios.UsuarioServicio;
 
@@ -42,7 +45,6 @@ public class CarritoControlador {
 	  private Environment env;
 	  String nombreUsuarioLog = "El usuario"; //Nombre que se usara en el log, en caso de no haber sesion de un usuario
 	  @Autowired
-	  private ArticuloServicio articuloServicio;
 
 	 
 	 /**
@@ -143,21 +145,25 @@ public class CarritoControlador {
 	  */
 	 @GetMapping("/carrito/verCarrito")
 	    public String verCarrito(Model modelo, RedirectAttributes mensajesRedireccion) {
-	        //  Comprobar sesión
+	        
+		 //  Comprobar sesión
 	        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	        if (auth == null || !auth.isAuthenticated() || "anonymousUser".equals(auth.getPrincipal())) {
-	            log.warn("Usuario anónimo intentó ver el carrito");
-	            mensajesRedireccion.addFlashAttribute("mensajeError", "Debes iniciar sesión para ver tu carrito.");
-	            return "redirect:/login";
-	        }
+	        if (auth != null && auth.getPrincipal() instanceof SesionDto) {
+		        SesionDto sesion = (SesionDto) auth.getPrincipal();
+		        modelo.addAttribute("usuario", usuarioServicio.buscarUsuario(sesion.getUsername()));
+		        nombreUsuarioLog = sesion.getNombre();
+		    } else {
+		        nombreUsuarioLog = "El usuario";
+		    }
 
-	     // Perfil activo (si no hay ninguno, "default")
+	      // Perfil activo (si no hay ninguno, "default")
 		    String perfil = env.getActiveProfiles().length > 0
 		                    ? env.getActiveProfiles()[0]
 		                    : "default";
 		    modelo.addAttribute("perfilActivo", perfil);
 		    
 	        try {
+	        	
 	            // Obtener usuario y su ID
 	            SesionDto sesion = (SesionDto) auth.getPrincipal();
 	            UsuarioDto usuario = usuarioServicio.buscarUsuario(sesion.getUsername());
@@ -177,6 +183,7 @@ public class CarritoControlador {
 	            modelo.addAttribute("totalCarrito", total);
 
 	            // Muestra el html del carrito
+	            log.info(nombreUsuarioLog + " accedio al carrito");
 	            return "carrito";
 
 	        } catch (NoSuchElementException e) {
@@ -186,6 +193,7 @@ public class CarritoControlador {
 	            return "redirect:/catalogo/manga";
 
 	        } catch (Exception e) {
+	        	
 	            // Cualquier otro fallo
 	            log.error("Error inesperado al obtener carrito", e);
 	            mensajesRedireccion.addFlashAttribute("mensajeError", "No se pudo cargar el carrito. Intenta de nuevo.");
@@ -236,10 +244,27 @@ public class CarritoControlador {
 	    }
 	 
 	 
+	 /**
+	  * Elimina articulos del carrito
+	  * msm - 310525
+	  * @param elementoCarritoId Id del articulo del carrito
+	  * @param mensajesRedireccion Mensajes que se imprimen tras una redireccion
+	  * @return Devuelve la vista del carrito 
+	  */
 	 @PostMapping("/carrito/eliminarElemento")
-	    public String borrarArticulo(@RequestParam Long elementoCarritoId, RedirectAttributes mensajesRedireccion) {
+	    public String borrarArticulo(@RequestParam Long elementoCarritoId, Model modelo,RedirectAttributes mensajesRedireccion) {
 		    
 		    autenticacion = SecurityContextHolder.getContext().getAuthentication();
+		    // Validar sesion
+			   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			    if (auth != null && auth.getPrincipal() instanceof SesionDto) {
+			        SesionDto sesion = (SesionDto) auth.getPrincipal();
+			        modelo.addAttribute("usuario", usuarioServicio.buscarUsuario(sesion.getUsername()));
+			        nombreUsuarioLog = sesion.getNombre();
+			    } else {
+			        nombreUsuarioLog = "El usuario";
+			    }
+			    
 	    	String nombreElmentoBorrado = "";
 	    	
 	    	boolean borrado = carritoServicio.borrarElementoCarrito(elementoCarritoId); 
@@ -256,15 +281,27 @@ public class CarritoControlador {
 	        return "redirect:/carrito/verCarrito";
 	    }
 	 
+	 /**
+	  * Pagina de pago realizado
+	  * msm - 310525
+	  * @param mensajeRedireccion Mensajes que se imprimen tras una redireccion
+	  * @param modelo Modelo para pasar datos a la vista
+	  * @return Devuelve la vista de la pagina pago
+	  */
 	 @PostMapping("/carrito/pagar")
 	    public String realizarPago(RedirectAttributes mensajeRedireccion, Model modelo) {
 		   autenticacion = SecurityContextHolder.getContext().getAuthentication();
 	       
 		 // Validar sesion
-		   if (autenticacion == null || !autenticacion.isAuthenticated() || "anonymousUser".equals(autenticacion.getPrincipal())) {
-	        	mensajeRedireccion.addFlashAttribute("mensajeError", "Debes iniciar sesión para continuar.");
-	            return "redirect:/login";
-	        }
+		   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    if (auth != null && auth.getPrincipal() instanceof SesionDto) {
+		        SesionDto sesion = (SesionDto) auth.getPrincipal();
+		        modelo.addAttribute("usuario", usuarioServicio.buscarUsuario(sesion.getUsername()));
+		        nombreUsuarioLog = sesion.getNombre();
+		    } else {
+		        nombreUsuarioLog = "El usuario";
+		    }
+
 
 		// Perfil activo (si no hay ninguno, "default")
 		    String perfil = env.getActiveProfiles().length > 0
@@ -306,7 +343,7 @@ public class CarritoControlador {
 	        try {
 	            boolean ok = carritoServicio.vaciarCarrito(usuarioId);
 	            if (ok) {
-	                mensajeRedireccion.addFlashAttribute("mensajeExito", "Tu carrito se ha vaciado. Procede al pago.");
+	            	log.info(nombreUsuarioLog + " realizo su compra");
 	                return "pago"; // Renderiza pago.html
 	            } else {
 	            	mensajeRedireccion.addFlashAttribute("mensajeError", "No se pudo vaciar el carrito.");

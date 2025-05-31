@@ -1,3 +1,7 @@
+/* /////////////////////////////////// */
+    /*             LISTO                  */
+    /* //////////////////////////////////// */
+
 package com.example.wodweb.servicios;
 
 import java.net.URI;
@@ -103,7 +107,7 @@ public class CarritoServicio {
 	  * Muestra el carrito de un usuario
 	  * msm - 260525
 	  * @param usuarioId id del usuario que queremos ver el carrito
-	  * @return el carrito 
+	  * @return Devuelve el carrito del usuario 
 	  */
     public List<Map<String, ?>> obtenerCarritoDeUsuario(Long usuarioId) {
         
@@ -167,8 +171,15 @@ public class CarritoServicio {
         }
     }
     
-    
-    public CarritoDto actualizarCantidad(Long articuloCarritoId, Long articuloId, Integer cantidad) {
+    /**
+     * Actualiza la cantidad de un articulo
+     * msm - 310525
+     * @param elementoCarritoId Id del articulo en el carrito
+     * @param articuloId Id del articulo
+     * @param cantidad Cantidad del articulo
+     * @return Devuelve la lista del carrito
+     */
+    public CarritoDto actualizarCantidad(Long elementoCarritoId, Long articuloId, Integer cantidad) {
 		
     	// Construimos la URL con parámetros quer 
     	String url = apiUrl + "/carrito" + "/actualizar";
@@ -176,7 +187,7 @@ public class CarritoServicio {
     	//URI (Uniform Resource Identifier), sirve para añadir a la URL los parametros
     	URI uri = UriComponentsBuilder
     	        .fromUriString(url)
-    	        .queryParam("articuloCarritoId", articuloCarritoId)
+    	        .queryParam("articuloCarritoId", elementoCarritoId)
     	        .queryParam("articuloId", articuloId)
     	        .queryParam("cantidad", cantidad)
     	        .build()

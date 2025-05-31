@@ -1,226 +1,116 @@
-2025-05-29 12:12:55 - El usuario accedió al catalogo de manga
-2025-05-29 12:13:03 - Miguel Serrano agrego el articulo 11 en el carrito
-2025-05-29 12:13:03 - El usuario accedió al catalogo de manga
-2025-05-29 12:13:07 - El usuario accedió al catalogo de poster
-2025-05-29 12:13:08 - Miguel Serrano agrego el articulo 8 en el carrito
-2025-05-29 12:13:08 - El usuario accedió al catalogo de poster
-2025-05-29 12:13:09 - El usuario accedió al catalogo de figura
-2025-05-29 12:13:10 - Miguel Serrano agrego el articulo 7 en el carrito
-2025-05-29 12:13:10 - El usuario accedió al catalogo de figura
-2025-05-29 12:13:40 - Cantidad inválida al actualizar carrito:
-2025-05-29 12:13:41 - Cantidad inválida al actualizar carrito:
-2025-05-29 12:13:45 - Cantidad inválida al actualizar carrito:
-2025-05-29 12:13:47 - Cantidad inválida al actualizar carrito:
-2025-05-29 12:16:36 - El usuario accedió a la página principal
-2025-05-29 12:16:38 - El usuario accedio a login
-2025-05-29 12:16:42 - Miguel Serrano accedió a la página principal
-2025-05-29 12:16:43 - El usuario accedió al catalogo de manga
-2025-05-29 12:16:48 - Miguel Serrano agrego el articulo 11 en el carrito
-2025-05-29 12:16:48 - El usuario accedió al catalogo de manga
-2025-05-29 12:16:49 - El usuario accedió al catalogo de poster
-2025-05-29 12:16:50 - Miguel Serrano agrego el articulo 8 en el carrito
-2025-05-29 12:16:50 - El usuario accedió al catalogo de poster
-2025-05-29 12:16:51 - El usuario accedió al catalogo de figura
-2025-05-29 12:16:51 - Miguel Serrano agrego el articulo 7 en el carrito
-2025-05-29 12:16:51 - El usuario accedió al catalogo de figura
-2025-05-29 12:16:53 - El usuario accedió al catalogo de poster
-2025-05-29 12:16:54 - El usuario accedió al catalogo de manga
-2025-05-29 12:16:55 - El usuario accedió al catalogo de figura
-2025-05-29 12:17:09 - El usuario accedió al catalogo de figura
-2025-05-29 12:17:29 - Miguel Serrano accedió a la página principal
-2025-05-29 12:17:36 - Miguel Serrano accedio a la lista de articulos
-2025-05-29 12:17:39 - Miguel Serrano accedió a la página principal
-2025-05-29 12:17:39 - Miguel Serrano accedió al catalogo de manga
-2025-05-29 12:29:41 - El usuario accedio a login
-2025-05-29 12:29:53 - El usuario ingreso credenciales erroneas
-2025-05-29 12:29:53 - El usuario ingreso credenciales erroneas
-2025-05-29 12:29:53 - El usuario accedio a login
-2025-05-29 12:30:29 - dragon accedió a la página principal
-2025-05-29 12:30:33 - Miguel Serrano accedió al catalogo de manga
-2025-05-29 12:30:37 - dragon accedió a la página principal
-2025-05-29 12:30:43 - dragon accedio a la lista de usuarios
-2025-05-29 12:57:40 - El usuario accedio a login
-2025-05-29 12:57:46 - Miguel Serrano accedió a la página principal
-2025-05-29 12:57:49 - Miguel Serrano accedio a la lista de articulos
-2025-05-29 12:58:24 - Miguel Serrano elimino el articulo 
-2025-05-29 12:58:24 - Miguel Serrano accedio a la lista de articulos
-2025-05-29 12:58:29 - Miguel Serrano accedio a la lista de usuarios
-2025-05-29 13:12:34 - El usuario accedio a login
-2025-05-29 13:12:45 - dragon accedió a la página principal
-2025-05-29 13:12:50 - dragon accedio a la lista de usuarios
-2025-05-29 13:29:55 - El usuario accedio a login
-2025-05-29 13:29:55 - El usuario accedio a login
-2025-05-29 13:30:02 - El usuario ingreso credenciales erroneas
-2025-05-29 13:30:02 - El usuario ingreso credenciales erroneas
-2025-05-29 13:30:02 - El usuario accedio a login
-2025-05-29 13:30:02 - El usuario accedio a login
-2025-05-29 13:30:08 - dragon accedió a la página principal
-2025-05-29 13:30:11 - dragon accedio a la lista de articulos
-2025-05-29 13:30:13 - dragon accedio a la lista de usuarios
-2025-05-29 13:34:57 - El usuario accedio a registro
-2025-05-29 13:34:57 - El usuario accedio a login
-2025-05-29 13:35:00 - El usuario accedio a login
-2025-05-29 13:35:00 - El usuario accedio a login
-2025-05-29 13:35:12 - dragon accedió a la página principal
-2025-05-29 13:35:24 - dragon accedio a la lista de usuarios
-2025-05-29 13:45:02 - El usuario accedio a login
-2025-05-29 13:45:02 - El usuario accedio a login
-2025-05-29 13:45:08 - dragon accedió a la página principal
-2025-05-29 13:45:11 - dragon accedio a la lista de usuarios
-2025-05-29 13:51:33 - El usuario accedió a la página principal
-2025-05-29 13:51:34 - El usuario accedio a login
-2025-05-29 13:51:35 - El usuario accedio a login
-2025-05-29 13:51:35 - El usuario accedio a login
-2025-05-29 13:51:42 - Miguel Serrano accedió a la página principal
-2025-05-29 13:51:46 - Miguel Serrano accedio a la lista de articulos
-2025-05-29 13:51:48 - Miguel Serrano accedio a la lista de usuarios
-2025-05-29 13:52:06 - Miguel Serrano elimino al usuario Roger
-2025-05-29 13:52:06 - Miguel Serrano accedio a la lista de usuarios
-2025-05-30 08:19:05 - El usuario accedió a la página principal
-2025-05-30 08:19:10 - El usuario accedio a login
-2025-05-30 08:19:12 - El usuario accedió a la página principal
-2025-05-30 08:19:14 - Se cerro la sesion
-2025-05-30 08:19:19 - El usuario accedió a la página principal
-2025-05-30 08:19:21 - El usuario accedio a login
-2025-05-30 08:19:29 - El usuario accedio a registro
-2025-05-30 08:19:54 - El usuario accedio a login
-2025-05-30 08:20:03 - dragon accedió a la página principal
-2025-05-30 08:20:07 - dragon accedio a la lista de usuarios
-2025-05-30 08:49:28 - El usuario accedió a la página principal
-2025-05-30 09:03:15 - El usuario accedio a login
-2025-05-30 09:03:20 - El usuario ingreso credenciales erroneas
-2025-05-30 09:03:20 - El usuario ingreso credenciales erroneas
-2025-05-30 09:03:20 - El usuario accedio a login
-2025-05-30 09:03:26 - dragon accedió a la página principal
-2025-05-30 09:03:29 - dragon accedio a la lista de usuarios
-2025-05-30 09:10:35 - dragon accedio a la lista de usuarios
-2025-05-30 09:11:03 - El usuario accedio a login
-2025-05-30 09:11:09 - dragon accedió a la página principal
-2025-05-30 09:11:11 - dragon accedio a la lista de articulos
-2025-05-30 09:11:12 - dragon accedio a la lista de usuarios
-2025-05-30 09:11:37 - dragon modificó el campo nombre_completo del usuario Julian Poseidon
-2025-05-30 09:11:37 - dragon accedio a la lista de usuarios
-2025-05-30 09:27:00 - El usuario accedió a la página principal
-2025-05-30 09:27:02 - El usuario accedio a login
-2025-05-30 09:27:08 - Miguel Serrano accedió a la página principal
-2025-05-30 09:27:11 - Miguel Serrano accedio a la lista de usuarios
-2025-05-30 09:32:49 - El usuario accedio a login
-2025-05-30 09:32:56 - dragon accedió a la página principal
-2025-05-30 09:32:58 - dragon accedio a la lista de usuarios
-2025-05-30 09:33:14 - dragon elimino al usuario Miguel Serrano
-2025-05-30 09:33:14 - dragon accedio a la lista de usuarios
-2025-05-30 09:46:20 - El usuario accedió a la página principal
-2025-05-30 09:46:24 - El usuario accedio a login
-2025-05-30 09:46:33 - dragon accedió a la página principal
-2025-05-30 09:46:35 - dragon accedio a la lista de articulos
-2025-05-30 09:46:36 - dragon accedio a la lista de usuarios
-2025-05-30 09:51:23 - El usuario accedió al catalogo de poster
-2025-05-30 09:51:25 - El usuario accedio a login
-2025-05-30 09:51:29 - El usuario ingreso credenciales erroneas
-2025-05-30 09:51:29 - El usuario ingreso credenciales erroneas
-2025-05-30 09:51:29 - El usuario accedio a login
-2025-05-30 09:51:34 - dragon accedió a la página principal
-2025-05-30 09:51:36 - dragon accedio a la lista de usuarios
-2025-05-30 10:03:58 - El usuario accedio a login
-2025-05-30 10:04:18 - dragon accedió a la página principal
-2025-05-30 10:04:21 - dragon accedio a la lista de usuarios
-2025-05-30 10:12:40 - El usuario accedio a login
-2025-05-30 10:12:51 - dragon accedió a la página principal
-2025-05-30 10:12:54 - dragon accedio a la lista de articulos
-2025-05-30 10:12:57 - dragon accedio a la lista de usuarios
-2025-05-30 10:25:08 - El usuario accedio a login
-2025-05-30 10:25:13 - El usuario ingreso credenciales erroneas
-2025-05-30 10:25:13 - El usuario ingreso credenciales erroneas
-2025-05-30 10:25:13 - El usuario accedio a login
-2025-05-30 10:25:23 - dragon accedió a la página principal
-2025-05-30 10:25:25 - dragon accedio a la lista de articulos
-2025-05-30 10:25:27 - dragon accedio a la lista de usuarios
-2025-05-30 10:40:12 - El usuario accedio a login
-2025-05-30 10:40:20 - dragon accedió a la página principal
-2025-05-30 10:40:29 - dragon accedio a la lista de usuarios
-2025-05-30 11:15:05 - El usuario accedio a login
-2025-05-30 11:31:06 - El usuario accedio a login
-2025-05-30 11:31:10 - El usuario ingreso credenciales erroneas
-2025-05-30 11:31:10 - El usuario ingreso credenciales erroneas
-2025-05-30 11:31:10 - El usuario accedio a login
-2025-05-30 11:31:16 - dragon accedió a la página principal
-2025-05-30 11:31:18 - dragon accedio a la lista de usuarios
-2025-05-30 11:44:41 - El usuario accedio a login
-2025-05-30 11:44:47 - El usuario ingreso credenciales erroneas
-2025-05-30 11:44:47 - El usuario ingreso credenciales erroneas
-2025-05-30 11:44:47 - El usuario accedio a login
-2025-05-30 11:44:54 - dragon accedió a la página principal
-2025-05-30 11:44:56 - dragon accedio a la lista de articulos
-2025-05-30 11:44:59 - dragon accedio a la lista de articulos
-2025-05-30 11:45:00 - dragon accedio a la lista de usuarios
-2025-05-30 12:12:50 - El usuario accedio a login
-2025-05-30 12:12:50 - El usuario accedio a login
-2025-05-30 12:12:55 - El usuario ingreso credenciales erroneas
-2025-05-30 12:12:55 - El usuario ingreso credenciales erroneas
-2025-05-30 12:12:55 - El usuario accedio a login
-2025-05-30 12:14:01 - dragon accedió a la página principal
-2025-05-30 12:14:03 - dragon accedio a la lista de usuarios
-2025-05-30 12:18:21 - El usuario accedió a la página principal
-2025-05-30 12:18:22 - El usuario accedio a login
-2025-05-30 12:18:23 - El usuario accedio a login
-2025-05-30 12:18:23 - El usuario accedio a login
-2025-05-30 12:18:31 - dragon accedió a la página principal
-2025-05-30 12:18:33 - dragon accedio a la lista de articulos
-2025-05-30 12:18:34 - dragon accedio a la lista de usuarios
-2025-05-30 12:43:41 - El usuario accedio a login
-2025-05-30 12:43:47 - dragon accedió a la página principal
-2025-05-30 12:43:48 - dragon accedio a la lista de usuarios
-2025-05-30 13:17:53 - El usuario accedio a login
-2025-05-30 13:17:59 - dragon accedió a la página principal
-2025-05-30 13:18:01 - dragon accedio a la lista de usuarios
-2025-05-30 13:18:14 - dragon accedio a la lista de usuarios
-2025-05-30 13:21:19 - dragon accedio a la lista de usuarios
-2025-05-30 13:21:20 - dragon accedió a la página principal
-2025-05-30 13:21:32 - El usuario accedio a login
-2025-05-30 13:21:33 - El usuario accedio a login
-2025-05-30 13:21:40 - dragon accedió a la página principal
-2025-05-30 13:21:42 - dragon accedio a la lista de usuarios
-2025-05-30 13:49:47 - El usuario accedio a registro
-2025-05-30 13:49:48 - El usuario accedio a login
-2025-05-30 13:49:50 - El usuario accedio a login
-2025-05-30 13:49:50 - El usuario accedio a login
-2025-05-30 13:49:58 - dragon accedió a la página principal
-2025-05-30 13:50:00 - dragon accedio a la lista de usuarios
-2025-05-30 14:03:26 - El usuario accedio a login
-2025-05-30 14:03:26 - El usuario accedio a login
-2025-05-30 14:03:32 - dragon accedió a la página principal
-2025-05-30 14:03:33 - dragon accedio a la lista de usuarios
-2025-05-30 14:03:38 - dragon accedio a la lista de usuarios
-2025-05-30 14:03:39 - dragon accedio a la lista de usuarios
-2025-05-30 14:03:40 - dragon accedio a la lista de usuarios
-2025-05-30 14:03:40 - dragon accedio a la lista de usuarios
-2025-05-30 14:03:40 - dragon accedio a la lista de usuarios
-2025-05-30 14:03:41 - dragon accedio a la lista de usuarios
-2025-05-30 14:03:41 - dragon accedio a la lista de usuarios
-2025-05-30 14:03:41 - dragon accedio a la lista de usuarios
-2025-05-30 14:03:42 - dragon accedio a la lista de usuarios
-2025-05-30 14:03:42 - dragon accedio a la lista de usuarios
-2025-05-30 14:03:42 - dragon accedio a la lista de usuarios
-2025-05-30 14:05:31 - El usuario accedio a login
-2025-05-30 14:05:31 - El usuario accedio a login
-2025-05-30 14:05:36 - dragon accedió a la página principal
-2025-05-30 14:05:38 - dragon accedio a la lista de articulos
-2025-05-30 14:05:41 - dragon accedio a la lista de usuarios
-2025-05-30 14:06:01 - dragon elimino al usuario Julian Poseidon
-2025-05-30 14:06:01 - dragon accedio a la lista de usuarios
-2025-05-30 14:10:01 - El usuario accedio a login
-2025-05-30 14:10:01 - El usuario accedio a login
-2025-05-30 14:10:06 - dragon accedió a la página principal
-2025-05-30 14:10:09 - dragon accedio a la lista de usuarios
-2025-05-30 14:18:02 - El usuario accedio a login
-2025-05-30 14:18:02 - El usuario accedio a login
-2025-05-30 14:18:09 - dragon accedió a la página principal
-2025-05-30 14:18:13 - dragon accedio a la lista de usuarios
-2025-05-30 14:22:39 - El usuario accedio a login
-2025-05-30 14:22:40 - El usuario accedio a login
-2025-05-30 14:22:45 - El usuario ingreso credenciales erroneas
-2025-05-30 14:22:45 - El usuario ingreso credenciales erroneas
-2025-05-30 14:22:45 - El usuario accedio a login
-2025-05-30 14:22:45 - El usuario accedio a login
-2025-05-30 14:22:50 - dragon accedió a la página principal
-2025-05-30 14:22:53 - dragon accedio a la lista de usuarios
+2025-05-31 16:30:33 - Migeu accedió a la página principal
+2025-05-31 16:33:47 - Usuario anónimo intentó ver el carrito
+2025-05-31 16:33:47 - El usuario accedio a login
+2025-05-31 16:33:59 - Migeu accedió a la página principal
+2025-05-31 16:34:06 - El usuario accedio al carrito
+2025-05-31 16:37:04 - Error inesperado al obtener carrito
+java.lang.ClassCastException: class java.lang.String cannot be cast to class com.example.wodweb.dtos.SesionDto (java.lang.String is in module java.base of loader 'bootstrap'; com.example.wodweb.dtos.SesionDto is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @50c889da)
+	at com.example.wodweb.controladores.CarritoControlador.verCarrito(CarritoControlador.java:166)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:262)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:917)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:829)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:227)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:225)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2025-05-31 16:37:04 - El usuario accedió al catalogo de manga
+2025-05-31 16:37:08 - El usuario accedio a login
+2025-05-31 16:37:15 - Macarron accedió a la página principal
+2025-05-31 16:37:17 - Macarron accedio al carrito
+2025-05-31 16:37:30 - El usuario accedió al catalogo de manga
+2025-05-31 16:37:31 - Macarron agrego el articulo 11 en el carrito
+2025-05-31 16:37:31 - El usuario accedió al catalogo de manga
+2025-05-31 16:37:32 - El usuario accedió al catalogo de poster
+2025-05-31 16:37:33 - Macarron agrego el articulo 10 en el carrito
+2025-05-31 16:37:33 - El usuario accedió al catalogo de poster
+2025-05-31 16:37:34 - El usuario accedió al catalogo de figura
+2025-05-31 16:37:35 - Macarron agrego el articulo 9 en el carrito
+2025-05-31 16:37:35 - El usuario accedió al catalogo de figura

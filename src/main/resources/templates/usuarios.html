@@ -12,77 +12,101 @@
 <!-- ///////////////////////////////////
             BARRA NAVEGACION                  
    //////////////////////////////////// -->
-	<div class="container-fluid fondoBarraNavegacion">
-		<div class="row align-items-center w-100">
+<div class="container-fluid fondoBarraNavegacion">
+  <div class="row align-items-center w-100">
+    <!-- Logo -->
+    <div class="col-auto">
+      <a class="btn-icon" th:href="@{/}">
+        <img class="logo" th:src="@{/images/logo.png}" alt="Logo">
+      </a>
+    </div>
 
-			<!-- Logo -->
-			<div class="col-auto">
-				<a class="btn-icon" th:href="@{/}"> 
-					<img class="logo" th:src="@{/images/logo.png}" alt="Logo">
-				</a>
-			</div>
+    <div class="col">
+      <nav class="navbar navbar-expand-md p-0">
 
-			<!-- Opciones de navegación (centradas) -->
-			<div class="col text-center d-none d-md-block">
-				<nav class="nav justify-content-center">
-					<h2><a class="nav-link text-white" th:href="@{/manga}">MANGA</a></h2>
-					<h2><a class="nav-link text-white" th:href="@{/poster}">POSTER</a></h2> 
-					<h2><a class="nav-link text-white" th:href="@{/figura}">FIGURA</a></h2>
-				</nav>
-			</div>
-			
-			<!-- Icono de usuario (activador del menú) -->
-			<div class="col-auto ms-auto">
-				<div class="dropdown">
+        <button
+          class="navbar-toggler botonHamburguesa mx-auto"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navCollapse"
+          aria-controls="navCollapse"
+          aria-expanded="false"
+          aria-label="Mostrar/Ocultar menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <!-- Elementos que se colapsan -->
+        <div class="collapse navbar-collapse justify-content-center" id="navCollapse">
+          <ul class="navbar-nav">
+            <li class="nav-item px-2">
+              <h2><a class="nav-link text-white" th:href="@{/catalogo/manga}">MANGA</a></h2>	
+            </li>
+            <li class="nav-item px-2">
+              <h2><a class="nav-link text-white" th:href="@{/catalogo/poster}">POSTER</a></h2> 
+            </li>
+            <li class="nav-item px-2">
+              <h2><a class="nav-link text-white" th:href="@{/catalogo/figura}">FIGURA</a></h2>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
 
-					<!-- Para local -->
-					<img
-					  th:if="${perfilActivo == 'local'}"
-					  class="rounded-circle dropdown-toggle-img"
-					  sec:authorize="isAuthenticated()"
-					  th:src="@{http://localhost:9511/usuario/foto/{id}(id=${usuario.id})}"
-					  alt="Usuario"
-					  width="40" height="40"
-					  data-bs-toggle="dropdown"
-					  aria-expanded="false" />
-					
-					<!-- Para producción -->
-					<img
-					  th:if="${perfilActivo != 'local'}"
-					  class="rounded-circle dropdown-toggle-img"
-					  sec:authorize="isAuthenticated()"
-					  th:src="@{https://msm-sevilla.es/usuario/foto/{id}(id=${usuario.id})}"
-					  alt="Usuario"
-					  width="40" height="40"
-					  data-bs-toggle="dropdown"
-					  aria-expanded="false" />
-			
-					<!-- Imagen por defecto para usuarios no autenticados -->
-					<img 
-						class="rounded-circle dropdown-toggle-img"
-						sec:authorize="isAnonymous()"
-						th:src="@{/images/iconoUsuario.png}"
-						alt="Usuario" width="40" height="40"
-						data-bs-toggle="dropdown"
-						aria-expanded="false">
+    <!-- Icono de usuario (activador del menú) -->
+    <div class="col-auto ms-auto">
+      <div class="dropdown">
+        <!-- Para local -->
+        <img
+          th:if="${perfilActivo == 'local'}"
+          class="rounded-circle dropdown-toggle-img"
+          sec:authorize="isAuthenticated()"
+          th:src="@{http://localhost:9511/usuario/foto/{id}(id=${usuario.id})}"
+          alt="Usuario"
+          width="40" height="40"
+          data-bs-toggle="dropdown"
+          aria-expanded="false" />
 
-					<!-- Menú desplegable -->
-					<ul class="dropdown-menu dropdown-menu-end"
-						aria-labelledby="dropdownMenuButton">
-						<li th:if="${auth != null and auth.admin}"><a class="dropdown-item" th:href="@{/admin}">Lista de Usuarios</a></li>
-						<li><a class="dropdown-item" th:href="@{/registro}">Registro</a></li>
-						<li><a class="dropdown-item" th:href="@{/login}">Login</a></li>
-						<li sec:authorize="hasRole('ADMIN')" ><a class="dropdown-item" th:href="@{/admin/obtenerUsuario}">Admin</a></li>
-						<li sec:authorize="hasRole('ADMIN')" ><a class="dropdown-item" th:href="@{/admin/obtenerArticulos}">Articulos</a></li>
-						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item text-danger" th:href="@{/logout}">Logout</a></li>
-					</ul>
-				</div>
-			</div>
+        <!-- Para producción -->
+        <img
+          th:if="${perfilActivo != 'local'}"
+          class="rounded-circle dropdown-toggle-img"
+          sec:authorize="isAuthenticated()"
+          th:src="@{https://msm-sevilla.es/usuario/foto/{id}(id=${usuario.id})}"
+          alt="Usuario"
+          width="40" height="40"
+          data-bs-toggle="dropdown"
+          aria-expanded="false" />
 
-		</div>
-	</div>
+        <!-- Imagen por defecto para usuarios no autenticados -->
+        <img
+          class="rounded-circle dropdown-toggle-img"
+          sec:authorize="isAnonymous()"
+          th:src="@{/images/iconoUsuario.png}"
+          alt="Usuario"
+          width="40" height="40"
+          data-bs-toggle="dropdown"
+          aria-expanded="false">
+
+        <!-- Menú desplegable -->
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+          <li th:if="${auth != null and auth.admin}">
+            <a class="dropdown-item" th:href="@{/admin}">Lista de Usuarios</a>
+          </li>
+          <li><a class="dropdown-item" th:href="@{/registro}">Registro</a></li>
+          <li><a class="dropdown-item" th:href="@{/login}">Login</a></li>
+          <li sec:authorize="hasRole('ADMIN')">
+            <a class="dropdown-item" th:href="@{/admin/obtenerUsuario}">Admin</a>
+          </li>
+          <li sec:authorize="hasRole('ADMIN')">
+            <a class="dropdown-item" th:href="@{/admin/obtenerArticulos}">Articulos</a>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" th:href="@{/logout}">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -90,14 +114,16 @@
 <!-- ///////////////////////////////////
             LISTA DE USUARIOS                  
    //////////////////////////////////// -->
-  <div class="container mt-3">
-     <input id="filtroNombre" type="text" class="form-control" placeholder="Buscar por nombre...">
-  </div>
-  <div class="container mt-5">
+<div class="container mt-3">
+  <input id="filtroNombre" type="text" class="form-control" placeholder="Buscar por nombre...">
+</div>
+
+<div class="container mt-5">
+  <!-- Contenedor responsive de Bootstrap -->
+  <div class="table-responsive">
     <table class="table table-bordered">
       <thead id="cabezeraTablaUsuarios">
         <tr>
-         
           <th>Nombre Completo</th>
           <th>Móvil</th>
           <th>Correo Electrónico</th>
@@ -110,126 +136,144 @@
       <tbody>
         <!-- Mostrar usuarios -->
         <tr th:each="usuario : ${usuarios}">
-          
           <td th:text="${usuario.nombreCompleto}"></td>
           <td th:text="${usuario.movil}"></td>
           <td th:text="${usuario.correoElectronico}"></td>
           <td th:text="${usuario.tipoUsuario}"></td>
-		  <td th:text="${usuario.contrasena != null ? '********' : 'No asignada'}"></td>
+          <td th:text="${usuario.contrasena != null ? '********' : 'No asignada'}"></td>
           <td th:text="${usuario.verificado} ? 'Verificado' : 'No verificado'"></td>
           <td>
-            <!-- Botón para abrir el formulario de edición con collapse de Bootstrap -->
-            <button id="botonAcciones" class="btn btn-primary" type="button"
-                    data-bs-toggle="modal"
-                    th:data-bs-target="|#modalEditar-${usuario.id}|"
-                    aria-expanded="false">
-	              	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-					  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
-					</svg>
+            <!-- Botón para abrir el formulario de edición -->
+            <button
+              id="botonAcciones"
+              class="btn btn-primary"
+              type="button"
+              data-bs-toggle="modal"
+              th:data-bs-target="|#modalEditar-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"
+              aria-expanded="false"
+              th:aria-controls="|collapseEditar-${usuario.correoElectronico}|">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                   class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
+              </svg>
             </button>
-            <button id="botonAcciones" class="btn btn-danger" type="button"
-		         th:attr="data-id=${usuario.id}, data-email=${usuario.correoElectronico}"
-		        th:disabled="${auth != null and auth.getUsername() == usuario.correoElectronico}"
-		        onclick="abrirModalBorrar(this.getAttribute('data-id'), this.getAttribute('data-email'))">
-		        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-				  	<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-				 </svg>
-			</button>
+
+            <!-- Botón para confirmar borrado -->
+            <button
+              id="botonAcciones"
+              class="btn btn-danger"
+              type="button"
+              th:attr="data-id=${usuario.id}, data-email=${usuario.correoElectronico}"
+              th:disabled="${auth != null and auth.getUsername() == usuario.correoElectronico}"
+              onclick="abrirModalBorrar(this.getAttribute('data-id'), this.getAttribute('data-email'))">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                   class="bi bi-trash-fill" viewBox="0 0 16 16">
+                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+              </svg>
+            </button>
           </td>
-        </tr>        
+        </tr>
       </tbody>
     </table>
-    
-    <a id="botonAcciones" th:href="@{/admin/usuarios/exportar(q=${q})}" class="btn btn-outline-primary mb-3">
-  		<i class="bi bi-file-earmark-spreadsheet"><h6>Exportar CSV</h6></i> 
-  	</a>
-  
-  </div>
-  
-  
- <!-- Modal para editar usuario con formulario completo -->
-<div class="modal fade" th:each="usuario : ${usuarios}" th:id="|modalEditar-${usuario.id}|" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content contenedorFormularioModal">
-      <form th:action="@{/admin/editarUsuario}" method="post" id="formEditarUsuario-[[${usuario.id}]]">
-        <input type="hidden" name="id" th:value="${usuario.id}"/>
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalEditarLabel">Editar Usuario</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body">
-          <!-- Nombre Completo -->
-          <div class="mb-3">
-            <label for="nombreCompleto-[[${usuario.id}]]" class="form-label">Nombre Completo:</label>
-            <input
-              type="text"
-              id="nombreCompleto-[[${usuario.id}]]"
-              name="nombreCompleto"
-              class="form-control"
-              th:value="${usuario.nombreCompleto}"
-              required
-              maxlength="50" />
-            <small class="error text-danger" id="nombreCompletoError-[[${usuario.id}]]"></small>
-          </div>
-          <!-- Móvil -->
-          <div class="mb-3">
-            <label for="movil-[[${usuario.id}]]" class="form-label">Móvil:</label>
-            <input
-              type="text"
-              id="movil-[[${usuario.id}]]"
-              name="movil"
-              class="form-control"
-              th:value="${usuario.movil}"
-              placeholder="+34 600123456"
-              required />
-            <small class="error text-danger" id="movilError-[[${usuario.id}]]"></small>
-          </div>
-          <!-- Correo Electrónico -->
-          <div class="mb-3">
-            <label for="correoElectronico-[[${usuario.id}]]" class="form-label">Correo Electrónico:</label>
-            <input
-              type="email"
-              id="correoElectronico-[[${usuario.id}]]"
-              name="correoElectronico"
-              class="form-control"
-              th:value="${usuario.correoElectronico}"
-              required />
-            <small class="error text-danger" id="correoElectronicoError-[[${usuario.id}]]"></small>
-          </div>
-          <!-- Contraseña -->
-          <div class="mb-3">
-            <label for="contrasena-[[${usuario.id}]]" class="form-label">Contraseña:</label>
-            <input
-              type="password"
-              id="contrasena-[[${usuario.id}]]"
-              name="contrasena"
-              class="form-control"
-              placeholder="Dejar en blanco para no cambiar" />
-            <small class="form-text text-muted">Mínimo 8 caracteres. Dejar vacío si no deseas modificarla.</small>
-            <small class="error text-danger" id="contrasenaError-[[${usuario.id}]]"></small>
-          </div>
-        </div>
-        
-        <div class="mb-3">
-		  <label for="tipoUsuario-[[${usuario.id}]]" class="form-label">Tipo de Usuario:</label>
-		  <select
-		    id="tipoUsuario-[[${usuario.id}]]"
-		    name="tipoUsuario"
-		    class="form-select"
-		    required>
-		    <option th:value="user" th:selected="${usuario.tipoUsuario == 'user'}">Usuario</option>
-		    <option th:value="admin" th:selected="${usuario.tipoUsuario == 'admin'}">Administrador</option>
-		  </select>
-		</div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-success">Guardar cambios</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+  </div> <!-- /.table-responsive -->
 
+  <a id="botonAcciones" th:href="@{/admin/usuarios/exportar(q=${q})}" class="btn btn-outline-primary mb-3">
+    <i class="bi bi-file-earmark-spreadsheet"><h6>Exportar CSV</h6></i>
+  </a>
+</div>
+  
+  
+	  <!-- Modal para editar usuario (generado para cada usuario) -->
+	<div th:each="usuario : ${usuarios}">
+	  <div class="modal fade"
+	       th:id="|modalEditar-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"
+	       tabindex="-1"
+	       aria-labelledby="modalEditarLabel"
+	       aria-hidden="true">
+	    <div class="modal-dialog">
+	      <div class="modal-content contenedorFormularioModal">
+	        <form th:action="@{/admin/editarUsuario}" method="post">
+	          <div id="tituloModalEditar" class="modal-header">
+	            <h5 class="modal-title" id="campos">Editar Usuario</h5>
+	          </div>
+	          <div class="modal-body">
+	            <!-- Campo oculto para el correo del usuario (identificador “original” de quién vamos a editar) -->
+	            <input type="hidden" name="correoElectronico"
+	                   th:value="${usuario.correoElectronico}">
+	
+	            <!-- Selección del campo a modificar -->
+	            <div class="mb-3">
+	              <label id="campos" for="campo" class="form-label">Campo a modificar:</label>
+	              <select name="campo"
+	                      class="form-select"
+	                      required
+	                      th:id="|campo-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"
+	                      th:data-email="${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}"
+	                      onchange="toggleNuevoValor(this.getAttribute('data-email'))">
+	                <option value="nombre_completo">Nombre Completo</option>
+	                <option value="movil">Móvil</option>
+	                <option value="tipo_usuario">Tipo de Usuario</option>
+	                <option value="correo_electronico">Correo Electrónico</option>
+	                <option value="contrasena">Contraseña</option>
+	              </select>
+	            </div>
+	
+	            <!-- Contenedor para input de texto (por defecto visible) -->
+	            <div class="mb-3"
+	                 th:id="|nuevoValorInputContainer-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|">
+	              <label id="campos" for="nuevoValor" class="form-label">Nuevo valor:</label>
+	              <input type="text"
+	                     name="nuevoValor"
+	                     class="form-control"
+	                     th:id="|nuevoValorInput-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"
+	                     placeholder="Ingrese el nuevo valor"
+	                     required>
+	              <!-- Aquí agregamos un <small> para mostrar errores específicos del “nuevoValor” -->
+	              <small class="error text-danger"
+	                     th:id="|nuevoValorError-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"></small>
+	            </div>
+	
+	            <!-- Contenedor para select “tipo_usuario” (oculto por defecto) -->
+	            <div class="mb-3"
+	                 th:id="|nuevoValorSelectContainer-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"
+	                 style="display: none;">
+	              <label id="campos" for="nuevoValorSelect" class="form-label">Nuevo valor:</label>
+	              <select name="nuevoValor"
+	                      class="form-select"
+	                      th:id="|nuevoValorSelect-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"
+	                      required
+	                      disabled>
+	                <option value="user">usuario</option>
+	                <option value="admin">admin</option>
+	              </select>
+	              <!-- Mismo <small> de error, pero para el select -->
+	              <small class="error text-danger"
+	                     th:id="|nuevoValorError-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"></small>
+	            </div>
+	
+	          </div> <!-- /modal-body -->
+	
+	          <div class="modal-footer">
+	            <p class="text-danger">
+	               ⚠ Atención: si modificas tu propio correo, deberás volver a iniciar sesión.
+	            </p>
+	            <!-- Botón de guardar: comenzamos DESHABILITADO -->
+	            <button id="botonAccionesEditar"
+	                    type="submit"
+	                    class="btn btn-success"
+	                    th:id="|btnGuardar-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"
+	                    disabled>Guardar Cambios</button>
+	            <button id="botonAccionesEditar"
+	                    type="button"
+	                    class="btn btn-secondary"
+	                    data-bs-dismiss="modal">Cancelar</button>
+	          </div>
+	
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
   
   
   <!-- Modal para confirmar borrado -->
@@ -263,90 +307,240 @@
    <!-- ///////////////////////////////////
                 JAVASCRIPT                  
    //////////////////////////////////// -->
- <script>
-  document.getElementById('filtroNombre').addEventListener('input', function() {
-    const texto = this.value.toLowerCase();
-    document.querySelectorAll('tbody tr').forEach(tr => {
-      const nombre = (tr.children[0]?.textContent || '').toLowerCase();
-      tr.style.display = nombre.includes(texto) ? '' : 'none';
-    });
-  });
+  	<script>	
+	  	document.getElementById('filtroNombre').addEventListener('input', function() {
+	  	  const texto = this.value.toLowerCase();
+	  	  document.querySelectorAll('tbody tr').forEach(tr => {
+	  	    const nombre = tr.children[0].textContent.toLowerCase();
+	  	    tr.style.display = nombre.includes(texto) ? '' : 'none';
+	  	  });
+	  	});
+	  	
+	  	
+	  	
+	  	function abrirModalBorrar(id, email) {
+	  	    document.getElementById("campoIdModal").value = id;
+	  	    document.getElementById("emailRealModal").value = email;
+	  	    document.getElementById("emailAConfirmar").textContent = email;
+	  	    document.getElementById("emailConfirmacion").value = '';
+	  	    document.getElementById("btnBorrar").disabled = true;
 
-  function abrirModalBorrar(id, email) {
-    document.getElementById("campoIdModal").value = id;
-    document.getElementById("emailRealModal").value = email;
-    document.getElementById("emailAConfirmar").textContent = email;
-    document.getElementById("emailConfirmacion").value = '';
-    document.getElementById("btnBorrar").disabled = true;
+	  	    var input = document.getElementById('emailConfirmacion');
+	  	    input.removeEventListener('input', validarEmail); // Limpieza si ya existe
+	  	    input.addEventListener('input', validarEmail);
 
-    const inputBorrar = document.getElementById('emailConfirmacion');
-    inputBorrar.removeEventListener('input', validarEmail);
-    inputBorrar.addEventListener('input', validarEmail);
+	  	    function validarEmail() {
+	  	        const real = email.trim();
+	  	        const typed = input.value.trim();
+	  	        document.getElementById('btnBorrar').disabled = (typed !== real);
+	  	    }
 
-    function validarEmail() {
-      document.getElementById('btnBorrar').disabled =
-        inputBorrar.value.trim() !== document.getElementById('emailRealModal').value.trim();
-    }
+	  	    var myModal = new bootstrap.Modal(document.getElementById('modalBorrar'));
+	  	    myModal.show();
+	  	}
+	      
+	  	
+	  	
+	  	document.addEventListener('DOMContentLoaded', function() {
+	  	    // Expresiones regulares que usaremos para validar “móvil” y “email”
+	  	    const patternMovil = /^\+?\d{1,3}[- ]?\d{9}$/;
+	  	    // (Opcionalmente podrías refinarlo, pero con esto bastará para +cód.pais y 9 dígitos)
 
-    new bootstrap.Modal(document.getElementById('modalBorrar')).show();
-  }
+	  	    // Recorro TODOS los modals “Editar Usuario”
+	  	    document.querySelectorAll('.modal-content.contenedorFormularioModal').forEach(modalContent => {
+	  	      // «modalContent» es el <div class="modal-content contenedorFormularioModal"> dentro de cada modal.
+	  	      // A partir de él, busco los elementos que necesito:
+	  	      const modal = modalContent.closest('.modal'); // El <div class="modal fade"> padre.
+	  	      if (!modal) return;
 
-  document.addEventListener('DOMContentLoaded', function() {
-    const patternMovil = /^\+?\d{1,3}[- ]?\d{9}$/;
+	  	      // 1) SELECT de “campo” (qué atributo voy a editar)
+	  	      const campoSelect = modalContent.querySelector('select[name="campo"]');
+	  	      // 2) Input y Select de “nuevoValor”
+	  	      const nuevoValorInput  = modalContent.querySelector('input[name="nuevoValor"]');
+	  	      const nuevoValorSelect = modalContent.querySelector('select[name="nuevoValor"]');
+	  	      // 3) El <small> donde mostraré los errores de “nuevoValor”
+	  	      const nuevoValorError = modalContent.querySelector('small[id^="nuevoValorError-"]');
+	  	      // 4) El botón de “Guardar Cambios” dentro de este modal
+	  	      const btnGuardar = modalContent.querySelector('button[type="submit"]');
 
-    // Validar formularios de editar usuarios
-    document.querySelectorAll('[id^="formEditarUsuario-"]').forEach(form => {
-      const id = form.id.split('-')[1];
-      const nombre = document.getElementById('nombreCompleto-' + id);
-      const movil = document.getElementById('movil-' + id);
-      const correo = document.getElementById('correoElectronico-' + id);
-      const contra = document.getElementById('contrasena-' + id);
+	  	      if (!campoSelect || (!nuevoValorInput && !nuevoValorSelect) || !btnGuardar) {
+	  	        // Si falta algo, salgo
+	  	        return;
+	  	      }
 
-      form.addEventListener('submit', function(e) {
-        let valid = true;
-        // Nombre
-        if (!nombre.value || nombre.value.length > 50) {
-          valid = false;
-          document.getElementById('nombreCompletoError-' + id).textContent = 'Obligatorio, máx 50 caracteres.';
-        } else {
-          document.getElementById('nombreCompletoError-' + id).textContent = '';
-        }
-        // Móvil
-        if (!patternMovil.test(movil.value)) {
-          valid = false;
-          document.getElementById('movilError-' + id).textContent = 'Formato incorrecto.';
-        } else {
-          document.getElementById('movilError-' + id).textContent = '';
-        }
-        // Correo
-        if (!correo.validity.valid) {
-          valid = false;
-          document.getElementById('correoElectronicoError-' + id).textContent = 'Email inválido.';
-        } else {
-          document.getElementById('correoElectronicoError-' + id).textContent = '';
-        }
-        // Contraseña opcional
-        if (contra.value && contra.value.length < 8) {
-          valid = false;
-          document.getElementById('contrasenaError-' + id).textContent = 'Mínimo 8 caracteres.';
-        } else {
-          document.getElementById('contrasenaError-' + id).textContent = '';
-        }
+	  	      
+	  	      
+	  	    function actualizarVisibilidad() {
+	  	      const elegido = campoSelect.value.trim();
 
-        if (!valid) e.preventDefault();
-      });
-    });
+	  	      if (elegido === 'tipo_usuario') {
+	  	        // Si el usuario selecciona “Tipo de Usuario”:
+	  	        // - Oculto el input de texto
+	  	        // - Muestro el <select> de roles y lo habilito
+	  	        if (nuevoValorInput)  nuevoValorInput.parentElement.style.display = 'none';
+	  	        if (nuevoValorSelect) {
+	  	          nuevoValorSelect.parentElement.style.display = 'block';
+	  	          nuevoValorSelect.disabled = false;
+	  	        }
+	  	        if (nuevoValorInput) nuevoValorInput.value = ''; // limpio el input de texto
+	  	      }
+	  	      else {
+	  	        // Para cualquier otro campo (nombre, móvil, correo o contraseña):
+	  	        // - Oculto el <select> de roles
+	  	        // - Muestro el <input> de texto y lo habilito
+	  	        if (nuevoValorSelect) {
+	  	          nuevoValorSelect.parentElement.style.display = 'none';
+	  	          nuevoValorSelect.disabled = true;
+	  	          nuevoValorSelect.value = ''; // limpio el select de roles
+	  	        }
+	  	        if (nuevoValorInput) {
+	  	          nuevoValorInput.parentElement.style.display = 'block';
+	  	          nuevoValorInput.disabled = false;
 
-    // Validar modal borrar (en caso de que no hubiera cargado ya)
-    const input = document.getElementById('emailConfirmacion');
-    if (input) {
-      input.addEventListener('input', function() {
-        document.getElementById('btnBorrar').disabled =
-          this.value.trim() !== document.getElementById('emailRealModal').value.trim();
-      });
-    }
-  });
-</script>
+	  	          // Si el campo elegido es “correo_electronico”, forzamos input.type = "email"
+	  	          if (elegido === 'correo_electronico') {
+	  	            nuevoValorInput.type = 'email';
+	  	          }
+	  	          // Si el campo elegido es “contrasena”, forzamos input.type = "password"
+	  	          else if (elegido === 'contrasena') {
+	  	            nuevoValorInput.type = 'password';
+	  	          }
+	  	          else {
+	  	            // nombre_completo o movil → tipo “text”
+	  	            nuevoValorInput.type = 'text';
+	  	          }
+	  	          nuevoValorInput.value = '';
+	  	        }
+	  	      }
+
+	  	      // Cada vez que ocultamos o mostramos algo, limpiamos el mensaje de error
+	  	      if (nuevoValorError) nuevoValorError.textContent = '';
+	  	      // Y dejamos el botón de guardar deshabilitado hasta que haya una validación exitosa
+	  	      btnGuardar.disabled = true;
+	  	    }
+
+	  	      
+	  
+	  	      
+	  	      
+	  	  function validarNuevoValor() {
+	  		  const elegido = campoSelect.value.trim();
+	  		  let valor = '';
+
+	  		  if (elegido === 'tipo_usuario') {
+	  		    // Validar que el <select> nuevoValor sea “user” u “admin”
+	  		    valor = nuevoValorSelect.value.trim();
+	  		    if (valor !== 'user' && valor !== 'admin') {
+	  		      nuevoValorError.textContent = 'Debes elegir “usuario” o “administrador”.';
+	  		      return false;
+	  		    } else {
+	  		      nuevoValorError.textContent = '';
+	  		      return true;
+	  		    }
+	  		  }
+	  		  else {
+	  		    // Cualquier otro caso → tomamos valor = nuevoValorInput.value
+	  		    valor = nuevoValorInput.value.trim();
+
+	  		    switch (elegido) {
+	  		      case 'nombre_completo':
+	  		        if (!valor) {
+	  		          nuevoValorError.textContent = 'El nombre no puede ir vacío.';
+	  		          return false;
+	  		        }
+	  		        if (valor.length > 50) {
+	  		          nuevoValorError.textContent = 'Máx 50 caracteres.';
+	  		          return false;
+	  		        }
+	  		        nuevoValorError.textContent = '';
+	  		        return true;
+
+	  		      case 'movil':
+	  		        if (!patternMovil.test(valor)) {
+	  		          nuevoValorError.textContent = 'Deben ser +código y 9 dígitos (p.ej. +34 600123456).';
+	  		          return false;
+	  		        }
+	  		        nuevoValorError.textContent = '';
+	  		        return true;
+
+	  		      case 'correo_electronico':
+	  		        // Usamos la validación nativa de HTML5:
+	  		        if (!nuevoValorInput.checkValidity()) {
+	  		          nuevoValorError.textContent = 'Email inválido.';
+	  		          return false;
+	  		        }
+	  		        nuevoValorError.textContent = '';
+	  		        return true;
+
+	  		      case 'contrasena':
+	  		        // Si viene vacío → OK (no cambiar). Si viene algo, debe tener al menos 8 caracteres.
+	  		        if (valor && valor.length < 8) {
+	  		          nuevoValorError.textContent = 'Mínimo 8 caracteres.';
+	  		          return false;
+	  		        }
+	  		        nuevoValorError.textContent = '';
+	  		        return true;
+
+	  		      default:
+	  		        // Si hubiera algún caso extraño, lo dejamos pasar
+	  		        nuevoValorError.textContent = '';
+	  		        return true;
+	  		    }
+	  		  }
+	  		}
+
+	  	      
+	  	      
+	  	      
+	  	      // Listener: cuando cambie el <select name="campo">, reconfiguramos visibilidad
+	  	      campoSelect.addEventListener('change', function() {
+	  	        actualizarVisibilidad();
+	  	      });
+
+	  	      // Listener: en cada pulsación del “nuevoValor” (input o select), volvemos a validar
+	  	      if (nuevoValorInput) {
+	  	        nuevoValorInput.addEventListener('input', function() {
+	  	          // Si paso la validación, habilito el botón; si no, lo deshabilito
+	  	          btnGuardar.disabled = !validarNuevoValor();
+	  	        });
+	  	      }
+	  	      if (nuevoValorSelect) {
+	  	        nuevoValorSelect.addEventListener('change', function() {
+	  	          btnGuardar.disabled = !validarNuevoValor();
+	  	        });
+	  	      }
+
+	  	      // Listener final: si el usuario intenta “submit” (ENTER o clic), revalido y cancelo si falla
+	  	      const form = modalContent.querySelector('form');
+	  	      form.addEventListener('submit', function(e) {
+	  	        if (!validarNuevoValor()) {
+	  	          e.preventDefault();
+	  	          btnGuardar.disabled = true;
+	  	        }
+	  	      });
+
+	  	      // Al abrir el modal, siempre reseteo el formulario interno
+	  	      modal.addEventListener('show.bs.modal', function() {
+	  	        // Orden de arranque: pongo “campo” en el primer <option> (p.ej. nombre_completo)
+	  	        campoSelect.value = 'nombre_completo';
+	  	        actualizarVisibilidad();
+	  	      });
+	  	    });
+	  	  });
+	  	  
+	  	  
+
+	  	  // Esta función se usa en el atributo onchange="toggleNuevoValor(...)"
+	  	  function toggleNuevoValor(emailToken) {
+	  	    // Localizo el select “campo” usando ese token
+	  	    const campoSelect = document.getElementById('campo-' + emailToken);
+	  	    if (!campoSelect) return;
+	  	    // Creo un evento “change” manual para que dispare todo lo que configuramos en JS
+	  	    const eventChange = new Event('change');
+	  	    campoSelect.dispatchEvent(eventChange);
+	  	  }
+	  	
+  	</script>
  
 </body>
 </html>

@@ -39,7 +39,7 @@ public class PaginaPrincipal {
 	
 	/**
 	 * Maneja la página principal de bienvenida URL: http://localhost:8080/ 
-	 * @param model Modelo para pasar datos a la vista
+	 * @param modelo Modelo para pasar datos a la vista
 	 * @return Nombre del html de bienvenida
 	 */
 	@GetMapping("/")

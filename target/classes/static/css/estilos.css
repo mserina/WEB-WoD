@@ -25,6 +25,7 @@
     font-size: 1.2rem;
     color: white !important;
     margin: 0 15px;
+    margin-left: -20px
 }
 
 .nav-link:hover {
@@ -37,6 +38,10 @@
 
 .dropdown-menu {
     min-width: 150px;
+}
+
+.botonHamburguesa{
+	margin-left: 8rem;
 }
 
 /* ////////////////////////////////////////// */
@@ -88,103 +93,6 @@
         border-radius: 12rem;
         width: 4rem;
         height: 4rem;
-    }
-}
-
-/* Tablets y pantallas medianas (<1024px) */
-@media screen and (max-width: 1021px) {
-    .navOpciones {
-        gap: 5rem; /* Reduce el espacio entre los botones */
-        margin-left: 32rem;
-    }
-
-    .logo {
-        width: 70px;
-        height: 70px;
-    }
-
-    h2 {
-        font-size: 1rem;
-    }
-
-    .botonIcono{
-        transform: translate(931px, -106px);
-        border-radius: 12rem;
-        width: 4rem;
-        height: 4rem;
-    }
-}
-
-/* Pantallas pequeñas (móviles <768px) */
-@media screen and (max-width: 768px) {
-    mat-toolbar {
-        flex-direction: row;
-        height: auto;
-        padding: 1rem;
-    }
-
-    .logo {
-        width: 60px;
-        height: 60px;
-        margin-top: 6px;
-    }
-
-    .iconoHamburguesa{
-        display: block;
-    }
-
-    /* Estilos para el menú hamburguesa */
-    .menuHamburguesa {
-        display: block;
-        font-size: 2rem;
-        color: white;
-        background: none;
-        border: none;
-        cursor: pointer;
-        margin-left: 1rem;
-    }
-
-    /* Ocultar el menú de navegación por defecto en pantallas pequeñas */
-    .navOpciones {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 5rem;
-        left: 0;
-        width: 100%;
-        background-color: black;
-        padding: 1rem;
-        z-index: 100;
-        margin-left: auto;
-    }
-
-    /* Mostrar el menú cuando se active */
-    .navOpciones.mostrar {
-        display: flex;
-    }
-
-    .navOpciones button {
-        width: 100%;
-        text-align: left;
-        padding: 0.5rem 1rem;
-    }
-
-    .iconoUsuario {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-    }
-}
-
-/* Pantallas muy pequeñas (<480px) */
-@media screen and (max-width: 480px) {
-    .logo {
-        width: 50px;
-        height: 50px;
-    }
-
-    .imagenLogin {
-        width: 2.5rem;
-        height: 2.5rem;
     }
 }
 
@@ -492,6 +400,112 @@ th {
         .producto{
         	background-color: #F5DEB3;
         }
+        
+    
+@media screen and (max-width: 1021px) {
+    .navOpciones {
+        gap: 5rem; /* Reduce el espacio entre los botones */
+        margin-left: 32rem;
+    }
+
+    .logo {
+        width: 70px;
+        height: 70px;
+    }
+
+    h2 {
+        font-size: 1rem;
+    }
+
+    .botonIcono{
+        transform: translate(931px, -106px);
+        border-radius: 12rem;
+        width: 4rem;
+        height: 4rem;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+
+  mat-toolbar {
+    flex-direction: row;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .logo {
+    width: 60px;
+    height: 60px;
+    margin-top: 6px;
+  }  
+
+  .iconoUsuario {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+
+  .nav-link {
+    text-align: center;
+    margin-left: 1rem;
+  }
+  
+
+  
+}
+
+@media screen and (max-width: 720px) {
+  .navOpciones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  .navOpciones button,
+  .navOpciones .nav-link {
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 1rem;
+  }
+
+  mat-toolbar {
+    flex-direction: row;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .logo {
+    width: 60px;
+    height: 60px;
+    margin-top: 6px;
+  }  
+
+  .iconoUsuario {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .nav-link {
+    text-align: center;
+  }
+}
+
+
+
+@media screen and (max-width: 480px) {
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .imagenLogin {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
         
         
         

@@ -494,7 +494,7 @@ public class UsuarioControlador {
      * @return Devuelve la pagina reiniciarContrasena
      */
     @GetMapping("/reiniciarContrasena")
-    public String showResetForm(@RequestParam String token, Model model, RedirectAttributes mensajeInterfaz) {
+    public String showResetForm(@RequestParam String token, Model model, RedirectAttributes mensajeRedireccion) {
         try {
             // Validar el token 
             usuarioServicio.validarToken(token);
@@ -502,10 +502,11 @@ public class UsuarioControlador {
             return "resetearContrasena";
             
         } catch (IllegalArgumentException e) {
-        	mensajeInterfaz.addFlashAttribute("mensajeError", "El token ha expirado");
+        	mensajeRedireccion.addFlashAttribute("mensajeError", "El token ha expirado");
             return "redirect:/login";
         }
     }
+    
     
     /**
      * Cambia la contraseña por la nueva 
@@ -513,27 +514,27 @@ public class UsuarioControlador {
      * @param token, se extrae de la peticion
      * @param contrasena, nueva contraseña que ingresa el usuario 
      * @param confirmaContrasena, contraseña que se vuelve a insertar
-     * @param mensajeInterfaz Mensajes que se imprimen en la pantalla
+     * @param mensajeRedireccion Mensajes que se imprimen en la pantalla
      * @return la pagina de login si sale bien, vuelve a la pagina misma pagina en caso contrario
      */
     @PostMapping("/reiniciarContrasena")
-    public String reinicioContraseña( @RequestParam String token, @RequestParam String contrasena, @RequestParam String confirmaContrasena, RedirectAttributes flash) {
+    public String reinicioContraseña( @RequestParam String token, @RequestParam String contrasena, @RequestParam String confirmaContrasena, RedirectAttributes mensajeRedireccion) {
         
     	//Se comprueba que la contraseña se ingreso correctamente en ambos campos
     	if (!contrasena.equals(confirmaContrasena)) {
-            flash.addFlashAttribute("mensajeError", "Las contraseñas no coinciden.");
+    		mensajeRedireccion.addFlashAttribute("mensajeError", "Las contraseñas no coinciden.");
             return "redirect:/reset-password?token=" + token;
         }
         try {
             usuarioServicio.reiniciarContrasena(token, contrasena);
             log.info("Contraseña cambiada correctamente para token {}", token);
-            flash.addFlashAttribute("mensajeExito", "Tu contraseña ha sido actualizada. Ya puedes iniciar sesión.");
+            mensajeRedireccion.addFlashAttribute("mensajeExito", "Tu contraseña ha sido actualizada. Ya puedes iniciar sesión.");
             return "redirect:/login?resetSuccess";
         } catch (IllegalArgumentException e) {
-            flash.addFlashAttribute("mensajeError", e.getMessage());
+        	mensajeRedireccion.addFlashAttribute("mensajeError", e.getMessage());
             return "redirect:/reset-password?token=" + token;
         } catch (Exception e) {
-            flash.addFlashAttribute("mensajeError", "Error interno al cambiar la contraseña.");
+        	mensajeRedireccion.addFlashAttribute("mensajeError", "Error interno al cambiar la contraseña.");
             return "redirect:/reset-password?token=" + token;
         }
     }
