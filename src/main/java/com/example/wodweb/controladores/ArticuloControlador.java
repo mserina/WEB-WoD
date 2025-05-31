@@ -61,9 +61,13 @@ public class ArticuloControlador {
 	  // Verifica si hay un usuario autenticado y añade su info al modelo
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    if (auth != null && auth.getPrincipal() instanceof SesionDto) {
-	        SesionDto sesion = (SesionDto) auth.getPrincipal();
-	        modelo.addAttribute("usuario", usuarioServicio.buscarUsuario(sesion.getUsername()));
-	    }
+	    	 SesionDto sesion = (SesionDto) auth.getPrincipal();
+		     modelo.addAttribute("usuario", usuarioServicio.buscarUsuario(sesion.getUsername()));
+		     nombreUsuarioLog = sesion.getNombre();
+			    
+	    } else {
+		    nombreUsuarioLog = "El usuario";
+		}
 	    
 	 // Obtiene todos los artículos de tipo "manga" y los pasa a la vista
 	    List<ArticuloDto> articulos = articuloServicio.obtenerPorTipo("manga");
@@ -93,9 +97,13 @@ public class ArticuloControlador {
 		// Verifica si hay un usuario autenticado y añade su info al modelo
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    if (auth != null && auth.getPrincipal() instanceof SesionDto) {
-	        SesionDto sesion = (SesionDto) auth.getPrincipal();
-	        modelo.addAttribute("usuario", usuarioServicio.buscarUsuario(sesion.getUsername()));
-	    }
+	    	 SesionDto sesion = (SesionDto) auth.getPrincipal();
+		     modelo.addAttribute("usuario", usuarioServicio.buscarUsuario(sesion.getUsername()));
+		     nombreUsuarioLog = sesion.getNombre();
+			    
+	    } else {
+		    nombreUsuarioLog = "El usuario";
+		}
 	    
 	    // Obtiene todos los artículos de tipo "manga" y los pasa a la vista
 		List<ArticuloDto> articulos = articuloServicio.obtenerPorTipo("figura");
@@ -124,9 +132,13 @@ public class ArticuloControlador {
 		// Verifica si hay un usuario autenticado y añade su info al modelo
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    if (auth != null && auth.getPrincipal() instanceof SesionDto) {
-	        SesionDto sesion = (SesionDto) auth.getPrincipal();
-	        modelo.addAttribute("usuario", usuarioServicio.buscarUsuario(sesion.getUsername()));
-	    }
+	    	 SesionDto sesion = (SesionDto) auth.getPrincipal();
+		     modelo.addAttribute("usuario", usuarioServicio.buscarUsuario(sesion.getUsername()));
+		     nombreUsuarioLog = sesion.getNombre();
+			    
+	    } else {
+		    nombreUsuarioLog = "El usuario";
+		}
 	    
 	    // Obtiene todos los artículos de tipo "manga" y los pasa a la vista
 		List<ArticuloDto> articulos = articuloServicio.obtenerPorTipo("poster");
@@ -223,11 +235,19 @@ public class ArticuloControlador {
      */
     @PostMapping("/admin/borrarArticulo")
     public String borrarArticulo(@RequestParam Long id, RedirectAttributes mensajesRedireccion) {
-    	credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
-    	String nombreArticuloBorrado = "";
+    	
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    if (auth != null && auth.getPrincipal() instanceof SesionDto) {
+	    	 SesionDto sesion = (SesionDto) auth.getPrincipal();
+		     nombreUsuarioLog = sesion.getNombre();
+			    
+	    } else {
+		    nombreUsuarioLog = "El usuario";
+		}
+	    
     	
     	boolean borrado = articuloServicio.borrarArticulo(id); // Llamar al servicio para eliminar el articulo
-        log.info(nombreUsuarioLog + " elimino el articulo " + nombreArticuloBorrado);
+        log.info(nombreUsuarioLog + " elimino el articulo " + id);
         
         	if (borrado) {
         		mensajesRedireccion.addFlashAttribute("mensaje", "Articulo borrado correctamente.");
@@ -256,7 +276,7 @@ public class ArticuloControlador {
            articuloNuevo.setFotoArticulo(fotoBytes);
            ArticuloDto articuloRegistrado = articuloServicio.registrarArticulo(articuloNuevo, fotoBytes);       
            
-           log.info(articuloRegistrado.getNombre() + ", se ha registrado");    		   
+           log.info("El articulo " + articuloRegistrado.getId() + ", se ha registrado");    		   
            return "redirect:/admin/obtenerArticulos";
            
        }catch (CorreoExistenteExcepcion errorEmail) {

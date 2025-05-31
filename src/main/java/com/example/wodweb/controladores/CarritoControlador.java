@@ -44,7 +44,6 @@ public class CarritoControlador {
 	  @Autowired
 	  private Environment env;
 	  String nombreUsuarioLog = "El usuario"; //Nombre que se usara en el log, en caso de no haber sesion de un usuario
-	  @Autowired
 
 	 
 	 /**
@@ -265,16 +264,14 @@ public class CarritoControlador {
 			        nombreUsuarioLog = "El usuario";
 			    }
 			    
-	    	String nombreElmentoBorrado = "";
 	    	
 	    	boolean borrado = carritoServicio.borrarElementoCarrito(elementoCarritoId); 
-	        log.info(nombreUsuarioLog + " elimino el articulo " + nombreElmentoBorrado + " del carrito");
 	        
 	        	if (borrado) {
-	    	        log.info(nombreUsuarioLog + " elimino el articulo " + nombreElmentoBorrado + " del carrito");
+	    	        log.info(nombreUsuarioLog + " elimino el articulo " + elementoCarritoId + " del carrito");
 	        		mensajesRedireccion.addFlashAttribute("mensajeError", "Articulo borrado correctamente.");
 	            } else {
-	    	        log.info(nombreUsuarioLog + " elimino el articulo " + nombreElmentoBorrado + " del carrito");
+	    	        log.info("Error al borrar articulo");
 	            	mensajesRedireccion.addFlashAttribute("mensajeError", "Error al borrar el articulo.");
 	            }
 	        

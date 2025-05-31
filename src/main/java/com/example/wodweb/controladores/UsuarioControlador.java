@@ -1,10 +1,17 @@
 package com.example.wodweb.controladores;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.security.Principal;
 import java.util.List;
 
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +23,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -26,6 +32,7 @@ import com.example.wodweb.excepciones.CorreoExistenteExcepcion;
 import com.example.wodweb.excepciones.UsuarioNoEncontradoExcepcion;
 import com.example.wodweb.servicios.UsuarioServicio;
 
+import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
@@ -297,58 +304,28 @@ public class UsuarioControlador {
         return "redirect:/admin/obtenerUsuario"; // Redirige a la vista con la lista de usuarios
     }
     
-    
+    /**
+     * Le ofrece un excel al usuario con la lista de usuarios
+     * msm - 310525
+     * @param response La respuesta Http que almacenara la respuesta del usuario 
+     */
     @GetMapping("/admin/usuarios/exportar")
-    @ResponseBody
-    public void exportarExcelHtml(HttpServletResponse response) throws IOException {
-        // 1) Poner los headers ANTES de cualquier getWriter() o write()
-        response.setContentType("application/vnd.ms-excel; charset=UTF-8");
-        response.setHeader("Content-Disposition","attachment; filename=\"usuarios.xls\"");
+    public void exportarExcel(HttpServletResponse response) {
+        try {
+            // Llama a tu servicio que genera el .xlsx
+            usuarioServicio.exportarExcel(response);
+            
+        } catch (IOException ex) {
+            //  Logueamos la excepción para diagnóstico interno
+            log.error("Error al exportar usuarios a Excel", ex);
 
-        // 2) Ahora abrimos el writer
-        PrintWriter writer = response.getWriter();
+            //  Fijamos el código HTTP 500 (Internal Server Error)
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 
-        // 3) El resto de tu HTML/Excel-HTML
-        writer.println("<html "+ "xmlns:o='urn:schemas-microsoft-com:office:office' "+ "xmlns:x='urn:schemas-microsoft-com:office:excel' " + "xmlns='http://www.w3.org/TR/REC-html40'>");
-        writer.println("<head>");
-        writer.println("  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>");
-        writer.println("  <style>");
-        writer.println("    table { border-collapse: collapse; width: 100%; }");
-        writer.println("    th, td { border: 1px solid #444; padding: 6px; }");
-        writer.println("    th { background-color: #007bff; color: #fff; }");
-        writer.println("    tr:nth-child(even) { background-color: #f2f2f2; }");
-        writer.println("  </style>");
-        writer.println("</head>");
-        writer.println("<body>");
-        writer.println("  <table>");
-        writer.println("    <thead>");
-        writer.println("      <tr>");
-        writer.println("        <th>Nombre Completo</th>");
-        writer.println("        <th>Móvil</th>");
-        writer.println("        <th>Correo Electrónico</th>");
-        writer.println("        <th>Tipo Usuario</th>");
-        writer.println("      </tr>");
-        writer.println("    </thead>");
-        writer.println("    <tbody>");
-
-        List<UsuarioDto> usuarios = usuarioServicio.obtenerUsuarios();
-        for (UsuarioDto u : usuarios) {
-            writer.printf("      <tr>%n");
-            writer.printf("        <td>%s</td>%n", u.getNombreCompleto());
-            writer.printf("        <td>%s</td>%n", u.getMovil());
-            writer.printf("        <td>%s</td>%n", u.getCorreoElectronico());
-            writer.printf("        <td>%s</td>%n", u.getTipoUsuario());
-            writer.printf("      </tr>%n");
         }
-
-        writer.println("    </tbody>");
-        writer.println("  </table>");
-        writer.println("</body>");
-        writer.println("</html>");
-
-        writer.flush();
-        writer.close();
     }
+        
+    
 
     
     /**
@@ -380,21 +357,21 @@ public class UsuarioControlador {
     
     
     /**
-     * Valida el codigo ingresado por el usuario
+     * Valida el codigo ingresado por el usuario para el alta
      * msm - 110425
      * @param codigoIngresado
-     * @param redirectAttributes
-     * @return
+     * @param mensajeRedireccion
+     * @return Devuelve a la vista de verificarCodigo
      */
     @PostMapping("/verificarCodigo")
-    public String verificarCodigo(@RequestParam String codigoIngresado,RedirectAttributes mensajeFlash, HttpSession sesion) {
+    public String verificarCodigo(@RequestParam String codigoIngresado,RedirectAttributes mensajeRedireccion, HttpSession sesion) {
     	
     	String codigoGuardado = (String) sesion.getAttribute("codigoVerificacion");
         String correoPendiente = (String) sesion.getAttribute("correoPendiente");
         
         if (codigoGuardado == null) {
             // Sesión expiró justo antes de enviar el POST
-        	mensajeFlash.addFlashAttribute("mensajeErrorCodigo", "El tiempo de verificación ha expirado. Por favor, regístrate de nuevo.");
+        	mensajeRedireccion.addFlashAttribute("mensajeErrorCodigo", "El tiempo de verificación ha expirado. Por favor, regístrate de nuevo.");
             return "redirect:/registro";
         }
         
@@ -408,16 +385,23 @@ public class UsuarioControlador {
         	
             usuarioServicio.marcarUsuarioComoVerificado(correoPendiente);
             
-            mensajeFlash.addFlashAttribute( "mensajeLoginCodigo", "Código verificado. ¡Ya puedes iniciar sesión!");
+            mensajeRedireccion.addFlashAttribute( "mensajeLoginCodigo", "Código verificado. ¡Ya puedes iniciar sesión!");
             return "redirect:/login";
         } else {
-        	mensajeFlash.addFlashAttribute("mensajeErrorCodigo", "Código incorrecto. Por favor, inténtelo de nuevo.");
+        	mensajeRedireccion.addFlashAttribute("mensajeErrorCodigo", "Código incorrecto. Por favor, inténtelo de nuevo.");
             return "redirect:/verificarCodigo";
         }
     }
     
+    /**
+     * Vuelve a enviar el codigo de verificacion de alta de usuario
+     * msm - 310525
+     * @param sesion La sesion HTTP donde se almacena los atributos temporales
+     * @param mensajeRedireccion Mensajes que se imprimen en la redireccion de una vista
+     * @return Devuelve a la vista de verificarCodigo
+     */
     @GetMapping("/reenviarCodigo")
-    public String reenviarCodigo(HttpSession sesion, RedirectAttributes redirectAttributes) {
+    public String reenviarCodigo(HttpSession sesion, RedirectAttributes mensajeRedireccion) {
         
     	String correo = (String) sesion.getAttribute("correoPendiente");
 
@@ -431,12 +415,12 @@ public class UsuarioControlador {
                 String mensaje = "Este es tu nuevo código de verificación: " + nuevoCodigo;
 
                 usuarioServicio.enviarCorreo(correo, asunto, mensaje);
-                redirectAttributes.addFlashAttribute("mensaje", "Se ha enviado un nuevo código a tu correo.");
+                mensajeRedireccion.addFlashAttribute("mensaje", "Se ha enviado un nuevo código a tu correo.");
             } catch (Exception e) {
-                redirectAttributes.addFlashAttribute("mensaje", "No se pudo enviar el código. Intenta nuevamente.");
+            	mensajeRedireccion.addFlashAttribute("mensaje", "No se pudo enviar el código. Intenta nuevamente.");
             }
         } else {
-            redirectAttributes.addFlashAttribute("mensajeErrorCodigo", "No hay un registro pendiente. Por favor, regístrate de nuevo.");
+        	mensajeRedireccion.addFlashAttribute("mensajeErrorCodigo", "No hay un registro pendiente. Por favor, regístrate de nuevo.");
             return "redirect:/registro";
         }
 
@@ -466,20 +450,20 @@ public class UsuarioControlador {
      * Se comprueba que existe el correo y se le manda al usuario un correo, ademas de crearle un token
      * msm - 010525
      * @param email correo ingresado por el usuario
-     * @param mensajeInterfaz Mensajes que se imprimen en la pantalla
+     * @param mensajeRedireccion Mensajes que se imprimen en la redireccion de una vista
      * @return La pagina de contraseñaOlvidada (con mensaje de exito o error)
      */
     @PostMapping("/contrasenaOlvidada")
-    public String envioIntrucciones(@RequestParam String email, RedirectAttributes mensajeInterfaz) {
+    public String envioIntrucciones(@RequestParam String email, RedirectAttributes mensajeRedireccion) {
         try {
             usuarioServicio.enviarTokenDeRecuperacion(email);
-            mensajeInterfaz.addFlashAttribute("mensajeExito", "Se ha enviado un enlace de recuperación a tu correo.");
+            mensajeRedireccion.addFlashAttribute("mensajeExito", "Se ha enviado un enlace de recuperación a tu correo.");
             return "redirect:/contrasenaOlvidada?success";
         } catch (UsuarioNoEncontradoExcepcion ci) {
-        	mensajeInterfaz.addFlashAttribute("mensajeError", "No fue posible generar el enlace. Verifica tu correo.");
+        	mensajeRedireccion.addFlashAttribute("mensajeError", "No fue posible generar el enlace. Verifica tu correo.");
             return "redirect:/contrasenaOlvidada?error";
     	} catch (Exception ex) {
-    		mensajeInterfaz.addFlashAttribute("mensajeError", "Se ha producido un error, intentelo mas tarde.");
+    		mensajeRedireccion.addFlashAttribute("mensajeError", "Se ha producido un error, intentelo mas tarde.");
 	        return "redirect:/contrasenaOlvidada?error";
     	}
     }
@@ -489,16 +473,16 @@ public class UsuarioControlador {
      * Se comprueba el token antes de permitir el acceso al usuario
      * msm - 010525
      * @param token se extrae de la peticion
-     * @param model 
-     * @param mensajeInterfaz Mensajes que se imprimen en la pantalla
+     * @param modelo 
+     * @param mensajeInterfaz Mensajes que se imprimen en la redireccion de una vista
      * @return Devuelve la pagina reiniciarContrasena
      */
     @GetMapping("/reiniciarContrasena")
-    public String showResetForm(@RequestParam String token, Model model, RedirectAttributes mensajeRedireccion) {
+    public String showResetForm(@RequestParam String token, Model modelo, RedirectAttributes mensajeRedireccion) {
         try {
             // Validar el token 
             usuarioServicio.validarToken(token);
-            model.addAttribute("token", token);
+            modelo.addAttribute("token", token);
             return "resetearContrasena";
             
         } catch (IllegalArgumentException e) {
@@ -514,7 +498,7 @@ public class UsuarioControlador {
      * @param token, se extrae de la peticion
      * @param contrasena, nueva contraseña que ingresa el usuario 
      * @param confirmaContrasena, contraseña que se vuelve a insertar
-     * @param mensajeRedireccion Mensajes que se imprimen en la pantalla
+     * @param mensajeRedireccion Mensajes que se imprimen en la redireccion de una vista
      * @return la pagina de login si sale bien, vuelve a la pagina misma pagina en caso contrario
      */
     @PostMapping("/reiniciarContrasena")

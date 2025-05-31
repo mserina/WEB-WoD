@@ -1,5 +1,9 @@
 package com.example.wodweb.dtos;
 
+/**
+ * Campos y metodos del Dto Carrito
+ * msm - 310525
+ */
 public class CarritoDto {
 	
 	

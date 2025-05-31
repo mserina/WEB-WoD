@@ -1,10 +1,20 @@
 package com.example.wodweb.servicios;
 
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ByteArrayResource;
@@ -26,6 +36,9 @@ import org.springframework.web.client.RestTemplate;
 import com.example.wodweb.dtos.UsuarioDto;
 import com.example.wodweb.excepciones.CorreoExistenteExcepcion;
 import com.example.wodweb.excepciones.UsuarioNoEncontradoExcepcion;
+
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * Servicio que contiene la lógica de las funcionalidades de los usuarios.
@@ -317,12 +330,12 @@ public class UsuarioServicio {
         }
     }
   
-    /**
-     * Manda a la API el token del usuario y la nueva contraseña que ingreso
-     * msm - 020525
-     * @param token
-     * @param contrasenaNueva
-     */
+   /**
+     * Manda a la API el token del usuario y la nueva contraseña que ingreso 
+     * msm - 020525 
+     * @param token 
+     * @param contrasenaNueva 
+    */
     public void reiniciarContrasena(String token, String contrasenaNueva) {
         
     	HttpHeaders headers = new HttpHeaders();
@@ -333,4 +346,66 @@ public class UsuarioServicio {
         // Lanza excepción si la API responde 4xx/5xx
         restTemplate.postForEntity(apiUrl + "/reiniciarContrasena", req, Void.class);
     }
+    
+    
+    /**
+     * Exportar una lista de usuarios a un excel descargable
+     * msm - 310525
+     * @param response La respuesta Http que almacenara la respuesta del usuario
+     * @throws IOException Excepcion Entrada/Salida
+     */
+    public void exportarExcel(HttpServletResponse response) throws IOException {
+        // 1) Cabeceras HTTP para forzar descarga de un .xlsx
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setHeader("Content-Disposition", "attachment; filename=\"usuarios.xlsx\"");
+
+        // 2) Creamos un Workbook en memoria
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        // 2.1) Creamos una hoja dentro del workbook
+        Sheet sheet = workbook.createSheet("Usuarios");
+
+        // 3) Definimos un estilo de encabezado (opcional)
+        CellStyle headerStyle = workbook.createCellStyle();
+        XSSFFont font = workbook.createFont();
+        font.setBold(true);
+        font.setColor(IndexedColors.WHITE.getIndex());
+        headerStyle.setFont(font);
+        headerStyle.setFillForegroundColor(IndexedColors.BLUE.getIndex());
+        headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        headerStyle.setBorderBottom(BorderStyle.THIN);
+        headerStyle.setBorderTop(BorderStyle.THIN);
+        headerStyle.setBorderLeft(BorderStyle.THIN);
+        headerStyle.setBorderRight(BorderStyle.THIN);
+
+        // 4) Creamos la fila de encabezados
+        Row headerRow = sheet.createRow(0);
+        String[] columnas = { "Nombre Completo", "Móvil", "Correo Electrónico", "Tipo Usuario" };
+        for (int i = 0; i < columnas.length; i++) {
+            Cell cell = headerRow.createCell(i);
+            cell.setCellValue(columnas[i]);
+            cell.setCellStyle(headerStyle);
+        }
+
+        // 5) Obtenemos los datos de usuarios y llenamos filas a partir de la segunda fila (índice 1)
+        List<UsuarioDto> usuarios = obtenerUsuarios();
+        int filaIdx = 1;
+        for (UsuarioDto u : usuarios) {
+            Row fila = sheet.createRow(filaIdx++);
+            fila.createCell(0).setCellValue(u.getNombreCompleto());
+            fila.createCell(1).setCellValue(u.getMovil());
+            fila.createCell(2).setCellValue(u.getCorreoElectronico());
+            fila.createCell(3).setCellValue(u.getTipoUsuario());
+        }
+
+        // 6) Ajustamos el ancho de columnas automáticamente
+        for (int i = 0; i < columnas.length; i++) {
+            sheet.autoSizeColumn(i);
+        }
+
+        // 7) Escribimos el workbook en el OutputStream de la respuesta HTTP
+        try (ServletOutputStream out = response.getOutputStream()) {
+            workbook.write(out);
+        }
+        workbook.close();
+    } 
 }

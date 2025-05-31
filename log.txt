@@ -1,11 +1,12 @@
-2025-05-31 16:30:33 - Migeu accedió a la página principal
-2025-05-31 16:33:47 - Usuario anónimo intentó ver el carrito
-2025-05-31 16:33:47 - El usuario accedio a login
-2025-05-31 16:33:59 - Migeu accedió a la página principal
-2025-05-31 16:34:06 - El usuario accedio al carrito
-2025-05-31 16:37:04 - Error inesperado al obtener carrito
+2025-05-31 19:21:46 - Tipo de principal inesperado en sesión: class java.lang.String cannot be cast to class com.example.wodweb.dtos.SesionDto (java.lang.String is in module java.base of loader 'bootstrap'; com.example.wodweb.dtos.SesionDto is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @3c962e2e)
+2025-05-31 19:21:46 - El usuario accedio a login
+2025-05-31 19:21:53 - Macarron accedió a la página principal
+2025-05-31 19:21:57 - Macarron accedio al carrito
+2025-05-31 19:22:13 - Macarron elimino el articulo  del carrito
+2025-05-31 19:37:12 - Error al borrar articulo
+2025-05-31 19:37:12 - Error inesperado al obtener carrito
 java.lang.ClassCastException: class java.lang.String cannot be cast to class com.example.wodweb.dtos.SesionDto (java.lang.String is in module java.base of loader 'bootstrap'; com.example.wodweb.dtos.SesionDto is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @50c889da)
-	at com.example.wodweb.controladores.CarritoControlador.verCarrito(CarritoControlador.java:166)
+	at com.example.wodweb.controladores.CarritoControlador.verCarrito(CarritoControlador.java:167)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:262)
@@ -101,16 +102,145 @@ java.lang.ClassCastException: class java.lang.String cannot be cast to class com
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:1570)
-2025-05-31 16:37:04 - El usuario accedió al catalogo de manga
-2025-05-31 16:37:08 - El usuario accedio a login
-2025-05-31 16:37:15 - Macarron accedió a la página principal
-2025-05-31 16:37:17 - Macarron accedio al carrito
-2025-05-31 16:37:30 - El usuario accedió al catalogo de manga
-2025-05-31 16:37:31 - Macarron agrego el articulo 11 en el carrito
-2025-05-31 16:37:31 - El usuario accedió al catalogo de manga
-2025-05-31 16:37:32 - El usuario accedió al catalogo de poster
-2025-05-31 16:37:33 - Macarron agrego el articulo 10 en el carrito
-2025-05-31 16:37:33 - El usuario accedió al catalogo de poster
-2025-05-31 16:37:34 - El usuario accedió al catalogo de figura
-2025-05-31 16:37:35 - Macarron agrego el articulo 9 en el carrito
-2025-05-31 16:37:35 - El usuario accedió al catalogo de figura
+2025-05-31 19:37:12 - El usuario accedió al catalogo de manga
+2025-05-31 19:37:16 - El usuario accedio a login
+2025-05-31 19:37:26 - Migeu accedió a la página principal
+2025-05-31 19:37:28 - Migeu accedio a login
+2025-05-31 19:37:32 - Migeu accedio a la lista de articulos
+2025-05-31 19:37:34 - Migeu accedió a la página principal
+2025-05-31 19:37:39 - Migeu accedio al carrito
+2025-05-31 19:37:47 - Migeu realizo su compra
+2025-05-31 19:38:03 - Migeu accedió a la página principal
+2025-05-31 19:38:06 - Migeu accedio al carrito
+2025-05-31 19:38:09 - Migeu accedió al catalogo de manga
+2025-05-31 19:38:10 - Migeu agrego el articulo 11 en el carrito
+2025-05-31 19:38:10 - Migeu accedió al catalogo de manga
+2025-05-31 19:38:12 - Migeu accedió a la página principal
+2025-05-31 19:38:14 - Migeu accedio al carrito
+2025-05-31 19:38:17 - Migeu elimino el articulo 24 del carrito
+2025-05-31 19:38:17 - Migeu accedio al carrito
+2025-05-31 19:38:27 - Migeu accedió a la página principal
+2025-05-31 19:38:32 - Migeu accedio a la lista de articulos
+2025-05-31 19:38:56 - Se modificó el campo precio del artículo figura one piece
+2025-05-31 19:38:56 - Migeu accedio a la lista de articulos
+2025-05-31 19:39:14 - Migeu elimino el articulo 
+2025-05-31 19:39:14 - Migeu accedio a la lista de articulos
+2025-05-31 19:41:12 - El usuario accedio a login
+2025-05-31 19:41:18 - Migeu accedió a la página principal
+2025-05-31 19:41:20 - Migeu accedio al carrito
+2025-05-31 19:41:23 - Migeu accedió al catalogo de figura
+2025-05-31 19:41:28 - Migeu accedió al catalogo de manga
+2025-05-31 19:41:28 - Migeu accedió al catalogo de poster
+2025-05-31 19:41:29 - Migeu accedió al catalogo de figura
+2025-05-31 19:41:30 - Migeu accedió a la página principal
+2025-05-31 19:41:34 - Migeu accedio a la lista de articulos
+2025-05-31 19:41:56 - q, se ha registrado
+2025-05-31 19:41:56 - Migeu accedio a la lista de articulos
+2025-05-31 19:42:56 - Migeu elimino el articulo 12
+2025-05-31 19:42:56 - Migeu accedio a la lista de articulos
+2025-05-31 19:43:44 - El usuario accedio a login
+2025-05-31 19:43:51 - Migeu accedió a la página principal
+2025-05-31 19:43:54 - Migeu accedio al carrito
+2025-05-31 19:44:01 - Migeu accedio a la lista de articulos
+2025-05-31 19:44:03 - Migeu accedio a la lista de usuarios
+2025-05-31 19:44:16 - Migeu elimino al usuario Macarron
+2025-05-31 19:44:17 - Migeu accedio a la lista de usuarios
+2025-05-31 19:44:41 - Migeu modificó el campo nombre_completo del usuario Marijia
+2025-05-31 19:44:41 - Migeu accedio a la lista de usuarios
+2025-05-31 19:44:58 - Migeu accedio a la lista de usuarios
+2025-05-31 19:48:21 - El usuario accedio a login
+2025-05-31 19:48:27 - Marijia accedió a la página principal
+2025-05-31 19:48:29 - Marijia accedio a la lista de usuarios
+2025-05-31 21:38:36 - El usuario accedio a login
+2025-05-31 21:38:36 - El usuario accedio a login
+2025-05-31 21:38:44 - El usuario ingreso credenciales erroneas
+2025-05-31 21:38:44 - El usuario ingreso credenciales erroneas
+2025-05-31 21:38:44 - El usuario accedio a login
+2025-05-31 21:38:44 - El usuario accedio a login
+2025-05-31 21:38:50 - Marijia accedió a la página principal
+2025-05-31 21:39:21 - Marijia accedio al carrito
+2025-05-31 21:39:28 - Marijia accedio a la lista de usuarios
+2025-05-31 21:39:57 - Marijia accedio a la lista de articulos
+2025-05-31 21:40:25 - Marijia accedio a la lista de usuarios
+2025-05-31 21:40:38 - Marijia accedio a la lista de articulos
+2025-05-31 21:41:34 - Marijia accedio a la lista de articulos
+2025-05-31 21:41:38 - Marijia accedio a la lista de articulos
+2025-05-31 21:41:40 - Marijia accedio a la lista de usuarios
+2025-05-31 21:41:53 - Marijia accedió a la página principal
+2025-05-31 21:41:55 - Marijia accedio al carrito
+2025-05-31 21:42:18 - Marijia accedió a la página principal
+2025-05-31 21:42:20 - Marijia accedio al carrito
+2025-05-31 21:42:23 - Marijia accedio a la lista de usuarios
+2025-05-31 21:44:49 - El usuario accedio a login
+2025-05-31 21:44:49 - El usuario accedio a login
+2025-05-31 21:44:56 - Marijia accedió a la página principal
+2025-05-31 21:44:59 - Marijia accedio al carrito
+2025-05-31 21:45:02 - Marijia accedio a la lista de usuarios
+2025-05-31 21:48:45 - Marijia accedió a la página principal
+2025-05-31 21:48:47 - Marijia accedió al catalogo de manga
+2025-05-31 21:52:28 - Marijia accedio a la lista de usuarios
+2025-05-31 21:52:39 - Marijia accedió al catalogo de manga
+2025-05-31 21:54:03 - Marijia accedio a la lista de articulos
+2025-05-31 21:59:30 - El usuario accedio a login
+2025-05-31 21:59:30 - El usuario accedio a login
+2025-05-31 21:59:38 - Marijia accedió a la página principal
+2025-05-31 21:59:40 - Marijia accedio al carrito
+2025-05-31 21:59:42 - Marijia accedió a la página principal
+2025-05-31 21:59:43 - Marijia accedio a la lista de usuarios
+2025-05-31 22:00:00 - Marijia accedió al catalogo de manga
+2025-05-31 22:00:02 - Marijia accedió al catalogo de poster
+2025-05-31 22:00:05 - Marijia accedió a la página principal
+2025-05-31 22:00:07 - Marijia accedio al carrito
+2025-05-31 22:00:10 - Marijia accedió al catalogo de manga
+2025-05-31 22:00:11 - Marijia agrego el articulo 11 en el carrito
+2025-05-31 22:00:11 - Marijia accedió al catalogo de manga
+2025-05-31 22:00:13 - Marijia accedio a la lista de usuarios
+2025-05-31 22:00:15 - Marijia accedió a la página principal
+2025-05-31 22:00:18 - Marijia accedio al carrito
+2025-05-31 22:00:22 - Marijia accedio al carrito
+2025-05-31 22:00:23 - Cantidad inválida al actualizar carrito:
+2025-05-31 22:00:23 - Marijia accedio al carrito
+2025-05-31 22:00:33 - Marijia realizo su compra
+2025-05-31 22:00:35 - Marijia accedió a la página principal
+2025-05-31 22:00:39 - Marijia accedio al carrito
+2025-05-31 22:00:42 - Marijia accedió a la página principal
+2025-05-31 22:10:40 - El usuario accedió a la página principal
+2025-05-31 22:10:40 - El usuario accedio a login
+2025-05-31 22:10:42 - El usuario accedio a login
+2025-05-31 22:10:42 - El usuario accedio a login
+2025-05-31 22:10:57 - Marijia accedió a la página principal
+2025-05-31 22:10:59 - Marijia accedio al carrito
+2025-05-31 22:11:03 - Marijia accedio a la lista de articulos
+2025-05-31 22:11:20 - Marijia accedio a la lista de articulos
+2025-05-31 22:11:22 - Marijia accedio a la lista de usuarios
+2025-05-31 22:11:34 - Marijia accedio a la lista de usuarios
+2025-05-31 22:12:05 - Marijia accedio a la lista de usuarios
+2025-05-31 22:12:06 - Marijia accedió a la página principal
+2025-05-31 22:12:16 - Marijia accedio a la lista de usuarios
+2025-05-31 22:14:23 - Marijia accedio a la lista de usuarios
+2025-05-31 22:14:24 - Marijia accedio a la lista de usuarios
+2025-05-31 22:14:24 - Marijia accedio a la lista de usuarios
+2025-05-31 22:14:25 - Marijia accedió a la página principal
+2025-05-31 22:15:01 - El usuario accedió a la página principal
+2025-05-31 22:15:02 - El usuario accedio a login
+2025-05-31 22:15:04 - El usuario accedio a login
+2025-05-31 22:15:04 - El usuario accedio a login
+2025-05-31 22:15:10 - Marijia accedió a la página principal
+2025-05-31 22:15:13 - Marijia accedio a la lista de usuarios
+2025-05-31 22:16:32 - El usuario accedio a login
+2025-05-31 22:16:32 - El usuario accedio a login
+2025-05-31 22:16:38 - Marijia accedió a la página principal
+2025-05-31 22:16:41 - Marijia accedio al carrito
+2025-05-31 22:16:43 - Marijia accedio a la lista de usuarios
+2025-05-31 22:17:13 - Marijia accedio a la lista de articulos
+2025-05-31 22:17:56 - Marijia accedio a la lista de articulos
+2025-05-31 22:18:05 - El usuario accedio a login
+2025-05-31 22:18:06 - El usuario accedio a login
+2025-05-31 22:18:12 - Marijia accedió a la página principal
+2025-05-31 22:18:16 - Marijia accedio al carrito
+2025-05-31 22:18:19 - Marijia accedio a la lista de articulos
+2025-05-31 22:23:24 - El usuario accedio a login
+2025-05-31 22:23:24 - El usuario accedio a login
+2025-05-31 22:23:30 - Marijia accedió a la página principal
+2025-05-31 22:23:33 - Marijia accedio a la lista de usuarios
+2025-05-31 22:23:36 - Marijia accedio a la lista de articulos

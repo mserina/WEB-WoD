@@ -272,16 +272,7 @@ th {
     font-weight: bold;
 }
 
-#botonAcciones {
-    padding: 12px;
-    font-size: 7px;
-    background-color: #FFCC00;
-    color: black;
-    font-weight: bold;
-    margin-left: 1rem;
-}
-
-#botonAccionOlvidarContrasena {
+#botonAcciones, #botonAccionOlvidarContrasena  {
     padding: 12px;
     font-size: 15px;
     background-color: #FFCC00;
@@ -289,6 +280,7 @@ th {
     font-weight: bold;
     margin-left: 1rem;
 }
+
 
 /* /////////////////////////////////// */
 /*   ESTILOS DE LA PAGINA VERIFICAR CODIGO */
