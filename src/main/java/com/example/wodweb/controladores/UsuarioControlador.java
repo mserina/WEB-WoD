@@ -186,27 +186,27 @@ public class UsuarioControlador {
      * @param correoElectronico Correo del usuario a modificar.
      * @param campo Campo a actualizar.
      * @param nuevoValor Nuevo valor a asignar.
-     * @param redirectAttributes Permite redirigir con mensajes flash.
+     * @param mensajeRedireccion Permite redirigir con mensajes flash.
      * @return Redirige a la vista con la lista de usuarios.
      */
     @PostMapping("/admin/editarUsuario")
-    public String editarUsuario(@RequestParam String correoElectronico,
-                                @RequestParam String campo,
-                                @RequestParam String nuevoValor,
-                                HttpSession session,
-                                RedirectAttributes redirectAttributes) {
+    public String editarUsuario(@RequestParam String correoElectronico, @RequestParam String campo,@RequestParam String nuevoValor, HttpSession session, RedirectAttributes mensajeRedireccion) {
 
+    	 if (nuevoValor.startsWith(",")) {
+             nuevoValor = nuevoValor.substring(1);
+         }
+    	
         boolean actualizado = usuarioServicio.editarUsuario(correoElectronico, campo, nuevoValor);
 
         Authentication credencialesSesion = SecurityContextHolder.getContext().getAuthentication();
         String nombreUsuarioModificado = "";
 
         if (actualizado) {
-            redirectAttributes.addFlashAttribute("mensaje", "Usuario actualizado con éxito.");
-            redirectAttributes.addFlashAttribute("tipoMensaje", "success");
+        	mensajeRedireccion.addFlashAttribute("mensaje", "Usuario actualizado con éxito.");
+            mensajeRedireccion.addFlashAttribute("tipoMensaje", "success");
         } else {
-            redirectAttributes.addFlashAttribute("mensaje", "Error al actualizar usuario.");
-            redirectAttributes.addFlashAttribute("tipoMensaje", "danger");
+        	mensajeRedireccion.addFlashAttribute("mensaje", "Error al actualizar usuario.");
+        	mensajeRedireccion.addFlashAttribute("tipoMensaje", "danger");
         }
 
         // Obtener nombre para el log

@@ -114,7 +114,7 @@
 
 
 <!-- ///////////////////////////////////
-            LISTA DE USUARIOS                  
+                CONTENIDO                
    //////////////////////////////////// -->
 <div class="container mt-3">
   <input id="filtroNombre" type="text" class="form-control" placeholder="Buscar por nombre...">
@@ -243,8 +243,7 @@
 	              <select name="nuevoValor"
 	                      class="form-select"
 	                      th:id="|nuevoValorSelect-${#strings.replace(#strings.replace(usuario.correoElectronico, '@', '-'), '.', '-')}|"
-	                      required
-	                      disabled>
+	                      required>
 	                <option value="user">usuario</option>
 	                <option value="admin">admin</option>
 	              </select>
@@ -376,50 +375,55 @@
 	  	      const elegido = campoSelect.value.trim();
 
 	  	      if (elegido === 'tipo_usuario') {
-	  	        // Si el usuario selecciona “Tipo de Usuario”:
-	  	        // - Oculto el input de texto
-	  	        // - Muestro el <select> de roles y lo habilito
-	  	        if (nuevoValorInput)  nuevoValorInput.parentElement.style.display = 'none';
+	  	        // Ocultar el <input> y quitarle required
+	  	        if (nuevoValorInput) {
+	  	          nuevoValorInput.parentElement.style.display = 'none';
+	  	          nuevoValorInput.required = false;
+	  	          nuevoValorInput.value = '';
+	  	        }
+
+	  	        // Mostrar el <select> y añadirle required
 	  	        if (nuevoValorSelect) {
 	  	          nuevoValorSelect.parentElement.style.display = 'block';
+	  	          nuevoValorSelect.required = true;
 	  	          nuevoValorSelect.disabled = false;
+	  	          // (Si quisieras limpiar el valor anterior:)
+	  	          nuevoValorSelect.value = '';
 	  	        }
-	  	        if (nuevoValorInput) nuevoValorInput.value = ''; // limpio el input de texto
-	  	      }
-	  	      else {
-	  	        // Para cualquier otro campo (nombre, móvil, correo o contraseña):
-	  	        // - Oculto el <select> de roles
-	  	        // - Muestro el <input> de texto y lo habilito
+	  	      } else {
+	  	        // Ocultar el <select> y quitarle required
 	  	        if (nuevoValorSelect) {
 	  	          nuevoValorSelect.parentElement.style.display = 'none';
+	  	          nuevoValorSelect.required = false;
 	  	          nuevoValorSelect.disabled = true;
-	  	          nuevoValorSelect.value = ''; // limpio el select de roles
+	  	          nuevoValorSelect.value = '';
 	  	        }
+
+	  	        // Mostrar el <input> y añadirle required
 	  	        if (nuevoValorInput) {
 	  	          nuevoValorInput.parentElement.style.display = 'block';
+	  	          nuevoValorInput.required = true;
 	  	          nuevoValorInput.disabled = false;
 
-	  	          // Si el campo elegido es “correo_electronico”, forzamos input.type = "email"
+	  	          // Ajustar el tipo según el campo elegido
 	  	          if (elegido === 'correo_electronico') {
 	  	            nuevoValorInput.type = 'email';
-	  	          }
-	  	          // Si el campo elegido es “contrasena”, forzamos input.type = "password"
-	  	          else if (elegido === 'contrasena') {
+	  	          } else if (elegido === 'contrasena') {
 	  	            nuevoValorInput.type = 'password';
-	  	          }
-	  	          else {
-	  	            // nombre_completo o movil → tipo “text”
+	  	          } else {
+	  	            // nombre_completo o movil → tipo "text"
 	  	            nuevoValorInput.type = 'text';
 	  	          }
 	  	          nuevoValorInput.value = '';
 	  	        }
 	  	      }
 
-	  	      // Cada vez que ocultamos o mostramos algo, limpiamos el mensaje de error
+	  	      // Cada vez que ocultamos/mostramos, limpiamos mensaje de error
 	  	      if (nuevoValorError) nuevoValorError.textContent = '';
-	  	      // Y dejamos el botón de guardar deshabilitado hasta que haya una validación exitosa
+	  	      // Y deshabilitamos el botón de guardar hasta que valide de nuevo
 	  	      btnGuardar.disabled = true;
 	  	    }
+
 
 	  	      
 	  

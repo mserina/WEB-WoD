@@ -244,3 +244,38 @@ java.lang.ClassCastException: class java.lang.String cannot be cast to class com
 2025-05-31 22:23:30 - Marijia accedió a la página principal
 2025-05-31 22:23:33 - Marijia accedio a la lista de usuarios
 2025-05-31 22:23:36 - Marijia accedio a la lista de articulos
+2025-06-01 03:31:25 - El usuario accedio a login
+2025-06-01 03:31:33 - Migeu accedió a la página principal
+2025-06-01 03:31:37 - Migeu accedio a la lista de articulos
+2025-06-01 03:31:57 - Migeu accedió al catalogo de manga
+2025-06-01 03:32:00 - Migeu accedio a la lista de articulos
+2025-06-01 03:32:04 - Migeu accedió al catalogo de poster
+2025-06-01 03:32:06 - Migeu accedio a la lista de usuarios
+2025-06-01 03:39:41 - Se cerro la sesion
+2025-06-01 03:39:41 - El usuario accedio a login
+2025-06-01 03:39:47 - Migeu accedió a la página principal
+2025-06-01 03:39:54 - Migeu accedio a la lista de usuarios
+2025-06-01 03:40:06 - Migeu modificó el campo tipo_usuario del usuario Marijia
+2025-06-01 03:40:06 - Migeu accedio a la lista de usuarios
+2025-06-01 03:40:11 - Migeu modificó el campo tipo_usuario del usuario Marijia
+2025-06-01 03:40:11 - Migeu accedio a la lista de usuarios
+2025-06-01 03:40:15 - Migeu accedió al catalogo de manga
+2025-06-01 03:40:26 - Migeu accedio a la lista de usuarios
+2025-06-01 03:40:28 - Migeu accedio al carrito
+2025-06-01 03:40:46 - Migeu accedió a la página principal
+2025-06-01 03:40:48 - Migeu accedio al carrito
+2025-06-01 03:40:53 - Migeu accedio a registro
+2025-06-01 03:40:56 - Migeu accedio a login
+2025-06-01 03:40:59 - Migeu accedio a la lista de usuarios
+2025-06-01 03:41:01 - Migeu accedio a la lista de articulos
+2025-06-01 03:41:06 - Migeu accedió al catalogo de poster
+2025-06-01 03:41:09 - Migeu accedió al catalogo de figura
+2025-06-01 03:41:11 - Migeu accedió al catalogo de manga
+2025-06-01 03:41:56 - El usuario accedió a la página principal
+2025-06-01 03:41:56 - El usuario accedio a login
+2025-06-01 03:41:59 - El usuario accedio a login
+2025-06-01 03:41:59 - El usuario accedio a login
+2025-06-01 03:42:08 - Migeu accedió a la página principal
+2025-06-01 03:42:10 - Migeu accedió al catalogo de manga
+2025-06-01 03:42:12 - Migeu accedio al carrito
+2025-06-01 03:42:14 - Migeu accedió a la página principal
