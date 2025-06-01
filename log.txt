@@ -279,3 +279,76 @@ java.lang.ClassCastException: class java.lang.String cannot be cast to class com
 2025-06-01 03:42:10 - Migeu accedió al catalogo de manga
 2025-06-01 03:42:12 - Migeu accedio al carrito
 2025-06-01 03:42:14 - Migeu accedió a la página principal
+2025-06-01 10:23:05 - El usuario accedio a login
+2025-06-01 10:23:08 - El usuario accedió a la página principal
+2025-06-01 11:11:01 - El usuario accedio a login
+2025-06-01 11:11:07 - Migeu accedió a la página principal
+2025-06-01 11:11:09 - Migeu accedio al carrito
+2025-06-01 11:11:11 - Migeu accedió a la página principal
+2025-06-01 11:11:16 - Migeu accedio a la lista de usuarios
+2025-06-01 11:11:39 - Migeu modificó el campo contrasena del usuario Marijia
+2025-06-01 11:11:39 - Migeu accedio a la lista de usuarios
+2025-06-01 11:21:38 - El usuario accedió a la página principal
+2025-06-01 11:21:41 - El usuario accedio a login
+2025-06-01 11:21:48 - El usuario ingreso credenciales erroneas
+2025-06-01 11:21:48 - El usuario ingreso credenciales erroneas
+2025-06-01 11:21:48 - El usuario accedio a login
+2025-06-01 11:21:57 - El usuario ingreso credenciales erroneas
+2025-06-01 11:21:57 - El usuario ingreso credenciales erroneas
+2025-06-01 11:21:57 - El usuario accedio a login
+2025-06-01 11:22:42 - El usuario ingreso credenciales erroneas
+2025-06-01 11:22:42 - El usuario ingreso credenciales erroneas
+2025-06-01 11:22:42 - El usuario accedio a login
+2025-06-01 11:23:43 - El usuario ingreso credenciales erroneas
+2025-06-01 11:23:43 - El usuario ingreso credenciales erroneas
+2025-06-01 11:23:43 - El usuario accedio a login
+2025-06-01 11:23:50 - Migeu accedió a la página principal
+2025-06-01 11:23:53 - Migeu accedio a la lista de usuarios
+2025-06-01 11:24:11 - Migeu modificó el campo contrasena del usuario Marijia
+2025-06-01 11:24:11 - Migeu accedio a la lista de usuarios
+2025-06-01 11:25:21 - Migeu accedio a la lista de usuarios
+2025-06-01 11:26:27 - Migeu modificó el campo contrasena del usuario Marijia
+2025-06-01 11:26:27 - Migeu accedio a la lista de usuarios
+2025-06-01 11:34:43 - El usuario accedio a login
+2025-06-01 11:34:49 - El usuario ingreso credenciales erroneas
+2025-06-01 11:34:49 - El usuario ingreso credenciales erroneas
+2025-06-01 11:34:49 - El usuario accedio a login
+2025-06-01 11:35:10 - Migeu accedió a la página principal
+2025-06-01 11:35:13 - Migeu accedio a la lista de usuarios
+2025-06-01 11:36:13 - El usuario accedio a login
+2025-06-01 11:36:21 - Migeu accedió a la página principal
+2025-06-01 11:36:23 - Migeu accedio a la lista de usuarios
+2025-06-01 11:38:19 - El usuario accedió a la página principal
+2025-06-01 11:38:21 - El usuario accedio a login
+2025-06-01 11:38:32 - Migeu accedió a la página principal
+2025-06-01 11:38:34 - Migeu accedio a la lista de usuarios
+2025-06-01 11:39:20 - Migeu modificó el campo contrasena del usuario Marijia
+2025-06-01 11:39:20 - Migeu accedio a la lista de usuarios
+2025-06-01 11:40:19 - El usuario accedio a login
+2025-06-01 11:40:28 - Migeu accedió a la página principal
+2025-06-01 11:40:30 - Migeu accedio a la lista de usuarios
+2025-06-01 11:40:39 - Migeu modificó el campo contrasena del usuario Marijia
+2025-06-01 11:40:39 - Migeu accedio a la lista de usuarios
+2025-06-01 11:40:52 - Migeu accedio al carrito
+2025-06-01 11:40:55 - Migeu accedio a la lista de articulos
+2025-06-01 11:40:58 - Se cerro la sesion
+2025-06-01 11:41:05 - Migeu accedió a la página principal
+2025-06-01 11:41:08 - Se cerro la sesion
+2025-06-01 11:41:13 - Migeu accedió a la página principal
+2025-06-01 11:41:15 - Migeu accedio a la lista de usuarios
+2025-06-01 11:41:20 - Se cerro la sesion
+2025-06-01 11:41:29 - Marijia accedió a la página principal
+2025-06-01 11:41:34 - Se cerro la sesion
+2025-06-01 11:41:39 - Migeu accedió a la página principal
+2025-06-01 11:41:41 - Migeu accedio a la lista de usuarios
+2025-06-01 11:41:46 - Migeu modificó el campo tipo_usuario del usuario Marijia
+2025-06-01 11:41:46 - Migeu accedio a la lista de usuarios
+2025-06-01 11:41:57 - Migeu modificó el campo tipo_usuario del usuario Migeu
+2025-06-01 11:41:57 - Migeu accedio a la lista de usuarios
+2025-06-01 11:41:59 - Se cerro la sesion
+2025-06-01 11:42:04 - Marijia accedió a la página principal
+2025-06-01 11:42:10 - Marijia accedio a la lista de usuarios
+2025-06-01 11:42:16 - Marijia modificó el campo contrasena del usuario Marijia
+2025-06-01 11:42:16 - Marijia accedio a la lista de usuarios
+2025-06-01 11:42:18 - Se cerro la sesion
+2025-06-01 11:42:24 - Marijia accedió a la página principal

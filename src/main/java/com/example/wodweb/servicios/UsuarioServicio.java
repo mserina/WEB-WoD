@@ -170,8 +170,14 @@ public class UsuarioServicio {
      * @return true si la operación fue exitosa, false en caso contrario.
      */
     public boolean editarUsuario(String correoElectronico, String campo, String nuevoValor) {
-        String url = apiUrl + "/modificarUsuarios?correoElectronico=" + correoElectronico + "&campo=" + campo + "&nuevoValor=" + nuevoValor;
         
+        if(campo.equals("contrasena")) {
+        	String contrasenaSinEncriptar = nuevoValor;
+            String contrasenaEncriptada = cifradoContraseña.encode(contrasenaSinEncriptar);
+            nuevoValor = contrasenaEncriptada;
+        }
+        
+        String url = apiUrl + "/modificarUsuarios?correoElectronico=" + correoElectronico + "&campo=" + campo + "&nuevoValor=" + nuevoValor;
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, null, String.class);
         return response.getStatusCode() == HttpStatus.OK;
     }
